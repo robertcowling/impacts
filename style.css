@@ -18,6 +18,7 @@
     --clr-news: #db2777;
     --clr-energy: #ca8a04;
     --clr-water: #2563eb;
+    --clr-proxy: #64748b;
     
     /* Severity Levels - More muted */
     --sev-minimal: #16a34a;
@@ -296,6 +297,7 @@ h1 span {
 .category-indicator.news { background: var(--clr-news); }
 .category-indicator.energy { background: var(--clr-energy); }
 .category-indicator.water { background: var(--clr-water); }
+.category-indicator.proxy { background: var(--clr-proxy); }
 
 .severity-indicator.minimal { background: var(--sev-minimal); }
 .severity-indicator.minor { background: var(--sev-minor); }
@@ -1462,6 +1464,7 @@ h1 span {
 .chip-dot.news { background: var(--clr-news); }
 .chip-dot.energy { background: var(--clr-energy); }
 .chip-dot.water { background: var(--clr-water); }
+.chip-dot.proxy { background: var(--clr-proxy); }
 
 /* Marker inner categories */
 .marker-inner.roads { background: var(--clr-roads); border-color: #0c4a6e; }
@@ -1470,6 +1473,7 @@ h1 span {
 .marker-inner.news { background: var(--clr-news); border-color: #9d174d; }
 .marker-inner.energy { background: var(--clr-energy); border-color: #854d0e; }
 .marker-inner.water { background: var(--clr-water); border-color: #1e40af; }
+.marker-inner.proxy { background: var(--clr-proxy); border-color: #334155; }
 
 .marker-inner svg {
     width: 18px;
