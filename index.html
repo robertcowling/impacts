@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Intelligence Platform | Civil Service Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div id="app">
+        <!-- Header / Stats Bar -->
+        <header class="app-header glass">
+            <div class="logo-group">
+                <h1>Impact<span>Intelligence</span></h1>
+            </div>
+            <div class="header-nav">
+                <div class="nav-placeholder">Agentic Detection</div>
+                <div class="nav-placeholder">Alerting</div>
+                <div class="user-profile-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <section class="workspace">
+            <!-- Map Side -->
+            <!-- Genuine LHS Control Panel -->
+            <aside id="left-sidebar" class="flat-side-panel-left">
+                <div class="sidebar-section">
+                    <h3>Impact Filters</h3>
+                    <div class="filter-list-vertical">
+                        <label class="filter-item-row filter-chip active" data-category="roads">
+                            <input type="checkbox" checked value="roads">
+                            <span class="category-indicator roads"></span>
+                            <span class="item-label">Roads</span>
+                        </label>
+                        <label class="filter-item-row filter-chip active" data-category="railways">
+                            <input type="checkbox" checked value="railways">
+                            <span class="category-indicator railways"></span>
+                            <span class="item-label">Railways</span>
+                        </label>
+                        <label class="filter-item-row filter-chip active" data-category="social">
+                            <input type="checkbox" checked value="social">
+                            <span class="category-indicator social"></span>
+                            <span class="item-label">Social (Twitter)</span>
+                        </label>
+                        <label class="filter-item-row filter-chip active" data-category="news">
+                            <input type="checkbox" checked value="news">
+                            <span class="category-indicator news"></span>
+                            <span class="item-label">News</span>
+                        </label>
+                        <label class="filter-item-row filter-chip active" data-category="energy">
+                            <input type="checkbox" checked value="energy">
+                            <span class="category-indicator energy"></span>
+                            <span class="item-label">Energy</span>
+                        </label>
+                        <label class="filter-item-row filter-chip active" data-category="water">
+                            <input type="checkbox" checked value="water">
+                            <span class="category-indicator water"></span>
+                            <span class="item-label">Water</span>
+                        </label>
+                    <div class="filter-divider"></div>
+
+                    <h3>Proxy Impacts</h3>
+                    <div class="filter-list-vertical">
+                        <label class="filter-item-row filter-chip active" data-category="proxy">
+                            <input type="checkbox" checked value="proxy">
+                            <span class="category-indicator proxy"></span>
+                            <span class="item-label">Met Office website hits</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-divider"></div>
+
+                <div class="sidebar-section">
+                    <h3>Severity</h3>
+                    <div class="filter-list-vertical">
+                        <label class="severity-item-row severity-chip active" data-severity="minimal">
+                            <input type="checkbox" checked value="minimal">
+                            <span class="severity-indicator minimal"></span>
+                            <span class="item-label">Minimal</span>
+                        </label>
+                        <label class="severity-item-row severity-chip active" data-severity="minor">
+                            <input type="checkbox" checked value="minor">
+                            <span class="severity-indicator minor"></span>
+                            <span class="item-label">Minor</span>
+                        </label>
+                        <label class="severity-item-row severity-chip active" data-severity="significant">
+                            <input type="checkbox" checked value="significant">
+                            <span class="severity-indicator significant"></span>
+                            <span class="item-label">Significant</span>
+                        </label>
+                        <label class="severity-item-row severity-chip active" data-severity="severe">
+                            <input type="checkbox" checked value="severe">
+                            <span class="severity-indicator severe"></span>
+                            <span class="item-label">Severe</span>
+                        </label>
+                <div class="sidebar-section">
+                    <h3>Spatial Assessment</h3>
+                    <div class="filter-list-vertical">
+                        <label class="toggle-row" id="spatial-mode-toggle">
+                            <input type="checkbox" id="spatial-checkbox">
+                            <span class="toggle-slider-wrap">
+                                <span class="toggle-dot"></span>
+                            </span>
+                            <span class="item-label">Region Summary</span>
+                        </label>
+                        <label class="toggle-row" id="county-mode-toggle">
+                            <input type="checkbox" id="county-checkbox">
+                            <span class="toggle-slider-wrap">
+                                <span class="toggle-dot"></span>
+                            </span>
+                            <span class="item-label">County Summary</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="sidebar-spacer"></div>
+
+            </aside>
+
+            <!-- Map Center -->
+            <main id="map-container">
+                <div id="map"></div>
+                <div class="map-overlay-top-right">
+                    <div class="layer-control glass">
+                        <label><input type="checkbox" id="toggle-regions" checked> UK Regions</label>
+                        <label><input type="checkbox" id="toggle-counties"> UK Counties</label>
+                        <label><input type="checkbox" id="toggle-roads"> Trunk Roads</label>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Detailed RHS Panel -->
+            <aside id="side-feed-panel" class="flat-side-panel">
+                <div class="feed-header-alt">
+                    <p class="feed-stats"><span id="feed-count">0</span> impacts in view</p>
+                    <div class="live-dot-tag">Live</div>
+                </div>
+                <div id="feed-container" class="scrollable-feed">
+                    <!-- Feed items with photos and details generated by JS -->
+                </div>
+            </aside>
+        </section>
+
+        <!-- Timeline Controller -->
+        <footer class="app-footer glass">
+            <div class="timeline-container">
+                <div class="timeline-controls-compact">
+                    <button id="play-pause-btn" class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                </div>
+                
+                <div class="timeline-slider-area">
+                    <div class="timeline-info-row">
+                        <div class="timeline-controls-right">
+                            <div class="timeline-meta-stats">
+                                <div class="mini-stat">
+                                    <span class="val" id="total-count">0</span>
+                                    <span class="lbl">Impacts</span>
+                                </div>
+                            </div>
+                            <div class="select-group">
+                                <span class="select-label">View Period:</span>
+                                <select id="view-period-select" class="glass-select">
+                                    <option value="6">Last 6h</option>
+                                    <option value="12">Last 12h</option>
+                                    <option value="24">Last 24h</option>
+                                    <option value="today">Today (00-Now)</option>
+                                    <option value="yesterday">Yesterday (Full)</option>
+                                    <option value="custom" disabled>Custom</option>
+                                </select>
+                            </div>
+                            <input type="date" id="timeline-date-picker" class="glass-select">
+                            <div class="current-window">
+                                <span id="window-start-time">--:--</span> to <span id="window-end-time">--:--</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-wrapper dual-range">
+                        <div class="range-slider">
+                            <span class="range-selected">
+                                <span class="range-grab" id="timeline-grab">
+                                    <span class="grab-line"></span>
+                                    <span class="grab-line"></span>
+                                    <span class="grab-line"></span>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="range-input">
+                            <input type="range" id="timeline-low" min="0" max="48" value="36" step="0.5">
+                            <input type="range" id="timeline-high" min="0" max="48" value="48" step="0.5">
+                        </div>
+                        <div class="timeline-labels" id="timeline-tick-labels">
+                            <!-- Ticks generated by JS -->
+                        </div>
+                        <div class="timeline-scale-labels">
+                            <span class="scale-label start">48H AGO</span>
+                            <span class="scale-label end">NOW</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="app.js"></script>
+</body>
+</html>
