@@ -258,7 +258,6 @@ const State = {
     dragStartX: 0,
     dragStartLow: 0,
     spatialMode: null, // 'region', 'county' or null
-    roadsLayer: null,
     // Storage for spatial lookup
     rawRegions: null,
     rawCounties: null
@@ -273,10 +272,9 @@ async function init() {
     
     // Fetch and Load GeoJSONs
     try {
-        const [regionsRes, countiesRes, roadsRes] = await Promise.all([
+        const [regionsRes, countiesRes] = await Promise.all([
             fetch('uk-regions.geojson').then(r => r.json()),
-            fetch('uk-counties.geojson').then(r => r.json()),
-            fetch('uk-roads.geojson').then(r => r.json())
+            fetch('uk-counties.geojson').then(r => r.json())
         ]);
 
         State.rawRegions = regionsRes;
@@ -288,10 +286,6 @@ async function init() {
 
         State.counties = L.geoJSON(countiesRes, {
             style: { color: '#94a3b8', weight: 1, opacity: 0.4, fillOpacity: 0 }
-        });
-
-        State.roadsLayer = L.geoJSON(roadsRes, {
-            style: { color: '#475569', weight: 2, opacity: 0.8 }
         });
 
         // Store names for mock generation
@@ -639,29 +633,6 @@ function renderImpacts() {
                State.activeSeverities.has(imp.severity);
     });
 
-    // Marker handling logic remains same
-    filtered.forEach(imp => {
-        const markerIcon = L.divIcon({
-            className: 'custom-marker',
-            html: `<div class="marker-inner ${imp.category} ${imp.severity}">${CATEGORIES[imp.category].icon}</div>`,
-            iconSize: [28, 28],
-            iconAnchor: [14, 14]
-        });
-        const marker = L.marker([imp.lat, imp.lng], { icon: markerIcon }).on('click', () => showImpactDetails(imp)).addTo(State.map);
-        State.markers.push(marker);
-    });
-
-    // Auto-toggle road network layer
-    if (State.activeCategories.has('roads')) {
-        State.roadsLayer.addTo(State.map);
-        const roadToggle = document.getElementById('toggle-roads');
-        if (roadToggle) roadToggle.checked = true;
-    } else {
-        State.roadsLayer.removeFrom(State.map);
-        const roadToggle = document.getElementById('toggle-roads');
-        if (roadToggle) roadToggle.checked = false;
-    }
-
     // Proxy markers handling (don't show national proxies as markers)
     const filteredForMarkers = filtered.filter(imp => !imp.isNational);
 
@@ -753,10 +724,6 @@ function setupMapOverlays() {
     document.getElementById('toggle-counties').addEventListener('change', (e) => {
         if (e.target.checked) State.counties.addTo(State.map);
         else State.counties.removeFrom(State.map);
-    });
-    document.getElementById('toggle-roads').addEventListener('change', (e) => {
-        if (e.target.checked) State.roadsLayer.addTo(State.map);
-        else State.roadsLayer.removeFrom(State.map);
     });
 }
 
@@ -879,13 +846,6 @@ function renderRegionalSummary(filtered) {
 
 function selectImpact(imp, isRerender = true) {
     State.selectedImpact = imp;
-    
-    // Auto-toggle roads if it's a road impact
-    if (imp.category === 'roads') {
-        State.roadsLayer.addTo(State.map);
-        const roadToggle = document.getElementById('toggle-roads');
-        if (roadToggle) roadToggle.checked = true;
-    }
 
     // Skip map pan for national impacts
     if (!imp.isNational) {
