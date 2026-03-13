@@ -758,9 +758,8 @@ function syncDualSlider() {
     const endDate = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
 
     const format = (d) => {
-        const dateStr = d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
         const timeStr = d.getHours().toString().padStart(2, '0') + ':00';
-        return `${dateStr}, ${timeStr}`;
+        return timeStr;
     };
     document.getElementById('window-start-time').innerText = format(startDate);
     document.getElementById('window-end-time').innerText = format(endDate);
@@ -1172,13 +1171,7 @@ function hideSidebar() {
 }
 
 function updateStats() {
-    const now = new Date();
-    const startCutoff = new Date(now.getTime() - (48 - State.windowStart) * 60 * 60 * 1000);
-    const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
-    
-    const inWindow = State.impacts.filter(i => i.timestamp >= startCutoff && i.timestamp <= endCutoff);
-
-    document.getElementById('total-count').innerText = inWindow.length;
+    // Analytics update if needed, but UI element 'total-count' is removed as requested
 }
 
 
