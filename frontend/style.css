@@ -1672,7 +1672,7 @@ h1 span {
     display: flex;
     align-items: center;
     gap: 12px;
-    width: 240px;
+    width: 320px;
     justify-content: center;
     font-variant-numeric: tabular-nums;
     flex-shrink: 0;

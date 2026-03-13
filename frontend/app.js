@@ -758,8 +758,9 @@ function syncDualSlider() {
     const endDate = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
 
     const format = (d) => {
+        const dateStr = d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
         const timeStr = d.getHours().toString().padStart(2, '0') + ':00';
-        return timeStr;
+        return `${dateStr}, ${timeStr}`;
     };
     document.getElementById('window-start-time').innerText = format(startDate);
     document.getElementById('window-end-time').innerText = format(endDate);
