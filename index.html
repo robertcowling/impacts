@@ -20,8 +20,16 @@
             <div class="header-nav">
                 <div class="nav-placeholder">Agentic Detection</div>
                 <div class="nav-placeholder">Alerting</div>
-                <div class="user-profile-btn">
+                <div class="user-profile-btn" id="user-menu-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <div class="user-dropdown-menu glass" id="user-dropdown">
+                        <div class="dropdown-item" id="open-config-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.39a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <span>Config</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">Logout</div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -209,6 +217,137 @@
                 </div>
             </div>
         </footer>
+    </div>
+
+    <!-- Config Modal -->
+    <div class="modal-overlay" id="config-modal">
+        <div class="config-modal-content glass">
+            <div class="modal-header">
+                <h3>System Configuration</h3>
+                <button class="close-modal-btn" id="close-config-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <aside class="modal-sidebar">
+                    <div class="modal-tab active" data-tab="agentic-flow">Agentic Flow</div>
+                    <div class="modal-tab" data-tab="agentic-alerting">Agentic Alerting</div>
+                    <div class="modal-tab" data-tab="impact-framework">Impact Framework</div>
+                </aside>
+                <main class="modal-main-content">
+                    <div id="tab-agentic-flow" class="tab-content active">
+                        <div class="workflow-header">
+                            <div class="workflow-status">
+                                <span class="status-dot online"></span>
+                                <h4>Daily Validator Workflow</h4>
+                            </div>
+                            <span class="last-run">Last run: Today, 07:15 AM</span>
+                        </div>
+                        <p class="workflow-desc">This agentic workflow monitors and validates all active data sources in the platform to ensure high signal integrity.</p>
+                        
+                        <div class="workflow-section">
+                            <h5>Trusted Twitter Sources Validation</h5>
+                            <div class="source-list-card">
+                                <ul class="official-source-list">
+                                    <li><span class="source-tag">Official</span> BBC News</li>
+                                    <li><span class="source-tag">Official</span> TfL (Transport for London)</li>
+                                    <li><span class="source-tag">Official</span> National Highways</li>
+                                    <li><span class="source-tag">Official</span> Met Office</li>
+                                    <li><span class="source-tag">Official</span> Environment Agency</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="workflow-section">
+                            <h5>Recent Workflow Activity</h5>
+                            <div class="changelog-entry">
+                                <div class="entry-meta">
+                                    <span class="entry-date">12 Mar</span>
+                                    <span class="entry-badge addition">Added</span>
+                                </div>
+                                <span class="entry-text">Validated @EnvAgencyNorth as an official regional source.</span>
+                            </div>
+                            <div class="changelog-entry">
+                                <div class="entry-meta">
+                                    <span class="entry-date">10 Mar</span>
+                                    <span class="entry-badge info">Verified</span>
+                                </div>
+                                <span class="entry-text">Completed audit of 142 source handles. Integrity confirmed.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-agentic-alerting" class="tab-content">
+                        <div class="placeholder-view">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                            <h4>Agentic Alerting Configuration</h4>
+                            <p>Threshold and notification routing settings for AI alert clusters.</p>
+                        </div>
+                    </div>
+                    <div id="tab-impact-framework" class="tab-content">
+                        <div class="workflow-header">
+                            <h4>Impact Framework: Severity Matrix</h4>
+                        </div>
+                        <p class="workflow-desc">Evidence-based criteria for assigning severity levels across different impact categories. Initial focus: Flood Risk Matrix.</p>
+                        
+                        <div class="framework-container">
+                            <table class="impact-matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Minimal</th>
+                                        <th>Minor</th>
+                                        <th>Significant</th>
+                                        <th>Severe</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">Risk to life</td>
+                                        <td>Not expected</td>
+                                        <td>Individual risk for more vulnerable</td>
+                                        <td>Danger to life from fast flowing water/wave overtopping</td>
+                                        <td>Danger to life from inundation and utility hazards (e.g. electrocution)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Communities (Access)</td>
+                                        <td>Isolated flooding of low-lying land/roads</td>
+                                        <td>Localised flooding of land and roads</td>
+                                        <td>Communities temporarily inaccessible due to flooded routes</td>
+                                        <td>Communities cut off</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Communities (Property)</td>
+                                        <td>Isolated instances of spray on coastal promenades</td>
+                                        <td>Localised flooding affecting individual properties</td>
+                                        <td>Flooding affecting multiple communities and properties</td>
+                                        <td>Widespread flooding affecting large numbers of properties/communities</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Communities (Buildings)</td>
+                                        <td>Not expected</td>
+                                        <td>Local damage due to age/condition of structure</td>
+                                        <td>Damage to buildings/structures</td>
+                                        <td>Extensive damage to and/or collapse of buildings</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Transport</td>
+                                        <td>Little disruption, wet roads lead to difficult driving</td>
+                                        <td>Local and short term disruption to travel</td>
+                                        <td>Widespread/long duration disruption. Some route closures.</td>
+                                        <td>Widespread damage. Motorists stranded. Widespread route closures.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Utilities</td>
+                                        <td>Not expected</td>
+                                        <td>Localised and short term disruption to services</td>
+                                        <td>Disruption to utilities and services</td>
+                                        <td>Widespread/prolonged disruption through loss of utilities</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
