@@ -562,8 +562,30 @@ h1 span {
     padding-top: 4px;
 }
 
+.sidebar-main-header {
+    padding: 16px 12px 6px 12px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 4px;
+}
+
 .sidebar-section {
-    padding: 6px 12px;
+    padding: 8px 12px;
+}
+
+.sidebar-section h4 {
+    margin-bottom: 4px;
+    padding-left: 8px; /* Indent sub-headers slightly */
+    font-size: 0.58rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
 }
 
 .sidebar-section h3 {

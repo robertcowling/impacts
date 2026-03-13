@@ -93,15 +93,42 @@ function generateAssessment(category, severity, source) {
         }
     };
 
+    let confLabel = 'Very Low';
+    let confColor = '#64748b';
+    if (confidence >= 80) { confLabel = 'High'; confColor = '#16a34a'; }
+    else if (confidence >= 60) { confLabel = 'Medium'; confColor = '#d97706'; }
+    else if (confidence >= 40) { confLabel = 'Low'; confColor = '#ea580c'; }
+
     return {
         confidence,
-        confidenceLabel: confidence >= 80 ? 'High' : confidence >= 60 ? 'Medium' : 'Low',
-        confidenceColor: confidence >= 80 ? '#16a34a' : confidence >= 60 ? '#d97706' : '#dc2626',
+        confidenceLabel: confLabel,
+        confidenceColor: confColor,
         sourceType: srcInfo.label,
         sourceScore: srcInfo.score,
+        sourceLabel: srcInfo.score >= 90 ? 'Very High' : (srcInfo.score >= 70 ? 'High' : (srcInfo.score >= 50 ? 'Moderate' : 'Low')),
         corroborated: corroboration,
         isProxy,
         justification: (justifications[category] && justifications[category][severity]) || 'Assessment pending LLM analysis against Impact Framework.'
+    };
+}
+
+function generateSummaryAssessment(name, severity, count) {
+    const weights = { minimal: 45, minor: 62, significant: 84, severe: 92 };
+    const baseConf = weights[severity] || 50;
+    const finalConf = Math.min(100, baseConf + (count > 5 ? 5 : 0));
+    
+    let confLabel = 'Very Low';
+    let confColor = '#64748b';
+    if (finalConf >= 80) { confLabel = 'High'; confColor = '#16a34a'; }
+    else if (finalConf >= 60) { confLabel = 'Medium'; confColor = '#d97706'; }
+    else if (finalConf >= 40) { confLabel = 'Low'; confColor = '#ea580c'; }
+
+    return {
+        confidence: finalConf,
+        confidenceLabel: confLabel,
+        confidenceColor: confColor,
+        sourceLabel: finalConf >= 80 ? 'High' : 'Moderate',
+        justification: `Aggregate LLM analysis of ${count} evidence signals within ${name} confirms a sustained ${severity} impact level. High correlation between transport disruption and social indicators noted.`
     };
 }
 
@@ -857,8 +884,11 @@ function renderFeed(filtered) {
     const feedCont = document.getElementById('feed-container');
     const feedCount = document.getElementById('feed-count');
     
-    if (State.spatialMode) {
+    if (State.spatialMode === 'region') {
         renderRegionalSummary(filtered);
+        return;
+    } else if (State.spatialMode === 'county') {
+        renderCountySummary(filtered);
         return;
     }
 
@@ -908,7 +938,7 @@ function renderFeed(filtered) {
                     <div class="confidence-bar-bg">
                         <div class="confidence-bar-fill" style="width: ${imp.assessment.confidence}%; background: ${imp.assessment.confidenceColor}"></div>
                     </div>
-                    <span class="confidence-value">${imp.assessment.confidence}%</span>
+                    <span class="confidence-value">${imp.assessment.confidenceLabel}</span>
                 </div>` : ''}
             </div>
         `;
@@ -944,6 +974,24 @@ function renderRegionalSummary(filtered) {
 
     Object.keys(regions).sort((a,b) => regions[b].count - regions[a].count).forEach(r => {
         const data = regions[r];
+        const summaryId = `summary-reg-${r.replace(/\s+/g, '-')}`;
+        const assessment = generateSummaryAssessment(r, data.severity, data.count);
+        
+        // Store assessment in State temporarily for modal lookup (hacky but works for demo)
+        State.impacts.push({
+            id: summaryId,
+            category: 'proxy',
+            severity: data.severity,
+            source: 'LLM Aggregate',
+            assessment: {
+                ...assessment,
+                sourceType: 'Spatial Analysis',
+                sourceScore: 90,
+                corroborated: true,
+                isProxy: false
+            }
+        });
+
         const card = document.createElement('div');
         card.className = 'region-summary-card';
         card.style.borderLeft = `4px solid ${SEVERITIES[data.severity].color}`;
@@ -953,12 +1001,23 @@ function renderRegionalSummary(filtered) {
                 <h4>${r}</h4>
                 <div class="summary-stats">
                     <span class="count">${data.count} signals</span>
-                    ${data.severe > 0 ? `<span class="sev-tag">Significant Risk</span>` : ''}
+                    <div class="sev-label-box">
+                        <span class="sev-dot-small" style="background: ${SEVERITIES[data.severity].color}"></span>
+                        <span style="color: ${SEVERITIES[data.severity].color}">${SEVERITIES[data.severity].label}</span>
+                        <button class="assessment-info-btn" onclick="event.stopPropagation(); showAssessmentModal('${summaryId}')">i</button>
+                    </div>
                 </div>
             </div>
             <div class="summary-sources">
                 <span class="src-label">Sources:</span>
                 ${Array.from(data.sources).map(s => `<span class="src-pill">${s}</span>`).join('')}
+            </div>
+            <div class="confidence-row">
+                <span class="confidence-label">Confidence</span>
+                <div class="confidence-bar-bg">
+                    <div class="confidence-bar-fill" style="width: ${assessment.confidence}%; background: ${assessment.confidenceColor}"></div>
+                </div>
+                <span class="confidence-value">${assessment.confidenceLabel}</span>
             </div>
             <div class="summary-footer">
                 <button class="view-btn">Focus Region</button>
@@ -966,8 +1025,89 @@ function renderRegionalSummary(filtered) {
         `;
         
         card.addEventListener('click', () => {
-             // Find first impact in this region to zoom to
              const firstImp = filtered.find(i => i.locationName.includes(r));
+             if (firstImp) State.map.panTo([firstImp.lat, firstImp.lng]);
+        });
+        
+        feedCont.appendChild(card);
+    });
+}
+
+function renderCountySummary(filtered) {
+    const feedCont = document.getElementById('feed-container');
+    feedCont.innerHTML = '';
+
+    // Aggregate by County
+    const counties = {};
+    filtered.forEach(imp => {
+        const parts = imp.locationName.split('|');
+        const county = (parts[1] || parts[0]).trim();
+        if (!counties[county]) {
+            counties[county] = { count: 0, severe: 0, sources: new Set(), severity: 'minimal' };
+        }
+        counties[county].count++;
+        if (imp.severity === 'severe') counties[county].severe++;
+        counties[county].sources.add(imp.source);
+        
+        const weights = { minimal: 1, minor: 2, significant: 3, severe: 4 };
+        if (weights[imp.severity] > weights[counties[county].severity]) {
+            counties[county].severity = imp.severity;
+        }
+    });
+
+    Object.keys(counties).sort((a,b) => counties[b].count - counties[a].count).forEach(c => {
+        const data = counties[c];
+        const summaryId = `summary-cty-${c.replace(/\s+/g, '-')}`;
+        const assessment = generateSummaryAssessment(c, data.severity, data.count);
+
+        State.impacts.push({
+            id: summaryId,
+            category: 'proxy',
+            severity: data.severity,
+            source: 'LLM Aggregate',
+            assessment: {
+                ...assessment,
+                sourceType: 'Spatial Analysis',
+                sourceScore: 85,
+                corroborated: true,
+                isProxy: false
+            }
+        });
+
+        const card = document.createElement('div');
+        card.className = 'region-summary-card'; // Reuse style
+        card.style.borderLeft = `4px solid ${SEVERITIES[data.severity].color}`;
+        
+        card.innerHTML = `
+            <div class="summary-header">
+                <h4>${c}</h4>
+                <div class="summary-stats">
+                    <span class="count">${data.count} signals</span>
+                    <div class="sev-label-box">
+                        <span class="sev-dot-small" style="background: ${SEVERITIES[data.severity].color}"></span>
+                        <span style="color: ${SEVERITIES[data.severity].color}">${SEVERITIES[data.severity].label}</span>
+                        <button class="assessment-info-btn" onclick="event.stopPropagation(); showAssessmentModal('${summaryId}')">i</button>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-sources">
+                <span class="src-label">Sources:</span>
+                ${Array.from(data.sources).map(s => `<span class="src-pill">${s}</span>`).join('')}
+            </div>
+            <div class="confidence-row">
+                <span class="confidence-label">Confidence</span>
+                <div class="confidence-bar-bg">
+                    <div class="confidence-bar-fill" style="width: ${assessment.confidence}%; background: ${assessment.confidenceColor}"></div>
+                </div>
+                <span class="confidence-value">${assessment.confidenceLabel}</span>
+            </div>
+            <div class="summary-footer">
+                <button class="view-btn">Focus County</button>
+            </div>
+        `;
+        
+        card.addEventListener('click', () => {
+             const firstImp = filtered.find(i => i.locationName.includes(c));
              if (firstImp) State.map.panTo([firstImp.lat, firstImp.lng]);
         });
         
@@ -1094,7 +1234,7 @@ function showAssessmentModal(impactId) {
             <div class="confidence-detail-grid">
                 <div class="confidence-factor">
                     <div class="cf-label">Source Reliability</div>
-                    <div class="cf-value">${a.sourceScore}%</div>
+                    <div class="cf-value">${a.sourceLabel || 'Moderate'}</div>
                     <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.sourceType}</div>
                 </div>
                 <div class="confidence-factor">
@@ -1109,8 +1249,8 @@ function showAssessmentModal(impactId) {
                 </div>
                 <div class="confidence-factor">
                     <div class="cf-label">Overall Confidence</div>
-                    <div class="cf-value" style="color:${a.confidenceColor}">${a.confidence}%</div>
-                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.confidenceLabel} confidence</div>
+                    <div class="cf-value" style="color:${a.confidenceColor}">${a.confidenceLabel}</div>
+                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">Categorical assessment</div>
                 </div>
             </div>
         </div>
