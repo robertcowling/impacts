@@ -29,6 +29,82 @@ const SEVERITIES = {
     significant: { label: 'Significant', color: '#fb923c' },
     severe: { label: 'Severe', color: '#f87171' }
 };
+// --- Assessment Justification Engine ---
+function generateAssessment(category, severity, source) {
+    const sourceReliability = {
+        'National Highways': { score: 95, label: 'Official Feed' },
+        'Railway Marketplace': { score: 90, label: 'Official Feed' },
+        'BBC News': { score: 88, label: 'Verified Media' },
+        'Twitter': { score: 55, label: 'Social / Unverified' },
+        'Operational Feed': { score: 85, label: 'Operational' },
+        'Met Office Digital': { score: 98, label: 'Official Gov' }
+    };
+
+    const srcInfo = sourceReliability[source] || { score: 60, label: 'Unknown' };
+    const corroboration = Math.random() > 0.4;
+    const corrobScore = corroboration ? 20 : 0;
+    const isProxy = source === 'Met Office Digital';
+    const proxyPenalty = isProxy ? -10 : 0;
+
+    const confidence = Math.min(100, Math.max(30, srcInfo.score + corrobScore + proxyPenalty + Math.floor(Math.random() * 10 - 5)));
+
+    const justifications = {
+        roads: {
+            minimal: 'Localised road disruption with no significant impact on strategic routes. Traffic management in place.',
+            minor: 'Road disruption reported on A-roads. Motorway disruption always classified as at least Minor per Impact Framework.',
+            significant: 'Motorway or multiple strategic route closures detected. Duration and diversion length indicate Significant impact.',
+            severe: 'Major motorway network failure. Multiple closures with stranded motorists. Exceeds Significant threshold per framework.'
+        },
+        railways: {
+            minimal: 'Minor train delays reported. No cancellations or route closures.',
+            minor: 'Service cancellations on branch lines. Limited impact on mainline services.',
+            significant: 'Mainline service disruption affecting multiple TOCs. Signal failures or line blockages.',
+            severe: 'Network-wide disruption. Multiple mainline closures. Sustained cancellations exceeding 6 hours.'
+        },
+        social: {
+            minimal: 'Low volume of social signals. No corroborating official sources.',
+            minor: 'Moderate social signal volume with some corroboration from local accounts.',
+            significant: 'High volume social signals with photo/video evidence. Multiple corroborating posts.',
+            severe: 'Viral social signal with widespread photo evidence of severe conditions.'
+        },
+        news: {
+            minimal: 'Brief mention in regional media. No sustained coverage.',
+            minor: 'Regional news coverage with on-scene reporting.',
+            significant: 'National media coverage. Multiple outlets reporting disruption.',
+            severe: 'Leading national news story. Live coverage of major disruption.'
+        },
+        energy: {
+            minimal: 'Isolated power fluctuations. No customer impact reported.',
+            minor: 'Localised power outages affecting individual properties.',
+            significant: 'Substation-level failure. Thousands of customers without power.',
+            severe: 'Widespread grid failure across multiple distribution zones.'
+        },
+        water: {
+            minimal: 'Low-level river rises within normal range.',
+            minor: 'River levels at flood alert thresholds. Localised surface water.',
+            significant: 'Flood warnings issued. Properties at risk of inundation.',
+            severe: 'Severe flood warnings. Danger to life from deep/fast-flowing water.'
+        },
+        proxy: {
+            minimal: 'Website traffic within normal seasonal range.',
+            minor: 'Elevated platform traffic suggesting public concern.',
+            significant: 'Significant surge correlating with active warnings.',
+            severe: 'Extreme traffic spike. Platform under load. Indicates widespread public alarm.'
+        }
+    };
+
+    return {
+        confidence,
+        confidenceLabel: confidence >= 80 ? 'High' : confidence >= 60 ? 'Medium' : 'Low',
+        confidenceColor: confidence >= 80 ? '#16a34a' : confidence >= 60 ? '#d97706' : '#dc2626',
+        sourceType: srcInfo.label,
+        sourceScore: srcInfo.score,
+        corroborated: corroboration,
+        isProxy,
+        justification: (justifications[category] && justifications[category][severity]) || 'Assessment pending LLM analysis against Impact Framework.'
+    };
+}
+
 
 // --- Mock Data Engine ---
 function generateMockImpacts() {
@@ -72,6 +148,12 @@ function generateMockImpacts() {
         let countyMatch = findGeoAttribute([lng, lat], State.rawCounties);
         let countyLabel = countyMatch || "Local Authority";
 
+        const assessment = generateAssessment(category, severity, 
+            category === 'social' ? 'Twitter' : 
+            (category === 'news' ? 'BBC News' : 
+            (category === 'roads' ? 'National Highways' : 
+            (category === 'railways' ? 'Railway Marketplace' : 'Operational Feed'))));
+
         impacts.push({
             id: `ev-${i}`,
             lat,
@@ -88,7 +170,8 @@ function generateMockImpacts() {
                    (category === 'railways' ? 'Railway Marketplace' : 'Operational Feed'))),
             sourceUrl: category === 'social' ? 'https://twitter.com' : 
                       (category === 'news' ? 'https://bbc.co.uk/news' : '#'),
-            photo: getMockPhoto(category)
+            photo: getMockPhoto(category),
+            assessment
         });
     }
 
@@ -108,7 +191,8 @@ function generateMockImpacts() {
         evidence: `National surge in public traffic. Real-time analytics show ${todayHits.toFixed(1)}M hits in last hour. Highly correlated with worsening weather context.`,
         source: 'Met Office Digital',
         sourceUrl: 'https://www.metoffice.gov.uk',
-        isNational: true
+        isNational: true,
+        assessment: generateAssessment('proxy', proxyLevels[Math.floor(Math.random() * 4)], 'Met Office Digital')
     });
 
     // Yesterday's proxy
@@ -124,7 +208,8 @@ function generateMockImpacts() {
         evidence: `Sustained high traffic during yellow and amber warning periods. Total daily volume reached 4.2M hits.`,
         source: 'Met Office Digital',
         sourceUrl: 'https://www.metoffice.gov.uk',
-        isNational: true
+        isNational: true,
+        assessment: generateAssessment('proxy', 'significant', 'Met Office Digital')
     });
 
     return impacts;
@@ -813,9 +898,18 @@ function renderFeed(filtered) {
                     <div class="sev-label-box">
                         <span class="sev-dot-small" style="background: ${SEVERITIES[imp.severity].color}"></span>
                         <span style="color: ${SEVERITIES[imp.severity].color}">${SEVERITIES[imp.severity].label}</span>
+                        <button class="assessment-info-btn" data-impact-id="${imp.id}" onclick="event.stopPropagation(); showAssessmentModal('${imp.id}')" title="View assessment justification">i</button>
                     </div>
                     <span class="loc-pill">${imp.locationName}</span>
                 </div>
+                ${imp.assessment ? `
+                <div class="confidence-row">
+                    <span class="confidence-label">Confidence</span>
+                    <div class="confidence-bar-bg">
+                        <div class="confidence-bar-fill" style="width: ${imp.assessment.confidence}%; background: ${imp.assessment.confidenceColor}"></div>
+                    </div>
+                    <span class="confidence-value">${imp.assessment.confidence}%</span>
+                </div>` : ''}
             </div>
         `;
 
@@ -975,6 +1069,81 @@ function animateTimeline() {
     
     setTimeout(animateTimeline, 400);
 }
+
+// --- Assessment Modal ---
+function showAssessmentModal(impactId) {
+    const imp = State.impacts.find(i => i.id === impactId);
+    if (!imp || !imp.assessment) return;
+
+    const modal = document.getElementById('assessment-modal');
+    const body = document.getElementById('assessment-modal-body');
+    const a = imp.assessment;
+
+    body.innerHTML = `
+        <div class="justification-section">
+            <h5>Severity Classification</h5>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                <span class="sev-dot-small" style="background:${SEVERITIES[imp.severity].color};width:12px;height:12px"></span>
+                <strong style="color:${SEVERITIES[imp.severity].color};font-size:1rem">${SEVERITIES[imp.severity].label}</strong>
+                <span style="font-size:0.75rem;color:var(--text-secondary)">${CATEGORIES[imp.category].label} impact</span>
+            </div>
+            <p class="justification-text">${a.justification}</p>
+        </div>
+        <div class="justification-section">
+            <h5>Confidence Assessment</h5>
+            <div class="confidence-detail-grid">
+                <div class="confidence-factor">
+                    <div class="cf-label">Source Reliability</div>
+                    <div class="cf-value">${a.sourceScore}%</div>
+                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.sourceType}</div>
+                </div>
+                <div class="confidence-factor">
+                    <div class="cf-label">Corroboration</div>
+                    <div class="cf-value">${a.corroborated ? 'Yes' : 'No'}</div>
+                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.corroborated ? 'Confirmed by neighbouring signals' : 'No corroborating sources found'}</div>
+                </div>
+                <div class="confidence-factor">
+                    <div class="cf-label">Signal Type</div>
+                    <div class="cf-value">${a.isProxy ? 'Proxy' : 'Direct'}</div>
+                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.isProxy ? 'Indirect indicator (penalty applied)' : 'Direct observation or report'}</div>
+                </div>
+                <div class="confidence-factor">
+                    <div class="cf-label">Overall Confidence</div>
+                    <div class="cf-value" style="color:${a.confidenceColor}">${a.confidence}%</div>
+                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.confidenceLabel} confidence</div>
+                </div>
+            </div>
+        </div>
+        <div class="justification-section">
+            <h5>Assessment Basis</h5>
+            <ul class="justification-factors">
+                <li><span class="factor-icon">📋</span> Assessed against the Impact Framework severity matrix (Config > Impact Framework)</li>
+                <li><span class="factor-icon">🤖</span> Classification generated by LLM using evidence signals and framework criteria</li>
+                <li><span class="factor-icon">🔗</span> Source: ${imp.source} (${a.sourceType})</li>
+            </ul>
+        </div>
+        <div class="framework-ref">
+            <strong>Framework Reference:</strong> This assessment follows the Flood Impacts Table severity definitions. In production, an LLM analyses each signal against the configured Impact Framework to derive both severity and confidence.
+        </div>
+    `;
+
+    modal.classList.add('active');
+}
+
+// Wire up assessment modal close
+document.addEventListener('DOMContentLoaded', () => {
+    const assessModal = document.getElementById('assessment-modal');
+    const closeAssessBtn = document.getElementById('close-assessment-btn');
+    
+    if (closeAssessBtn) {
+        closeAssessBtn.addEventListener('click', () => assessModal.classList.remove('active'));
+    }
+    if (assessModal) {
+        assessModal.addEventListener('click', (e) => {
+            if (e.target === assessModal) assessModal.classList.remove('active');
+        });
+    }
+});
 
 // Start App
 window.addEventListener('load', init);
