@@ -175,31 +175,6 @@
                 </div>
                 
                 <div class="timeline-slider-area">
-                    <div class="timeline-info-row">
-                        <div class="timeline-controls-right">
-                            <div class="timeline-meta-stats">
-                                <div class="mini-stat">
-                                    <span class="val" id="total-count">0</span>
-                                    <span class="lbl">Impacts</span>
-                                </div>
-                            </div>
-                            <div class="select-group">
-                                <span class="select-label">View Period:</span>
-                                <select id="view-period-select" class="glass-select">
-                                    <option value="6">Last 6h</option>
-                                    <option value="12">Last 12h</option>
-                                    <option value="24">Last 24h</option>
-                                    <option value="today">Today (00-Now)</option>
-                                    <option value="yesterday">Yesterday (Full)</option>
-                                    <option value="custom" disabled>Custom</option>
-                                </select>
-                            </div>
-                            <input type="date" id="timeline-date-picker" class="glass-select">
-                            <div class="current-window">
-                                <span id="window-start-time">--:--</span> to <span id="window-end-time">--:--</span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="slider-wrapper dual-range">
                         <div class="range-slider">
                             <span class="range-selected">
@@ -221,6 +196,29 @@
                             <span class="scale-label start">48H AGO</span>
                             <span class="scale-label end">NOW</span>
                         </div>
+                    </div>
+                </div>
+
+                <div class="timeline-controls-right">
+                    <div class="timeline-meta-stats">
+                        <div class="mini-stat">
+                            <span class="val" id="total-count">0</span>
+                            <span class="lbl">Impacts</span>
+                        </div>
+                    </div>
+                    <div class="select-group">
+                        <span class="select-label">View:</span>
+                        <select id="view-period-select" class="glass-select">
+                            <option value="6">6h</option>
+                            <option value="12">12h</option>
+                            <option value="24">24h</option>
+                            <option value="today">Today</option>
+                            <option value="yesterday">Yesterday</option>
+                        </select>
+                    </div>
+                    <input type="date" id="timeline-date-picker" class="glass-select">
+                    <div class="current-window">
+                        <span id="window-start-time">--:--</span> to <span id="window-end-time">--:--</span>
                     </div>
                 </div>
             </div>
