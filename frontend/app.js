@@ -325,11 +325,10 @@ function renderTimelineTicks() {
         const tickDate = new Date(now.getTime() - hoursAgo * 60 * 60 * 1000);
         const hrs = tickDate.getHours();
 
-        // High precision ticks for midnight and midday, otherwise hourly
         let type = '';
         if (hrs === 0) type = 'major';
         else if (hrs === 12) type = 'moderate';
-        else type = 'minor'; // All other hours are minor lines
+        else type = 'minor'; 
 
         const tick = document.createElement('div');
         tick.className = `tick ${type}`;
@@ -339,10 +338,10 @@ function renderTimelineTicks() {
         line.className = `tick-line ${type}`;
         tick.appendChild(line);
         
-        // Labels only for major and moderate
+        // Labels
         if (type !== 'minor') {
             const label = document.createElement('div');
-            label.className = 'tick-label';
+            label.className = `tick-label ${type}`; // Add type class to label for specific styling
             
             if (type === 'major') {
                 label.innerText = tickDate.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
@@ -575,6 +574,48 @@ function setupEvents() {
             document.body.style.cursor = 'default';
         }
     });
+
+    // User Menu & Config Modal Logic
+    const userMenuBtn = document.getElementById('user-menu-btn');
+    const userDropdown = document.getElementById('user-dropdown');
+    const configModal = document.getElementById('config-modal');
+    const openConfigBtn = document.getElementById('open-config-btn');
+    const closeConfigBtn = document.getElementById('close-config-btn');
+
+    userMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle('active');
+    });
+
+    window.addEventListener('click', () => {
+        userDropdown.classList.remove('active');
+    });
+
+    openConfigBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        configModal.classList.add('active');
+        userDropdown.classList.remove('active');
+    });
+
+    closeConfigBtn.addEventListener('click', () => {
+        configModal.classList.remove('active');
+    });
+
+    configModal.addEventListener('click', (e) => {
+        if (e.target === configModal) configModal.classList.remove('active');
+    });
+
+    // Modal Tabs
+    document.querySelectorAll('.modal-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            tab.classList.add('active');
+            document.getElementById(`tab-${target}`).classList.add('active');
+        });
+    });
 }
 
 function syncDualSlider() {
@@ -767,10 +808,6 @@ function renderFeed(filtered) {
                 <h4 class="feed-card-title">${imp.title}</h4>
                 <div class="feed-card-content-wrap">
                     <p class="feed-card-evidence">${imp.evidence}</p>
-                    <div class="feed-card-ai-mini">
-                        <svg class="ai-mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.1 12.1"/><path d="M12 12l9.9-0.1"/></svg>
-                        <span>AI Inference: ${imp.severity === 'severe' ? 'Critical disruption' : 'High confidence impact'}</span>
-                    </div>
                 </div>
                 <div class="feed-card-footer">
                     <div class="sev-label-box">
