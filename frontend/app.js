@@ -108,7 +108,7 @@ function generateAssessment(category, severity, source) {
         sourceLabel: srcInfo.score >= 90 ? 'Very High' : (srcInfo.score >= 70 ? 'High' : (srcInfo.score >= 50 ? 'Moderate' : 'Low')),
         corroborated: corroboration,
         isProxy,
-        justification: (justifications[category] && justifications[category][severity]) || 'Assessment pending LLM analysis against Impact Framework.'
+        justification: (justifications[category] && justifications[category][severity]) || 'Assessment pending Gemini analysis against Impact Framework.'
     };
 }
 
@@ -128,7 +128,7 @@ function generateSummaryAssessment(name, severity, count) {
         confidenceLabel: confLabel,
         confidenceColor: confColor,
         sourceLabel: finalConf >= 80 ? 'High' : 'Moderate',
-        justification: `Aggregate LLM analysis of ${count} evidence signals within ${name} confirms a sustained ${severity} impact level. High correlation between transport disruption and social indicators noted.`
+        justification: `Aggregate Gemini analysis of ${count} evidence signals within ${name} confirms a sustained ${severity} impact level. High correlation between transport disruption and social indicators noted.`
     };
 }
 
@@ -982,7 +982,7 @@ function renderRegionalSummary(filtered) {
             id: summaryId,
             category: 'proxy',
             severity: data.severity,
-            source: 'LLM Aggregate',
+            source: 'Gemini Aggregate',
             assessment: {
                 ...assessment,
                 sourceType: 'Spatial Analysis',
@@ -1064,7 +1064,7 @@ function renderCountySummary(filtered) {
             id: summaryId,
             category: 'proxy',
             severity: data.severity,
-            source: 'LLM Aggregate',
+            source: 'Gemini Aggregate',
             assessment: {
                 ...assessment,
                 sourceType: 'Spatial Analysis',
