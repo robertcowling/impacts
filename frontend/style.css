@@ -1613,84 +1613,86 @@ h1 span {
     color: var(--text-primary);
 }
 
-/* Footer / Timeline */
+/* Footer / Timeline Overhaul */
 .app-footer {
-    height: 90px; /* Reduced as requested */
-    padding: 0 24px;
+    height: 80px;
+    padding: 0 32px;
     display: flex;
     align-items: center;
     z-index: 1000;
     border-top: 1px solid var(--border-color);
-    background: #ffffff; 
+    background: #ffffff;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
 }
 
 .timeline-container {
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
 }
 
-.current-window {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    background: #f8fafc;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    min-width: 260px;
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
-}
-
-.current-window span {
-    color: var(--text-primary);
-}
-
-.timeline-controls-compact {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-}
-
-.icon-btn {
-    background: var(--clr-primary);
-    border: none;
+.tl-play-btn {
+    background: #0f172a;
+    border: 1px solid rgba(255,255,255,0.1);
     color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
 }
 
-.icon-btn:hover {
-    transform: scale(1.1);
-    background: var(--clr-secondary);
+.tl-play-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: #1e293b;
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
 }
 
-.icon-btn svg {
+.tl-play-btn svg {
     width: 24px;
     height: 24px;
 }
 
+.tl-window-badge {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 0 20px;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 180px;
+    justify-content: center;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.tl-window-sep {
+    color: var(--text-secondary);
+    opacity: 0.5;
+    font-weight: 400;
+}
+
 .timeline-slider-area {
-    flex: 1;
+    flex: 2; /* Take significantly more space */
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 60px;
     position: relative;
-    padding-bottom: 15px; /* Room for ticker labels */
+    padding: 0 10px;
 }
 
 .glass-select {
@@ -1713,18 +1715,23 @@ h1 span {
     border-color: var(--clr-primary);
 }
 
-.timeline-info-row {
-    display: none; /* Removed as structural container, components moved */
-}
-
-.timeline-scale-labels {
+.tl-endcaps {
     position: absolute;
-    bottom: -18px; /* Closer to rail */
     width: 100%;
+    top: 0;
     left: 0;
     display: flex;
     justify-content: space-between;
-    z-index: 100; 
+    pointer-events: none;
+}
+
+.tl-endcap {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
 }
 
 /* AI Inference Tabs Removal */
@@ -1746,19 +1753,13 @@ h1 span {
     z-index: 1000;
 }
 
-.timeline-controls-right {
+.tl-controls-right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     flex-shrink: 0;
-}
-
-.timeline-meta-stats {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding-right: 16px;
-    border-right: 1px solid var(--border-color);
+    padding-left: 12px;
+    border-left: 1px solid var(--border-color);
 }
 
 .mini-stat {
@@ -1811,11 +1812,10 @@ h1 span {
 .range-slider {
     position: absolute;
     width: 100%;
-    height: 6px;
-    background: rgba(0, 0, 0, 0.06);
-    border-radius: 3px;
-    z-index: 30;
-    pointer-events: none;
+    height: 8px; /* Slightly thicker */
+    background: #e2e8f0;
+    border-radius: 4px;
+    z-index: 10;
 }
 
 .range-selected {
@@ -1833,20 +1833,19 @@ h1 span {
 }
 
 .range-grab {
-    height: 32px; 
-    padding: 0 10px;
+    height: 36px;
+    padding: 0 12px;
     cursor: grab !important;
     display: flex;
     align-items: center;
     gap: 4px;
-    background: #1e293b; 
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    background: #0f172a;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     pointer-events: auto !important;
-    transition: all 0.1s ease;
+    transition: all 0.15s ease;
     border: 2px solid white;
-    z-index: 1000; /* Ensure on top */
-    transform: translateY(0);
+    z-index: 1000;
 }
 
 /* Ensure grab hand is consistent */
@@ -1928,11 +1927,11 @@ h1 span {
 
 /* Primary RHS Thumb (Moves window) */
 #timeline-high::-webkit-slider-thumb {
-    height: 32px;
-    width: 14px;
+    height: 36px;
+    width: 12px;
     background: var(--clr-primary);
-    border-radius: 4px;
-    border: 2px solid white;
+    border-radius: 6px;
+    border: 3px solid white;
     box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
 }
 
@@ -1947,9 +1946,9 @@ h1 span {
 
 .timeline-labels {
     position: absolute;
-    bottom: -32px; /* Smoothed position for compact layout */
+    bottom: -36px;
     width: 100%;
-    height: 30px;
+    height: 36px;
     pointer-events: none;
     z-index: 50;
 }
@@ -1999,25 +1998,19 @@ h1 span {
     background: #0f172a;
     padding: 3px 10px;
     border-radius: 6px;
-    border: 1.5px solid #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    margin-top: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin-top: 6px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 .tick-label.moderate {
-    color: var(--text-primary);
-    background: transparent;
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    margin-top: 2px;
-}
-
-.tick.major .tick-label {
-    background: #0f172a;
-    color: #ffffff;
-    font-weight: 800;
-    border: 1.5px solid #ffffff;
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    margin-top: 4px;
 }
 
 /* Marker Styling - More industrial/technical */
