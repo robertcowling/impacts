@@ -25,7 +25,7 @@ const CATEGORIES = {
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
     proxy: { label: 'Proxy', color: '#64748b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="m17 7-5-5-5 5M17 17l-5 5-5-5"/></svg>' },
     'google-trends': { label: 'Google Trends', color: '#a15b5b', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></circle></svg>' },
-    'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<img src="ea_logo.png" style="width:20px; height:20px; border-radius:3px;">' }
+    'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="15.5" font-family="Arial" font-size="10" font-weight="900" fill="currentColor" text-anchor="middle">EA</text></svg>' }
 };
 
 const IMPACT_TYPES = {
@@ -1119,8 +1119,9 @@ function renderTypeFilters() {
         row.dataset.type = key;
         
         row.innerHTML = `
-            <input type="checkbox" ${isActive ? 'checked' : ''} value="${key}">
-            <span class="category-indicator" style="background: ${type.color}"></span>
+            <div class="custom-checkbox ${isActive ? 'checked' : ''}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
             <span class="item-label">${type.label}</span>
             <span class="only-trigger">Only</span>
         `;
@@ -1157,6 +1158,21 @@ function renderTypeFilters() {
 
         list.appendChild(row);
     });
+
+    // Add Show All listener if not already added (though it's static in HTML)
+    const showAllTypes = document.getElementById('show-all-types');
+    if (showAllTypes && !showAllTypes.dataset.listener) {
+        showAllTypes.dataset.listener = "true";
+        showAllTypes.addEventListener('click', () => {
+            Object.values(IMPACT_TYPES).forEach(type => {
+                type.categories.forEach(cat => State.activeCategories.add(cat));
+            });
+            renderTypeFilters();
+            renderImpacts();
+            updateStats();
+            syncSourceChecks();
+        });
+    }
 }
 
 function syncSourceChecks() {
@@ -1502,48 +1518,52 @@ function renderFeed(filtered) {
                         </span>
                         <span class="feed-card-time">${timeStr}</span>
                     </div>
-                    <div class="header-actions">
-                        <a href="${imp.sourceUrl}" class="source-link" target="_blank" onclick="event.stopPropagation()">
-                            ${imp.source}
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                        </a>
-                        <span class="source-only-btn" title="View only this source" onclick="event.stopPropagation(); filterOnly('${imp.category}')">Only</span>
-                    </div>
+                </div>
+                <div class="feed-card-source-row">
+                    <a href="${imp.sourceUrl}" class="source-link-new" target="_blank" onclick="event.stopPropagation()">
+                        ${imp.source}
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                    </a>
                 </div>
                 <h4 class="feed-card-title">${imp.title}</h4>
                 <div class="feed-card-content-wrap">
                     <p class="feed-card-evidence">${imp.evidence}</p>
                 </div>
-                <div class="feed-card-footer">
-                    <div class="sev-conf-group">
-                        <div class="sev-label-box">
+
+                <div class="feed-card-stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Severity</span>
+                        <div class="stat-value">
                             <span class="sev-rect-small" style="background: ${SEVERITIES[imp.severity].color}"></span>
-                            <span style="color: ${SEVERITIES[imp.severity].color}; font-weight: 700;">${SEVERITIES[imp.severity].label}</span>
+                            <span class="sev-text-bold" style="color: ${SEVERITIES[imp.severity].color}">${SEVERITIES[imp.severity].label}</span>
                         </div>
-                        ${imp.assessment ? `
-                            <div class="conf-mini-pill">
-                                Severity Confidence: ${imp.assessment.confidenceLabel}
+                    </div>
+                    ${imp.assessment ? `
+                    <div class="stat-item">
+                        <span class="stat-label">Confidence</span>
+                        <div class="stat-value">
+                            <span class="conf-box">${imp.assessment.confidenceLabel}</span>
+                            <button class="assessment-info-btn-new" data-impact-id="${imp.id}" onclick="event.stopPropagation(); showAssessmentModal('${imp.id}')" title="View assessment justification">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    ` : ''}
+                    <div class="stat-item">
+                        <span class="stat-label">Region</span>
+                        <div class="stat-value">
+                            <span class="loc-chip">${imp.locationName.split('|')[0].trim()}</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">County</span>
+                        <div class="stat-value">
+                            <div class="chips-wrap">
+                                ${imp.intersectingCounties && imp.intersectingCounties.length > 0 
+                                  ? imp.intersectingCounties.map(c => `<span class="loc-chip">${c}</span>`).join('')
+                                  : `<span class="loc-chip">${imp.locationName.split('|')[1]?.trim() || 'N/A'}</span>`
+                                }
                             </div>
-                        ` : ''}
-                        <button class="assessment-info-btn" data-impact-id="${imp.id}" onclick="event.stopPropagation(); showAssessmentModal('${imp.id}')" title="View assessment justification">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-location-group">
-                    <div class="card-location-row">
-                        <span class="loc-label">Region:</span>
-                        <div class="loc-value-wrap">
-                            <span class="cty-mini-pill">${imp.locationName.split('|')[0].trim()}</span>
-                        </div>
-                    </div>
-                    <div class="card-location-row">
-                        <span class="loc-label">County:</span>
-                        <div class="loc-value-wrap">
-                            ${imp.intersectingCounties && imp.intersectingCounties.length > 0 
-                              ? imp.intersectingCounties.map(c => `<span class="cty-mini-pill">${c}</span>`).join('')
-                              : `<span class="cty-mini-pill">${imp.locationName.split('|')[1]?.trim() || 'N/A'}</span>`
-                            }
                         </div>
                     </div>
                 </div>
