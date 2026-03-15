@@ -1350,18 +1350,11 @@ function renderImpacts() {
     if (State.counties) updateSpatialSummary([], State.counties, State.rawCounties, 'severity');
     if (State.constituencies) updateSpatialSummary([], State.constituencies, State.rawConstituencies, 'severity');
 
-    // 2. Apply active summary
-    if (State.showSeverity) {
-        if (State.spatialMode === 'region' && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
-        else if (State.spatialMode === 'county' && State.counties) updateSpatialSummary(filtered, State.counties, State.rawCounties, 'severity');
-        else if (State.spatialMode === 'constituency' && State.constituencies) updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'severity');
-    } else {
-        // Fallback to trends ramp
-        if (State.spatialMode === 'region' && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
-        else if (State.spatialMode === 'county' && State.counties) updateSpatialSummary(filtered, State.counties, State.rawCounties, 'trends');
-        else if (State.spatialMode === 'constituency' && State.constituencies) updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'trends');
-        else if (State.activeCategories.has('google-trends') && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
-    }
+    // 2. Apply active summary - Use 'severity' (blue ramp) for spatial summaries
+    if (State.spatialMode === 'region' && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
+    else if (State.spatialMode === 'county' && State.counties) updateSpatialSummary(filtered, State.counties, State.rawCounties, 'severity');
+    else if (State.spatialMode === 'constituency' && State.constituencies) updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'severity');
+    else if (State.activeCategories.has('google-trends') && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
 
     // Toggle Severity Legend Visibility
     const legend = document.getElementById('map-severity-legend');
