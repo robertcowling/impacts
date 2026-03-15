@@ -728,18 +728,26 @@ function setupEvents() {
     const regionCheck = document.getElementById('spatial-checkbox');
     const countyCheck = document.getElementById('county-checkbox');
     const constCheck = document.getElementById('const-checkbox');
+    
+    // Top-right Layers menu sync helpers
+    const syncTopLayerChecks = () => {
+        if (document.getElementById('toggle-regions')) document.getElementById('toggle-regions').checked = regionCheck.checked;
+        if (document.getElementById('toggle-counties')) document.getElementById('toggle-counties').checked = countyCheck.checked;
+        if (document.getElementById('toggle-constituencies')) document.getElementById('toggle-constituencies').checked = constCheck.checked;
+    };
 
     regionCheck.addEventListener('change', (e) => {
         if (e.target.checked) {
             State.spatialMode = 'region';
             countyCheck.checked = false;
-            constCheck.checked = false;
+            // Allow constituencies to stay if they are already on
             State.counties.removeFrom(State.map);
-            State.constituencies.removeFrom(State.map);
             State.regions.addTo(State.map);
         } else {
-            State.spatialMode = null;
+            State.regions.removeFrom(State.map);
+            if (State.spatialMode === 'region') State.spatialMode = null;
         }
+        syncTopLayerChecks();
         renderImpacts();
     });
 
@@ -752,22 +760,28 @@ function setupEvents() {
             State.constituencies.removeFrom(State.map);
             State.counties.addTo(State.map);
         } else {
-            State.spatialMode = null;
+            State.counties.removeFrom(State.map);
+            if (State.spatialMode === 'county') State.spatialMode = null;
         }
+        syncTopLayerChecks();
         renderImpacts();
     });
 
     constCheck.addEventListener('change', (e) => {
         if (e.target.checked) {
             State.spatialMode = 'constituency';
-            regionCheck.checked = false;
             countyCheck.checked = false;
-            State.regions.removeFrom(State.map);
+            // Always ensure regions are on as background for constituencies
+            regionCheck.checked = true;
+            State.regions.addTo(State.map);
+            
             State.counties.removeFrom(State.map);
             State.constituencies.addTo(State.map);
         } else {
-            State.spatialMode = null;
+            State.constituencies.removeFrom(State.map);
+            if (State.spatialMode === 'constituency') State.spatialMode = null;
         }
+        syncTopLayerChecks();
         renderImpacts();
     });
 
@@ -1351,10 +1365,25 @@ function renderImpacts() {
     if (State.constituencies) updateSpatialSummary([], State.constituencies, State.rawConstituencies, 'severity');
 
     // 2. Apply active summary - Use 'severity' (blue ramp) for spatial summaries
-    if (State.spatialMode === 'region' && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
-    else if (State.spatialMode === 'county' && State.counties) updateSpatialSummary(filtered, State.counties, State.rawCounties, 'severity');
-    else if (State.spatialMode === 'constituency' && State.constituencies) updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'severity');
-    else if (State.activeCategories.has('google-trends') && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
+    // Support background region coloring for constituencies
+    if (State.regions) {
+        if (State.spatialMode === 'region') {
+            updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
+        } else if (State.spatialMode === 'constituency') {
+            // Background coloring for regions when in constituency mode
+            updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
+        } else if (State.activeCategories.has('google-trends')) {
+            updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
+        }
+    }
+
+    if (State.spatialMode === 'county' && State.counties) {
+        updateSpatialSummary(filtered, State.counties, State.rawCounties, 'severity');
+    }
+    
+    if (State.spatialMode === 'constituency' && State.constituencies) {
+        updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'severity');
+    }
 
     // Toggle Severity Legend Visibility
     const legend = document.getElementById('map-severity-legend');
@@ -1385,7 +1414,7 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
     };
     const colors = ramps[ramp] || ramps.severity;
 
-    const localImpacts = filtered.filter(imp => !imp.isNational);
+    const localImpacts = filtered;
 
     try {
         leafletLayer.eachLayer(layer => {
@@ -1449,11 +1478,12 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
             }
 
             if (maxLabel) {
+                const isBackgroundRegion = (leafletLayer === State.regions && State.spatialMode === 'constituency');
                 layer.setStyle({
                     fillColor: colors[maxLabel],
-                    fillOpacity: 0.5,
+                    fillOpacity: isBackgroundRegion ? 0.15 : 0.5,
                     color: colors[maxLabel],
-                    weight: 2
+                    weight: isBackgroundRegion ? 1 : 2
                 });
             } else {
                 layer.setStyle({
@@ -1470,18 +1500,27 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
 }
 
 function setupMapOverlays() {
+    const regionCheck = document.getElementById('spatial-checkbox');
+    const countyCheck = document.getElementById('county-checkbox');
+    const constCheck = document.getElementById('const-checkbox');
+
+    const syncSidebarChecks = () => {
+        if (regionCheck) regionCheck.checked = document.getElementById('toggle-regions').checked;
+        if (countyCheck) countyCheck.checked = document.getElementById('toggle-counties').checked;
+        if (constCheck) constCheck.checked = document.getElementById('toggle-constituencies').checked;
+    };
+
     document.getElementById('toggle-regions').addEventListener('change', (e) => {
         if (e.target.checked) {
             State.regions.addTo(State.map);
-            State.spatialMode = 'region';
+            if (State.spatialMode !== 'constituency') State.spatialMode = 'region';
             document.getElementById('toggle-counties').checked = false;
-            document.getElementById('toggle-constituencies').checked = false;
             State.counties.removeFrom(State.map);
-            State.constituencies.removeFrom(State.map);
         } else {
             State.regions.removeFrom(State.map);
             if (State.spatialMode === 'region') State.spatialMode = null;
         }
+        syncSidebarChecks();
         renderImpacts();
     });
     document.getElementById('toggle-counties').addEventListener('change', (e) => {
@@ -1496,20 +1535,28 @@ function setupMapOverlays() {
             State.counties.removeFrom(State.map);
             if (State.spatialMode === 'county') State.spatialMode = null;
         }
+        syncSidebarChecks();
         renderImpacts();
     });
     document.getElementById('toggle-constituencies').addEventListener('change', (e) => {
         if (e.target.checked) {
             State.constituencies.addTo(State.map);
             State.spatialMode = 'constituency';
-            document.getElementById('toggle-regions').checked = false;
+            
+            // Auto-enable regions as background
+            const regToggle = document.getElementById('toggle-regions');
+            if (!regToggle.checked) {
+                regToggle.checked = true;
+                State.regions.addTo(State.map);
+            }
+            
             document.getElementById('toggle-counties').checked = false;
-            State.regions.removeFrom(State.map);
             State.counties.removeFrom(State.map);
         } else {
             State.constituencies.removeFrom(State.map);
             if (State.spatialMode === 'constituency') State.spatialMode = null;
         }
+        syncSidebarChecks();
         renderImpacts();
     });
 }
