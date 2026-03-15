@@ -22,11 +22,10 @@
     --clr-google-trends: #a15b5b;
     --clr-ea-help: #4e8a6b;
     
-    /* Severity Levels - Modern Warm Ramp */
-    --sev-minimal: #4ade80;
-    --sev-minor: #facc15;
-    --sev-significant: #fb923c;
-    --sev-severe: #f87171;
+    /* Severity Levels - High Contrast Blue Ramp */
+    --severity-minor: #60a5fa;
+    --severity-significant: #1d4ed8;
+    --severity-severe: #081451;
 
     /* Effects */
     --card-bg: #ffffff;

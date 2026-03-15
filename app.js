@@ -44,10 +44,9 @@ const IMPACT_TYPES = {
 };
 
 const SEVERITIES = {
-    minimal: { label: 'Minimal', color: '#4ade80' },
-    minor: { label: 'Minor', color: '#facc15' },
-    significant: { label: 'Significant', color: '#fb923c' },
-    severe: { label: 'Severe', color: '#f87171' }
+    minor: { label: 'Minor', color: '#60a5fa' },
+    significant: { label: 'Significant', color: '#1d4ed8' },
+    severe: { label: 'Severe', color: '#081451' }
 };
 
 /**
@@ -1381,13 +1380,11 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
 
     const ramps = {
         severity: { 
-            minimal: '#4ade80',
-            minor: '#facc15', 
-            significant: '#fb923c', 
-            severe: '#f87171' 
+            minor: '#93c5fd', 
+            significant: '#3b82f6', 
+            severe: '#1d4ed8' 
         },
         trends: { 
-            minimal: '#fef3c7',
             minor: '#fecaca', 
             significant: '#f87171', 
             severe: '#dc2626' 
@@ -1449,7 +1446,7 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
                 }
 
                 if (isInside) {
-                    const weightMap = { severe: 4, significant: 3, minor: 2, minimal: 1 };
+                    const weightMap = { severe: 3, significant: 2, minor: 1 };
                     const weight = weightMap[imp.severity] || 0;
                     if (weight > maxWeight) {
                         maxWeight = weight;
