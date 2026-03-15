@@ -206,7 +206,7 @@ function generateMockImpacts() {
             severity,
             timestamp,
             title: getMockTitle(category),
-            locationName: `${regionLabel || 'UK Region'} | ${countyMatch}${constMatch ? ' | ' + constMatch : ''}`,
+            locationName: `${regionLabel || 'UK Region'} | ${countyMatch || 'Unknown County'} | ${constMatch || 'Unknown Constituency'}`,
             evidence: getMockEvidence(category),
             source: category === 'social' ? 'Twitter' : 
                    (category === 'news' ? 'Online News' : 
@@ -377,37 +377,56 @@ function findGeoAttribute(point, geojson) {
 }
 
 function getMockPhoto(cat) {
-    // 50% chance of no photo
-    if (Math.random() < 0.5) return null;
+    // 20% chance of no photo (decreased from 50% to show more local photos)
+    if (Math.random() < 0.2) return null;
 
     const photos = {
         roads: [
+            'photos/pexels-tomfisk-6226996.jpg',
             'https://images.pexels.com/photos/1547833/pexels-photo-1547833.jpeg?auto=compress&cs=tinysrgb&w=800',
             'https://images.pexels.com/photos/3971985/pexels-photo-3971985.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         railways: [
+            'photos/pexels-tomfisk-6226996.jpg',
             'https://images.pexels.com/photos/1054391/pexels-photo-1054391.jpeg?auto=compress&cs=tinysrgb&w=800',
             'https://images.pexels.com/photos/1755106/pexels-photo-1755106.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         social: [
+            'photos/pexels-sveta-k-75705601-8568719.jpg',
+            'photos/pexels-markus-winkler-1430818-3532526.jpg',
+            'photos/pexels-kelly-19063417.jpg',
             'https://images.pexels.com/photos/1444416/pexels-photo-1444416.jpeg?auto=compress&cs=tinysrgb&w=800',
             'https://images.pexels.com/photos/3747139/pexels-photo-3747139.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         news: [
+            'photos/pexels-markus-winkler-1430818-3532526.jpg',
+            'photos/pexels-kent-spencer-mendez-52733750-9137104.jpg',
             'https://images.pexels.com/photos/3944454/pexels-photo-3944454.jpeg?auto=compress&cs=tinysrgb&w=800',
             'https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         energy: [
+            'photos/pexels-dibakar-roy-2432543-26202087.jpg',
+            'photos/pexels-dibakar-roy-2432543-26202093.jpg',
             'https://images.pexels.com/photos/1578277/pexels-photo-1578277.jpeg?auto=compress&cs=tinysrgb&w=800',
             'https://images.pexels.com/photos/236056/pexels-photo-236056.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         water: [
+            'photos/pexels-juan-moccagatta-2159466094-36288963.jpg',
+            'photos/pexels-juan-moccagatta-2159466094-36304326.jpg',
+            'photos/pexels-naveen-annam-734127-1578329.jpg',
             'https://images.pexels.com/photos/2143000/pexels-photo-2143000.jpeg?auto=compress&cs=tinysrgb&w=800',
             'https://images.pexels.com/photos/2533092/pexels-photo-2533092.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         'ea-help': [
-            'https://images.pexels.com/photos/163726/belgium-flood-river-water-163726.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'https://images.pexels.com/photos/2533092/pexels-photo-2533092.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'photos/pexels-juan-moccagatta-2159466094-36288963.jpg',
+            'photos/pexels-juan-moccagatta-2159466094-36304326.jpg',
+            'photos/pexels-valentin-ivantsov-2154772556-35249003.jpg',
+            'photos/pexels-connorscottmcmanus-13865772.jpg',
+            'https://images.pexels.com/photos/163726/belgium-flood-river-water-163726.jpeg?auto=compress&cs=tinysrgb&w=800'
+        ],
+        'google-trends': [
+            'photos/pexels-markus-winkler-1430818-3532526.jpg',
+            'photos/pexels-sveta-k-75705601-8568719.jpg'
         ]
     };
     const list = photos[cat];
@@ -511,28 +530,29 @@ function findIntersectingFeatures(polyCoords, geojson) {
     geojson.features.forEach(feature => {
         const name = getFeatureName(feature.properties);
         const geom = feature.geometry;
-        if (!geom) return;
-
-        let basePoly = null;
-        if (geom.type === 'Polygon') basePoly = geom.coordinates[0];
-        else if (geom.type === 'MultiPolygon') basePoly = geom.coordinates[0][0];
-        
-        if (!basePoly) return;
+        if (!geom || !geom.coordinates) return;
 
         let isIntersecting = false;
-        for (let i = 0; i < lngLatPoly.length; i++) {
-            if (geom.type === 'Polygon') {
-                if (isPointInPolygon(lngLatPoly[i], geom.coordinates[0])) { isIntersecting = true; break; }
-            } else if (geom.type === 'MultiPolygon') {
-                for (const subPoly of geom.coordinates) {
-                    if (isPointInPolygon(lngLatPoly[i], subPoly[0])) { isIntersecting = true; break; }
-                }
-                if (isIntersecting) break;
-            }
-        }
 
-        if (!isIntersecting) {
-            if (isPointInPolygon(basePoly[0], lngLatPoly)) isIntersecting = true;
+        const checkPart = (rings) => {
+            // Check if any point of our outage polygon is inside this feature part
+            for (let i = 0; i < lngLatPoly.length; i++) {
+                if (isPointInPolygon(lngLatPoly[i], rings[0])) return true;
+            }
+            // Check if any point of the feature part is inside our outage polygon
+            if (isPointInPolygon(rings[0][0], lngLatPoly)) return true;
+            return false;
+        };
+
+        if (geom.type === 'Polygon') {
+            if (checkPart(geom.coordinates)) isIntersecting = true;
+        } else if (geom.type === 'MultiPolygon') {
+            for (const part of geom.coordinates) {
+                if (checkPart(part)) {
+                    isIntersecting = true;
+                    break;
+                }
+            }
         }
 
         if (isIntersecting && name) intersecting.push(name);
@@ -586,14 +606,14 @@ async function init() {
         });
 
         State.counties = L.geoJSON(countiesRes, {
-            style: { color: '#94a3b8', weight: 1, opacity: 0.4, fillOpacity: 0.02 }, // Added tiny fill so clicks register anywhere
+            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0.05 },
             onEachFeature: (feature, layer) => {
                 layer.on('click', onSpatialClick);
             }
         });
 
         State.constituencies = L.geoJSON(constRes, {
-            style: { color: '#64748b', weight: 1, opacity: 0.4, fillOpacity: 0.02 },
+            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0.05 },
             onEachFeature: (feature, layer) => {
                 layer.on('click', onSpatialClick);
             }
@@ -771,10 +791,7 @@ function setupEvents() {
         if (e.target.checked) {
             State.spatialMode = 'constituency';
             countyCheck.checked = false;
-            // Always ensure regions are on as background for constituencies
-            regionCheck.checked = true;
-            State.regions.addTo(State.map);
-            
+            // Removed automatic region check
             State.counties.removeFrom(State.map);
             State.constituencies.addTo(State.map);
         } else {
@@ -1359,29 +1376,19 @@ function renderImpacts() {
     });
 
     // --- Spatial Summary Overlays ---
-    // 1. Reset all layers
-    if (State.regions) updateSpatialSummary([], State.regions, State.rawRegions, 'severity');
-    if (State.counties) updateSpatialSummary([], State.counties, State.rawCounties, 'severity');
-    if (State.constituencies) updateSpatialSummary([], State.constituencies, State.rawConstituencies, 'severity');
-
-    // 2. Apply active summary - Use 'severity' (blue ramp) for spatial summaries
-    // Support background region coloring for constituencies
-    if (State.regions) {
-        if (State.spatialMode === 'region') {
-            updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
-        } else if (State.spatialMode === 'constituency') {
-            // Background coloring for regions when in constituency mode
-            updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
-        } else if (State.activeCategories.has('google-trends')) {
-            updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
-        }
+    // Update EACH layer if it is currently added to the map.
+    
+    if (State.regions && State.map.hasLayer(State.regions)) {
+        // ALWAYS update regions. In constituency mode, updateSpatialSummary handles background styling.
+        const ramp = (State.spatialMode === 'region' || State.spatialMode === 'constituency') ? 'severity' : 'trends';
+        updateSpatialSummary(filtered, State.regions, State.rawRegions, ramp);
     }
 
-    if (State.spatialMode === 'county' && State.counties) {
+    if (State.counties && State.map.hasLayer(State.counties)) {
         updateSpatialSummary(filtered, State.counties, State.rawCounties, 'severity');
     }
     
-    if (State.spatialMode === 'constituency' && State.constituencies) {
+    if (State.constituencies && State.map.hasLayer(State.constituencies)) {
         updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'severity');
     }
 
@@ -1413,33 +1420,54 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
         }
     };
     const colors = ramps[ramp] || ramps.severity;
+    const weightMap = { severe: 3, significant: 2, minor: 1 };
 
-    const localImpacts = filtered;
+    // 1. Pre-index impacts for faster lookup
+    const index = new Map();
 
+    for (const imp of filtered) {
+        const areas = new Set();
+        
+        // Extract from locationName "Region | County | Constituency"
+        const locParts = (imp.locationName || "").split('|').map(s => s.trim());
+        if (leafletLayer === State.regions) {
+            if (locParts[0]) areas.add(locParts[0]);
+            if (imp.regionName) areas.add(imp.regionName);
+        } else if (leafletLayer === State.counties) {
+            if (locParts[1]) areas.add(locParts[1]);
+            if (imp.intersectingCounties) imp.intersectingCounties.forEach(c => areas.add(c));
+        } else if (leafletLayer === State.constituencies) {
+            if (locParts[2]) areas.add(locParts[2]);
+            if (imp.intersectingConstituencies) imp.intersectingConstituencies.forEach(c => areas.add(c));
+        }
+
+        const weight = weightMap[imp.severity] || 0;
+        for (const area of areas) {
+            const current = index.get(area) || { weight: 0, label: null };
+            if (weight > current.weight) {
+                index.set(area, { weight, label: imp.severity });
+            }
+        }
+    }
+
+    // 2. Apply to layer
     try {
         leafletLayer.eachLayer(layer => {
             const feature = layer.feature;
             const featureName = getFeatureName(feature.properties);
-            const featureBounds = (layer.getBounds && typeof layer.getBounds === 'function') ? layer.getBounds() : null;
-            
-            let maxWeight = 0;
-            let maxLabel = null;
+            let match = index.get(featureName);
 
-            for (const imp of localImpacts) {
-                let isInside = false;
-
-                // 1. Metadata Match (Fast)
-                const locParts = (imp.locationName || "").split('|').map(s => s.trim());
-                if (leafletLayer === State.regions && locParts[0] === featureName) isInside = true;
-                else if (leafletLayer === State.counties && (locParts[1] === featureName || (imp.intersectingCounties && imp.intersectingCounties.includes(featureName)))) isInside = true;
-                else if (leafletLayer === State.constituencies && (locParts[2] === featureName || (imp.intersectingConstituencies && imp.intersectingConstituencies.includes(featureName)))) isInside = true;
-
-                // 2. Spatial Check (Correctness)
-                if (!isInside && featureBounds) {
-                    const geom = feature.geometry;
-                    // Check primary location
+            // 3. Optimized Spatial Fallback (only if no metadata match)
+            if (!match) {
+                const geom = feature.geometry;
+                const featureBounds = (layer.getBounds && typeof layer.getBounds === 'function') ? layer.getBounds() : null;
+                
+                for (const imp of filtered) {
+                    let isInside = false;
                     const pt = [imp.lng, imp.lat];
-                    if (featureBounds.contains(L.latLng(imp.lat, imp.lng))) {
+
+                    // Bbox check first
+                    if (featureBounds && featureBounds.contains(L.latLng(imp.lat, imp.lng))) {
                         if (geom.type === 'Polygon') {
                             if (isPointInPolygon(pt, geom.coordinates[0])) isInside = true;
                         } else if (geom.type === 'MultiPolygon') {
@@ -1449,48 +1477,29 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
                         }
                     }
 
-                    // Check outage polygon if it exists
-                    if (!isInside && imp.outagePolygon) {
-                        for (const v of imp.outagePolygon) {
-                            if (isInside) break;
-                            if (featureBounds.contains(L.latLng(v.lat, v.lng))) {
-                                const vPt = [v.lng, v.lat];
-                                if (geom.type === 'Polygon') {
-                                    if (isPointInPolygon(vPt, geom.coordinates[0])) isInside = true;
-                                } else if (geom.type === 'MultiPolygon') {
-                                    for (const poly of geom.coordinates) {
-                                        if (isPointInPolygon(vPt, poly[0])) { isInside = true; break; }
-                                    }
-                                }
-                            }
+                    if (isInside) {
+                        const weight = weightMap[imp.severity] || 0;
+                        if (!match || weight > match.weight) {
+                            match = { weight, label: imp.severity };
                         }
-                    }
-                }
-
-                if (isInside) {
-                    const weightMap = { severe: 3, significant: 2, minor: 1 };
-                    const weight = weightMap[imp.severity] || 0;
-                    if (weight > maxWeight) {
-                        maxWeight = weight;
-                        maxLabel = imp.severity;
                     }
                 }
             }
 
-            if (maxLabel) {
+            if (match) {
                 const isBackgroundRegion = (leafletLayer === State.regions && State.spatialMode === 'constituency');
                 layer.setStyle({
-                    fillColor: colors[maxLabel],
+                    fillColor: colors[match.label],
                     fillOpacity: isBackgroundRegion ? 0.15 : 0.5,
-                    color: colors[maxLabel],
-                    weight: isBackgroundRegion ? 1 : 2
+                    color: colors[match.label],
+                    weight: isBackgroundRegion ? 1 : 1.5
                 });
             } else {
                 layer.setStyle({
                     fillColor: 'transparent',
                     fillOpacity: 0,
-                    color: leafletLayer === State.regions ? '#475569' : '#cbd5e1',
-                    weight: leafletLayer === State.regions ? 1.5 : 1
+                    color: '#334155',
+                    weight: 1.5
                 });
             }
         });
@@ -1542,13 +1551,6 @@ function setupMapOverlays() {
         if (e.target.checked) {
             State.constituencies.addTo(State.map);
             State.spatialMode = 'constituency';
-            
-            // Auto-enable regions as background
-            const regToggle = document.getElementById('toggle-regions');
-            if (!regToggle.checked) {
-                regToggle.checked = true;
-                State.regions.addTo(State.map);
-            }
             
             document.getElementById('toggle-counties').checked = false;
             State.counties.removeFrom(State.map);
