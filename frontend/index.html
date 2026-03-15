@@ -18,8 +18,25 @@
                 <h1>Impact<span>Intelligence</span></h1>
             </div>
             <div class="header-nav">
-                <div class="nav-placeholder"><span class="gemini-sparkle">✦</span> Gemini Detection</div>
-                <div class="nav-placeholder">Alerting</div>
+                <button class="agentic-search-btn" id="agentic-action-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    Investigate Area
+                    <span id="nav-dive-count" class="nav-badge" style="display:none">0</span>
+                </button>
+                <div class="view-mode-selector">
+                    <button class="view-toggle-btn active" data-view="map">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                        Map
+                    </button>
+                    <button class="view-toggle-btn" data-view="summary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+                        Summary
+                    </button>
+                </div>
+                <div class="nav-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;opacity:0.6"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    Alerting
+                </div>
                 <div class="user-profile-btn" id="user-menu-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     <div class="user-dropdown-menu glass" id="user-dropdown">
@@ -39,66 +56,35 @@
             <!-- Map Side -->
             <!-- Genuine LHS Control Panel -->
             <aside id="left-sidebar" class="flat-side-panel-left">
-                <h3 class="sidebar-main-header">Impacts</h3>
+                <!-- View Switcher -->
+
+                <div class="sidebar-header-wrap no-border">
+                    <h3 class="sidebar-main-header">Summary</h3>
+                </div>
                 
-                <div class="sidebar-section">
-                    <h4>Observed Impacts</h4>
+                <div class="sidebar-section" id="spatial-severity-section">
+                    <h4>Spatial Severity</h4>
                     <div class="filter-list-vertical">
-                        <label class="filter-item-row filter-chip active" data-category="roads">
-                            <input type="checkbox" checked value="roads">
-                            <span class="category-indicator roads"></span>
-                            <span class="item-label">Roads</span>
+                        <label class="toggle-row" id="spatial-mode-toggle">
+                            <input type="checkbox" id="spatial-checkbox">
+                            <span class="toggle-slider-wrap">
+                                <span class="toggle-dot"></span>
+                            </span>
+                            <span class="item-label">Region Summary</span>
                         </label>
-                        <label class="filter-item-row filter-chip active" data-category="railways">
-                            <input type="checkbox" checked value="railways">
-                            <span class="category-indicator railways"></span>
-                            <span class="item-label">Railways</span>
-                        </label>
-                        <label class="filter-item-row filter-chip active" data-category="social">
-                            <input type="checkbox" checked value="social">
-                            <span class="category-indicator social"></span>
-                            <span class="item-label">Social (Twitter)</span>
-                        </label>
-                        <label class="filter-item-row filter-chip active" data-category="news">
-                            <input type="checkbox" checked value="news">
-                            <span class="category-indicator news"></span>
-                            <span class="item-label">News</span>
-                        </label>
-                        <label class="filter-item-row filter-chip active" data-category="energy">
-                            <input type="checkbox" checked value="energy">
-                            <span class="category-indicator energy"></span>
-                            <span class="item-label">Energy</span>
-                        </label>
-                        <label class="filter-item-row filter-chip active" data-category="water">
-                            <input type="checkbox" checked value="water">
-                            <span class="category-indicator water"></span>
-                            <span class="item-label">Water</span>
+                        <label class="toggle-row" id="county-mode-toggle">
+                            <input type="checkbox" id="county-checkbox" checked>
+                            <span class="toggle-slider-wrap">
+                                <span class="toggle-dot"></span>
+                            </span>
+                            <span class="item-label">County Summary</span>
                         </label>
                     </div>
                 </div>
-
-                <div class="sidebar-section">
-                    <h4>Proxy Impacts</h4>
-                    <div class="filter-list-vertical">
-                        <label class="filter-item-row filter-chip active" data-category="proxy">
-                            <input type="checkbox" checked value="proxy">
-                            <span class="category-indicator proxy"></span>
-                            <span class="item-label">Met Office website hits</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="filter-divider"></div>
-                <h3 class="sidebar-main-header">Analysis</h3>
 
                 <div class="sidebar-section">
                     <h4>Impact Severity</h4>
                     <div class="filter-list-vertical">
-                        <label class="severity-item-row severity-chip active" data-severity="minimal">
-                            <input type="checkbox" checked value="minimal">
-                            <span class="severity-indicator minimal"></span>
-                            <span class="item-label">Minimal</span>
-                        </label>
                         <label class="severity-item-row severity-chip active" data-severity="minor">
                             <input type="checkbox" checked value="minor">
                             <span class="severity-indicator minor"></span>
@@ -117,47 +103,277 @@
                     </div>
                 </div>
 
+                <div class="filter-divider"></div>
+                <div class="sidebar-header-wrap">
+                    <h3 class="sidebar-main-header">Impacts</h3>
+                    <div class="header-right-actions">
+                        <button class="show-all-btn" id="show-all-sources">Show All</button>
+                        <div class="view-sub-selector">
+                            <button class="view-sub-btn active" data-view="sources">Sources</button>
+                            <button class="view-sub-btn" data-view="types">Types</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sidebar-sources-view">
+                    <div class="sidebar-section">
+                        <h4>Impact Sources</h4>
+                        <div class="filter-list-vertical">
+                            <label class="filter-item-row filter-chip active" data-category="roads">
+                                <input type="checkbox" checked value="roads">
+                                <span class="category-indicator roads"></span>
+                                <span class="item-label">National Highways</span>
+                                <span class="only-trigger">Only</span>
+                            </label>
+                            <label class="filter-item-row filter-chip active" data-category="railways">
+                                <input type="checkbox" checked value="railways">
+                                <span class="category-indicator railways"></span>
+                                <span class="item-label">Railway Marketplace</span>
+                                <span class="only-trigger">Only</span>
+                            </label>
+                            <label class="filter-item-row filter-chip active" data-category="social">
+                                <input type="checkbox" checked value="social">
+                                <span class="category-indicator social"></span>
+                                <span class="item-label">Twitter</span>
+                                <span class="only-trigger">Only</span>
+                            </label>
+                            <label class="filter-item-row filter-chip active" data-category="news">
+                                <input type="checkbox" checked value="news">
+                                <span class="category-indicator news"></span>
+                                <span class="item-label">Online News</span>
+                                <span class="only-trigger">Only</span>
+                            </label>
+                            
+                            <!-- Nested Power Menu -->
+                            <div class="nested-filter-group">
+                                <label class="filter-item-row filter-chip active" data-category="energy" id="energy-parent-toggle">
+                                    <input type="checkbox" checked value="energy">
+                                    <span class="category-indicator energy"></span>
+                                    <span class="item-label">Power Companies</span>
+                                    <span class="only-trigger">Only</span>
+                                    <span class="collapse-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                                    </span>
+                                </label>
+                                <div class="sub-filter-list hidden" id="energy-sub-menu">
+                                    <label class="sub-filter-item" data-sub-category="national-grid">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">National Grid</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                    <label class="sub-filter-item" data-sub-category="sse">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">SSE</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                    <label class="sub-filter-item" data-sub-category="uk-power-networks">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">UK Power Networks</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Nested Water Menu -->
+                            <div class="nested-filter-group">
+                                <label class="filter-item-row filter-chip active" data-category="water" id="water-parent-toggle">
+                                    <input type="checkbox" checked value="water">
+                                    <span class="category-indicator water"></span>
+                                    <span class="item-label">Water Companies</span>
+                                    <span class="only-trigger">Only</span>
+                                    <span class="collapse-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                                    </span>
+                                </label>
+                                <div class="sub-filter-list hidden" id="water-sub-menu">
+                                    <label class="sub-filter-item" data-sub-category="thames-water">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">Thames Water</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                    <label class="sub-filter-item" data-sub-category="south-west-water">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">South West Water</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                    <label class="sub-filter-item" data-sub-category="severn-trent-water">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">Severn Trent Water</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="internal-header">
+                            <h4>Trusted Internal</h4>
+                            <span class="lock-icon" title="Restricted to internal network">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </span>
+                        </div>
+                        <div class="filter-list-vertical">
+                            <label class="filter-item-row filter-chip active" data-category="ea-help">
+                                <input type="checkbox" checked value="ea-help">
+                                <span class="category-indicator ea-help"></span>
+                                <span class="item-label">EA Help Reports</span>
+                                <span class="only-trigger">Only</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact Types View (Hidden by default) -->
+                <div id="sidebar-types-view" class="hidden">
+                    <div class="sidebar-section">
+                        <h4>Impact Types</h4>
+                        <div class="filter-list-vertical" id="type-filter-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
                 <div class="sidebar-section">
-                    <h4>Spatial Severity</h4>
+                    <h4>Proxy Impacts</h4>
                     <div class="filter-list-vertical">
-                        <label class="toggle-row" id="spatial-mode-toggle">
-                            <input type="checkbox" id="spatial-checkbox">
-                            <span class="toggle-slider-wrap">
-                                <span class="toggle-dot"></span>
-                            </span>
-                            <span class="item-label">Region Summary</span>
+                        <label class="filter-item-row filter-chip" data-category="proxy">
+                            <input type="checkbox" value="proxy">
+                            <span class="category-indicator proxy"></span>
+                            <span class="item-label">Met Office website <span class="scope-tag">UK-wide</span></span>
+                            <span class="only-trigger">Only</span>
                         </label>
-                        <label class="toggle-row" id="county-mode-toggle">
-                            <input type="checkbox" id="county-checkbox">
-                            <span class="toggle-slider-wrap">
-                                <span class="toggle-dot"></span>
-                            </span>
-                            <span class="item-label">County Summary</span>
+                        <label class="filter-item-row filter-chip" data-category="google-trends">
+                            <input type="checkbox" value="google-trends">
+                            <span class="category-indicator google-trends"></span>
+                            <span class="item-label">Google Trends <span class="scope-tag">UK-wide</span></span>
+                            <span class="only-trigger">Only</span>
                         </label>
                     </div>
                 </div>
+
+
+
+                <div class="filter-divider"></div>
+
 
                 <div class="sidebar-spacer"></div>
 
             </aside>
 
             <!-- Map Center -->
-            <main id="map-container">
-                <div id="map"></div>
-                <div class="map-overlay-top-right">
-                    <div class="layer-control glass">
-                        <label><input type="checkbox" id="toggle-regions" checked> UK Regions</label>
-                        <label><input type="checkbox" id="toggle-counties"> UK Counties</label>
-
+            <main>
+                <div id="map-container">
+                    <div id="map"></div>
+                    
+                    <!-- Directed Search Overlay (Minimized/Active State) -->
+                    <div id="deep-dive-status" class="deep-dive-overlay hidden">
+                        <div class="dive-status-card">
+                            <div class="status-top">
+                                <div class="status-meta">
+                                    <span class="live-pulse"></span>
+                                    <span class="status-text" id="current-dive-status">Initializing Fleet...</span>
+                                </div>
+                                <div class="window-actions">
+                                    <button id="minimize-dive-btn" title="Minimize">⎯</button>
+                                    <button id="cancel-dive-btn" title="Stop Search">✕</button>
+                                </div>
+                            </div>
+                            <div class="status-location">
+                                <span class="loc-label">TARGET:</span>
+                                <span id="dive-area-name" class="loc-val">--</span>
+                            </div>
+                            <div class="status-progress">
+                                <div class="progress-track">
+                                    <div id="dive-progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="dive-log" style="display:none"></div>
                     </div>
                 </div>
-            </main>
+
+                <!-- Summary View (Hidden by default) -->
+                <div id="summary-view" class="hidden">
+                    <div class="summary-content">
+
+                        <!-- AI Synthesis Card -->
+                        <div class="national-narrative-card">
+                            <div class="narration-header">
+                                <h3>Intelligence Summary</h3>
+                                <span class="time-ref" id="summary-time-ref">Selected Period</span>
+                            </div>
+                            <div id="llm-narrative-text" class="narrative-prose">
+                                Analyzing national impacts...
+                            </div>
+                        </div>
+
+                        <!-- Summary Controls / Tabs -->
+                        <div class="summary-dashboard-controls">
+                            <div class="recut-group">
+                                <span class="recut-label">Analyze By</span>
+                                <div class="recut-tabs">
+                                    <button class="recut-btn active" data-group="category">Category</button>
+                                    <button class="recut-btn" data-group="receptor">Receptor</button>
+                                    <button class="recut-btn" data-group="severity">Severity</button>
+                                </div>
+                            </div>
+                            <div class="summary-stats-banner" id="summary-view-stats">
+                                <!-- Dynamic Stats -->
+                            </div>
+                        </div>
+
+                        <!-- Summary Table -->
+                        <div class="summary-table-container">
+                            <table class="national-impact-table">
+                                <thead>
+                                    <tr>
+                                        <th>Intelligence Cluster</th>
+                                        <th>Key Level</th>
+                                        <th>Confidence</th>
+                                        <th>Evidence Synthesis</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="national-summary-tbody">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-overlay-top-right">
+                    <div class="layers-dropdown">
+                        <button class="layers-btn glass" id="layers-menu-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            <span>Layers</span>
+                        </button>
+                        <div class="layers-menu glass" id="layers-menu">
+                            <label><input type="checkbox" id="toggle-regions"> UK Regions</label>
+                            <label><input type="checkbox" id="toggle-counties" checked> UK Counties</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="severity-legend glass hidden" id="map-severity-legend">
+                    <div class="legend-title">Impact Severity</div>
+                    <div class="legend-items">
+                        <div class="legend-item"><span class="legend-dot" style="background:rgba(8, 20, 81, 0.8)"></span>Severe</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:rgba(37, 99, 235, 0.7)"></span>Significant</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:rgba(147, 197, 253, 0.7)"></span>Minor</div>
+                    </div>
+                </div>            </main>
 
             <!-- Detailed RHS Panel -->
             <aside id="side-feed-panel" class="flat-side-panel">
                 <div class="feed-header-alt">
-                    <p class="feed-stats"><span id="feed-count">0</span> impacts in view</p>
-                    <div class="live-dot-tag">Live</div>
+                    <p class="feed-stats"><span id="feed-count">0</span> impacts</p>
+                    <div class="feed-sort-wrap">
+                        <select id="feed-sort-select" class="feed-sort-select">
+                            <option value="recency">Recency</option>
+                            <option value="severity">Priority</option>
+                            <option value="type">Type</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="feed-container" class="scrollable-feed">
                     <!-- Feed items with photos and details generated by JS -->
@@ -167,16 +383,6 @@
         <!-- Timeline Controller -->
         <footer class="app-footer glass">
             <div class="timeline-container">
-                <button id="play-pause-btn" class="tl-play-btn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </button>
-
-                <div class="tl-window-badge">
-                    <span id="window-start-time">--:--</span>
-                    <span class="tl-window-sep">→</span>
-                    <span id="window-end-time">--:--</span>
-                </div>
-
                 <div class="timeline-slider-area">
                     <div class="slider-wrapper dual-range">
                         <div class="range-slider">
@@ -195,17 +401,20 @@
                         <div class="timeline-labels" id="timeline-tick-labels">
                             <!-- Ticks generated by JS -->
                         </div>
-                        <div class="tl-endcaps">
-                            <span class="tl-endcap">48h ago</span>
-                            <span class="tl-endcap">Now</span>
-                        </div>
                     </div>
+                </div>
+
+                <div class="tl-window-badge">
+                    <span id="window-start-time">--:--</span>
+                    <span class="tl-window-sep">→</span>
+                    <span id="window-end-time">--:--</span>
                 </div>
 
                 <div class="tl-controls-right">
                     <div class="select-group">
                         <span class="select-label">View</span>
                         <select id="view-period-select" class="glass-select">
+                            <option value="custom" disabled selected hidden>Custom</option>
                             <option value="6">Last 6h</option>
                             <option value="12">Last 12h</option>
                             <option value="24">Last 24h</option>
@@ -241,7 +450,7 @@
                             </div>
                             <span class="last-run">Last run: Today, 07:15 AM</span>
                         </div>
-                        <p class="workflow-desc">This Gemini-powered agentic workflow monitors and validates all active data sources in the platform to ensure high signal integrity.</p>
+                        <p class="workflow-desc">This agentic workflow monitors and validates all active data sources in the platform to ensure high impact integrity.</p>
                         
                         <div class="workflow-section">
                             <h5>Trusted Twitter Sources Validation</h5>
@@ -285,67 +494,158 @@
                         <div class="workflow-header">
                             <h4>Impact Framework: Severity Matrix</h4>
                         </div>
-                        <p class="workflow-desc">Evidence-based criteria for assigning severity levels across different impact categories. Initial focus: Flood Risk Matrix.</p>
+                        <p class="workflow-desc">The following criteria represent the Civil Service standard for assigning severity levels. These quantitative thresholds are used to synthesize impact from multiple data sources. </p>
                         
-                        <div class="framework-container">
-                            <table class="impact-matrix-table">
-                                <thead>
-                                    <tr>
-                                        <th>Category</th>
-                                        <th>Minimal</th>
-                                        <th>Minor</th>
-                                        <th>Significant</th>
-                                        <th>Severe</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="row-header">Risk to life</td>
-                                        <td>Not expected</td>
-                                        <td>Individual risk for more vulnerable</td>
-                                        <td>Danger to life from fast flowing water/wave overtopping</td>
-                                        <td>Danger to life from inundation and utility hazards (e.g. electrocution)</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="row-header">Communities (Access)</td>
-                                        <td>Isolated flooding of low-lying land/roads</td>
-                                        <td>Localised flooding of land and roads</td>
-                                        <td>Communities temporarily inaccessible due to flooded routes</td>
-                                        <td>Communities cut off</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="row-header">Communities (Property)</td>
-                                        <td>Isolated instances of spray on coastal promenades</td>
-                                        <td>Localised flooding affecting individual properties</td>
-                                        <td>Flooding affecting multiple communities and properties</td>
-                                        <td>Widespread flooding affecting large numbers of properties/communities</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="row-header">Communities (Buildings)</td>
-                                        <td>Not expected</td>
-                                        <td>Local damage due to age/condition of structure</td>
-                                        <td>Damage to buildings/structures</td>
-                                        <td>Extensive damage to and/or collapse of buildings</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="row-header">Transport</td>
-                                        <td>Little disruption, wet roads lead to difficult driving</td>
-                                        <td>Local and short term disruption to travel</td>
-                                        <td>Widespread/long duration disruption. Some route closures.</td>
-                                        <td>Widespread damage. Motorists stranded. Widespread route closures.</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="row-header">Utilities</td>
-                                        <td>Not expected</td>
-                                        <td>Localised and short term disruption to services</td>
-                                        <td>Disruption to utilities and services</td>
-                                        <td>Widespread/prolonged disruption through loss of utilities</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <!-- Section 1: Life & Safety -->
+                        <div class="framework-section">
+                            <div class="section-title">
+                                <span class="framework-icon">🛡️</span>
+                                <h5>Life & Safety (Human Impact)</h5>
+                            </div>
+                            <div class="framework-container">
+                                <table class="impact-matrix-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Impact Metric</th>
+                                            <th>Minor</th>
+                                            <th>Significant</th>
+                                            <th>Severe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="row-header">Danger to Life (Count)</td>
+                                            <td>40</td>
+                                            <td>200</td>
+                                            <td>300</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Built Environment -->
+                        <div class="framework-section" style="margin-top: 24px;">
+                            <div class="section-title">
+                                <span class="framework-icon">🏢</span>
+                                <h5>Built Environment (Property Damage)</h5>
+                            </div>
+                            <div class="framework-container">
+                                <table class="impact-matrix-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Asset Type</th>
+                                            <th>Minor</th>
+                                            <th>Significant</th>
+                                            <th>Severe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="row-header">Residential (Count)</td>
+                                            <td>5</td>
+                                            <td>30</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="row-header">Non-Residential (Count)</td>
+                                            <td>1</td>
+                                            <td>10</td>
+                                            <td>30</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Critical Infrastructure -->
+                        <div class="framework-section" style="margin-top: 24px;">
+                            <div class="section-title">
+                                <span class="framework-icon">⚡</span>
+                                <h5>Critical Infrastructure & Key Sites</h5>
+                            </div>
+                            <div class="framework-container">
+                                <table class="impact-matrix-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Infrastructure Type</th>
+                                            <th>Minor</th>
+                                            <th>Significant</th>
+                                            <th>Severe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="row-header">Denial of access to Key sites (Count)</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="row-header">Denial of access to Infrastructure (Count)</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Transport Connectivity -->
+                        <div class="framework-section" style="margin-top: 24px;">
+                            <div class="section-title">
+                                <span class="framework-icon">🛤️</span>
+                                <h5>Transport Connectivity (Network Impact)</h5>
+                            </div>
+                            <div class="framework-container">
+                                <table class="impact-matrix-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Network Element</th>
+                                            <th>Minor</th>
+                                            <th>Significant</th>
+                                            <th>Severe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="row-header">Trunk Roads and Motorways (m)</td>
+                                            <td>150</td>
+                                            <td>500</td>
+                                            <td>1800</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="row-header">Other Major Roads (m)</td>
+                                            <td>500</td>
+                                            <td>1800</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="row-header">Railways (m)</td>
+                                            <td>300</td>
+                                            <td>950</td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spatial Summary Modal -->
+    <div class="assessment-modal-overlay" id="spatial-summary-modal">
+        <div class="assessment-modal">
+            <div class="assessment-modal-header">
+                <h4 id="spatial-modal-title">Area Impact Summary</h4>
+                <button class="close-modal-btn" id="close-spatial-btn">&times;</button>
+            </div>
+            <div class="assessment-modal-body" id="spatial-modal-body">
+                <!-- Populated dynamically -->
             </div>
         </div>
     </div>
@@ -354,11 +654,77 @@
     <div class="assessment-modal-overlay" id="assessment-modal">
         <div class="assessment-modal">
             <div class="assessment-modal-header">
-                <h4 id="assessment-modal-title">Impact Assessment Justification</h4>
+                <h4 id="assessment-modal-title">Assessment Justification</h4>
                 <button class="close-modal-btn" id="close-assessment-btn">&times;</button>
             </div>
             <div class="assessment-modal-body" id="assessment-modal-body">
                 <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Agentic Search Configuration Modal -->
+    <div id="deep-dive-config-modal" class="modal-overlay">
+        <div class="agentic-config-modal">
+            <div class="modal-header">
+                <div class="header-main">
+                    <h3>Area Impact Investigation</h3>
+                    <p>Verify impact details for a specific location.</p>
+                </div>
+                <button class="close-modal-btn" id="close-dive-config-btn">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Focal Area / Location</label>
+                    <div class="input-with-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <input type="text" id="dive-location-input" placeholder="e.g. Mendip District, Somerset...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Intelligence Source Modules</label>
+                    <div class="agentic-source-grid">
+                        <label class="agentic-source-card">
+                            <input type="checkbox" checked value="voice">
+                            <div class="card-content">
+                                <div class="card-icon">📞</div>
+                                <div class="card-info">
+                                    <strong>Official Calls</strong>
+                                    <span>Call local contacts for ground truth</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="agentic-source-card">
+                            <input type="checkbox" checked value="social">
+                            <div class="card-content">
+                                <div class="card-icon">📡</div>
+                                <div class="card-info">
+                                    <strong>Web Search</strong>
+                                    <span>Check multiple data sources</span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="agentic-source-card">
+                            <input type="checkbox" checked value="vision">
+                            <div class="card-content">
+                                <div class="card-icon">📸</div>
+                                <div class="card-info">
+                                    <strong>Camera Review</strong>
+                                    <span>Review local safety cameras</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-ghost" id="cancel-dive-modal-btn">Cancel</button>
+                <button class="btn-action-primary" id="start-dive-confirm-btn">
+                    Start Investigation
+                </button>
             </div>
         </div>
     </div>
