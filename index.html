@@ -80,6 +80,13 @@
                             </span>
                             <span class="item-label">County Summary</span>
                         </label>
+                        <label class="toggle-row" id="const-mode-toggle">
+                            <input type="checkbox" id="const-checkbox">
+                            <span class="toggle-slider-wrap">
+                                <span class="toggle-dot"></span>
+                            </span>
+                            <span class="item-label">Constituency Summary</span>
+                        </label>
                     </div>
                 </div>
 
@@ -158,6 +165,10 @@
                                     </span>
                                 </label>
                                 <div class="sub-filter-list hidden" id="energy-sub-menu">
+                                    <label class="sub-filter-item" data-sub-category="all">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">Show All</span>
+                                    </label>
                                     <label class="sub-filter-item" data-sub-category="national-grid">
                                         <span class="sub-dot"></span>
                                         <span class="sub-label">National Grid</span>
@@ -188,6 +199,10 @@
                                     </span>
                                 </label>
                                 <div class="sub-filter-list hidden" id="water-sub-menu">
+                                    <label class="sub-filter-item" data-sub-category="all">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">Show All</span>
+                                    </label>
                                     <label class="sub-filter-item" data-sub-category="thames-water">
                                         <span class="sub-dot"></span>
                                         <span class="sub-label">Thames Water</span>
@@ -338,16 +353,18 @@
                         </button>
                         <div class="layers-menu glass" id="layers-menu">
                             <label><input type="checkbox" id="toggle-regions"> UK Regions</label>
-                            <label><input type="checkbox" id="toggle-counties" checked> UK Counties</label>
+                            <label><input type="checkbox" id="toggle-counties"> UK Counties</label>
+                            <label><input type="checkbox" id="toggle-constituencies"> Constituencies</label>
                         </div>
                     </div>
                 </div>
                 <div class="severity-legend glass hidden" id="map-severity-legend">
                     <div class="legend-title">Impact Severity</div>
                     <div class="legend-items">
-                        <div class="legend-item"><span class="legend-dot" style="background:rgba(8, 20, 81, 0.8)"></span>Severe</div>
-                        <div class="legend-item"><span class="legend-dot" style="background:rgba(37, 99, 235, 0.7)"></span>Significant</div>
-                        <div class="legend-item"><span class="legend-dot" style="background:rgba(147, 197, 253, 0.7)"></span>Minor</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#f87171"></span>Severe</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#fb923c"></span>Significant</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#facc15"></span>Minor</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#4ade80"></span>Minimal</div>
                     </div>
                 </div>            </main>
 
