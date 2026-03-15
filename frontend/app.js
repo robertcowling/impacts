@@ -5,8 +5,16 @@
 // --- Configuration & Constants ---
 function getFeatureName(p) {
     if (!p) return null;
-    return p.rgn19nm || p.rgn24nm || p.ctyua19nm || p.ctyua24nm || p.lad19nm || p.lad24nm ||
-           p.name || p.NAME || p.Region || p.REGION || p.ctry19nm || p.ctry24nm || null;
+    let name = p.PCON24NM || p.rgn19nm || p.rgn24nm || p.ctyua19nm || p.ctyua24nm || p.lad19nm || p.lad24nm ||
+           p.name || p.NAME || p.Region || p.REGION || p.ctry19nm || p.ctry24nm;
+    
+    // Extract Westminster Constituency name from description table if available
+    if (p.description && typeof p.description.value === 'string') {
+        const match = p.description.value.match(/<tr><td>PCON24NM<\/td><td>(.*?)<\/td><\/tr>/i);
+        if (match && match[1]) name = match[1].trim();
+    }
+    
+    return name || null;
 }
 
 const BASEMAPS = {
@@ -23,9 +31,8 @@ const CATEGORIES = {
     news: { label: 'Online News', color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM6 6h12M6 10h12M6 14h6M6 18h6M16 14v4"/></svg>' },
     energy: { label: 'Power Companies', color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
-    proxy: { label: 'Proxy', color: '#64748b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="m17 7-5-5-5 5M17 17l-5 5-5-5"/></svg>' },
     'google-trends': { label: 'Google Trends', color: '#a15b5b', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></circle></svg>' },
-    'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="15.5" font-family="Arial" font-size="10" font-weight="900" fill="currentColor" text-anchor="middle">EA</text></svg>' }
+    'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>' }
 };
 
 const IMPACT_TYPES = {
@@ -37,17 +44,18 @@ const IMPACT_TYPES = {
 };
 
 const SEVERITIES = {
-    minor: { label: 'Minor', color: '#60a5fa' },
-    significant: { label: 'Significant', color: '#1d4ed8' },
-    severe: { label: 'Severe', color: '#081451' }
+    minimal: { label: 'Minimal', color: '#4ade80' },
+    minor: { label: 'Minor', color: '#facc15' },
+    significant: { label: 'Significant', color: '#fb923c' },
+    severe: { label: 'Severe', color: '#f87171' }
 };
 
 /**
  * Generates a detailed assessment for a single impact
  */
 function generateAssessment(category, severity, sourceLabel) {
-    const isProxy = category === 'proxy' || category === 'google-trends';
-    const confidence = isProxy ? 65 + Math.random() * 20 : 85 + Math.random() * 15;
+    const isGoogleTrends = category === 'google-trends';
+    const confidence = isGoogleTrends ? 65 + Math.random() * 20 : 85 + Math.random() * 15;
     
     let confidenceLabel = 'High';
     let confidenceColor = '#4ade80';
@@ -79,9 +87,9 @@ function generateAssessment(category, severity, sourceLabel) {
         confidenceColor,
         justification: justifications[category] || "Automated assessment based on multi-source impact analysis and framework criteria.",
         sourceLabel: sourceName,
-        sourceType: isProxy ? "Proxy Intelligence" : "Direct Evidence",
+        sourceType: isGoogleTrends ? "Proxy Intelligence" : "Direct Evidence",
         corroborated: Math.random() > 0.3,
-        isProxy
+        isGoogleTrends
     };
 }
 
@@ -156,7 +164,6 @@ function generateMockImpacts() {
         news: 'General Operations',
         energy: 'Utility Networks',
         water: 'Utility Networks',
-        proxy: 'Inferred Risk',
         'google-trends': 'Digital Footprint',
         'ea-help': 'Emergency Response'
     };
@@ -166,7 +173,7 @@ function generateMockImpacts() {
         const category = weightedTypes[Math.floor(Math.random() * weightedTypes.length)];
         const severity = sevs[Math.floor(Math.random() * sevs.length)];
         
-        let lat, lng, countyMatch, regionLabel;
+        let lat, lng, countyMatch, regionLabel, constMatch;
         let attempts = 0;
         // Keep looking for a point on land (within a county boundary)
         do {
@@ -174,6 +181,7 @@ function generateMockImpacts() {
             lng = hub.lng + (Math.random() - 0.5) * hub.radius;
             countyMatch = findGeoAttribute([lng, lat], State.rawCounties);
             regionLabel = findGeoAttribute([lng, lat], State.rawRegions);
+            constMatch = findGeoAttribute([lng, lat], State.rawConstituencies);
             attempts++;
         } while (!countyMatch && attempts < 15);
 
@@ -199,7 +207,7 @@ function generateMockImpacts() {
             severity,
             timestamp,
             title: getMockTitle(category),
-            locationName: `${regionLabel || 'UK Region'} | ${countyMatch}`,
+            locationName: `${regionLabel || 'UK Region'} | ${countyMatch}${constMatch ? ' | ' + constMatch : ''}`,
             evidence: getMockEvidence(category),
             source: category === 'social' ? 'Twitter' : 
                    (category === 'news' ? 'Online News' : 
@@ -222,12 +230,17 @@ function generateMockImpacts() {
             impact.outagePolygon = generateRandomPolygon({ lat, lng }, polySize);
             impact.title = `Outage Area: ${impact.title.split(':')[1] || impact.title}`;
             
-            // Find intersecting counties
-            const intersected = findIntersectingCounties(impact.outagePolygon, State.rawCounties);
-            impact.intersectingCounties = intersected;
+            // Find intersecting areas
+            const intersectedCounties = findIntersectingFeatures(impact.outagePolygon, State.rawCounties);
+            const intersectedConst = findIntersectingFeatures(impact.outagePolygon, State.rawConstituencies);
             
-            if (intersected.length > 0) {
-                impact.locationName = `${regionLabel} | ${intersected.length} Counties Affected`;
+            impact.intersectingCounties = intersectedCounties;
+            impact.intersectingConstituencies = intersectedConst;
+            
+            if (intersectedCounties.length > 0) {
+                impact.locationName = `${regionLabel} | ${intersectedCounties.length} Counties Affected`;
+            } else if (intersectedConst.length > 0) {
+                impact.locationName = `${regionLabel} | ${intersectedConst.length} Constituencies Affected`;
             } else {
                 impact.locationName = `${regionLabel} | Regional Outage`;
             }
@@ -442,8 +455,10 @@ const State = {
     map: null,
     regions: null,
     counties: null,
+    constituencies: null,
     regionNames: [],
     countyNames: [],
+    constituencyNames: [],
     impacts: [],
     markers: [],
     polygons: [],
@@ -457,10 +472,11 @@ const State = {
     isDraggingWindow: false,
     dragStartX: 0,
     dragStartLow: 0,
-    spatialMode: 'county', // 'region', 'county' or null
+    spatialMode: 'county', // 'region', 'county', 'constituency' or null
     // Storage for spatial lookup
     rawRegions: null,
     rawCounties: null,
+    rawConstituencies: null,
     viewMode: 'map', // 'map' or 'summary'
     summaryGroup: 'category', // 'category', 'receptor', 'severity'
     feedSort: 'recency',
@@ -487,21 +503,17 @@ function generateRandomPolygon(center, size = 0.5) {
 /**
  * Finds which county GeoJSON features intersect with a given polygon
  */
-function findIntersectingCounties(polyCoords, rawCounties) {
-    if (!rawCounties || !rawCounties.features) return [];
+function findIntersectingFeatures(polyCoords, geojson) {
+    if (!geojson || !geojson.features) return [];
     const intersecting = [];
     
-    // Convert [lat, lng] from outagePolygon to [lng, lat] for isPointInPolygon
     const lngLatPoly = polyCoords.map(c => [c[1], c[0]]);
     
-    // Check each feature
-    rawCounties.features.forEach(feature => {
-        const name = feature.properties.name || feature.properties.NAME || feature.properties.County || "Unknown County";
+    geojson.features.forEach(feature => {
+        const name = getFeatureName(feature.properties);
         const geom = feature.geometry;
         if (!geom) return;
 
-        // Simple heuristic for intersection: check if any of our polygon vertices are inside the county
-        // Or if the county's first vertex is inside our polygon
         let basePoly = null;
         if (geom.type === 'Polygon') basePoly = geom.coordinates[0];
         else if (geom.type === 'MultiPolygon') basePoly = geom.coordinates[0][0];
@@ -509,7 +521,6 @@ function findIntersectingCounties(polyCoords, rawCounties) {
         if (!basePoly) return;
 
         let isIntersecting = false;
-        // Check our vertices against county
         for (let i = 0; i < lngLatPoly.length; i++) {
             if (geom.type === 'Polygon') {
                 if (isPointInPolygon(lngLatPoly[i], geom.coordinates[0])) { isIntersecting = true; break; }
@@ -521,15 +532,14 @@ function findIntersectingCounties(polyCoords, rawCounties) {
             }
         }
 
-        // If not found yet, check county center or first point against our polygon
         if (!isIntersecting) {
             if (isPointInPolygon(basePoly[0], lngLatPoly)) isIntersecting = true;
         }
 
-        if (isIntersecting) intersecting.push(name);
+        if (isIntersecting && name) intersecting.push(name);
     });
     
-    return [...new Set(intersecting)]; // Unique only
+    return [...new Set(intersecting)];
 }
 
 // --- Initialization ---
@@ -541,13 +551,15 @@ async function init() {
     
     // Fetch and Load GeoJSONs
     try {
-        const [regionsRes, countiesRes] = await Promise.all([
+        const [regionsRes, countiesRes, constRes] = await Promise.all([
             fetch('uk-regions.geojson').then(r => r.json()),
-            fetch('uk-counties.geojson').then(r => r.json())
+            fetch('uk-counties.geojson').then(r => r.json()),
+            fetch('westminister.json').then(r => r.json())
         ]);
 
         State.rawRegions = regionsRes;
         State.rawCounties = countiesRes;
+        State.rawConstituencies = constRes;
 
         const onSpatialClick = (e) => {
             const layer = e.target;
@@ -560,7 +572,7 @@ async function init() {
                 duration: 1.0
             });
             
-            const name = feature.properties.name || feature.properties.NAME || feature.properties.Region || feature.properties.County || feature.properties.rgn24nm || feature.properties.rgn19nm || feature.properties.ctry24nm || feature.properties.ctry19nm;
+            const name = getFeatureName(feature.properties);
             
             if (name) {
                 showSpatialSummaryModal(name, State.spatialMode);
@@ -581,9 +593,17 @@ async function init() {
             }
         });
 
+        State.constituencies = L.geoJSON(constRes, {
+            style: { color: '#64748b', weight: 1, opacity: 0.4, fillOpacity: 0.02 },
+            onEachFeature: (feature, layer) => {
+                layer.on('click', onSpatialClick);
+            }
+        });
+
         // Store names for mock generation
-        State.regionNames = regionsRes.features.map(f => f.properties.name || f.properties.NAME || f.properties.Region || "UK Region");
-        State.countyNames = countiesRes.features.map(f => f.properties.name || f.properties.NAME || f.properties.County || "County");
+        State.regionNames = regionsRes.features.map(f => getFeatureName(f.properties) || "UK Region");
+        State.countyNames = countiesRes.features.map(f => getFeatureName(f.properties) || "County");
+        State.constituencyNames = constRes.features.map(f => getFeatureName(f.properties) || "Constituency");
 
         // Add layers based on default state
         if (State.spatialMode === 'region') {
@@ -708,17 +728,18 @@ function setupEvents() {
     // Spatial Mode Toggles
     const regionCheck = document.getElementById('spatial-checkbox');
     const countyCheck = document.getElementById('county-checkbox');
+    const constCheck = document.getElementById('const-checkbox');
 
     regionCheck.addEventListener('change', (e) => {
         if (e.target.checked) {
             State.spatialMode = 'region';
             countyCheck.checked = false;
-            // Clean up other layer
+            constCheck.checked = false;
             State.counties.removeFrom(State.map);
+            State.constituencies.removeFrom(State.map);
             State.regions.addTo(State.map);
         } else {
             State.spatialMode = null;
-            State.regions.setStyle({ color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0.05 });
         }
         renderImpacts();
     });
@@ -727,14 +748,26 @@ function setupEvents() {
         if (e.target.checked) {
             State.spatialMode = 'county';
             regionCheck.checked = false;
-            // Ensure counties are visible
+            constCheck.checked = false;
             State.regions.removeFrom(State.map);
+            State.constituencies.removeFrom(State.map);
             State.counties.addTo(State.map);
         } else {
             State.spatialMode = null;
-            State.counties.setStyle({ color: '#94a3b8', weight: 1, opacity: 0.4, fillOpacity: 0 });
+        }
+        renderImpacts();
+    });
+
+    constCheck.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            State.spatialMode = 'constituency';
+            regionCheck.checked = false;
+            countyCheck.checked = false;
+            State.regions.removeFrom(State.map);
             State.counties.removeFrom(State.map);
-            State.regions.addTo(State.map);
+            State.constituencies.addTo(State.map);
+        } else {
+            State.spatialMode = null;
         }
         renderImpacts();
     });
@@ -1277,7 +1310,10 @@ function renderImpacts() {
                State.activeSeverities.has(imp.severity);
     });
 
-    // Proxy markers handling (don't show national proxies as markers)
+    // Update Feed immediately
+    renderFeed(filtered);
+
+    // Filter for markers (don't show national impacts as single markers)
     const filteredForMarkers = filtered.filter(imp => !imp.isNational);
 
     filteredForMarkers.forEach(imp => {
@@ -1309,23 +1345,23 @@ function renderImpacts() {
         }
     });
 
-    // Spatial & Trends Overlay Styling
-    if (State.activeCategories.has('google-trends')) {
-        updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
-    }
+    // --- Spatial Summary Overlays ---
+    // 1. Reset all layers
+    if (State.regions) updateSpatialSummary([], State.regions, State.rawRegions, 'severity');
+    if (State.counties) updateSpatialSummary([], State.counties, State.rawCounties, 'severity');
+    if (State.constituencies) updateSpatialSummary([], State.constituencies, State.rawConstituencies, 'severity');
 
-    if (State.spatialMode === 'region') {
-        updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
+    // 2. Apply active summary
+    if (State.showSeverity) {
+        if (State.spatialMode === 'region' && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'severity');
+        else if (State.spatialMode === 'county' && State.counties) updateSpatialSummary(filtered, State.counties, State.rawCounties, 'severity');
+        else if (State.spatialMode === 'constituency' && State.constituencies) updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'severity');
     } else {
-        // Reset Regions to basemap style
-        updateSpatialSummary([], State.regions, State.rawRegions, 'severity');
-    }
-    
-    if (State.spatialMode === 'county') {
-        updateSpatialSummary(filtered, State.counties, State.rawCounties, 'blue');
-    } else {
-        // Reset Counties to basemap style
-        updateSpatialSummary([], State.counties, State.rawCounties, 'blue');
+        // Fallback to trends ramp
+        if (State.spatialMode === 'region' && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
+        else if (State.spatialMode === 'county' && State.counties) updateSpatialSummary(filtered, State.counties, State.rawCounties, 'trends');
+        else if (State.spatialMode === 'constituency' && State.constituencies) updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'trends');
+        else if (State.activeCategories.has('google-trends') && State.regions) updateSpatialSummary(filtered, State.regions, State.rawRegions, 'trends');
     }
 
     // Toggle Severity Legend Visibility
@@ -1338,114 +1374,109 @@ function renderImpacts() {
     if (State.viewMode === 'summary') {
         renderSummaryView();
     }
-    
-    renderFeed(filtered);
 }
 
 function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
-    if (!rawJson) return;
+    if (!rawJson || !leafletLayer) return;
 
-    // Professional ramps
     const ramps = {
-        severity: {
-            minor: '#93c5fd',       // Blue 300
-            significant: '#2563eb', // Blue 600
-            severe: '#081451'       // Ultra Dark Blue
+        severity: { 
+            minimal: '#4ade80',
+            minor: '#facc15', 
+            significant: '#fb923c', 
+            severe: '#f87171' 
         },
-        trends: {
-            minor: '#fecaca',       // Red 200
-            significant: '#f87171', // Red 400
-            severe: '#991b1b'       // Red 900
+        trends: { 
+            minimal: '#fef3c7',
+            minor: '#fecaca', 
+            significant: '#f87171', 
+            severe: '#dc2626' 
         }
     };
-    
     const colors = ramps[ramp] || ramps.severity;
 
-    // Calculate aggregate severity for trends if in that mode
-    let aggregateTrendLabel = 'minor';
-    if (ramp === 'trends') {
-        const trends = filtered.filter(imp => imp.category === 'google-trends');
-        if (trends.length > 0) {
-            // Find max severity in current window
-            const weights = { minor: 1, significant: 2, severe: 3 };
-            let maxW = 0;
-            trends.forEach(t => {
-                if (weights[t.severity] > maxW) {
-                    maxW = weights[t.severity];
-                    aggregateTrendLabel = t.severity;
-                }
-            });
-        }
-    }
+    const localImpacts = filtered.filter(imp => !imp.isNational);
 
-    leafletLayer.eachLayer(layer => {
-        const regionFeat = layer.feature;
-        const regionName = getFeatureName(regionFeat.properties);
-        
-        let maxSev = 0;
-        let maxLabel = null;
+    try {
+        leafletLayer.eachLayer(layer => {
+            const feature = layer.feature;
+            const featureName = getFeatureName(feature.properties);
+            const featureBounds = (layer.getBounds && typeof layer.getBounds === 'function') ? layer.getBounds() : null;
+            
+            let maxWeight = 0;
+            let maxLabel = null;
 
-        if (ramp === 'trends') {
-            // Use unified color for entire UK
-            maxLabel = aggregateTrendLabel;
-        } else {
-            // Standard point-in-polygon aggregation
-            const regionBounds = layer.getBounds();
-            filtered.filter(imp => !imp.isNational).forEach(imp => {
+            for (const imp of localImpacts) {
                 let isInside = false;
-                
-                // Point check (Checking all locations if widespread)
-                const locs = imp.locations || [{lat: imp.lat, lng: imp.lng}];
-                for (const loc of locs) {
-                    if (isInside) break;
-                    
-                    // Performance optimization: bounding box check
-                    if (regionBounds.contains([loc.lat, loc.lng])) {
-                        const geom = regionFeat.geometry;
+
+                // 1. Metadata Match (Fast)
+                const locParts = (imp.locationName || "").split('|').map(s => s.trim());
+                if (leafletLayer === State.regions && locParts[0] === featureName) isInside = true;
+                else if (leafletLayer === State.counties && (locParts[1] === featureName || (imp.intersectingCounties && imp.intersectingCounties.includes(featureName)))) isInside = true;
+                else if (leafletLayer === State.constituencies && (locParts[2] === featureName || (imp.intersectingConstituencies && imp.intersectingConstituencies.includes(featureName)))) isInside = true;
+
+                // 2. Spatial Check (Correctness)
+                if (!isInside && featureBounds) {
+                    const geom = feature.geometry;
+                    // Check primary location
+                    const pt = [imp.lng, imp.lat];
+                    if (featureBounds.contains(L.latLng(imp.lat, imp.lng))) {
                         if (geom.type === 'Polygon') {
-                            if (isPointInPolygon([loc.lng, loc.lat], geom.coordinates[0])) isInside = true;
+                            if (isPointInPolygon(pt, geom.coordinates[0])) isInside = true;
                         } else if (geom.type === 'MultiPolygon') {
                             for (const poly of geom.coordinates) {
-                                if (isPointInPolygon([loc.lng, loc.lat], poly[0])) { isInside = true; break; }
+                                if (isPointInPolygon(pt, poly[0])) { isInside = true; break; }
+                            }
+                        }
+                    }
+
+                    // Check outage polygon if it exists
+                    if (!isInside && imp.outagePolygon) {
+                        for (const v of imp.outagePolygon) {
+                            if (isInside) break;
+                            if (featureBounds.contains(L.latLng(v.lat, v.lng))) {
+                                const vPt = [v.lng, v.lat];
+                                if (geom.type === 'Polygon') {
+                                    if (isPointInPolygon(vPt, geom.coordinates[0])) isInside = true;
+                                } else if (geom.type === 'MultiPolygon') {
+                                    for (const poly of geom.coordinates) {
+                                        if (isPointInPolygon(vPt, poly[0])) { isInside = true; break; }
+                                    }
+                                }
                             }
                         }
                     }
                 }
 
-                // Energy Polygon intersection check
-                if (!isInside && imp.category === 'energy' && imp.intersectingCounties) {
-                    if (imp.intersectingCounties.includes(regionName)) {
-                        isInside = true;
-                    }
-                }
-
                 if (isInside) {
-                    const weights = { minor: 1, significant: 2, severe: 3 };
-                    const weight = weights[imp.severity] || 0;
-                    if (weight > maxSev) {
-                        maxSev = weight;
+                    const weightMap = { severe: 4, significant: 3, minor: 2, minimal: 1 };
+                    const weight = weightMap[imp.severity] || 0;
+                    if (weight > maxWeight) {
+                        maxWeight = weight;
                         maxLabel = imp.severity;
                     }
                 }
-            });
-        }
+            }
 
-        if (maxLabel) {
-            layer.setStyle({
-                fillColor: colors[maxLabel],
-                fillOpacity: 0.5,
-                color: colors[maxLabel],
-                weight: 2
-            });
-        } else {
-            layer.setStyle({
-                fillColor: 'transparent',
-                fillOpacity: 0,
-                color: leafletLayer === State.regions ? '#334155' : '#94a3b8',
-                weight: leafletLayer === State.regions ? 1.5 : 1
-            });
-        }
-    });
+            if (maxLabel) {
+                layer.setStyle({
+                    fillColor: colors[maxLabel],
+                    fillOpacity: 0.5,
+                    color: colors[maxLabel],
+                    weight: 2
+                });
+            } else {
+                layer.setStyle({
+                    fillColor: 'transparent',
+                    fillOpacity: 0,
+                    color: leafletLayer === State.regions ? '#475569' : '#cbd5e1',
+                    weight: leafletLayer === State.regions ? 1.5 : 1
+                });
+            }
+        });
+    } catch (err) {
+        console.error("Spatial Summary Error:", err);
+    }
 }
 
 function setupMapOverlays() {
@@ -1453,9 +1484,10 @@ function setupMapOverlays() {
         if (e.target.checked) {
             State.regions.addTo(State.map);
             State.spatialMode = 'region';
-            // Untoggle others to avoid messy overlapping summaries in feed
             document.getElementById('toggle-counties').checked = false;
+            document.getElementById('toggle-constituencies').checked = false;
             State.counties.removeFrom(State.map);
+            State.constituencies.removeFrom(State.map);
         } else {
             State.regions.removeFrom(State.map);
             if (State.spatialMode === 'region') State.spatialMode = null;
@@ -1467,10 +1499,26 @@ function setupMapOverlays() {
             State.counties.addTo(State.map);
             State.spatialMode = 'county';
             document.getElementById('toggle-regions').checked = false;
+            document.getElementById('toggle-constituencies').checked = false;
             State.regions.removeFrom(State.map);
+            State.constituencies.removeFrom(State.map);
         } else {
             State.counties.removeFrom(State.map);
             if (State.spatialMode === 'county') State.spatialMode = null;
+        }
+        renderImpacts();
+    });
+    document.getElementById('toggle-constituencies').addEventListener('change', (e) => {
+        if (e.target.checked) {
+            State.constituencies.addTo(State.map);
+            State.spatialMode = 'constituency';
+            document.getElementById('toggle-regions').checked = false;
+            document.getElementById('toggle-counties').checked = false;
+            State.regions.removeFrom(State.map);
+            State.counties.removeFrom(State.map);
+        } else {
+            State.constituencies.removeFrom(State.map);
+            if (State.spatialMode === 'constituency') State.spatialMode = null;
         }
         renderImpacts();
     });
@@ -1480,26 +1528,30 @@ function renderFeed(filtered) {
     const feedCont = document.getElementById('feed-container');
     const feedCount = document.getElementById('feed-count');
     
-    feedCount.innerText = filtered.length;
+    if (!feedCont || !feedCount) return;
 
+    // We sort a copy to preserve original order for map markers
     const sorted = [...filtered].sort((a, b) => {
         if (State.feedSort === 'severity') {
-            const weights = { severe: 4, significant: 3, minor: 2 };
-            const diff = weights[b.severity] - weights[a.severity];
+            const w = { severe: 4, significant: 3, minor: 2 };
+            const diff = (w[b.severity] || 0) - (w[a.severity] || 0);
             if (diff !== 0) return diff;
-            return b.timestamp - a.timestamp; // Secondary sort: recency
         } else if (State.feedSort === 'type') {
-            const labelA = CATEGORIES[a.category].label;
-            const labelB = CATEGORIES[b.category].label;
+            const labelA = CATEGORIES[a.category]?.label || "";
+            const labelB = CATEGORIES[b.category]?.label || "";
             if (labelA < labelB) return -1;
             if (labelA > labelB) return 1;
-            return b.timestamp - a.timestamp; // Secondary sort: recency
         }
-        // Default: recency
         return b.timestamp - a.timestamp;
     });
+
     feedCount.innerText = sorted.length;
     feedCont.innerHTML = '';
+
+    if (sorted.length === 0) {
+        feedCont.innerHTML = '<div class="feed-empty">No impacts in the selected range.</div>';
+        return;
+    }
 
     sorted.forEach(imp => {
         const card = document.createElement('div');
@@ -1552,20 +1604,32 @@ function renderFeed(filtered) {
                         </div>
                     </div>
                     ` : ''}
-                    <div class="stat-item">
+                    
+                    <div class="stat-item" style="grid-column: span 2; border-top: 1px solid #f1f5f9; padding-top: 10px; margin-top: 5px;">
                         <span class="stat-label">Region</span>
                         <div class="stat-value">
-                            <span class="loc-chip">${imp.locationName.split('|')[0].trim()}</span>
+                            <span class="loc-chip">${imp.locationName.split('|')[0]?.trim() || 'N/A'}</span>
                         </div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-label">County</span>
+
+                    <div class="stat-item" style="grid-column: span 2">
+                        <span class="stat-label">Counties</span>
                         <div class="stat-value">
                             <div class="chips-wrap">
                                 ${imp.intersectingCounties && imp.intersectingCounties.length > 0 
                                   ? imp.intersectingCounties.map(c => `<span class="loc-chip">${c}</span>`).join('')
-                                  : `<span class="loc-chip">${imp.locationName.split('|')[1]?.trim() || 'N/A'}</span>`
-                                }
+                                  : `<span class="loc-chip">${imp.locationName.split('|')[1]?.trim() || 'N/A'}</span>`}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-item" style="grid-column: span 2">
+                        <span class="stat-label">Constituencies</span>
+                        <div class="stat-value">
+                            <div class="chips-wrap">
+                                ${imp.intersectingConstituencies && imp.intersectingConstituencies.length > 0 
+                                  ? imp.intersectingConstituencies.map(c => `<span class="loc-chip constituency">${c}</span>`).join('')
+                                  : `<span class="loc-chip constituency">${imp.locationName.split('|')[2]?.trim() || 'N/A'}</span>`}
                             </div>
                         </div>
                     </div>
@@ -1619,6 +1683,15 @@ function showSpatialSummaryModal(areaName, mode) {
             } else {
                 const parts = imp.locationName.split('|');
                 const cName = (parts[1] || parts[0]).trim();
+                isMatch = cName === areaName;
+            }
+        } else if (mode === 'constituency') {
+            if (imp.intersectingConstituencies && imp.intersectingConstituencies.includes(areaName)) {
+                isMatch = true;
+            } else {
+                const parts = imp.locationName.split('|');
+                // Mock data puts constituency at parts[2]
+                const cName = (parts[2] || parts[1] || parts[0]).trim();
                 isMatch = cName === areaName;
             }
         }
@@ -1875,8 +1948,8 @@ function showAssessmentModal(impactId) {
                 </div>
                 <div class="confidence-factor">
                     <div class="cf-label">Intelligence Type</div>
-                    <div class="cf-value">${a.isProxy ? 'Proxy' : 'Direct'}</div>
-                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.isProxy ? 'Inferred from activity' : 'Validated observation'}</div>
+                    <div class="cf-value">${a.isGoogleTrends ? 'Proxy' : 'Direct'}</div>
+                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.isGoogleTrends ? 'Inferred from activity' : 'Validated observation'}</div>
                 </div>
                 <div class="confidence-factor">
                     <div class="cf-label">Overall Confidence</div>
