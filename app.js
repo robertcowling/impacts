@@ -258,13 +258,17 @@ function generateMockImpacts() {
             impact.locations = locations;
             impact.title = `Widespread: ${impact.title}`;
             
-            // Populate intersecting counties for widespread events so they group correctly
-            const intersected = [];
+            // Populate intersecting counties and constituencies for widespread events so they group correctly
+            const intersectedCounties = [];
+            const intersectedConst = [];
             locations.forEach(loc => {
                 const c = findGeoAttribute([loc.lng, loc.lat], State.rawCounties);
-                if (c) intersected.push(c);
+                if (c) intersectedCounties.push(c);
+                const cn = findGeoAttribute([loc.lng, loc.lat], State.rawConstituencies);
+                if (cn) intersectedConst.push(cn);
             });
-            impact.intersectingCounties = [...new Set(intersected)];
+            impact.intersectingCounties = [...new Set(intersectedCounties)];
+            impact.intersectingConstituencies = [...new Set(intersectedConst)];
             impact.locationName = `${regionLabel} | Widespread`; 
         }
 
@@ -377,56 +381,53 @@ function findGeoAttribute(point, geojson) {
 }
 
 function getMockPhoto(cat) {
-    // 20% chance of no photo (decreased from 50% to show more local photos)
-    if (Math.random() < 0.2) return null;
+    // 15% chance of no photo (even more photos now)
+    if (Math.random() < 0.15) return null;
 
     const photos = {
         roads: [
+            'photos/flood-car-1.jpg',
+            'photos/flood-rushing-1.jpg',
             'photos/pexels-tomfisk-6226996.jpg',
-            'https://images.pexels.com/photos/1547833/pexels-photo-1547833.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'https://images.pexels.com/photos/3971985/pexels-photo-3971985.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'https://images.pexels.com/photos/1547833/pexels-photo-1547833.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         railways: [
-            'photos/pexels-tomfisk-6226996.jpg',
-            'https://images.pexels.com/photos/1054391/pexels-photo-1054391.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'https://images.pexels.com/photos/1755106/pexels-photo-1755106.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'photos/flood-city-1.jpg',
+            'photos/flood-rushing-1.jpg',
+            'https://images.pexels.com/photos/1054391/pexels-photo-1054391.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         social: [
+            'photos/flood-wading-1.jpg',
+            'photos/flood-house-1.jpg',
             'photos/pexels-sveta-k-75705601-8568719.jpg',
-            'photos/pexels-markus-winkler-1430818-3532526.jpg',
-            'photos/pexels-kelly-19063417.jpg',
-            'https://images.pexels.com/photos/1444416/pexels-photo-1444416.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'https://images.pexels.com/photos/3747139/pexels-photo-3747139.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'photos/pexels-markus-winkler-1430818-3532526.jpg'
         ],
         news: [
+            'photos/flood-rescue-1.jpg',
+            'photos/flood-city-1.jpg',
             'photos/pexels-markus-winkler-1430818-3532526.jpg',
-            'photos/pexels-kent-spencer-mendez-52733750-9137104.jpg',
-            'https://images.pexels.com/photos/3944454/pexels-photo-3944454.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'photos/pexels-kent-spencer-mendez-52733750-9137104.jpg'
         ],
         energy: [
             'photos/pexels-dibakar-roy-2432543-26202087.jpg',
             'photos/pexels-dibakar-roy-2432543-26202093.jpg',
-            'https://images.pexels.com/photos/1578277/pexels-photo-1578277.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'https://images.pexels.com/photos/236056/pexels-photo-236056.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'https://images.pexels.com/photos/1578277/pexels-photo-1578277.jpeg?auto=compress&cs=tinysrgb&w=800'
         ],
         water: [
+            'photos/flood-house-1.jpg',
+            'photos/flood-rushing-1.jpg',
             'photos/pexels-juan-moccagatta-2159466094-36288963.jpg',
-            'photos/pexels-juan-moccagatta-2159466094-36304326.jpg',
-            'photos/pexels-naveen-annam-734127-1578329.jpg',
-            'https://images.pexels.com/photos/2143000/pexels-photo-2143000.jpeg?auto=compress&cs=tinysrgb&w=800',
-            'https://images.pexels.com/photos/2533092/pexels-photo-2533092.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'photos/pexels-juan-moccagatta-2159466094-36304326.jpg'
         ],
         'ea-help': [
-            'photos/pexels-juan-moccagatta-2159466094-36288963.jpg',
-            'photos/pexels-juan-moccagatta-2159466094-36304326.jpg',
+            'photos/emergency-heli-1.jpg',
+            'photos/flood-rescue-1.jpg',
             'photos/pexels-valentin-ivantsov-2154772556-35249003.jpg',
-            'photos/pexels-connorscottmcmanus-13865772.jpg',
-            'https://images.pexels.com/photos/163726/belgium-flood-river-water-163726.jpeg?auto=compress&cs=tinysrgb&w=800'
+            'photos/pexels-connorscottmcmanus-13865772.jpg'
         ],
         'google-trends': [
-            'photos/pexels-markus-winkler-1430818-3532526.jpg',
-            'photos/pexels-sveta-k-75705601-8568719.jpg'
+            'photos/flood-city-1.jpg',
+            'photos/flood-aerial-1.jpg'
         ]
     };
     const list = photos[cat];
@@ -1464,17 +1465,39 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
                 
                 for (const imp of filtered) {
                     let isInside = false;
-                    const pt = [imp.lng, imp.lat];
-
-                    // Bbox check first
-                    if (featureBounds && featureBounds.contains(L.latLng(imp.lat, imp.lng))) {
-                        if (geom.type === 'Polygon') {
-                            if (isPointInPolygon(pt, geom.coordinates[0])) isInside = true;
-                        } else if (geom.type === 'MultiPolygon') {
-                            for (const poly of geom.coordinates) {
-                                if (isPointInPolygon(pt, poly[0])) { isInside = true; break; }
+                    
+                    // Check all locations (for widespread impacts / multiple markers)
+                    const locsToCheck = imp.locations ? imp.locations : [{lat: imp.lat, lng: imp.lng}];
+                    
+                    for (const loc of locsToCheck) {
+                        if (featureBounds && featureBounds.contains(L.latLng(loc.lat, loc.lng))) {
+                            const pt = [loc.lng, loc.lat];
+                            if (geom.type === 'Polygon') {
+                                if (isPointInPolygon(pt, geom.coordinates[0])) { isInside = true; break; }
+                            } else if (geom.type === 'MultiPolygon') {
+                                for (const poly of geom.coordinates) {
+                                    if (isPointInPolygon(pt, poly[0])) { isInside = true; break; }
+                                }
+                                if (isInside) break;
                             }
                         }
+                    }
+
+                    // Fallback for energy polygons (check if any vertex is inside)
+                    if (!isInside && imp.outagePolygon && featureBounds) {
+                         for (const v of imp.outagePolygon) {
+                            if (featureBounds.contains(L.latLng(v[0], v[1]))) { 
+                                const pt = [v[1], v[0]];
+                                if (geom.type === 'Polygon') {
+                                    if (isPointInPolygon(pt, geom.coordinates[0])) { isInside = true; break; }
+                                } else if (geom.type === 'MultiPolygon') {
+                                    for (const poly of geom.coordinates) {
+                                        if (isPointInPolygon(pt, poly[0])) { isInside = true; break; }
+                                    }
+                                    if (isInside) break;
+                                }
+                            }
+                         }
                     }
 
                     if (isInside) {
