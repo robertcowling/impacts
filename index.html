@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body class="dark-theme">
     <div id="app">
@@ -103,11 +104,9 @@
                     </div>
                 </div>
 
-                <div class="filter-divider"></div>
                 <div class="sidebar-header-wrap">
                     <h3 class="sidebar-main-header">Impacts</h3>
                     <div class="header-right-actions">
-                        <button class="show-all-btn" id="show-all-sources">Show All</button>
                         <div class="view-sub-selector">
                             <button class="view-sub-btn active" data-view="sources">Sources</button>
                             <button class="view-sub-btn" data-view="types">Types</button>
@@ -117,7 +116,10 @@
 
                 <div id="sidebar-sources-view">
                     <div class="sidebar-section">
-                        <h4>Impact Sources</h4>
+                        <div class="section-header-flex">
+                            <h4>Impact Sources</h4>
+                            <button class="show-all-btn-flat" id="show-all-sources">Show All</button>
+                        </div>
                         <div class="filter-list-vertical">
                             <label class="filter-item-row filter-chip active" data-category="roads">
                                 <input type="checkbox" checked value="roads">
@@ -297,7 +299,7 @@
                 <div id="summary-view" class="hidden">
                     <div class="summary-content">
 
-                        <!-- AI Synthesis Card -->
+                        <!-- AI Assessment Card -->
                         <div class="national-narrative-card">
                             <div class="narration-header">
                                 <h3>Intelligence Summary</h3>
@@ -331,7 +333,7 @@
                                         <th>Intelligence Cluster</th>
                                         <th>Key Level</th>
                                         <th>Confidence</th>
-                                        <th>Evidence Synthesis</th>
+                                        <th>Evidence Assessment</th>
                                     </tr>
                                 </thead>
                                 <tbody id="national-summary-tbody">
@@ -654,7 +656,7 @@
     <div class="assessment-modal-overlay" id="assessment-modal">
         <div class="assessment-modal">
             <div class="assessment-modal-header">
-                <h4 id="assessment-modal-title">Assessment Justification</h4>
+                <h4 id="assessment-modal-title">Assessment</h4>
                 <button class="close-modal-btn" id="close-assessment-btn">&times;</button>
             </div>
             <div class="assessment-modal-body" id="assessment-modal-body">
