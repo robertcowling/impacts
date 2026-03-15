@@ -3,6 +3,12 @@
  */
 
 // --- Configuration & Constants ---
+function getFeatureName(p) {
+    if (!p) return null;
+    return p.rgn19nm || p.rgn24nm || p.ctyua19nm || p.ctyua24nm || p.lad19nm || p.lad24nm ||
+           p.name || p.NAME || p.Region || p.REGION || p.ctry19nm || p.ctry24nm || null;
+}
+
 const BASEMAPS = {
     "Voyager": L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -19,7 +25,7 @@ const CATEGORIES = {
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
     proxy: { label: 'Proxy', color: '#64748b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><path d="m17 7-5-5-5 5M17 17l-5 5-5-5"/></svg>' },
     'google-trends': { label: 'Google Trends', color: '#a15b5b', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></circle></svg>' },
-    'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/><path d="m9 12 2 2 4-4"/></svg>' }
+    'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<img src="ea_logo.png" style="width:20px; height:20px; border-radius:3px;">' }
 };
 
 const IMPACT_TYPES = {
@@ -101,7 +107,7 @@ function generateSummaryAssessment(name, severity, count) {
         confidence: Math.round(confidence),
         confidenceLabel,
         confidenceColor,
-        justification: `Synthesis of ${count} independent ${count === 1 ? 'impact' : 'impacts'} in ${name} aligns with a ${severity} classification. Evidence indicates ${sevDescs[severity]}.`,
+        justification: `Assessment of ${count} independent ${count === 1 ? 'impact' : 'impacts'} in ${name} aligns with a ${severity} classification. Evidence indicates ${sevDescs[severity]}.`,
         sourceType: "Spatial Analysis",
         corroborated: true,
         isProxy: false
@@ -159,20 +165,22 @@ function generateMockImpacts() {
         const hub = weightedHubs[Math.floor(Math.random() * weightedHubs.length)];
         const category = weightedTypes[Math.floor(Math.random() * weightedTypes.length)];
         const severity = sevs[Math.floor(Math.random() * sevs.length)];
-        const receptor = receptorMap[category] || 'General';
         
-        // Use hub-specific radius for tighter clustering in focal areas
-        const lat = hub.lat + (Math.random() - 0.5) * hub.radius;
-        const lng = hub.lng + (Math.random() - 0.5) * hub.radius;
+        let lat, lng, countyMatch, regionLabel;
+        let attempts = 0;
+        // Keep looking for a point on land (within a county boundary)
+        do {
+            lat = hub.lat + (Math.random() - 0.5) * hub.radius;
+            lng = hub.lng + (Math.random() - 0.5) * hub.radius;
+            countyMatch = findGeoAttribute([lng, lat], State.rawCounties);
+            regionLabel = findGeoAttribute([lng, lat], State.rawRegions);
+            attempts++;
+        } while (!countyMatch && attempts < 15);
 
-        // Random time within the last 48 hours
-        const hoursAgo = Math.random() * 48;
-        const timestamp = new Date(now.getTime() - hoursAgo * 60 * 60 * 1000);
+        if (!countyMatch) continue; // Skip if no land found near this hub
 
-        // Perform actual spatial lookup
-        let regionLabel = findGeoAttribute([lng, lat], State.rawRegions) || "UK Region";
-        let countyMatch = findGeoAttribute([lng, lat], State.rawCounties);
-        let countyLabel = countyMatch || "Local Authority";
+        const receptor = receptorMap[category] || 'General';
+        const timestamp = new Date(now.getTime() - (Math.random() * 48) * 60 * 60 * 1000);
 
         const assessment = generateAssessment(category, severity, 
             category === 'social' ? 'Twitter' : 
@@ -191,7 +199,7 @@ function generateMockImpacts() {
             severity,
             timestamp,
             title: getMockTitle(category),
-            locationName: `${regionLabel} | ${countyLabel}`,
+            locationName: `${regionLabel || 'UK Region'} | ${countyMatch}`,
             evidence: getMockEvidence(category),
             source: category === 'social' ? 'Twitter' : 
                    (category === 'news' ? 'Online News' : 
@@ -350,15 +358,14 @@ function findGeoAttribute(point, geojson) {
             }
         }
         if (isInside) {
-            const p = feature.properties;
-            return p.rgn19nm || p.rgn24nm || p.name || p.NAME || p.Region || p.REGION || p.ctry19nm || p.ctry24nm || null;
+            return getFeatureName(feature.properties);
         }
     }
     return null;
 }
 
 function getMockPhoto(cat) {
-    // 50% chance of no photo to ensure some cards collapse gracefully
+    // 50% chance of no photo
     if (Math.random() < 0.5) return null;
 
     const photos = {
@@ -392,6 +399,7 @@ function getMockPhoto(cat) {
         ]
     };
     const list = photos[cat];
+    if (!list) return null;
     return list[Math.floor(Math.random() * list.length)];
 }
 
@@ -546,8 +554,8 @@ async function init() {
             const feature = layer.feature;
             // More subtle zoom-to-bounds with larger padding and a max zoom cap
             State.map.fitBounds(layer.getBounds(), { 
-                padding: [80, 80], 
-                maxZoom: 10,
+                padding: [100, 100], 
+                maxZoom: 8,
                 animate: true,
                 duration: 1.0
             });
@@ -1356,7 +1364,7 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
 
     leafletLayer.eachLayer(layer => {
         const regionFeat = layer.feature;
-        const regionName = regionFeat.properties.rgn19nm || regionFeat.properties.rgn24nm || regionFeat.properties.name || regionFeat.properties.ctry19nm;
+        const regionName = getFeatureName(regionFeat.properties);
         
         let maxSev = 0;
         let maxLabel = null;
@@ -1370,14 +1378,20 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
             filtered.filter(imp => !imp.isNational).forEach(imp => {
                 let isInside = false;
                 
-                // Point check
-                if (regionBounds.contains([imp.lat, imp.lng])) {
-                    const geom = regionFeat.geometry;
-                    if (geom.type === 'Polygon') {
-                        isInside = isPointInPolygon([imp.lng, imp.lat], geom.coordinates[0]);
-                    } else if (geom.type === 'MultiPolygon') {
-                        for (const poly of geom.coordinates) {
-                            if (isPointInPolygon([imp.lng, imp.lat], poly[0])) { isInside = true; break; }
+                // Point check (Checking all locations if widespread)
+                const locs = imp.locations || [{lat: imp.lat, lng: imp.lng}];
+                for (const loc of locs) {
+                    if (isInside) break;
+                    
+                    // Performance optimization: bounding box check
+                    if (regionBounds.contains([loc.lat, loc.lng])) {
+                        const geom = regionFeat.geometry;
+                        if (geom.type === 'Polygon') {
+                            if (isPointInPolygon([loc.lng, loc.lat], geom.coordinates[0])) isInside = true;
+                        } else if (geom.type === 'MultiPolygon') {
+                            for (const poly of geom.coordinates) {
+                                if (isPointInPolygon([loc.lng, loc.lat], poly[0])) { isInside = true; break; }
+                            }
                         }
                     }
                 }
@@ -1396,7 +1410,8 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
                         maxSev = weight;
                         maxLabel = imp.severity;
                     }
-                }            });
+                }
+            });
         }
 
         if (maxLabel) {
@@ -1477,10 +1492,8 @@ function renderFeed(filtered) {
         
         const timeStr = imp.timestamp.toLocaleTimeString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
 
-        const photoHtml = imp.photo ? `<div class="feed-card-photo" style="background-image: url('${imp.photo}')"></div>` : '';
-
         card.innerHTML = `
-            ${photoHtml}
+            ${imp.photo ? `<div class="feed-card-photo" style="background-image: url('${imp.photo}')"></div>` : ''}
             <div class="feed-card-body">
                 <div class="feed-card-header-row">
                     <div class="feed-card-meta">
@@ -1601,7 +1614,7 @@ function showSpatialSummaryModal(areaName, mode) {
     const body = document.getElementById('spatial-modal-body');
     const title = document.getElementById('spatial-modal-title');
     
-    title.innerText = `${areaName} Impact Summary`;
+    title.innerText = `Spatial Summary: ${areaName}`;
 
     const sevDescs = {
         minor: "localised disruption to infrastructure",
@@ -1647,7 +1660,7 @@ function showSpatialSummaryModal(areaName, mode) {
             <div class="spatial-modal-main">
                 <div class="summary-prose-wrap">
                     <h5>Overview</h5>
-                    <p>Aggregated observations in <strong>${areaName}</strong> align with a <strong>${SEVERITIES[results.severity].label}</strong> operational classification. ${sevDescs[results.severity]}. Our spatial engine has cross-correlated ${results.count} independent ${results.count === 1 ? 'impact' : 'impacts'} from ${results.sources.size} distinct ${results.sources.size === 1 ? 'cluster' : 'clusters'}.</p>
+                    <p>Aggregated observations in <strong>${areaName}</strong> align with a <strong>${SEVERITIES[results.severity].label}</strong> operational classification. ${sevDescs[results.severity]}. Our spatial engine has cross-correlated ${results.count} independent ${results.count === 1 ? 'impact' : 'impacts'} from ${results.sources.size} distinct ${results.sources.size === 1 ? 'source category' : 'source categories'}.</p>
                 </div>
 
                 <div class="summary-sources-grid">
@@ -1799,11 +1812,11 @@ function showAssessmentModal(impactId) {
         titleHtml = `
             <div class="assessed-record-box spatial">
                 <div class="record-meta">
-                    <span class="record-category" style="color:var(--clr-primary)">Spatial Aggregate</span>
+                    <span class="record-category" style="color:var(--clr-primary)">Spatial Summary</span>
                     <span class="record-dot">•</span>
                     <span class="record-source">${a.impactCount} Impacts Combined</span>
                 </div>
-                <h4 class="record-title">${a.areaName} Synthesis</h4>
+                <h4 class="record-title">${a.areaName}</h4>
             </div>
         `;
     }
@@ -2139,7 +2152,7 @@ function generateNarrativeSummary(impacts) {
     const timeStr = `${startDate.toLocaleTimeString([], timeOptions)} - ${endDate.toLocaleTimeString([], timeOptions)}`;
     if (timeRef) timeRef.innerText = timeStr;
 
-    // Intelligence Synthesis
+    // Intelligence Assessment
     const severe = impacts.filter(i => i.severity === 'severe');
     const significant = impacts.filter(i => i.severity === 'significant');
     const categories = [...new Set(impacts.map(i => CATEGORIES[i.category]?.label))];
