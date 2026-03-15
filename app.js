@@ -1511,21 +1511,24 @@ function renderFeed(filtered) {
         card.innerHTML = `
             ${imp.photo ? `<div class="feed-card-photo" style="background-image: url('${imp.photo}')"></div>` : ''}
             <div class="feed-card-body">
-                <div class="feed-card-header-row">
-                    <div class="feed-card-meta">
+                <div class="feed-card-header-inner">
+                    <div class="feed-card-meta-new">
                         <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}">
                             ${CATEGORIES[imp.category].label}
                         </span>
                         <span class="feed-card-time">${timeStr}</span>
                     </div>
                 </div>
+                
+                <h4 class="feed-card-title">${imp.title}</h4>
+                
                 <div class="feed-card-source-row">
                     <a href="${imp.sourceUrl}" class="source-link-new" target="_blank" onclick="event.stopPropagation()">
                         ${imp.source}
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                     </a>
                 </div>
-                <h4 class="feed-card-title">${imp.title}</h4>
+
                 <div class="feed-card-content-wrap">
                     <p class="feed-card-evidence">${imp.evidence}</p>
                 </div>
