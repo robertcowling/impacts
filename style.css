@@ -2479,14 +2479,116 @@ main {
 }
 
 .framework-ref {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+    display: none; /* Replaced by in-line framework statement */
+}
+
+/* Enhanced Assessment Modal Styles */
+.assessment-header-stats {
+    display: flex;
+    gap: 24px;
+    margin: 4px 0 24px 0;
     padding: 12px 16px;
     background: #f8fafc;
-    border-radius: 6px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
-    line-height: 1.5;
 }
+
+.header-stat-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-mini-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.stat-mini-value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.conf-chip-new {
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.justification-text.synthesis {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.framework-statement {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding: 10px 12px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    border-left: 3px solid var(--clr-primary);
+}
+
+.framework-link {
+    color: var(--clr-primary);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.timing-assessment {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.timing-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.timing-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.timing-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.timing-note {
+    margin-left: auto;
+    font-size: 0.7rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.confidence-detail-grid.new-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.confidence-detail-grid.new-grid .confidence-factor {
+    padding: 10px 14px;
+}
+
 
 .loc-list-pill, .loc-scroll-area {
     font-size: 0.65rem;

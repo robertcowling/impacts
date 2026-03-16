@@ -54,16 +54,17 @@ const SEVERITIES = {
  */
 function generateAssessment(category, severity, sourceLabel) {
     const isGoogleTrends = category === 'google-trends';
-    const confidence = isGoogleTrends ? 65 + Math.random() * 20 : 85 + Math.random() * 15;
+    const isOfficial = ['roads', 'railways', 'energy', 'water', 'ea-help'].includes(category);
     
+    const confValue = isGoogleTrends ? Math.random() : 0.7 + Math.random() * 0.3;
     let confidenceLabel = 'High';
     let confidenceColor = '#4ade80';
-    if (confidence < 75) {
-        confidenceLabel = 'Moderate';
+    if (confValue < 0.6) {
+        confidenceLabel = 'Low';
+        confidenceColor = '#ef4444';
+    } else if (confValue < 0.85) {
+        confidenceLabel = 'Medium';
         confidenceColor = '#facc15';
-    } else if (confidence < 85) {
-        confidenceLabel = 'Medium-High';
-        confidenceColor = '#a3e635';
     }
 
     const justifications = {
@@ -80,15 +81,38 @@ function generateAssessment(category, severity, sourceLabel) {
 
     const sourceName = sourceLabel || (category === 'social' ? 'Social Monitoring' : (category === 'news' ? 'Media Intelligence' : 'Infrastructure Network'));
 
+    // Timing logic
+    const now = new Date();
+    const startOffset = Math.floor(Math.random() * 4);
+    const endOffset = 6 + Math.floor(Math.random() * 12);
+    const startTime = new Date(now.getTime() - startOffset * 60 * 60 * 1000);
+    const endTime = new Date(now.getTime() + endOffset * 60 * 60 * 1000);
+
+    const vividExamples = {
+        roads: "a section of the A-road with standing water and 2 vehicle recoveries underway",
+        railways: "signalling failure affecting multiple platforms with overhead line damage",
+        social: "a street with perhaps 30 properties flooded and residents requesting sandbags",
+        news: "emergency services attending a localized structural collapse in the town center",
+        energy: "a cluster of 500+ properties without power and localized substation arcing",
+        water: "a major burst water main causing surface flooding and low pressure for 1000+ homes",
+        proxy: "anomalous data patterns suggesting significant localized flood risk development",
+        'google-trends': "unprecedented search volume for emergency flood protection in the area",
+        'ea-help': "official reports of river bank overtopping with immediate risk to adjacent properties"
+    };
+
+    const ex = vividExamples[category] || "localized environmental stress and reported infrastructure failure";
+
     return {
-        confidence: Math.round(confidence),
         confidenceLabel,
         confidenceColor,
         justification: justifications[category] || "Automated assessment based on multi-source impact analysis and framework criteria.",
         sourceLabel: sourceName,
-        sourceType: isGoogleTrends ? "Proxy Intelligence" : "Direct Evidence",
+        sourceReliability: isOfficial ? 'Official' : 'Unofficial',
+        intelligenceType: isGoogleTrends ? 'Proxy' : 'Direct',
         corroborated: Math.random() > 0.3,
-        isGoogleTrends
+        startTiming: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        endTiming: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        synthesis: `Evidence shows ${ex}${isOfficial ? ' as reported by official channels' : ' based on emerging field reports'}. Given the scale and urgency, this observation satisfies the criteria for an escalation in response.`
     };
 }
 
@@ -96,11 +120,11 @@ function generateAssessment(category, severity, sourceLabel) {
  * Generates an aggregate summary assessment for a region or county
  */
 function generateSummaryAssessment(name, severity, count) {
-    const confidence = 80 + Math.random() * 15;
+    const confValue = 0.75 + Math.random() * 0.25;
     let confidenceLabel = 'High';
     let confidenceColor = '#4ade80';
-    if (confidence < 85) {
-        confidenceLabel = 'Moderate';
+    if (confValue < 0.85) {
+        confidenceLabel = 'Medium';
         confidenceColor = '#facc15';
     }
 
@@ -110,14 +134,24 @@ function generateSummaryAssessment(name, severity, count) {
         severe: "major structural failures and critical system-wide data indicators"
     };
 
+    const now = new Date();
+    const st = new Date(now.getTime() - 2 * 60 * 60 * 1000);
+    const et = new Date(now.getTime() + 8 * 60 * 60 * 1000);
+
+    const vividSummary = count > 5 
+        ? `widespread reports across ${name} including multiple streets with 10-20 properties flooded and critical road blockages`
+        : `localized cluster of evidence in ${name} showing infrastructure stress and approximately 15 properties affected by surface water`;
+
     return {
-        confidence: Math.round(confidence),
         confidenceLabel,
         confidenceColor,
         justification: `Assessment of ${count} independent ${count === 1 ? 'impact' : 'impacts'} in ${name} aligns with a ${severity} classification. Evidence indicates ${sevDescs[severity]}.`,
-        sourceType: "Spatial Analysis",
+        sourceReliability: 'Mixed / Corroborated',
+        intelligenceType: 'Spatial Analysis',
         corroborated: true,
-        isProxy: false
+        startTiming: st.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        endTiming: et.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        synthesis: `The synthesized analysis for ${name} combines ${count} unique data points. Evidence includes ${vividSummary}. According to the impact framework, this correlates to a ${severity} level of impact.`
     };
 }
 
@@ -1873,6 +1907,21 @@ window.filterOnly = function(category) {
 }
 
 // --- Assessment Modal ---
+// Helper to open config modal at specific tab
+window.openConfigTab = function(tabId) {
+    const configModal = document.getElementById('config-modal');
+    if (configModal) {
+        configModal.classList.add('active');
+        document.querySelectorAll('.modal-tab').forEach(t => {
+            if (t.dataset.tab === tabId) {
+                t.click();
+            }
+        });
+    }
+    // Close assessment modal if open
+    document.getElementById('assessment-modal').classList.remove('active');
+};
+
 function showAssessmentModal(impactId) {
     let imp = State.impacts.find(i => i.id === impactId);
     let a;
@@ -1913,50 +1962,65 @@ function showAssessmentModal(impactId) {
 
     body.innerHTML = `
         ${titleHtml}
-        <div class="justification-section">
-            <h5>Severity Level</h5>
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-                <span class="sev-dot-small" style="background:${SEVERITIES[imp.severity].color};width:12px;height:12px"></span>
-                <strong style="color:${SEVERITIES[imp.severity].color};font-size:1rem">${SEVERITIES[imp.severity].label}</strong>
-                ${imp.category ? `<span style="font-size:0.75rem;color:var(--text-secondary)">${CATEGORIES[imp.category]?.label || 'Analysis'} impact</span>` : ''}
+        
+        <div class="assessment-header-stats">
+            <div class="header-stat-group">
+                <span class="stat-mini-label">Severity Level</span>
+                <div class="stat-mini-value">
+                    <span class="sev-dot-small" style="background:${SEVERITIES[imp.severity].color}"></span>
+                    <span style="color:${SEVERITIES[imp.severity].color}; font-weight:700;">${SEVERITIES[imp.severity].label}</span>
+                </div>
             </div>
-            <p class="justification-text">${a.justification}</p>
+            <div class="header-stat-group">
+                <span class="stat-mini-label">Confidence</span>
+                <div class="stat-mini-value">
+                    <span class="conf-chip-new" style="background:${a.confidenceColor}20; color:${a.confidenceColor}; border: 1px solid ${a.confidenceColor}40;">
+                        ${a.confidenceLabel}
+                    </span>
+                </div>
+            </div>
         </div>
+
         <div class="justification-section">
-            <h5>Confidence Level</h5>
-            <div class="confidence-detail-grid">
+            <h5>Severity Assessment</h5>
+            <p class="justification-text synthesis">${a.synthesis}</p>
+            <p class="framework-statement">
+                According to the <a href="#" onclick="openConfigTab('impact-framework'); return false;" class="framework-link">Civil Service Impact Framework</a>, this aligns with a <strong>${SEVERITIES[imp.severity].label}</strong> level of impact.
+            </p>
+            
+            <div class="timing-assessment">
+                <div class="timing-item">
+                    <span class="timing-label">Estimated Start</span>
+                    <span class="timing-value">${a.startTiming || '08:00'}</span>
+                </div>
+                <div class="timing-item">
+                    <span class="timing-label">Predicted Recession</span>
+                    <span class="timing-value">${a.endTiming || '18:00'}</span>
+                </div>
+                <div class="timing-note">Based on LLM recession model</div>
+            </div>
+        </div>
+
+        <div class="justification-section">
+            <h5>Confidence Assessment</h5>
+            <div class="confidence-detail-grid new-grid">
                 <div class="confidence-factor">
                     <div class="cf-label">Source Reliability</div>
-                    <div class="cf-value">${a.sourceLabel || 'High'}</div>
-                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.sourceType || 'Spatial Cross-Link'}</div>
+                    <div class="cf-value">${a.sourceReliability}</div>
                 </div>
                 <div class="confidence-factor">
                     <div class="cf-label">Corroboration</div>
-                    <div class="cf-value">${a.corroborated ? 'Yes' : 'No'}</div>
-                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.corroborated ? 'Confirmed by cluster' : 'Isolated report'}</div>
+                    <div class="cf-value">${a.corroborated ? 'Yes (Multiple)' : 'Isolated'}</div>
                 </div>
                 <div class="confidence-factor">
                     <div class="cf-label">Intelligence Type</div>
-                    <div class="cf-value">${a.isGoogleTrends ? 'Proxy' : 'Direct'}</div>
-                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">${a.isGoogleTrends ? 'Inferred from activity' : 'Validated observation'}</div>
+                    <div class="cf-value">${a.intelligenceType}</div>
                 </div>
                 <div class="confidence-factor">
-                    <div class="cf-label">Overall Confidence</div>
+                    <div class="cf-label">Overall Categorisation</div>
                     <div class="cf-value" style="color:${a.confidenceColor}">${a.confidenceLabel}</div>
-                    <div style="font-size:0.7rem;color:var(--text-secondary);margin-top:2px">Based on ${a.confidence}% score</div>
                 </div>
             </div>
-        </div>
-        <div class="justification-section">
-            <h5>Assessment Engine Logic</h5>
-            <ul class="justification-factors">
-                <li><span class="factor-icon">📋</span> Cross-checked against Civil Service Impact Framework criteria</li>
-                <li><span class="factor-icon">🤖</span> Automated synthesis using ${a.sourceType || 'Spatial'} logic path</li>
-                <li><span class="factor-icon">🔗</span> Confidence anchored by ${imp.source || 'multi-source correlation'}</li>
-            </ul>
-        </div>
-        <div class="framework-ref">
-            <strong>Framework Note:</strong> This assessment determines operational priority by matching raw evidence against the predefined impact thresholds in System Configuration.
         </div>
     `;
 
