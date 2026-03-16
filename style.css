@@ -1193,13 +1193,8 @@ h1 span {
 
 .agentic-search-btn.searching .btn-icon-wrap {
     display: inline-flex;
-    animation: rotateIcon 2s linear infinite;
 }
 
-@keyframes rotateIcon {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
 
 .header-nav .view-mode-selector {
     margin: 0;
@@ -1959,7 +1954,7 @@ main {
 
 /* Full Side Panel (RHS) */
 .flat-side-panel {
-    width: 400px;
+    width: 460px;
     background: #ffffff;
     display: flex;
     flex-direction: column;
