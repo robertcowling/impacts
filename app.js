@@ -1772,7 +1772,7 @@ function showSpatialSummaryModal(areaName, mode) {
     const body = document.getElementById('spatial-modal-body');
     const title = document.getElementById('spatial-modal-title');
     
-    title.innerText = `Spatial Summary: ${areaName}`;
+    title.innerText = areaName;
 
     const sevDescs = {
         minor: "localised disruption to infrastructure",
@@ -1970,7 +1970,7 @@ function showAssessmentModal(impactId) {
         titleHtml = `
             <div class="assessed-record-box spatial">
                 <div class="record-meta">
-                    <span class="record-category" style="color:var(--clr-primary)">Spatial Summary</span>
+                    <span class="record-category" style="color:var(--clr-primary)">Spatial Analysis</span>
                     <span class="record-dot">•</span>
                     <span class="record-source">${a.impactCount} Impacts Combined</span>
                 </div>
@@ -1991,7 +1991,7 @@ function showAssessmentModal(impactId) {
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
                 <span class="sev-dot-small" style="background:${SEVERITIES[imp.severity].color};width:12px;height:12px"></span>
                 <strong style="color:${SEVERITIES[imp.severity].color};font-size:1rem">${SEVERITIES[imp.severity].label}</strong>
-                ${imp.category ? `<span style="font-size:0.75rem;color:var(--text-secondary)">${CATEGORIES[imp.category]?.label || 'Summary'} impact</span>` : ''}
+                ${imp.category ? `<span style="font-size:0.75rem;color:var(--text-secondary)">${CATEGORIES[imp.category]?.label || 'Analysis'} impact</span>` : ''}
             </div>
             <p class="justification-text">${a.justification}</p>
         </div>
