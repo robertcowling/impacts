@@ -472,9 +472,12 @@ function getMockEvidence(cat) {
 /// --- App State ---
 const State = {
     map: null,
-    regions: null,
-    counties: null,
-    constituencies: null,
+    regions: null, // Outlines (Basemapping)
+    counties: null, // Outlines (Basemapping)
+    constituencies: null, // Outlines (Basemapping)
+    regionsAnalysis: null, // Colored Assessment
+    countiesAnalysis: null, // Colored Assessment
+    constituenciesAnalysis: null, // Colored Assessment
     regionNames: [],
     countyNames: [],
     constituencyNames: [],
@@ -599,25 +602,29 @@ async function init() {
             }
         };
 
+        // Initialize Boundary/Basemapping Layers (Outlines ONLY)
         State.regions = L.geoJSON(regionsRes, {
-            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0.05 },
-            onEachFeature: (feature, layer) => {
-                layer.on('click', onSpatialClick);
-            }
+            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0 },
+            onEachFeature: (feature, layer) => { layer.on('click', onSpatialClick); }
         });
-
         State.counties = L.geoJSON(countiesRes, {
-            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0.05 },
-            onEachFeature: (feature, layer) => {
-                layer.on('click', onSpatialClick);
-            }
+            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0 },
+            onEachFeature: (feature, layer) => { layer.on('click', onSpatialClick); }
+        });
+        State.constituencies = L.geoJSON(constRes, {
+            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0 },
+            onEachFeature: (feature, layer) => { layer.on('click', onSpatialClick); }
         });
 
-        State.constituencies = L.geoJSON(constRes, {
-            style: { color: '#334155', weight: 1.5, opacity: 0.5, fillOpacity: 0.05 },
-            onEachFeature: (feature, layer) => {
-                layer.on('click', onSpatialClick);
-            }
+        // Initialize Analysis Layers (Colored Assessments)
+        State.regionsAnalysis = L.geoJSON(regionsRes, {
+            onEachFeature: (feature, layer) => { layer.on('click', onSpatialClick); }
+        });
+        State.countiesAnalysis = L.geoJSON(countiesRes, {
+            onEachFeature: (feature, layer) => { layer.on('click', onSpatialClick); }
+        });
+        State.constituenciesAnalysis = L.geoJSON(constRes, {
+            onEachFeature: (feature, layer) => { layer.on('click', onSpatialClick); }
         });
 
         // Store names for mock generation
@@ -627,13 +634,17 @@ async function init() {
 
         // Add layers based on default state
         if (State.spatialMode === 'region') {
-            State.regions.addTo(State.map);
+            State.regionsAnalysis.addTo(State.map);
         } else if (State.spatialMode === 'county') {
-            State.counties.addTo(State.map);
-        } else {
-            if (document.getElementById('toggle-regions').checked) State.regions.addTo(State.map);
-            if (document.getElementById('toggle-counties').checked) State.counties.addTo(State.map);
+            State.countiesAnalysis.addTo(State.map);
+        } else if (State.spatialMode === 'constituency') {
+            State.constituenciesAnalysis.addTo(State.map);
         }
+        
+        // Basemapping defaults (Top-Right)
+        if (document.getElementById('toggle-regions').checked) State.regions.addTo(State.map);
+        if (document.getElementById('toggle-counties').checked) State.counties.addTo(State.map);
+        if (document.getElementById('toggle-constituencies').checked) State.constituencies.addTo(State.map);
         
         // Manual layer toggles (from custom overlay html)
         setupMapOverlays();
@@ -745,31 +756,19 @@ function setupEvents() {
         updateStats();
     });
 
-    // Spatial Mode Toggles
-    const regionCheck = document.getElementById('spatial-checkbox');
-    const countyCheck = document.getElementById('county-checkbox');
-    const constCheck = document.getElementById('const-checkbox');
-    
-    // Top-right Layers menu sync helpers
-    const syncTopLayerChecks = () => {
-        if (document.getElementById('toggle-regions')) document.getElementById('toggle-regions').checked = regionCheck.checked;
-        if (document.getElementById('toggle-counties')) document.getElementById('toggle-counties').checked = countyCheck.checked;
-        if (document.getElementById('toggle-constituencies')) document.getElementById('toggle-constituencies').checked = constCheck.checked;
-    };
-
+    // Spatial Mode Toggles (LHS - Impact Analysis)
     regionCheck.addEventListener('change', (e) => {
         if (e.target.checked) {
             State.spatialMode = 'region';
             countyCheck.checked = false;
             constCheck.checked = false;
-            State.counties.removeFrom(State.map);
-            State.constituencies.removeFrom(State.map);
-            State.regions.addTo(State.map);
+            State.countiesAnalysis.removeFrom(State.map);
+            State.constituenciesAnalysis.removeFrom(State.map);
+            State.regionsAnalysis.addTo(State.map);
         } else {
-            State.regions.removeFrom(State.map);
+            State.regionsAnalysis.removeFrom(State.map);
             if (State.spatialMode === 'region') State.spatialMode = null;
         }
-        syncTopLayerChecks();
         renderImpacts();
     });
 
@@ -778,14 +777,13 @@ function setupEvents() {
             State.spatialMode = 'county';
             regionCheck.checked = false;
             constCheck.checked = false;
-            State.regions.removeFrom(State.map);
-            State.constituencies.removeFrom(State.map);
-            State.counties.addTo(State.map);
+            State.regionsAnalysis.removeFrom(State.map);
+            State.constituenciesAnalysis.removeFrom(State.map);
+            State.countiesAnalysis.addTo(State.map);
         } else {
-            State.counties.removeFrom(State.map);
+            State.countiesAnalysis.removeFrom(State.map);
             if (State.spatialMode === 'county') State.spatialMode = null;
         }
-        syncTopLayerChecks();
         renderImpacts();
     });
 
@@ -794,14 +792,19 @@ function setupEvents() {
             State.spatialMode = 'constituency';
             regionCheck.checked = false;
             countyCheck.checked = false;
-            State.regions.removeFrom(State.map);
-            State.counties.removeFrom(State.map);
-            State.constituencies.addTo(State.map);
+            State.regionsAnalysis.removeFrom(State.map);
+            State.countiesAnalysis.removeFrom(State.map);
+            State.constituenciesAnalysis.addTo(State.map);
+            
+            // Background Regions for context in constituency mode
+            State.regionsAnalysis.addTo(State.map); 
         } else {
-            State.constituencies.removeFrom(State.map);
-            if (State.spatialMode === 'constituency') State.spatialMode = null;
+            State.constituenciesAnalysis.removeFrom(State.map);
+            if (State.spatialMode === 'constituency') {
+                State.spatialMode = null;
+                State.regionsAnalysis.removeFrom(State.map);
+            }
         }
-        syncTopLayerChecks();
         renderImpacts();
     });
 
@@ -1378,21 +1381,16 @@ function renderImpacts() {
         }
     });
 
-    // --- Spatial Summary Overlays ---
-    // Update EACH layer if it is currently added to the map.
-    
-    if (State.regions && State.map.hasLayer(State.regions)) {
-        // ALWAYS update regions. In constituency mode, updateSpatialSummary handles background styling.
+    // --- Spatial Summary Overlays (Assessment Layers ONLY) ---
+    if (State.regionsAnalysis && State.map.hasLayer(State.regionsAnalysis)) {
         const ramp = (State.spatialMode === 'region' || State.spatialMode === 'constituency') ? 'severity' : 'trends';
-        updateSpatialSummary(filtered, State.regions, State.rawRegions, ramp);
+        updateSpatialSummary(filtered, State.regionsAnalysis, State.rawRegions, ramp);
     }
-
-    if (State.counties && State.map.hasLayer(State.counties)) {
-        updateSpatialSummary(filtered, State.counties, State.rawCounties, 'severity');
+    if (State.countiesAnalysis && State.map.hasLayer(State.countiesAnalysis)) {
+        updateSpatialSummary(filtered, State.countiesAnalysis, State.rawCounties, 'severity');
     }
-    
-    if (State.constituencies && State.map.hasLayer(State.constituencies)) {
-        updateSpatialSummary(filtered, State.constituencies, State.rawConstituencies, 'severity');
+    if (State.constituenciesAnalysis && State.map.hasLayer(State.constituenciesAnalysis)) {
+        updateSpatialSummary(filtered, State.constituenciesAnalysis, State.rawConstituencies, 'severity');
     }
 
     // Toggle Severity Legend Visibility
@@ -1512,7 +1510,7 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
             }
 
             if (match) {
-                const isBackgroundRegion = (leafletLayer === State.regions && State.spatialMode === 'constituency');
+                const isBackgroundRegion = (leafletLayer === State.regionsAnalysis && State.spatialMode === 'constituency');
                 layer.setStyle({
                     fillColor: colors[match.label],
                     fillOpacity: isBackgroundRegion ? 0.15 : 0.5,
@@ -1534,60 +1532,18 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
 }
 
 function setupMapOverlays() {
-    const regionCheck = document.getElementById('spatial-checkbox');
-    const countyCheck = document.getElementById('county-checkbox');
-    const constCheck = document.getElementById('const-checkbox');
-
-    const syncSidebarChecks = () => {
-        if (regionCheck) regionCheck.checked = document.getElementById('toggle-regions').checked;
-        if (countyCheck) countyCheck.checked = document.getElementById('toggle-counties').checked;
-        if (constCheck) constCheck.checked = document.getElementById('toggle-constituencies').checked;
-    };
-
+    // Top-Right Basemapping Toggles (Outlines ONLY)
     document.getElementById('toggle-regions').addEventListener('change', (e) => {
-        if (e.target.checked) {
-            State.regions.addTo(State.map);
-            State.spatialMode = 'region';
-            document.getElementById('toggle-counties').checked = false;
-            document.getElementById('toggle-constituencies').checked = false;
-            State.counties.removeFrom(State.map);
-            State.constituencies.removeFrom(State.map);
-        } else {
-            State.regions.removeFrom(State.map);
-            if (State.spatialMode === 'region') State.spatialMode = null;
-        }
-        syncSidebarChecks();
-        renderImpacts();
+        if (e.target.checked) State.regions.addTo(State.map);
+        else State.regions.removeFrom(State.map);
     });
     document.getElementById('toggle-counties').addEventListener('change', (e) => {
-        if (e.target.checked) {
-            State.counties.addTo(State.map);
-            State.spatialMode = 'county';
-            document.getElementById('toggle-regions').checked = false;
-            document.getElementById('toggle-constituencies').checked = false;
-            State.regions.removeFrom(State.map);
-            State.constituencies.removeFrom(State.map);
-        } else {
-            State.counties.removeFrom(State.map);
-            if (State.spatialMode === 'county') State.spatialMode = null;
-        }
-        syncSidebarChecks();
-        renderImpacts();
+        if (e.target.checked) State.counties.addTo(State.map);
+        else State.counties.removeFrom(State.map);
     });
     document.getElementById('toggle-constituencies').addEventListener('change', (e) => {
-        if (e.target.checked) {
-            State.constituencies.addTo(State.map);
-            State.spatialMode = 'constituency';
-            document.getElementById('toggle-regions').checked = false;
-            document.getElementById('toggle-counties').checked = false;
-            State.regions.removeFrom(State.map);
-            State.counties.removeFrom(State.map);
-        } else {
-            State.constituencies.removeFrom(State.map);
-            if (State.spatialMode === 'constituency') State.spatialMode = null;
-        }
-        syncSidebarChecks();
-        renderImpacts();
+        if (e.target.checked) State.constituencies.addTo(State.map);
+        else State.constituencies.removeFrom(State.map);
     });
 }
 
