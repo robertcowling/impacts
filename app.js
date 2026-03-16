@@ -2086,16 +2086,7 @@ function deployAgenticSearch(location, modules) {
         steps: generateStepsForModules(location, modules)
     };
 
-    // Map Placement (Simulated center-ish or based on name if we had geocoding)
-    const center = State.map.getCenter();
-    const radarIcon = L.divIcon({
-        className: 'radar-pulse-marker',
-        html: '<div class="radar-ring"></div><div class="radar-center"></div>',
-        iconSize: [20, 20]
-    });
-    session.marker = L.marker(center, { icon: radarIcon, interactive: true }).addTo(State.map);
-    session.marker.on('click', () => openDiveOverlay(sessionId));
-
+    // Marker removed as per user request
     State.deepDiveSessions.push(session);
     updateActiveDivesUI();
     
