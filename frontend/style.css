@@ -1185,6 +1185,22 @@ h1 span {
     font-size: 0.9rem;
 }
 
+.agentic-search-btn.searching {
+    border-color: #6366f1;
+    background: rgba(99, 102, 241, 0.05);
+    color: #4f46e5;
+}
+
+.agentic-search-btn.searching .btn-icon-wrap {
+    display: inline-flex;
+    animation: rotateIcon 2s linear infinite;
+}
+
+@keyframes rotateIcon {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .header-nav .view-mode-selector {
     margin: 0;
     padding: 3px;
@@ -2803,7 +2819,7 @@ main {
 .map-overlay-top-right {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 70px;
     z-index: 1000;
 }
 

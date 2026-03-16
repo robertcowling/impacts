@@ -761,8 +761,9 @@ function setupEvents() {
         if (e.target.checked) {
             State.spatialMode = 'region';
             countyCheck.checked = false;
-            // Allow constituencies to stay if they are already on
+            constCheck.checked = false;
             State.counties.removeFrom(State.map);
+            State.constituencies.removeFrom(State.map);
             State.regions.addTo(State.map);
         } else {
             State.regions.removeFrom(State.map);
@@ -791,8 +792,9 @@ function setupEvents() {
     constCheck.addEventListener('change', (e) => {
         if (e.target.checked) {
             State.spatialMode = 'constituency';
+            regionCheck.checked = false;
             countyCheck.checked = false;
-            // Removed automatic region check
+            State.regions.removeFrom(State.map);
             State.counties.removeFrom(State.map);
             State.constituencies.addTo(State.map);
         } else {
@@ -1545,9 +1547,11 @@ function setupMapOverlays() {
     document.getElementById('toggle-regions').addEventListener('change', (e) => {
         if (e.target.checked) {
             State.regions.addTo(State.map);
-            if (State.spatialMode !== 'constituency') State.spatialMode = 'region';
+            State.spatialMode = 'region';
             document.getElementById('toggle-counties').checked = false;
+            document.getElementById('toggle-constituencies').checked = false;
             State.counties.removeFrom(State.map);
+            State.constituencies.removeFrom(State.map);
         } else {
             State.regions.removeFrom(State.map);
             if (State.spatialMode === 'region') State.spatialMode = null;
@@ -1574,8 +1578,9 @@ function setupMapOverlays() {
         if (e.target.checked) {
             State.constituencies.addTo(State.map);
             State.spatialMode = 'constituency';
-            
+            document.getElementById('toggle-regions').checked = false;
             document.getElementById('toggle-counties').checked = false;
+            State.regions.removeFrom(State.map);
             State.counties.removeFrom(State.map);
         } else {
             State.constituencies.removeFrom(State.map);
@@ -2094,9 +2099,16 @@ function deployAgenticSearch(location, modules) {
     State.deepDiveSessions.push(session);
     updateActiveDivesUI();
     
+    // UI Feedback on button
+    const btn = document.getElementById('agentic-action-btn');
+    if (btn) {
+        btn.classList.add('searching');
+        const textEl = btn.querySelector('.btn-text');
+        if (textEl) textEl.innerText = "Agentic Investigation in Progress...";
+    }
+
     // Start Processing
     startSessionProcessing(sessionId);
-    openDiveOverlay(sessionId);
 }
 
 function generateStepsForModules(location, modules) {
@@ -2122,6 +2134,15 @@ function startSessionProcessing(id) {
             session.status = "Completed";
             session.progress = 100;
             updateActiveDivesUI();
+
+            // Reset UI Feedback on button
+            const btn = document.getElementById('agentic-action-btn');
+            if (btn) {
+                btn.classList.remove('searching');
+                const textEl = btn.querySelector('.btn-text');
+                if (textEl) textEl.innerText = "Agentic Impact Investigation";
+            }
+
             if (State.activeDiveId === id) refreshOverlayContent(session);
             return;
         }
