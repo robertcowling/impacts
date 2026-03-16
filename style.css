@@ -2515,11 +2515,12 @@ main {
 }
 
 .conf-chip-new {
-    padding: 2px 10px;
+    padding: 3px 12px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: capitalize;
+    color: #1e293b !important; /* Forces dark readable font */
 }
 
 .justification-text.synthesis {
@@ -2573,20 +2574,29 @@ main {
     font-family: 'JetBrains Mono', monospace;
 }
 
-.timing-note {
-    margin-left: auto;
-    font-size: 0.7rem;
-    font-style: italic;
+.confidence-statement-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.confidence-justification-box {
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    opacity: 0.8;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    line-height: 1.5;
 }
 
-.confidence-detail-grid.new-grid {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.confidence-detail-grid.new-grid .confidence-factor {
-    padding: 10px 14px;
+.confidence-justification-box strong {
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 4px;
 }
 
 
