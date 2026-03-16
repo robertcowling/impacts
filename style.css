@@ -2174,7 +2174,8 @@ main {
     font-size: 0.78rem;
     font-weight: 600;
     color: #64748b;
-    align-self: center;
+    align-self: start;
+    padding-top: 4px; /* Optional: adjust for alignment with value text */
 }
 
 .stat-value {
