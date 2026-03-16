@@ -1193,12 +1193,6 @@ h1 span {
 
 .agentic-search-btn.searching .btn-icon-wrap {
     display: inline-flex;
-    animation: rotateIcon 2s linear infinite;
-}
-
-@keyframes rotateIcon {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
 
 .header-nav .view-mode-selector {
@@ -2780,42 +2774,8 @@ main {
     transition: width 0.3s linear;
 }
 
-/* Radar Pulse Marker */
-.radar-pulse-marker {
-    background: transparent;
-}
-
-.radar-ring {
-    width: 60px;
-    height: 60px;
-    background: rgba(16, 185, 129, 0.1);
-    border: 2px solid #10b981;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -30px;
-    margin-left: -30px;
-    animation: radar-pulse 3s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-@keyframes radar-pulse {
-    0% { transform: scale(0.5); opacity: 1; border-width: 4px; }
-    100% { transform: scale(3.5); opacity: 0; border-width: 1px; }
-}
-
-.radar-center {
-    width: 8px;
-    height: 8px;
-    background: #10b981;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -4px;
-    margin-left: -4px;
-    box-shadow: 0 0 15px #10b981;
-}
+/* Radar Pulse Marker removed as per user request */
+/* Radar Pulse Marker removed */
 .map-overlay-top-right {
     position: absolute;
     top: 20px;
