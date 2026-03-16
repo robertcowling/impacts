@@ -111,8 +111,9 @@ function generateAssessment(category, severity, sourceLabel) {
         intelligenceType: isGoogleTrends ? 'Proxy' : 'Direct',
         corroborated: Math.random() > 0.3,
         startTiming: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        endTiming: endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        synthesis: `Evidence shows ${ex}${isOfficial ? ' as reported by official channels' : ' based on emerging field reports'}. Given the scale and urgency, this observation satisfies the criteria for an escalation in response.`
+        endTiming: "", // Left blank as requested
+        synthesis: `Evidence shows ${ex}${isOfficial ? ' as reported by official channels' : ' based on emerging field reports'}. Given the scale and urgency, this observation satisfies the criteria for an escalation in response.`,
+        confidenceStatement: `This is a <strong>${confidenceLabel}</strong> confidence assessment. It is based on <strong>${isOfficial ? 'Official' : 'Unofficial'}</strong> data from <strong>${isGoogleTrends ? 'Proxy' : 'Direct'}</strong> sources, which have been ${Math.random() > 0.3 ? 'successfully corroborated' : 'identified as isolated reports'} across the network.`
     };
 }
 
@@ -150,8 +151,9 @@ function generateSummaryAssessment(name, severity, count) {
         intelligenceType: 'Spatial Analysis',
         corroborated: true,
         startTiming: st.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        endTiming: et.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        synthesis: `The synthesized analysis for ${name} combines ${count} unique data points. Evidence includes ${vividSummary}. According to the impact framework, this correlates to a ${severity} level of impact.`
+        endTiming: "", // Left blank as requested
+        synthesis: `The synthesized analysis for ${name} combines ${count} unique data points. Evidence includes ${vividSummary}. According to the impact framework, this correlates to a ${severity} level of impact.`,
+        confidenceStatement: `This is a <strong>${confidenceLabel}</strong> confidence assessment. It is based on aggregated <strong>Mixed</strong> data sources using <strong>Spatial Analysis</strong>, which provides high-integrity corroboration for this regional cluster.`
     };
 }
 
@@ -1985,7 +1987,7 @@ function showAssessmentModal(impactId) {
             <h5>Severity Assessment</h5>
             <p class="justification-text synthesis">${a.synthesis}</p>
             <p class="framework-statement">
-                According to the <a href="#" onclick="openConfigTab('impact-framework'); return false;" class="framework-link">Civil Service Impact Framework</a>, this aligns with a <strong>${SEVERITIES[imp.severity].label}</strong> level of impact.
+                According to the <a href="#" onclick="openConfigTab('impact-framework'); return false;" class="framework-link">Impact Framework</a>, this aligns with a <strong>${SEVERITIES[imp.severity].label}</strong> level of impact.
             </p>
             
             <div class="timing-assessment">
@@ -1994,31 +1996,18 @@ function showAssessmentModal(impactId) {
                     <span class="timing-value">${a.startTiming || '08:00'}</span>
                 </div>
                 <div class="timing-item">
-                    <span class="timing-label">Predicted Recession</span>
-                    <span class="timing-value">${a.endTiming || '18:00'}</span>
+                    <span class="timing-label">Estimated End</span>
+                    <span class="timing-value">${a.endTiming || '--:--'}</span>
                 </div>
-                <div class="timing-note">Based on LLM recession model</div>
             </div>
         </div>
 
         <div class="justification-section">
             <h5>Confidence Assessment</h5>
-            <div class="confidence-detail-grid new-grid">
-                <div class="confidence-factor">
-                    <div class="cf-label">Source Reliability</div>
-                    <div class="cf-value">${a.sourceReliability}</div>
-                </div>
-                <div class="confidence-factor">
-                    <div class="cf-label">Corroboration</div>
-                    <div class="cf-value">${a.corroborated ? 'Yes (Multiple)' : 'Isolated'}</div>
-                </div>
-                <div class="confidence-factor">
-                    <div class="cf-label">Intelligence Type</div>
-                    <div class="cf-value">${a.intelligenceType}</div>
-                </div>
-                <div class="confidence-factor">
-                    <div class="cf-label">Overall Categorisation</div>
-                    <div class="cf-value" style="color:${a.confidenceColor}">${a.confidenceLabel}</div>
+            <div class="confidence-statement-block">
+                <p class="justification-text">${a.confidenceStatement}</p>
+                <div class="confidence-justification-box">
+                    <strong>Assessment Justification:</strong> ${a.justification}
                 </div>
             </div>
         </div>
