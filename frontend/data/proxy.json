@@ -1,0 +1,52 @@
+[
+  {
+    "id": "ev-proxy-0",
+    "lat": 54.5,
+    "lng": -2,
+    "category": "proxy",
+    "severity": "minor",
+    "timestamp": "2025-11-14T15:57:00.923Z",
+    "title": "Met Office Website Hits",
+    "locationName": "United Kingdom | National",
+    "source": "Met Office Digital",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "justification": "Automated assessment based on multi-source impact analysis and framework criteria.",
+      "sourceLabel": "Met Office Digital",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    }
+  },
+  {
+    "id": "ev-proxy-1",
+    "lat": 54.5,
+    "lng": -2,
+    "category": "proxy",
+    "severity": "significant",
+    "timestamp": "2025-11-12T18:43:54.233Z",
+    "title": "Met Office Website Hits",
+    "locationName": "United Kingdom | National",
+    "source": "Met Office Digital",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "justification": "Automated assessment based on multi-source impact analysis and framework criteria.",
+      "sourceLabel": "Met Office Digital",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    }
+  }
+]
