@@ -3,6 +3,8 @@
  */
 
 // --- Configuration & Constants ---
+const FIXED_NOW = new Date('2025-11-14T17:00:00Z');
+
 function getFeatureName(p) {
     if (!p) return null;
     let name = p.PCON24NM || p.rgn19nm || p.rgn24nm || p.ctyua19nm || p.ctyua24nm || p.lad19nm || p.lad24nm ||
@@ -157,224 +159,7 @@ function generateSummaryAssessment(name, severity, count) {
     };
 }
 
-// --- Mock Data Engine ---
-function generateMockImpacts() {
-    const impacts = [];
-    const now = new Date();
-    
-    // Hubs with a stronger bias for SW England
-    const hubs = [
-        { lat: 51.4545, lng: -2.5879, name: 'Bristol', weight: 4.0, radius: 0.3 },   // Strong SW cluster
-        { lat: 50.7184, lng: -3.5339, name: 'Exeter', weight: 2.0, radius: 0.25 },   // SW
-        { lat: 51.8642, lng: -2.2442, name: 'Gloucester', weight: 1.5, radius: 0.2 }, // SW
-        { lat: 51.5074, lng: -0.1278, name: 'London', weight: 0.8, radius: 0.6 },
-        { lat: 52.4862, lng: -1.8904, name: 'Birmingham', weight: 0.8, radius: 0.6 },
-        { lat: 53.4808, lng: -2.2426, name: 'Manchester', weight: 0.8, radius: 0.6 },
-        { lat: 53.8008, lng: -1.5491, name: 'Leeds', weight: 0.5, radius: 0.6 },
-        { lat: 52.2053, lng: 0.1218, name: 'Cambridge', weight: 0.5, radius: 0.6 },
-        { lat: 51.7520, lng: -1.2577, name: 'Oxford', weight: 0.5, radius: 0.6 }
-    ];
-
-    // Build a weighted selection array
-    const weightedHubs = [];
-    hubs.forEach(h => {
-        const count = Math.ceil(h.weight * 10);
-        for(let j=0; j<count; j++) weightedHubs.push(h);
-    });
-
-    const weightedTypes = [
-        'roads', 'roads', 
-        'railways', 
-        'social', 'social', 'social', 'social', 'social',
-        'news', 'news',
-        'energy', 
-        'water',
-        'ea-help', 'ea-help'
-    ];
-    const sevs = ['minor', 'significant', 'severe'];
-    const receptorMap = {
-        roads: 'Transport Infrastructure',
-        railways: 'Transport Infrastructure',
-        social: 'Public Safety & Welfare',
-        news: 'General Operations',
-        energy: 'Utility Networks',
-        water: 'Utility Networks',
-        'google-trends': 'Digital Footprint',
-        'ea-help': 'Emergency Response'
-    };
-
-    for (let i = 0; i < 100; i++) {
-        const hub = weightedHubs[Math.floor(Math.random() * weightedHubs.length)];
-        const category = weightedTypes[Math.floor(Math.random() * weightedTypes.length)];
-        const severity = sevs[Math.floor(Math.random() * sevs.length)];
-        
-        let lat, lng, countyMatch, regionLabel, constMatch;
-        let attempts = 0;
-        // Keep looking for a point on land (within a county boundary)
-        do {
-            lat = hub.lat + (Math.random() - 0.5) * hub.radius;
-            lng = hub.lng + (Math.random() - 0.5) * hub.radius;
-            countyMatch = findGeoAttribute([lng, lat], State.rawCounties);
-            regionLabel = findGeoAttribute([lng, lat], State.rawRegions);
-            constMatch = findGeoAttribute([lng, lat], State.rawConstituencies);
-            attempts++;
-        } while (!countyMatch && attempts < 15);
-
-        if (!countyMatch) continue; // Skip if no land found near this hub
-
-        const receptor = receptorMap[category] || 'General';
-        const timestamp = new Date(now.getTime() - (Math.random() * 48) * 60 * 60 * 1000);
-
-        const assessment = generateAssessment(category, severity, 
-            category === 'social' ? 'Twitter' : 
-            (category === 'news' ? 'Online News' : 
-            (category === 'roads' ? 'National Highways' : 
-            (category === 'railways' ? 'Railway Marketplace' : 
-            (category === 'ea-help' ? 'EA Internal System' : 
-            (category === 'energy' ? 'Power Companies' : 
-            ['South West Water', 'Thames Water', 'Severn Trent Water'][Math.floor(Math.random()*3)]))))));
-
-        const impact = {
-            id: `ev-${i}`,
-            lat,
-            lng,
-            category,
-            severity,
-            timestamp,
-            title: getMockTitle(category),
-            locationName: `${regionLabel || 'UK Region'} | ${countyMatch || 'Unknown County'} | ${constMatch || 'Unknown Constituency'}`,
-            evidence: getMockEvidence(category),
-            source: category === 'social' ? 'Twitter' : 
-                   (category === 'news' ? 'Online News' : 
-                   (category === 'roads' ? 'National Highways' : 
-                   (category === 'railways' ? 'Railway Marketplace' : 
-                   (category === 'ea-help' ? 'EA Internal' : 
-                   (category === 'energy' ? 'Power Companies' : 
-                   ['South West Water', 'Thames Water', 'Severn Trent Water'][Math.floor(Math.random()*3)]))))),
-            sourceUrl: category === 'social' ? 'https://twitter.com' : 
-                       (category === 'news' ? 'https://bbc.co.uk/news' : 
-                       (category === 'ea-help' ? 'https://ea.gov.uk/internal' : '#')),
-            photo: getMockPhoto(category),
-            assessment
-        };
-
-        // Energy Outage Polygon Logic
-        if (category === 'energy' && Math.random() > 0.4) {
-            // Larger size for some to cross county boundaries
-            const polySize = Math.random() > 0.7 ? 0.7 : 0.35;
-            impact.outagePolygon = generateRandomPolygon({ lat, lng }, polySize);
-            impact.title = `Outage Area: ${impact.title.split(':')[1] || impact.title}`;
-            
-            // Find intersecting areas
-            const intersectedCounties = findIntersectingFeatures(impact.outagePolygon, State.rawCounties);
-            const intersectedConst = findIntersectingFeatures(impact.outagePolygon, State.rawConstituencies);
-            
-            impact.intersectingCounties = intersectedCounties;
-            impact.intersectingConstituencies = intersectedConst;
-            
-            if (intersectedCounties.length > 0) {
-                impact.locationName = `${regionLabel} | ${intersectedCounties.length} Counties Affected`;
-            } else if (intersectedConst.length > 0) {
-                impact.locationName = `${regionLabel} | ${intersectedConst.length} Constituencies Affected`;
-            } else {
-                impact.locationName = `${regionLabel} | Regional Outage`;
-            }
-        }
-
-        // Multi-location logic for News and EA Help
-        if ((category === 'news' || category === 'ea-help') && Math.random() > 0.7) {
-            const extraCount = 1 + Math.floor(Math.random() * 3);
-            const locations = [{ lat, lng }];
-            for (let j = 0; j < extraCount; j++) {
-                locations.push({
-                    lat: hub.lat + (Math.random() - 0.5) * 1.5,
-                    lng: hub.lng + (Math.random() - 0.5) * 1.5
-                });
-            }
-            impact.locations = locations;
-            impact.title = `Widespread: ${impact.title}`;
-            
-            // Populate intersecting counties and constituencies for widespread events so they group correctly
-            const intersectedCounties = [];
-            const intersectedConst = [];
-            locations.forEach(loc => {
-                const c = findGeoAttribute([loc.lng, loc.lat], State.rawCounties);
-                if (c) intersectedCounties.push(c);
-                const cn = findGeoAttribute([loc.lng, loc.lat], State.rawConstituencies);
-                if (cn) intersectedConst.push(cn);
-            });
-            impact.intersectingCounties = [...new Set(intersectedCounties)];
-            impact.intersectingConstituencies = [...new Set(intersectedConst)];
-            impact.locationName = `${regionLabel} | Widespread`; 
-        }
-
-        impacts.push(impact);
-    }
-
-    // Add Proxy Impact: Met Office Website Hits (One per day)
-    const proxyLevels = ['minor', 'significant', 'severe'];
-    // Today's proxy
-    const todayProxyTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 10, 0, 0);
-    const todayHits = 1.5 + Math.random() * 1.5;
-    impacts.push({
-        id: 'proxy-today',
-        lat: 54.5, lng: -2.0, // Geographic center of GB
-        category: 'proxy',
-        severity: proxyLevels[Math.floor(Math.random() * 4)],
-        timestamp: todayProxyTime,
-        title: 'Met Office Website Hits',
-        locationName: 'United Kingdom | National',
-        evidence: `National surge in public traffic. Real-time analytics show ${todayHits.toFixed(1)}M hits in last hour. Highly correlated with worsening weather context.`,
-        source: 'Met Office Digital',
-        sourceUrl: 'https://www.metoffice.gov.uk',
-        isNational: true,
-        assessment: generateAssessment('proxy', proxyLevels[Math.floor(Math.random() * 4)], 'Met Office Digital')
-    });
-
-    // Yesterday's proxy
-    const yesterdayProxyTime = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 15, 0, 0);
-    impacts.push({
-        id: 'proxy-yesterday',
-        lat: 54.5, lng: -2.0,
-        category: 'proxy',
-        severity: 'significant',
-        timestamp: yesterdayProxyTime,
-        title: 'Met Office Website Hits',
-        locationName: 'United Kingdom | National',
-        evidence: `Sustained high traffic during yellow and amber warning periods. Total daily volume reached 4.2M hits.`,
-        source: 'Met Office Digital',
-        sourceUrl: 'https://www.metoffice.gov.uk',
-        isNational: true,
-        assessment: generateAssessment('proxy', 'significant', 'Met Office Digital')
-    });
-
-    // Google Trends Mock Data (Regional & County)
-    if (State.rawRegions) {
-        State.rawRegions.features.forEach((feat, idx) => {
-            const severity = sevs[Math.floor(Math.random() * sevs.length)];
-            const hoursAgo = Math.random() * 48;
-            const timestamp = new Date(now.getTime() - hoursAgo * 60 * 60 * 1000);
-            const regionName = feat.properties.rgn19nm || feat.properties.name || "Region";
-            
-            impacts.push({
-                id: `gt-reg-${idx}`,
-                category: 'google-trends',
-                severity,
-                timestamp,
-                title: `Google Trends: ${regionName}`,
-                locationName: `${regionName} | Regional`,
-                evidence: `Elevated search volume for "flooding", "weather warnings", and "road closures" in ${regionName}.`,
-                source: 'Google Trends',
-                sourceUrl: 'https://trends.google.com',
-                isNational: true, // Don't show as marker
-                regionName,
-                assessment: generateAssessment('google-trends', severity, 'Operational Feed')
-            });
-        });
-    }
-
-    return impacts;
-}
+/// --- Data Fetching Engine (Mock generation moved to scripts/generate_data.js) ---
 
 /**
  * Point in Polygon Helper (Ray Casting)
@@ -414,95 +199,6 @@ function findGeoAttribute(point, geojson) {
         }
     }
     return null;
-}
-
-function getMockPhoto(cat) {
-    // 15% chance of no photo (even more photos now)
-    if (Math.random() < 0.15) return null;
-
-    const photos = {
-        roads: [
-            'photos/flood-car-1.jpg',
-            'photos/flood-rushing-1.jpg',
-            'photos/pexels-tomfisk-6226996.jpg',
-            'https://images.pexels.com/photos/1547833/pexels-photo-1547833.jpeg?auto=compress&cs=tinysrgb&w=800'
-        ],
-        railways: [
-            'photos/flood-city-1.jpg',
-            'photos/flood-rushing-1.jpg',
-            'https://images.pexels.com/photos/1054391/pexels-photo-1054391.jpeg?auto=compress&cs=tinysrgb&w=800'
-        ],
-        social: [
-            'photos/flood-wading-1.jpg',
-            'photos/flood-house-1.jpg',
-            'photos/pexels-sveta-k-75705601-8568719.jpg',
-            'photos/pexels-markus-winkler-1430818-3532526.jpg'
-        ],
-        news: [
-            'photos/flood-rescue-1.jpg',
-            'photos/flood-city-1.jpg',
-            'photos/pexels-markus-winkler-1430818-3532526.jpg',
-            'photos/pexels-kent-spencer-mendez-52733750-9137104.jpg'
-        ],
-        energy: [
-            'photos/pexels-dibakar-roy-2432543-26202087.jpg',
-            'photos/pexels-dibakar-roy-2432543-26202093.jpg',
-            'https://images.pexels.com/photos/1578277/pexels-photo-1578277.jpeg?auto=compress&cs=tinysrgb&w=800'
-        ],
-        water: [
-            'photos/flood-house-1.jpg',
-            'photos/flood-rushing-1.jpg',
-            'photos/pexels-juan-moccagatta-2159466094-36288963.jpg',
-            'photos/pexels-juan-moccagatta-2159466094-36304326.jpg'
-        ],
-        'ea-help': [
-            'photos/emergency-heli-1.jpg',
-            'photos/flood-rescue-1.jpg',
-            'photos/pexels-valentin-ivantsov-2154772556-35249003.jpg',
-            'photos/pexels-connorscottmcmanus-13865772.jpg'
-        ],
-        'google-trends': [
-            'photos/flood-city-1.jpg',
-            'photos/flood-aerial-1.jpg'
-        ]
-    };
-    const list = photos[cat];
-    if (!list) return null;
-    return list[Math.floor(Math.random() * list.length)];
-}
-
-function getMockTitle(cat) {
-    const roads = ['A1(M)', 'M6', 'M25', 'A14', 'A303', 'M1', 'M4', 'A42'];
-    const statuses = ['Road Closure', 'Lane Closure', 'Surface Flooding', 'Severe Congestion'];
-    
-    const stations = ['Drax Power Station', 'Ratcliffe-on-Soar', 'Hinkley Point', 'Heysham', 'Torness', 'Pembroke'];
-    const energyAlerts = ['Grid Stability Alert', 'Substation Failure', 'Partial Blackout risk', 'Frequency Drop'];
-
-    const titles = {
-        roads: () => `${roads[Math.floor(Math.random()*roads.length)]}: ${statuses[Math.floor(Math.random()*statuses.length)]}`,
-        railways: () => ['Asset Failure: West Coast', 'Track Flooding near Leeds', 'Tree on Line: East Coast', 'Network Rail Speed Restriction'][Math.floor(Math.random()*4)],
-        social: () => ['Post: Flood water rising fast', 'Alert: Bridge overtopped', 'Images: Local road collapsed', 'Twitter: Sandbags deployed'][Math.floor(Math.random()*4)],
-        news: () => ['Storm disruption peaks across region', 'Met Office issues red warnings', 'Major infrastructure under pressure', 'Emergency response teams deployed'][Math.floor(Math.random()*4)],
-        energy: () => `${stations[Math.floor(Math.random()*stations.length)]}: ${energyAlerts[Math.floor(Math.random()*energyAlerts.length)]}`,
-        water: () => ['Treatment Plant Threshold Exceeded', 'Burst Water Main: Low Pressure', 'Sewer Overload in Urban Area', 'Reservoir Spillway Operational'][Math.floor(Math.random()*4)],
-        'ea-help': () => ['HELLP Alert: River Levels Rising', 'Operational Status: Red', 'Asset Failure: Sluice Gate 4', 'Emergency Pumping Initiated'][Math.floor(Math.random()*4)]
-    };
-    
-    const res = titles[cat];
-    return typeof res === 'function' ? res() : res;
-}
-
-function getMockEvidence(cat) {
-    const texts = {
-        roads: 'Social media reports indicate 30cm of standing water. National Highways confirming closure of northbound lanes.',
-        railways: 'Network Rail reports infrastructure failure due to water ingress in cable duct. Delays of up to 45 mins expected.',
-        social: 'Twitter user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.',
-        news: 'Local news outlet reports emergency services on site. "We\'ve never seen the water rise this fast," says resident.',
-        energy: 'Automated sensor alert: Level 1 threshold exceeded at regional substation. Cooling systems operational.',
-        water: 'High pressure alarm triggered at downstream filtration unit. System bypass activated to prevent surge damage.',
-        'ea-help': 'Incident reported via HELP system. Local teams deployed for asset inspection and flood barrier installation.'
-    };
-    return texts[cat];
 }
 
 /// --- App State ---
@@ -679,19 +375,50 @@ async function init() {
 
     L.control.zoom({ position: 'topright' }).addTo(State.map);
 
-    // Dynamic Mock Data after GeoJSON is loaded
-    State.impacts = generateMockImpacts();
+    // Fetch and Load Intelligence Data from Folder
+    const dataSources = ['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help', 'proxy', 'google-trends'];
+    try {
+        const fetchResults = await Promise.all(
+            dataSources.map(src => fetch(`data/${src}.json`).then(r => r.ok ? r.json() : []))
+        );
+        
+        // Flatten and enrich with spatial data / Date objects
+        const rawImpacts = fetchResults.flat();
+        State.impacts = rawImpacts.map(impact => {
+            const enriched = { 
+                ...impact, 
+                timestamp: new Date(impact.timestamp) 
+            };
+            
+            // Re-enrich with real spatial data from GeoJSON if it's a direct point-based impact
+            if (impact.lat && impact.lng && !impact.isNational) {
+                const county = findGeoAttribute([impact.lng, impact.lat], State.rawCounties);
+                const region = findGeoAttribute([impact.lng, impact.lat], State.rawRegions);
+                const constituency = findGeoAttribute([impact.lng, impact.lat], State.rawConstituencies);
+                
+                if (county || region || constituency) {
+                    enriched.locationName = `${region || 'UK Region'} | ${county || 'Unknown County'} | ${constituency || 'Unknown Constituency'}`;
+                }
+            }
+            return enriched;
+        });
+
+        console.log(`Loaded ${State.impacts.length} impacts from ${dataSources.length} sources.`);
+    } catch (err) {
+        console.error("Error loading impact data:", err);
+        State.impacts = [];
+    }
     
     renderTimelineTicks();
     setupEvents();
     
     // Set default view period to "Today" (Midnight to Now)
-    const nowObj = new Date();
+    const nowObj = new Date(FIXED_NOW);
     const todayStart = new Date(nowObj.getFullYear(), nowObj.getMonth(), nowObj.getDate());
     const hoursSinceTodayStart = (nowObj - todayStart) / (1000 * 60 * 60);
     
-    // Ensure we start at midnight exactly, but allow a reasonable minimum duration (2h) if it's very early
-    const windowDuration = Math.max(2, hoursSinceTodayStart);
+    // Default to the last 17 hours (to show everything since midnight of that snapshot day)
+    const windowDuration = hoursSinceTodayStart; 
     State.windowEnd = 48;
     State.windowStart = Math.max(0, 48 - windowDuration);
     State.lastWindowDuration = 48 - State.windowStart;
@@ -704,7 +431,7 @@ async function init() {
 function renderTimelineTicks() {
     const labelsCont = document.getElementById('timeline-tick-labels');
     labelsCont.innerHTML = '';
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     
     // Align ticks to integer hours. The timeline spans [now - 48h, now].
     // We want ticks at 00:00, 01:00, ..., 23:00.
@@ -835,7 +562,7 @@ function setupEvents() {
     // View Period Dropdown
     document.getElementById('view-period-select').addEventListener('change', (e) => {
         const val = e.target.value;
-        const now = new Date();
+        const now = new Date(FIXED_NOW);
         
         let newStart = 42;
         let newEnd = 48;
@@ -1011,13 +738,13 @@ function setupEvents() {
 
     // Date Picker Logic
     const datePicker = document.getElementById('timeline-date-picker');
-    const todayStr = new Date().toISOString().split('T')[0];
-    datePicker.value = todayStr;
-    datePicker.max = todayStr;
+    const fixedStr = FIXED_NOW.toISOString().split('T')[0];
+    datePicker.value = fixedStr;
+    datePicker.max = fixedStr;
 
     datePicker.addEventListener('change', (e) => {
         const selectedDate = new Date(e.target.value);
-        const now = new Date();
+        const now = new Date(FIXED_NOW);
         const diffMs = now - selectedDate;
         const diffHours = diffMs / (1000 * 60 * 60);
 
@@ -1284,7 +1011,7 @@ function syncDualSlider() {
 
     // Update view select if it matches a preset
     const duration = State.windowEnd - State.windowStart;
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     let foundPreset = false;
 
     // Presets based on 48h range
@@ -1344,7 +1071,7 @@ function renderImpacts() {
     State.polygons.forEach(p => State.map.removeLayer(p));
     State.polygons = [];
 
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     const startCutoff = new Date(now.getTime() - (48 - State.windowStart) * 60 * 60 * 1000);
     const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
 
@@ -2244,7 +1971,7 @@ function initViewSwitchers() {
 }
 
 function renderSummaryView() {
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     const startCutoff = new Date(now.getTime() - (48 - State.windowStart) * 60 * 60 * 1000);
     const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
 
@@ -2293,7 +2020,7 @@ function generateNarrativeSummary(impacts) {
     }
 
     // Dynamic Time Reference
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     const startDate = new Date(now.getTime() - (48 - State.windowStart) * 60 * 60 * 1000);
     const endDate = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
     const timeOptions = { hour: '2-digit', minute: '2-digit' };
