@@ -23,7 +23,7 @@
                     <span class="btn-icon-wrap">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </span>
-                    <span class="btn-text">Agentic Impact Investigation</span>
+                    <span class="btn-text">Agentic Impact Search</span>
                     <span id="nav-dive-count" class="nav-badge" style="display:none">0</span>
                 </button>
                 <div class="view-mode-selector">
@@ -655,7 +655,7 @@
         <div class="agentic-config-modal">
             <div class="modal-header">
                 <div class="header-main">
-                    <h3>Agentic Impact Investigation</h3>
+                    <h3>Agentic Impact Search</h3>
                     <p>Verify impact details for a specific location.</p>
                 </div>
                 <button class="close-modal-btn" id="close-dive-config-btn">&times;</button>
@@ -663,6 +663,13 @@
             
             <div class="modal-body">
                 <div class="form-group">
+                    <div class="toggle-switch-container">
+                        <div class="toggle-option active" data-mode="forecast">Forecast Driven</div>
+                        <div class="toggle-option" data-mode="user">User Driven</div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="location-input-group">
                     <label>Focal Area / Location</label>
                     <div class="input-with-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -670,25 +677,23 @@
                     </div>
                 </div>
 
+                <div class="form-group hidden" id="map-polygon-group">
+                    <label>Draw Search Area</label>
+                    <div id="search-area-map" class="search-map-container"></div>
+                    <div class="map-controls">
+                        <button class="btn-tool" id="clear-polygon-btn">Clear Drawing</button>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Intelligence Source Modules</label>
                     <div class="agentic-source-grid">
-                        <label class="agentic-source-card">
-                            <input type="checkbox" checked value="voice">
-                            <div class="card-content">
-                                <div class="card-icon">📞</div>
-                                <div class="card-info">
-                                    <strong>Official Calls</strong>
-                                    <span>Call local contacts for ground truth</span>
-                                </div>
-                            </div>
-                        </label>
                         <label class="agentic-source-card">
                             <input type="checkbox" checked value="social">
                             <div class="card-content">
                                 <div class="card-icon">📡</div>
                                 <div class="card-info">
-                                    <strong>Web Search</strong>
+                                    <strong>Agentic Web Search</strong>
                                     <span>Check multiple data sources</span>
                                 </div>
                             </div>
@@ -698,7 +703,7 @@
                             <div class="card-content">
                                 <div class="card-icon">📸</div>
                                 <div class="card-info">
-                                    <strong>Camera Review</strong>
+                                    <strong>Review live video streams</strong>
                                     <span>Review local safety cameras</span>
                                 </div>
                             </div>
@@ -710,7 +715,7 @@
             <div class="modal-footer">
                 <button class="btn-ghost" id="cancel-dive-modal-btn">Cancel</button>
                 <button class="btn-action-primary" id="start-dive-confirm-btn">
-                    Start Investigation
+                    Start Search
                 </button>
             </div>
         </div>
