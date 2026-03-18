@@ -114,7 +114,8 @@ CATEGORIES.forEach(category => {
     
     for (let i = 0; i < count; i++) {
         const hub = weightedHubs[Math.floor(Math.random() * weightedHubs.length)];
-        const severity = SEVERITIES[Math.floor(Math.random() * SEVERITIES.length)];
+        const sevRand = Math.random();
+        const severity = sevRand < 0.8 ? 'minor' : (sevRand < 0.98 ? 'significant' : 'severe');
         let lat = hub.lat + (Math.random() - 0.5) * hub.radius;
         let lng = hub.lng + (Math.random() - 0.5) * hub.radius;
         
