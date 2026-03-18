@@ -1,0 +1,40 @@
+<rss version="2.0"> <channel>
+<copyright>Copyright 2001</copyright>
+<description>The latest incident information for England's motorway and trunk routes provided by Highways England</description>
+<generator>HE-DATEX</generator>
+<item>
+<author>info@highwaysengland.co.uk</author>
+<category>Congestion</category>
+<category>No Delay</category>
+<description>Location : The A46 northbound exit slip to the M40 . Reason : Congestion. Status : Currently Active. Return To Normal : Normal traffic conditions are expected between 17:15 and 17:30 on 6 January 2025. </description>
+<guid isPermaLink="false">GUID1-5196667</guid>
+<link>http://www.trafficengland.com/?evtID=5196667</link>
+<pubDate>Mon, 06 Jan 2025 17:17:20 GMT</pubDate>
+<title>A46 northbound exit for M40 J15 | Northbound | Congestion</title>
+<reference>UF-25-01-06-101206</reference>
+<road>A46</road>
+<region>West Midlands</region>
+<county>Warwickshire</county>
+<latitude>52.259884</latitude>
+<longitude>-1.6154898</longitude>
+<overallStart>2025-01-06T17:17:17+00:00</overallStart>
+<overallEnd>2025-01-06T17:22:17+00:00</overallEnd>
+</item>
+<item>
+<author>info@highwaysengland.co.uk</author>
+<category>Snow</category>
+<category>Severe Disruption - in excess of 3 hours delay or road closure</category>
+<description>Location : The A628 eastbound between the A57 and the junction with the A616 . Reason : Snow. Status : Currently Active. Lanes Closed : All lanes are closed. </description>
+<guid isPermaLink="false">GUID1-5196389</guid>
+<link>http://www.trafficengland.com/?evtID=5196389</link>
+<pubDate>Mon, 06 Jan 2025 17:06:55 GMT</pubDate>
+<title>A628 eastbound between A6024 and A616 | Eastbound | Snow</title>
+<reference>UF-25-01-06-100926</reference>
+<road>A628</road>
+<region>North East</region>
+<county>Barnsley District</county>
+<latitude>53.460907</latitude>
+<longitude>-1.9960672</longitude>
+</item>
+</channel>
+</rss>
