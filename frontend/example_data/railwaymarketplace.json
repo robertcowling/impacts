@@ -1,0 +1,129 @@
+{
+    "createdDate": "2026-11-13T05:12:01.221Z",
+    "createdBy": "NRE CMS Editor",
+    "lastModifiedDate": "2026-11-13T05:45:12.991Z",
+    "incidentId": "0001A91F2C6E1B8F4A1D9F3C6D21A7",
+    "incidentVersionId": "0001A91F2C6E1B8F4A1D9F3C6D21A7",
+    "publicationId": "20261113054512",
+    "validFrom": "2026-11-13T05:00:00.000Z",
+    "validTo": "2026-11-13T23:59:00.000Z",
+    "isPublished": true,
+    "headline": "Late running Great Western Railway services due to train fault near Swindon",
+    "incidentTextHtml": "<p>A train fault near Swindon is causing delays.</p><p>Services may be cancelled or revised.</p>",
+    "incidentUrl": "https://www.nationalrail.co.uk/service-disruptions/swindon-train-fault-20261113/",
+    "incidentType": "Incident detail page",
+    "operatorCodes": [
+        "GW"
+    ],
+    "operatorNames": [
+        "Great Western Railway"
+    ],
+    "routeDescriptionHtml": "<p>Between Bristol Temple Meads and London Paddington</p>",
+    "severityLevel": 2,
+    "lastReviewedDate": "2026-11-13T05:45:12.991Z"
+},
+{
+    "createdDate": "2026-11-13T06:03:44.902Z",
+    "createdBy": "NRE CMS Editor",
+    "lastModifiedDate": "2026-11-13T06:29:10.441Z",
+    "incidentId": "0002C4D9F7A3E2B14888A51E0D9C77",
+    "incidentVersionId": "0002C4D9F7A3E2B14888A51E0D9C77",
+    "publicationId": "20261113062910",
+    "validFrom": "2026-11-13T06:00:00.000Z",
+    "validTo": "2026-11-14T02:00:00.000Z",
+    "isPublished": true,
+    "headline": "Points failure causing disruption between Exeter St Davids and Newton Abbot",
+    "incidentTextHtml": "<p>A points failure is causing disruption.</p><p>Trains may be delayed or cancelled.</p>",
+    "incidentUrl": "https://www.nationalrail.co.uk/service-disruptions/exeter-points-20261113/",
+    "incidentType": "Incident detail page",
+    "operatorCodes": [
+        "GW"
+    ],
+    "operatorNames": [
+        "Great Western Railway"
+    ],
+    "routeDescriptionHtml": "<p>Between Exeter St Davids and Newton Abbot</p>",
+    "severityLevel": 2,
+    "lastReviewedDate": "2026-11-13T06:29:10.441Z"
+},
+{
+    "createdDate": "2026-11-14T07:01:19.554Z",
+    "createdBy": "NRE CMS Editor",
+    "lastModifiedDate": "2026-11-14T07:42:01.772Z",
+    "incidentId": "0030E6A2B91D0C8F4E6C9E99C43F8",
+    "incidentVersionId": "0030E6A2B91D0C8F4E6C9E99C43F8",
+    "publicationId": "20261114074201",
+    "validFrom": "2026-11-14T07:00:00.000Z",
+    "validTo": "2026-11-14T18:00:00.000Z",
+    "isPublished": true,
+    "headline": "Signalling problem causing delays near Reading",
+    "incidentTextHtml": "<p>A signalling problem has been identified.</p><p>Services may be delayed.</p>",
+    "incidentUrl": "https://www.nationalrail.co.uk/service-disruptions/reading-signalling-20261114/",
+    "incidentType": "Incident detail page",
+    "operatorCodes": [
+        "GW",
+        "SW"
+    ],
+    "operatorNames": [
+        "Great Western Railway",
+        "South Western Railway"
+    ],
+    "routeDescriptionHtml": "<p>Between Reading and London Waterloo</p>",
+    "severityLevel": 2,
+    "lastReviewedDate": "2026-11-14T07:42:01.772Z"
+},
+{
+    "createdDate": "2026-11-14T09:18:33.112Z",
+    "createdBy": "NRE CMS Editor",
+    "lastModifiedDate": "2026-11-14T10:02:19.884Z",
+    "incidentId": "0041F1D44A3C9E3B4B18A22F9C3E7",
+    "incidentVersionId": "0041F1D44A3C9E3B4B18A22F9C3E7",
+    "publicationId": "20261114100219",
+    "validFrom": "2026-11-14T09:00:00.000Z",
+    "validTo": "2026-11-14T15:00:00.000Z",
+    "isPublished": true,
+    "headline": "Minor flooding causing delays near Taunton",
+    "incidentTextHtml": "<p>Heavy rainfall has caused minor flooding near the track.</p><p>Trains are running at reduced speed.</p>",
+    "incidentUrl": "https://www.nationalrail.co.uk/service-disruptions/taunton-flooding-20261114/",
+    "incidentType": "Incident detail page",
+    "operatorCodes": [
+        "GW"
+    ],
+    "operatorNames": [
+        "Great Western Railway"
+    ],
+    "routeDescriptionHtml": "<p>Between Exeter St Davids and Bristol Temple Meads</p>",
+    "severityLevel": 2,
+    "lastReviewedDate": "2026-11-14T10:02:19.884Z"
+},
+{
+    "createdDate": "2026-11-14T17:41:55.602Z",
+    "createdBy": "NRE CMS Editor",
+    "lastModifiedDate": "2026-11-14T18:26:31.888Z",
+    "incidentId": "0068F9A8E33C22D94F3B8E8D3EAA0",
+    "incidentVersionId": "0068F9A8E33C22D94F3B8E8D3EAA0",
+    "publicationId": "20261114182631",
+    "validFrom": "2026-11-14T17:30:00.000Z",
+    "validTo": "2026-11-15T06:00:00.000Z",
+    "isPublished": true,
+    "headline": "Severe flooding affecting all routes through Birmingham New Street",
+    "incidentTextHtml": "<p>Severe flooding within the station.</p><p>Many services are cancelled or will terminate short.</p>",
+    "incidentUrl": "https://www.nationalrail.co.uk/service-disruptions/birmingham-flooding-20261114/",
+    "incidentType": "Incident detail page",
+    "operatorCodes": [
+        "VT",
+        "XC",
+        "LN",
+        "WM"
+    ],
+    "operatorNames": [
+        "Avanti West Coast",
+        "CrossCountry",
+        "London Northwestern Railway",
+        "West Midlands Railway"
+    ],
+    "routeDescriptionHtml": "<p>All routes to / from Birmingham New Street</p>",
+    "severityLevel": 2,
+    "lastReviewedDate": "2026-11-14T18:26:31.888Z"
+}
+]
