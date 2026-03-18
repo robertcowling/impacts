@@ -337,7 +337,7 @@ async function init() {
             fetch('uk-regions.geojson').then(r => r.json()),
             fetch('uk-counties.geojson').then(r => r.json()),
             fetch('westminister.json').then(r => r.json()),
-            fetch('4534.json').then(r => r.ok ? r.json() : null)
+            fetch('4534.json?v=' + Date.now()).then(r => r.ok ? r.json() : null)
         ]);
 
         State.rawRegions = regionsRes;
@@ -2316,6 +2316,7 @@ function updateSummaryTable(impacts) {
 }
 
 function renderForecast() {
+    console.log("Rendering forecast, show:", State.showForecast, "data:", !!State.forecastData);
     if (State.forecastLayer) {
         State.map.removeLayer(State.forecastLayer);
         State.forecastLayer = null;
@@ -2326,18 +2327,19 @@ function renderForecast() {
     State.forecastLayer = L.geoJSON(State.forecastData, {
         pane: 'forecastPane',
         style: (feature) => {
-            const id = feature.id;
+            const id = feature.id || (feature.properties && feature.properties.id);
+            console.log("Styling feature:", id);
             let color = 'transparent';
             if (['A', 'B', 'C'].includes(id)) color = '#FFBF00'; // Amber
             if (id === 'E') color = '#FFFF00'; // Yellow
             
             return {
                 fillColor: color,
-                fillOpacity: 0.2, // Low opacity to minimize hue distortion when overlapping blue
+                fillOpacity: 0.5, // Increased from 0.2 for visibility
                 color: color,
-                weight: 1,
+                weight: 2, // Increased from 1
                 stroke: true,
-                opacity: 0.4
+                opacity: 0.8 // Increased from 0.4
             };
         }
     }).addTo(State.map);
