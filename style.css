@@ -1376,12 +1376,12 @@ h1 span {
 }
 
 .flat-side-panel-left {
-    width: 460px;
+    width: 280px;
     background: #ffffff;
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
     z-index: 100;
 }
 
@@ -2057,9 +2057,9 @@ main {
 }
 
 /* Full Side Panel (RHS) */
-.flat-side-panel-right {
-    width: 280px;
-    background: white;
+.flat-side-panel {
+    width: 460px;
+    background: #ffffff;
     border-left: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
