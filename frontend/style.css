@@ -23,9 +23,9 @@
     --clr-ea-help: #4e8a6b;
     
     /* Severity Levels - High Contrast Blue Ramp */
-    --severity-minor: #60a5fa;
-    --severity-significant: #1d4ed8;
-    --severity-severe: #081451;
+    --severity-minor: #dbeafe;
+    --severity-significant: #2563eb;
+    --severity-severe: #0f172a;
 
     /* Effects */
     --card-bg: #ffffff;
