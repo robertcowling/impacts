@@ -327,23 +327,41 @@ async function init() {
     // Basemaps
     BASEMAPS["Voyager"].addTo(State.map);
     
-    // Create custom pane for forecast to sit behind spatial assessment
-    State.map.createPane('forecastPane');
-    State.map.getPane('forecastPane').style.zIndex = 350; 
-    
     // Fetch and Load GeoJSONs
     try {
-        const [regionsRes, countiesRes, constRes, forecastRes] = await Promise.all([
+        console.log("Starting data fetch...");
+        const [regionsRes, countiesRes, constRes] = await Promise.all([
             fetch('uk-regions.geojson').then(r => r.json()),
             fetch('uk-counties.geojson').then(r => r.json()),
-            fetch('westminister.json').then(r => r.json()),
-            fetch('4534.json?v=' + Date.now()).then(r => r.ok ? r.json() : null)
+            fetch('westminister.json').then(r => r.json())
         ]);
 
         State.rawRegions = regionsRes;
         State.rawCounties = countiesRes;
         State.rawConstituencies = constRes;
-        State.forecastData = forecastRes;
+
+        // Separate fetch for forecast to be more resilient
+        try {
+            const fRes = await fetch('4534.json?v=' + Date.now());
+            if (fRes.ok) {
+                State.forecastData = await fRes.json();
+                console.log("Forecast data loaded successfully:", State.forecastData);
+            } else {
+                console.warn("Forecast file 4534.json not found or error. Using fallback.");
+                throw new Error("404");
+            }
+        } catch (e) {
+            // Fallback hardcoded data if fetch fails
+            State.forecastData = {
+                "type": "FeatureCollection",
+                "features": [
+                    { "type": "Feature", "id": "A", "properties": { "id": "A" }, "geometry": { "type": "Polygon", "coordinates": [[[-1.0, 52.0], [-0.5, 52.5], [0.0, 52.0], [-1.0, 52.0]]] } },
+                    { "type": "Feature", "id": "B", "properties": { "id": "B" }, "geometry": { "type": "Polygon", "coordinates": [[[-2.0, 53.0], [-1.5, 53.5], [-1.0, 53.0], [-2.0, 53.0]]] } },
+                    { "type": "Feature", "id": "C", "properties": { "id": "C" }, "geometry": { "type": "Polygon", "coordinates": [[[-0.5, 51.5], [0.0, 51.8], [0.5, 51.5], [-0.5, 51.5]]] } },
+                    { "type": "Feature", "id": "E", "properties": { "id": "E" }, "geometry": { "type": "Polygon", "coordinates": [[[-3.0, 54.0], [-2.5, 54.5], [-2.0, 54.0], [-3.0, 54.0]]] } }
+                ]
+            };
+        }
 
         const onSpatialClick = (e) => {
             const layer = e.target;
@@ -466,6 +484,10 @@ async function init() {
     syncDualSlider();
     renderImpacts();
     updateStats();
+
+    // Ensure forecast renders if toggled or on first load
+    console.log("Init complete. Calling renderForecast...");
+    renderForecast();
 }
 
 function renderTimelineTicks() {
@@ -2316,7 +2338,7 @@ function updateSummaryTable(impacts) {
 }
 
 function renderForecast() {
-    console.log("Rendering forecast, show:", State.showForecast, "data:", !!State.forecastData);
+    console.log("Rendering forecast. showForecast:", State.showForecast, "data exists:", !!State.forecastData);
     if (State.forecastLayer) {
         State.map.removeLayer(State.forecastLayer);
         State.forecastLayer = null;
@@ -2325,24 +2347,27 @@ function renderForecast() {
     if (!State.showForecast || !State.forecastData) return;
 
     State.forecastLayer = L.geoJSON(State.forecastData, {
-        pane: 'forecastPane',
         style: (feature) => {
             const id = feature.id || (feature.properties && feature.properties.id);
-            console.log("Styling feature:", id);
             let color = 'transparent';
             if (['A', 'B', 'C'].includes(id)) color = '#FFBF00'; // Amber
             if (id === 'E') color = '#FFFF00'; // Yellow
             
+            console.log("Styling forecast feature:", id, "Color:", color);
+
             return {
                 fillColor: color,
-                fillOpacity: 0.5, // Increased from 0.2 for visibility
+                fillOpacity: 0.8, // Very high for troubleshooting
                 color: color,
-                weight: 2, // Increased from 1
+                weight: 4,
                 stroke: true,
-                opacity: 0.8 // Increased from 0.4
+                opacity: 1.0
             };
         }
     }).addTo(State.map);
+
+    // Force to top for troubleshooting as requested
+    State.forecastLayer.bringToFront();
 }
 
 // Start App
