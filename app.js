@@ -342,12 +342,12 @@ async function init() {
 
         // Separate fetch for forecast to be more resilient
         try {
-            const fRes = await fetch('4534.json?v=' + Date.now());
+            const fRes = await fetch('warning_cords.json?v=' + Date.now());
             if (fRes.ok) {
                 State.forecastData = await fRes.json();
-                console.log("Forecast data loaded successfully:", State.forecastData);
+                console.log("Forecast data loaded successfully from warning_cords.json:", State.forecastData);
             } else {
-                console.warn("Forecast file 4534.json not found or error. Using fallback.");
+                console.warn("Forecast file warning_cords.json not found or error. Using fallback.");
                 throw new Error("404");
             }
         } catch (e) {
@@ -355,10 +355,8 @@ async function init() {
             State.forecastData = {
                 "type": "FeatureCollection",
                 "features": [
-                    { "type": "Feature", "id": "A", "properties": { "id": "A" }, "geometry": { "type": "Polygon", "coordinates": [[[-1.0, 52.0], [-0.5, 52.5], [0.0, 52.0], [-1.0, 52.0]]] } },
-                    { "type": "Feature", "id": "B", "properties": { "id": "B" }, "geometry": { "type": "Polygon", "coordinates": [[[-2.0, 53.0], [-1.5, 53.5], [-1.0, 53.0], [-2.0, 53.0]]] } },
-                    { "type": "Feature", "id": "C", "properties": { "id": "C" }, "geometry": { "type": "Polygon", "coordinates": [[[-0.5, 51.5], [0.0, 51.8], [0.5, 51.5], [-0.5, 51.5]]] } },
-                    { "type": "Feature", "id": "E", "properties": { "id": "E" }, "geometry": { "type": "Polygon", "coordinates": [[[-3.0, 54.0], [-2.5, 54.5], [-2.0, 54.0], [-3.0, 54.0]]] } }
+                    { "type": "Feature", "id": "outer", "properties": { "id": "outer", "name": "Outer Warning Area" }, "geometry": { "type": "Polygon", "coordinates": [[[-1.5, 51.5], [-0.5, 52.0], [0.5, 51.5], [-0.5, 51.0], [-1.5, 51.5]]] } },
+                    { "type": "Feature", "id": "inner", "properties": { "id": "inner", "name": "Inner Warning Area" }, "geometry": { "type": "Polygon", "coordinates": [[[-1.0, 51.5], [-0.5, 51.8], [0.0, 51.5], [-0.5, 51.2], [-1.0, 51.5]]] } }
                 ]
             };
         }
@@ -1370,8 +1368,9 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
                 layer.setStyle({
                     fillColor: colors[match.label],
                     fillOpacity: isBackgroundRegion ? 0.15 : 0.5,
-                    color: colors[match.label],
-                    weight: isBackgroundRegion ? 1 : 1.5
+                    color: '#334155', // Default boundary color
+                    weight: 1,
+                    opacity: 0.3 // More subtle outline
                 });
             } else {
                 layer.setStyle({
@@ -1442,7 +1441,7 @@ function renderFeed(filtered) {
                     </div>
                 </div>
                 
-                <h4 class="feed-card-title">${imp.title}</h4>
+                <h4 class="feed-card-title">${imp.headline || imp.title}</h4>
                 
                 <div class="feed-card-source-row">
                     <a href="${imp.sourceUrl}" class="source-link-new" target="_blank" onclick="event.stopPropagation()">
@@ -1452,7 +1451,7 @@ function renderFeed(filtered) {
                 </div>
 
                 <div class="feed-card-content-wrap">
-                    <p class="feed-card-evidence">${imp.evidence}</p>
+                    <p class="feed-card-evidence">${imp.incidentTextHtml || imp.evidence}</p>
                 </div>
 
                 <div class="feed-card-stats-grid">
@@ -1494,7 +1493,7 @@ function renderFeed(filtered) {
                     </div>
 
                     <div class="stat-item" style="grid-column: span 2">
-                        <span class="stat-label">Constituencies</span>
+                        <span class="stat-label">MP Constituencies</span>
                         <div class="stat-value">
                             <div class="chips-wrap">
                                 ${imp.intersectingConstituencies && imp.intersectingConstituencies.length > 0 
@@ -1786,7 +1785,7 @@ function showAssessmentModal(impactId) {
                     <span class="record-dot">•</span>
                     <span class="record-source">${imp.source}</span>
                 </div>
-                <h4 class="record-title">${imp.title}</h4>
+                <h4 class="record-title">${imp.headline || imp.title}</h4>
             </div>
         `;
     } else if (State.spatialAssessments && State.spatialAssessments[impactId]) {
@@ -2354,45 +2353,83 @@ function renderForecast() {
     }
 
     console.log("Rendering Forecast Overlays with aggressive visibility settings...");
+    // Deep clone and smoothing for rounded appearance
+    const smoothedData = JSON.parse(JSON.stringify(State.forecastData));
+    smoothedData.features.forEach(feature => {
+        if (feature.geometry.type === 'Polygon') {
+            feature.geometry.coordinates = feature.geometry.coordinates.map(ring => {
+                // Chaikin's Smoothing Algorithm for more rounded shapes
+                if (ring.length < 3) return ring;
+                let result = ring;
+                for (let iter = 0; iter < 2; iter++) {
+                    let nextRing = [];
+                    for (let i = 0; i < result.length - 1; i++) {
+                        let p1 = result[i];
+                        let p2 = result[i+1];
+                        nextRing.push([0.75 * p1[0] + 0.25 * p2[0], 0.75 * p1[1] + 0.25 * p2[1]]);
+                        nextRing.push([0.25 * p1[0] + 0.75 * p2[0], 0.25 * p1[1] + 0.75 * p2[1]]);
+                    }
+                    nextRing.push(nextRing[0]); // Close ring
+                    result = nextRing;
+                }
+                return result;
+            });
+        }
+    });
 
     // Create a special pane for warnings if it doesn't exist to ensure they are on top
     if (!State.map.getPane('warnings')) {
         State.map.createPane('warnings');
-        State.map.getPane('warnings').style.zIndex = 650;
-        State.map.getPane('warnings').style.pointerEvents = 'auto'; // Ensure clicks work
+        State.map.getPane('warnings').style.zIndex = 450; // Above tiles/regions (400) but below markers (600)
     }
 
-    State.forecastLayer = L.geoJSON(State.forecastData, {
+    State.forecastLayer = L.geoJSON(smoothedData, {
         pane: 'warnings',
-        filter: (feature) => {
-            const id = (feature.id || (feature.properties && feature.properties.id) || "").toString().toUpperCase();
-            const isMatch = ['A', 'B', 'C', 'E'].includes(id);
-            if (isMatch) console.log(`Forecast Match Found: ${id}`);
-            return isMatch;
-        },
         style: (feature) => {
-            const id = (feature.id || (feature.properties && feature.properties.id) || "").toString().toUpperCase();
-            let color = 'transparent';
+            const props = feature.properties || {};
+            const val = (feature.id || props.id || props.type || props.severity || "").toString().toLowerCase();
             
-            if (['A', 'B', 'C'].includes(id)) {
+            let color = '#FFFF00'; // Default Yellow (Outer)
+            
+            // Logic for inner/core vs outer
+            if (val.includes('inner') || 
+                val.includes('core') || 
+                ['a', 'b', 'c'].includes(val) || 
+                val.includes('amber') || 
+                val.includes('significant')) {
                 color = '#FFBF00'; // Amber
-            } else if (id === 'E') {
+            } else if (val.includes('outer') || 
+                       val === 'e' || 
+                       val.includes('yellow') || 
+                       val.includes('minor')) {
                 color = '#FFFF00'; // Yellow
             }
 
             return {
                 fillColor: color,
-                fillOpacity: 0.6,
+                fillOpacity: 0.04, // Even paler fill as requested
                 color: color,
-                weight: 4,
-                opacity: 0.9,
-                stroke: true
+                weight: 12,        // Thicker border for better rounding effect
+                opacity: 0.85,
+                lineJoin: 'round',
+                lineCap: 'round', 
+                smoothFactor: 0.5,
+                stroke: true,
+                interactive: true  // Still interactive for the border
             };
         },
         onEachFeature: (feature, layer) => {
-            const id = (feature.id || (feature.properties && feature.properties.id) || "Unknown");
-            const name = feature.properties ? feature.properties.name : "Warning Area";
-            layer.bindPopup(`<strong>${name}</strong><br>Status: ${['A','B','C'].includes(id) ? 'Amber warning' : 'Yellow warning'}`);
+            // Setting individual path pointer-events to stroke so fill is transparent to clicks
+            if (layer.getElement) {
+                setTimeout(() => {
+                    const el = layer.getElement();
+                    if (el) el.style.pointerEvents = 'visibleStroke';
+                }, 10);
+            }
+            const props = feature.properties || {};
+            const name = props.name || "Warning Area";
+            const impact = props.impact || "";
+            layer.bindPopup(`<strong>${name}</strong><br>${impact}`);
         }
     }).addTo(State.map);
 
