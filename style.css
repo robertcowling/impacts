@@ -141,6 +141,33 @@ h1 span {
     margin-left: 2px;
 }
 
+#nav-alerting-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    height: 36px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Slightly wider gap for better spacing */
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#nav-alerting-btn:hover {
+    background: #ffffff;
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+#nav-alerting-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
 .stats-overview {
     display: flex;
     align-items: center;
@@ -2029,7 +2056,10 @@ main {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #eee;
+}
+
+.feed-card.no-photo .feed-card-photo {
+    display: none;
 }
 
 .feed-card-body {

@@ -1308,7 +1308,10 @@ function renderFeed(filtered) {
     sorted.forEach(imp => {
         const card = document.createElement('div');
         card.id = `card-${imp.id}`;
-        card.className = 'feed-card' + (State.selectedImpact?.id === imp.id ? ' active' : '');
+        let cardClasses = 'feed-card';
+        if (State.selectedImpact?.id === imp.id) cardClasses += ' active';
+        if (!imp.photo) cardClasses += ' no-photo';
+        card.className = cardClasses;
         
         const timeStr = imp.timestamp.toLocaleTimeString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
 
