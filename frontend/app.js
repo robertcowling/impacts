@@ -2409,7 +2409,7 @@ function renderForecast() {
                 fillColor: color,
                 fillOpacity: 0.04, // Even paler fill as requested
                 color: color,
-                weight: 12,        // Thicker border for better rounding effect
+                weight: 9.5,       // Reduced from 12 as requested (20% less wide)
                 opacity: 0.85,
                 lineJoin: 'round',
                 lineCap: 'round', 
