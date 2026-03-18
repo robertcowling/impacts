@@ -244,7 +244,7 @@ const State = {
     rawCounties: null,
     rawConstituencies: null,
     viewMode: 'map', // 'map' or 'summary'
-    summaryGroup: 'severity', // 'severity', 'receptor', 'category' (as Type)
+    summaryGroup: 'severity', // 'severity', 'source', 'category' (as Type)
     feedSort: 'recency',
     sidebarView: 'sources',
     // Agentic Search State
@@ -254,7 +254,10 @@ const State = {
     searchLine: null,
     searchGhostLine: null,
     searchMarkers: [],
-    searchMode: 'forecast'
+    searchMode: 'forecast',
+    forecastData: null,
+    forecastLayer: null,
+    showForecast: false
 };
 
 /**
@@ -324,17 +327,23 @@ async function init() {
     // Basemaps
     BASEMAPS["Voyager"].addTo(State.map);
     
+    // Create custom pane for forecast to sit behind spatial assessment
+    State.map.createPane('forecastPane');
+    State.map.getPane('forecastPane').style.zIndex = 350; 
+    
     // Fetch and Load GeoJSONs
     try {
-        const [regionsRes, countiesRes, constRes] = await Promise.all([
+        const [regionsRes, countiesRes, constRes, forecastRes] = await Promise.all([
             fetch('uk-regions.geojson').then(r => r.json()),
             fetch('uk-counties.geojson').then(r => r.json()),
-            fetch('westminister.json').then(r => r.json())
+            fetch('westminister.json').then(r => r.json()),
+            fetch('../4534.json').then(r => r.ok ? r.json() : null)
         ]);
 
         State.rawRegions = regionsRes;
         State.rawCounties = countiesRes;
         State.rawConstituencies = constRes;
+        State.forecastData = forecastRes;
 
         const onSpatialClick = (e) => {
             const layer = e.target;
@@ -624,6 +633,14 @@ function setupEvents() {
         renderImpacts();
         updateStats();
     });
+
+    const forecastCheckbox = document.getElementById('forecast-checkbox');
+    if (forecastCheckbox) {
+        forecastCheckbox.addEventListener('change', (e) => {
+            State.showForecast = e.target.checked;
+            renderForecast();
+        });
+    }
 
     // Category Filters
     document.querySelectorAll('.filter-chip').forEach(chip => {
@@ -1636,10 +1653,13 @@ function selectImpact(imp, isRerender = true) {
     State.markers.forEach(m => {
         const icon = m.getElement();
         if (icon) {
+            const inner = icon.querySelector('.marker-inner');
             if (m.impactId === imp.id) {
                 icon.classList.add('marker-highlight');
+                if (inner) inner.style.transform = 'scale(1.15)';
             } else {
                 icon.classList.remove('marker-highlight');
+                if (inner) inner.style.transform = '';
             }
         }
     });
@@ -2249,7 +2269,7 @@ function updateSummaryTable(impacts) {
     const groups = {};
     impacts.forEach(imp => {
         const key = State.summaryGroup === 'category' ? imp.category : 
-                    State.summaryGroup === 'receptor' ? imp.receptor : 
+                    State.summaryGroup === 'source' ? imp.source : 
                     imp.severity;
         if (!groups[key]) groups[key] = [];
         groups[key].push(imp);
@@ -2257,9 +2277,9 @@ function updateSummaryTable(impacts) {
 
     tbody.innerHTML = Object.entries(groups).map(([key, list]) => {
         const primaryImp = list[0];
-        const groupLabel = State.summaryGroup === 'category' ? CATEGORIES[key]?.label : 
-                           State.summaryGroup === 'severity' ? SEVERITIES[key]?.label : 
-                           key;
+        const groupLabel = State.summaryGroup === 'category' ? (CATEGORIES[key]?.label || key) : 
+                           State.summaryGroup === 'severity' ? (SEVERITIES[key]?.label || key) : 
+                           key; // Source uses the key itself as label (e.g. "National Highways")
         
         const confMap = { 'High': 3, 'Medium': 2, 'Low': 1 };
         const confBackMap = { 3: 'High', 2: 'Medium', 1: 'Low' };
@@ -2293,6 +2313,34 @@ function updateSummaryTable(impacts) {
             </tr>
         `;
     }).join('');
+}
+
+function renderForecast() {
+    if (State.forecastLayer) {
+        State.map.removeLayer(State.forecastLayer);
+        State.forecastLayer = null;
+    }
+
+    if (!State.showForecast || !State.forecastData) return;
+
+    State.forecastLayer = L.geoJSON(State.forecastData, {
+        pane: 'forecastPane',
+        style: (feature) => {
+            const id = feature.id;
+            let color = 'transparent';
+            if (['A', 'B', 'C'].includes(id)) color = '#FFBF00'; // Amber
+            if (id === 'E') color = '#FFFF00'; // Yellow
+            
+            return {
+                fillColor: color,
+                fillOpacity: 0.2, // Low opacity to minimize hue distortion when overlapping blue
+                color: color,
+                weight: 1,
+                stroke: true,
+                opacity: 0.4
+            };
+        }
+    }).addTo(State.map);
 }
 
 // Start App
