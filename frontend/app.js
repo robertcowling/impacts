@@ -412,9 +412,12 @@ async function init() {
             State.regions.addTo(State.map);
         } else if (State.spatialMode === 'county') {
             State.counties.addTo(State.map);
+        } else if (State.spatialMode === 'constituency') {
+            State.constituencies.addTo(State.map);
         } else {
-            if (document.getElementById('toggle-regions').checked) State.regions.addTo(State.map);
-            if (document.getElementById('toggle-counties').checked) State.counties.addTo(State.map);
+            if (document.getElementById('spatial-checkbox').checked) State.regions.addTo(State.map);
+            if (document.getElementById('county-checkbox').checked) State.counties.addTo(State.map);
+            if (document.getElementById('const-checkbox').checked) State.constituencies.addTo(State.map);
         }
         
         // Manual layer toggles (from custom overlay html)
@@ -1253,6 +1256,9 @@ function renderImpacts() {
     if (State.viewMode === 'summary') {
         renderSummaryView();
     }
+
+    // Ensure forecast is always on top if active
+    renderForecast();
 }
 
 function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
@@ -2338,7 +2344,6 @@ function updateSummaryTable(impacts) {
 }
 
 function renderForecast() {
-    console.log("Rendering forecast. showForecast:", State.showForecast, "data exists:", !!State.forecastData);
     if (State.forecastLayer) {
         State.map.removeLayer(State.forecastLayer);
         State.forecastLayer = null;
@@ -2346,28 +2351,35 @@ function renderForecast() {
 
     if (!State.showForecast || !State.forecastData) return;
 
+    // Filter and Style strictly as requested: A, B, C (Amber), E (Yellow)
     State.forecastLayer = L.geoJSON(State.forecastData, {
+        filter: (feature) => {
+            const id = (feature.id || (feature.properties && feature.properties.id) || "").toString().toUpperCase();
+            return ['A', 'B', 'C', 'E'].includes(id);
+        },
         style: (feature) => {
-            const id = feature.id || (feature.properties && feature.properties.id);
+            const id = (feature.id || (feature.properties && feature.properties.id) || "").toString().toUpperCase();
             let color = 'transparent';
-            if (['A', 'B', 'C'].includes(id)) color = '#FFBF00'; // Amber
-            if (id === 'E') color = '#FFFF00'; // Yellow
             
-            console.log("Styling forecast feature:", id, "Color:", color);
+            if (['A', 'B', 'C'].includes(id)) {
+                color = '#FFBF00'; // Amber
+            } else if (id === 'E') {
+                color = '#FFFF00'; // Yellow
+            }
 
             return {
                 fillColor: color,
-                fillOpacity: 0.8, // Very high for troubleshooting
+                fillOpacity: 0.4,
                 color: color,
-                weight: 4,
-                stroke: true,
-                opacity: 1.0
+                weight: 2,
+                opacity: 0.8
             };
         }
     }).addTo(State.map);
 
-    // Force to top for troubleshooting as requested
-    State.forecastLayer.bringToFront();
+    if (State.forecastLayer) {
+        State.forecastLayer.bringToFront();
+    }
 }
 
 // Start App
