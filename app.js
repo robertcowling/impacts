@@ -46,9 +46,9 @@ const IMPACT_TYPES = {
 };
 
 const SEVERITIES = {
-    minor: { label: 'Minor', color: '#60a5fa' },
-    significant: { label: 'Significant', color: '#1d4ed8' },
-    severe: { label: 'Severe', color: '#081451' }
+    minor: { label: 'Minor', color: '#dbeafe' },
+    significant: { label: 'Significant', color: '#2563eb' },
+    severe: { label: 'Severe', color: '#0f172a' }
 };
 
 /**
@@ -1199,9 +1199,9 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
 
     const ramps = {
         severity: { 
-            minor: '#93c5fd', 
-            significant: '#3b82f6', 
-            severe: '#1d4ed8' 
+            minor: '#dbeafe', 
+            significant: '#2563eb', 
+            severe: '#0f172a' 
         },
         trends: { 
             minor: '#fecaca', 
