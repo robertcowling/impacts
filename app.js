@@ -231,7 +231,13 @@ const State = {
     viewMode: 'map', // 'map' or 'summary'
     summaryGroup: 'category', // 'category', 'receptor', 'severity'
     feedSort: 'recency',
-    sidebarView: 'sources'
+    sidebarView: 'sources',
+    // Agentic Search State
+    searchMap: null,
+    searchPoints: [],
+    searchPolygon: null,
+    searchMarkers: [],
+    searchMode: 'forecast'
 };
 
 /**
@@ -850,7 +856,35 @@ function setupEvents() {
     if (agenticActionBtn) {
         agenticActionBtn.addEventListener('click', () => {
             diveConfigModal.classList.add('active');
+            // Reset to forecast mode on open
+            State.searchMode = 'forecast';
+            const forecastOpt = document.querySelector('.toggle-option[data-mode="forecast"]');
+            if (forecastOpt) forecastOpt.click();
         });
+    }
+
+    // Agentic Search Toggle handler
+    document.querySelectorAll('.toggle-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            document.querySelectorAll('.toggle-option').forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+            const mode = opt.dataset.mode;
+            State.searchMode = mode;
+            
+            if (mode === 'user') {
+                document.getElementById('location-input-group').classList.add('hidden');
+                document.getElementById('map-polygon-group').classList.remove('hidden');
+                setTimeout(initSearchMap, 100);
+            } else {
+                document.getElementById('location-input-group').classList.remove('hidden');
+                document.getElementById('map-polygon-group').classList.add('hidden');
+            }
+        });
+    });
+
+    const clearPolygonBtn = document.getElementById('clear-polygon-btn');
+    if (clearPolygonBtn) {
+        clearPolygonBtn.addEventListener('click', clearSearchPolygon);
     }
 
     if (closeDiveConfigBtn) closeDiveConfigBtn.addEventListener('click', () => diveConfigModal.classList.remove('active'));
@@ -861,17 +895,31 @@ function setupEvents() {
 
     if (startDiveBtn) {
         startDiveBtn.addEventListener('click', () => {
-            const locationInput = document.getElementById('dive-location-input');
-            const location = locationInput.value.trim();
-            if (!location) { 
-                locationInput.closest('.input-with-icon').style.borderColor = '#ef4444';
-                return; 
+            let location = "";
+            let polygonPoints = null;
+
+            if (State.searchMode === 'user') {
+                if (State.searchPoints.length < 3) {
+                    alert("Please draw an area on the map with at least 3 points.");
+                    return;
+                }
+                location = "User Defined Polygon";
+                polygonPoints = [...State.searchPoints];
+            } else {
+                const locationInput = document.getElementById('dive-location-input');
+                location = locationInput.value.trim();
+                if (!location) { 
+                    locationInput.closest('.input-with-icon').style.borderColor = '#ef4444';
+                    return; 
+                }
             }
             
             const selectedModules = Array.from(document.querySelectorAll('.agentic-source-card input:checked')).map(i => i.value);
-            deployAgenticSearch(location, selectedModules);
+            deployAgenticSearch(location, selectedModules, polygonPoints);
             diveConfigModal.classList.remove('active');
-            locationInput.value = '';
+            const locationInput = document.getElementById('dive-location-input');
+            if (locationInput) locationInput.value = '';
+            clearSearchPolygon();
         });
     }
 
@@ -1772,11 +1820,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// --- Polygon Drawing Helpers ---
+function initSearchMap() {
+    if (State.searchMap) {
+        setTimeout(() => State.searchMap.invalidateSize(), 150);
+        return;
+    }
+    
+    State.searchMap = L.map('search-area-map', {
+        center: [52.8, -1.5],
+        zoom: 6,
+        zoomControl: false
+    });
+    
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; CARTO'
+    }).addTo(State.searchMap);
+    
+    L.control.zoom({ position: 'bottomright' }).addTo(State.searchMap);
+    
+    State.searchMap.on('click', (e) => {
+        const latlng = e.latlng;
+        State.searchPoints.push([latlng.lat, latlng.lng]);
+        
+        const marker = L.circleMarker(latlng, {
+            radius: 5,
+            fillColor: "#4f46e5",
+            color: "#fff",
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 1
+        }).addTo(State.searchMap);
+        State.searchMarkers.push(marker);
+        
+        updateSearchPolygonUI();
+    });
+}
+
+function updateSearchPolygonUI() {
+    if (State.searchPolygon) {
+        State.searchMap.removeLayer(State.searchPolygon);
+    }
+    
+    if (State.searchPoints.length >= 3) {
+        State.searchPolygon = L.polygon(State.searchPoints, {
+            color: "#4f46e5",
+            fillColor: "#4f46e5",
+            fillOpacity: 0.25,
+            weight: 2
+        }).addTo(State.searchMap);
+    }
+}
+
+function clearSearchPolygon() {
+    State.searchPoints = [];
+    if (State.searchPolygon) {
+        State.searchMap.removeLayer(State.searchPolygon);
+        State.searchPolygon = null;
+    }
+    State.searchMarkers.forEach(m => State.searchMap.removeLayer(m));
+    State.searchMarkers = [];
+}
+
 // --- Directed Search Deep Dive Logic V2 ---
 State.deepDiveSessions = [];
 State.activeDiveId = null;
 
-function deployAgenticSearch(location, modules) {
+function deployAgenticSearch(location, modules, polygonPoints = null) {
     const sessionId = 'dive-' + Date.now();
     const session = {
         id: sessionId,
@@ -1788,12 +1898,25 @@ function deployAgenticSearch(location, modules) {
         status: 'Active',
         marker: null,
         interval: null,
+        polygon: polygonPoints,
         steps: generateStepsForModules(location, modules)
     };
 
-    // Map Placement (Simulated center-ish or based on name if we had geocoding)
-    const center = State.map.getCenter();
-
+    // Calculate center for marker displacement
+    let center;
+    if (polygonPoints && polygonPoints.length > 0) {
+        let latSum = 0, lngSum = 0;
+        polygonPoints.forEach(p => { latSum += p[0]; lngSum += p[1]; });
+        center = { lat: latSum / polygonPoints.length, lng: lngSum / polygonPoints.length };
+    } else {
+        center = State.map.getCenter();
+    }
+    
+    // Zoom map to the search area
+    if (polygonPoints) {
+        const bounds = L.latLngBounds(polygonPoints.map(p => L.latLng(p[0], p[1])));
+        State.map.fitBounds(bounds, { padding: [50, 50], maxZoom: 10 });
+    }
 
     State.deepDiveSessions.push(session);
     updateActiveDivesUI();
@@ -1803,7 +1926,7 @@ function deployAgenticSearch(location, modules) {
     if (btn) {
         btn.classList.add('searching');
         const textEl = btn.querySelector('.btn-text');
-        if (textEl) textEl.innerText = "Agentic Investigation in Progress...";
+        if (textEl) textEl.innerText = "Agentic search in progress...";
     }
 
     // Start Processing
@@ -1818,7 +1941,7 @@ function generateStepsForModules(location, modules) {
         { type: 'INFO', msg: 'Looking for new reports on social media.' },
         { type: 'INFO', msg: 'Matching reports from different sources.' },
         { type: 'INFO', msg: 'Confirmed issues. Saving summary.' },
-        { type: 'INFO', msg: 'Investigation complete. Data updated.' }
+        { type: 'INFO', msg: 'Search complete. Data updated.' }
     ];
 }
 
@@ -1839,7 +1962,7 @@ function startSessionProcessing(id) {
             if (btn) {
                 btn.classList.remove('searching');
                 const textEl = btn.querySelector('.btn-text');
-                if (textEl) textEl.innerText = "Agentic Impact Investigation";
+                if (textEl) textEl.innerText = "Agentic Impact Search";
             }
 
             if (State.activeDiveId === id) refreshOverlayContent(session);
