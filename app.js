@@ -51,6 +51,21 @@ const SEVERITIES = {
     severe: { label: 'Severe', color: '#0f172a' }
 };
 
+const PEXELS_PHOTOS = [
+    'photos/pexels-connorscottmcmanus-13865772.jpg',
+    'photos/pexels-dibakar-roy-2432543-26202087.jpg',
+    'photos/pexels-dibakar-roy-2432543-26202093.jpg',
+    'photos/pexels-juan-moccagatta-2159466094-36288963.jpg',
+    'photos/pexels-juan-moccagatta-2159466094-36304326.jpg',
+    'photos/pexels-kelly-19063417.jpg',
+    'photos/pexels-kent-spencer-mendez-52733750-9137104.jpg',
+    'photos/pexels-markus-winkler-1430818-3532526.jpg',
+    'photos/pexels-naveen-annam-734127-1578329.jpg',
+    'photos/pexels-sveta-k-75705601-8568719.jpg',
+    'photos/pexels-tomfisk-6226996.jpg',
+    'photos/pexels-valentin-ivantsov-2154772556-35249003.jpg'
+];
+
 /**
  * Generates a detailed assessment for a single impact
  */
@@ -408,6 +423,14 @@ async function init() {
                     enriched.locationName = `${region || 'UK Region'} | ${county || 'Unknown County'} | ${constituency || 'Unknown Constituency'}`;
                 }
             }
+
+            // Assign photos to social impacts if missing
+            if (impact.category === 'social' && !enriched.photo) {
+                // Determine photo index based on timestamp or ID to keep it consistent
+                const photoIdx = (enriched.id.charCodeAt(enriched.id.length - 1) || 0) % PEXELS_PHOTOS.length;
+                enriched.photo = PEXELS_PHOTOS[photoIdx];
+            }
+
             return enriched;
         });
 
