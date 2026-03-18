@@ -229,13 +229,15 @@ const State = {
     rawCounties: null,
     rawConstituencies: null,
     viewMode: 'map', // 'map' or 'summary'
-    summaryGroup: 'category', // 'category', 'receptor', 'severity'
+    summaryGroup: 'severity', // 'severity', 'receptor', 'category' (as Type)
     feedSort: 'recency',
     sidebarView: 'sources',
     // Agentic Search State
     searchMap: null,
     searchPoints: [],
     searchPolygon: null,
+    searchLine: null,
+    searchGhostLine: null,
     searchMarkers: [],
     searchMode: 'forecast'
 };
@@ -1849,37 +1851,64 @@ function initSearchMap() {
             color: "#fff",
             weight: 2,
             opacity: 1,
-            fillOpacity: 1
+            fillOpacity: 1,
+            interactive: false
         }).addTo(State.searchMap);
         State.searchMarkers.push(marker);
         
         updateSearchPolygonUI();
     });
+
+    State.searchMap.on('mousemove', (e) => {
+        if (State.searchPoints.length > 0) {
+            if (State.searchGhostLine) State.searchMap.removeLayer(State.searchGhostLine);
+            const lastPoint = State.searchPoints[State.searchPoints.length - 1];
+            State.searchGhostLine = L.polyline([lastPoint, e.latlng], {
+                color: "#4f46e5",
+                weight: 1,
+                dashArray: "4, 8",
+                opacity: 0.5
+            }).addTo(State.searchMap);
+        }
+    });
 }
 
 function updateSearchPolygonUI() {
-    if (State.searchPolygon) {
-        State.searchMap.removeLayer(State.searchPolygon);
+    if (State.searchPolygon) State.searchMap.removeLayer(State.searchPolygon);
+    if (State.searchLine) State.searchMap.removeLayer(State.searchLine);
+    
+    // Draw sequential line as user clicks
+    if (State.searchPoints.length > 1) {
+        State.searchLine = L.polyline(State.searchPoints, {
+            color: "#4f46e5",
+            weight: 2,
+            dashArray: "3, 6",
+            opacity: 0.7
+        }).addTo(State.searchMap);
     }
     
+    // Closed polygon once we have 3 nodes
     if (State.searchPoints.length >= 3) {
         State.searchPolygon = L.polygon(State.searchPoints, {
             color: "#4f46e5",
             fillColor: "#4f46e5",
-            fillOpacity: 0.25,
+            fillOpacity: 0.2,
             weight: 2
         }).addTo(State.searchMap);
     }
 }
 
 function clearSearchPolygon() {
-    State.searchPoints = [];
-    if (State.searchPolygon) {
-        State.searchMap.removeLayer(State.searchPolygon);
-        State.searchPolygon = null;
-    }
+    if (State.searchPolygon) State.searchMap.removeLayer(State.searchPolygon);
+    if (State.searchLine) State.searchMap.removeLayer(State.searchLine);
+    if (State.searchGhostLine) State.searchMap.removeLayer(State.searchGhostLine);
+    
     State.searchMarkers.forEach(m => State.searchMap.removeLayer(m));
+    State.searchPoints = [];
     State.searchMarkers = [];
+    State.searchPolygon = null;
+    State.searchLine = null;
+    State.searchGhostLine = null;
 }
 
 // --- Directed Search Deep Dive Logic V2 ---
@@ -2212,7 +2241,12 @@ function updateSummaryTable(impacts) {
                            State.summaryGroup === 'severity' ? SEVERITIES[key]?.label : 
                            key;
         
-        const avgConfidence = (list.reduce((sum, i) => sum + i.assessment.confidence, 0) / list.length).toFixed(0);
+        const confMap = { 'High': 3, 'Medium': 2, 'Low': 1 };
+        const confBackMap = { 3: 'High', 2: 'Medium', 1: 'Low' };
+        const confValues = list.map(i => confMap[i.assessment.confidenceLabel] || 2);
+        const avgConfVal = Math.round(confValues.reduce((a, b) => a + b, 0) / list.length);
+        const finalConfidence = confBackMap[avgConfVal] || 'Medium';
+
         const maxSev = list.some(i => i.severity === 'severe') ? 'severe' : 
                        list.some(i => i.severity === 'significant') ? 'significant' : 'minor';
 
@@ -2228,11 +2262,12 @@ function updateSummaryTable(impacts) {
                     </span>
                 </td>
                 <td>
-                    <div style="font-weight:700; color:#0f172a; font-size: 1.1rem">${avgConfidence}%</div>
-                    <div style="font-size:0.65rem; color:#94a3b8; font-weight:700; text-transform:uppercase; margin-top:2px">Confidence</div>
+                    <div class="summary-confidence-row">
+                        <span class="conf-pill ${finalConfidence.toLowerCase()}">${finalConfidence}</span>
+                    </div>
                 </td>
                 <td class="evidence-synthesis">
-                    Aggregated intelligence report based on <strong>${primaryImp.sourceLabel}</strong> and ${list.length - 1} auxiliary evidence clusters.
+                    Aggregated intelligence report based on <strong>${primaryImp.source}</strong> and ${list.length - 1} auxiliary evidence clusters.
                     <div class="evidence-quote">${(primaryImp.evidence || "No description available").substring(0, 140)}...</div>
                 </td>
             </tr>
