@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "A",
+      "properties": { "name": "Forecast Area A" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-1.0, 52.0], [-0.5, 52.5], [0.0, 52.0], [-1.0, 52.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "B",
+      "properties": { "name": "Forecast Area B" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-2.0, 53.0], [-1.5, 53.5], [-1.0, 53.0], [-2.0, 53.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "C",
+      "properties": { "name": "Forecast Area C" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-0.5, 51.5], [0.0, 51.8], [0.5, 51.5], [-0.5, 51.5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "E",
+      "properties": { "name": "Forecast Area E" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-3.0, 54.0], [-2.5, 54.5], [-2.0, 54.0], [-3.0, 54.0]]]
+      }
+    }
+  ]
+}

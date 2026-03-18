@@ -3786,6 +3786,15 @@ main {
     transition: var(--transition);
 }
 
+.custom-marker.marker-highlight {
+    z-index: 1000 !important;
+}
+.custom-marker.marker-highlight .marker-inner {
+    outline: 2px solid white;
+    box-shadow: 0 0 0 4px #2563eb, 0 8px 16px rgba(0,0,0,0.3);
+    border-color: #2563eb;
+}
+
 .chip-dot.roads { background: var(--clr-roads); }
 .chip-dot.railways { background: var(--clr-railways); }
 .chip-dot.social { background: var(--clr-social); }
