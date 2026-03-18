@@ -2349,13 +2349,26 @@ function renderForecast() {
         State.forecastLayer = null;
     }
 
-    if (!State.showForecast || !State.forecastData) return;
+    if (!State.showForecast || !State.forecastData) {
+        return;
+    }
 
-    // Filter and Style strictly as requested: A, B, C (Amber), E (Yellow)
+    console.log("Rendering Forecast Overlays with aggressive visibility settings...");
+
+    // Create a special pane for warnings if it doesn't exist to ensure they are on top
+    if (!State.map.getPane('warnings')) {
+        State.map.createPane('warnings');
+        State.map.getPane('warnings').style.zIndex = 650;
+        State.map.getPane('warnings').style.pointerEvents = 'auto'; // Ensure clicks work
+    }
+
     State.forecastLayer = L.geoJSON(State.forecastData, {
+        pane: 'warnings',
         filter: (feature) => {
             const id = (feature.id || (feature.properties && feature.properties.id) || "").toString().toUpperCase();
-            return ['A', 'B', 'C', 'E'].includes(id);
+            const isMatch = ['A', 'B', 'C', 'E'].includes(id);
+            if (isMatch) console.log(`Forecast Match Found: ${id}`);
+            return isMatch;
         },
         style: (feature) => {
             const id = (feature.id || (feature.properties && feature.properties.id) || "").toString().toUpperCase();
@@ -2369,11 +2382,17 @@ function renderForecast() {
 
             return {
                 fillColor: color,
-                fillOpacity: 0.4,
+                fillOpacity: 0.6,
                 color: color,
-                weight: 2,
-                opacity: 0.8
+                weight: 4,
+                opacity: 0.9,
+                stroke: true
             };
+        },
+        onEachFeature: (feature, layer) => {
+            const id = (feature.id || (feature.properties && feature.properties.id) || "Unknown");
+            const name = feature.properties ? feature.properties.name : "Warning Area";
+            layer.bindPopup(`<strong>${name}</strong><br>Status: ${['A','B','C'].includes(id) ? 'Amber warning' : 'Yellow warning'}`);
         }
     }).addTo(State.map);
 
