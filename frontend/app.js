@@ -84,7 +84,7 @@ function generateAssessment(category, severity, sourceLabel) {
     const sourceName = sourceLabel || (category === 'social' ? 'Social Monitoring' : (category === 'news' ? 'Media Intelligence' : 'Infrastructure Network'));
 
     // Timing logic
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     const startOffset = Math.floor(Math.random() * 4);
     const endOffset = 6 + Math.floor(Math.random() * 12);
     const startTime = new Date(now.getTime() - startOffset * 60 * 60 * 1000);
@@ -137,7 +137,7 @@ function generateSummaryAssessment(name, severity, count) {
         severe: "major structural failures and critical system-wide data indicators"
     };
 
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     const st = new Date(now.getTime() - 2 * 60 * 60 * 1000);
     const et = new Date(now.getTime() + 8 * 60 * 60 * 1000);
 
@@ -1411,7 +1411,7 @@ function renderCountySummary(filtered) {
 }
 
 function showSpatialSummaryModal(areaName, mode) {
-    const now = new Date();
+    const now = new Date(FIXED_NOW);
     const startCutoff = new Date(now.getTime() - (48 - State.windowStart) * 60 * 60 * 1000);
     const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
     
@@ -1582,7 +1582,7 @@ function selectImpact(imp, isRerender = true) {
 
     if (isRerender) {
         // Refresh feed to show active card
-        const now = new Date();
+        const now = new Date(FIXED_NOW);
         const startCutoff = new Date(now.getTime() - (48 - State.windowStart) * 60 * 60 * 1000);
         const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
         
@@ -1779,7 +1779,7 @@ function deployAgenticSearch(location, modules) {
         id: sessionId,
         location: location,
         modules: modules,
-        startTime: new Date(),
+        startTime: new Date(FIXED_NOW),
         progress: 0,
         logs: [],
         status: 'Active',
@@ -1844,7 +1844,7 @@ function startSessionProcessing(id) {
         }
 
         const step = session.steps[stepIndex];
-        const now = new Date();
+        const now = new Date(FIXED_NOW);
         const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         
         session.logs.push({ time: timeStr, ...step });
