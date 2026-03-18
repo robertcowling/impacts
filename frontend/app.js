@@ -878,7 +878,8 @@ function setupEvents() {
                 document.getElementById('map-polygon-group').classList.remove('hidden');
                 setTimeout(initSearchMap, 100);
             } else {
-                document.getElementById('location-input-group').classList.remove('hidden');
+                // Forecast Driven: no location input group needed per user request
+                document.getElementById('location-input-group').classList.add('hidden');
                 document.getElementById('map-polygon-group').classList.add('hidden');
             }
         });
@@ -905,15 +906,11 @@ function setupEvents() {
                     alert("Please draw an area on the map with at least 3 points.");
                     return;
                 }
-                location = "User Defined Polygon";
+                location = "User Defined Area";
                 polygonPoints = [...State.searchPoints];
             } else {
-                const locationInput = document.getElementById('dive-location-input');
-                location = locationInput.value.trim();
-                if (!location) { 
-                    locationInput.closest('.input-with-icon').style.borderColor = '#ef4444';
-                    return; 
-                }
+                // Forecast driven - no manual location entry now
+                location = "Active Forecast Region";
             }
             
             const selectedModules = Array.from(document.querySelectorAll('.agentic-source-card input:checked')).map(i => i.value);
