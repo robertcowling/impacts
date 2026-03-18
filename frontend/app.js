@@ -337,7 +337,7 @@ async function init() {
             fetch('uk-regions.geojson').then(r => r.json()),
             fetch('uk-counties.geojson').then(r => r.json()),
             fetch('westminister.json').then(r => r.json()),
-            fetch('../4534.json').then(r => r.ok ? r.json() : null)
+            fetch('4534.json').then(r => r.ok ? r.json() : null)
         ]);
 
         State.rawRegions = regionsRes;
