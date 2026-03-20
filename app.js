@@ -33,7 +33,7 @@ const CATEGORIES = {
     news: { label: 'Online News', color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM6 6h12M6 10h12M6 14h6M6 18h6M16 14v4"/></svg>' },
     energy: { label: 'Power Companies', color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
-    'ea-help': { label: 'EA Help Report', color: '#ffffff', icon: '<img src="EnvAgency.png" style="width:22px; height:22px; display:block; object-fit: contain;">' }
+    'ea-help': { label: 'EA HELP report', color: '#00a651', icon: '<img src="EnvAgency.png" style="width:14px; height:14px; display:block; object-fit: contain;">' }
 };
 
 const SOCIAL_PLATFORM_ICONS = {
@@ -1461,7 +1461,8 @@ function renderFeed(filtered) {
                         <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}; display:inline-flex; align-items:center; gap:4px">
                             ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
                                 ? `<span style="width:12px;height:12px;display:inline-flex;flex-shrink:0">${SOCIAL_PLATFORM_ICONS[imp.source].icon}</span>`
-                                : CATEGORIES[imp.category].label}
+                                : `<span style="width:14px;height:14px;display:inline-flex;flex-shrink:0;align-items:center;justify-content:center">${CATEGORIES[imp.category].icon}</span>`}
+                            <span>${CATEGORIES[imp.category].label}</span>
                         </span>
                         <span class="feed-card-time">${timeStr}</span>
                     </div>
