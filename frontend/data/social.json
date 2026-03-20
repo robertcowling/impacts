@@ -1,12 +1,56 @@
 [
   {
     "id": "ev-social-0",
-    "lat": 53.429049400098286,
-    "lng": -2.393697370207392,
+    "lat": 51.363988257394276,
+    "lng": -2.4924096801147697,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T11:36:56.085Z",
-    "title": "[Threads] Road submerged by rising river",
+    "severity": "minor",
+    "timestamp": "2025-11-13T05:03:51.169Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 100,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-1",
+    "lat": 50.74501698323193,
+    "lng": -3.5989837196324856,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T10:55:22.245Z",
+    "title": "[Threads] Sandbag deployment request",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "Threads",
@@ -20,19 +64,564 @@
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "15:00",
+      "startTiming": "16:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a Medium confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-1",
-    "lat": 51.370615298725134,
-    "lng": -2.5468618054468806,
+    "id": "ev-social-2",
+    "lat": 50.7686986620423,
+    "lng": -3.523111220290745,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T15:01:51.135Z",
+    "timestamp": "2025-11-14T16:01:14.627Z",
+    "title": "[X (Twitter)] Structural stress reported by resident",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 85,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-3",
+    "lat": 51.62263060978881,
+    "lng": -3.824271754024392,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-13T10:26:13.845Z",
+    "title": "[Threads] Road submerged by rising river",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 88,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at Swansea junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Swansea school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Swansea due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-4",
+    "lat": 51.92002438908588,
+    "lng": -2.1622785972181773,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-13T07:13:49.426Z",
+    "title": "[X (Twitter)] Road submerged by rising river",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 77,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Gloucester junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Gloucester school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Gloucester due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-5",
+    "lat": 51.59422510313991,
+    "lng": -2.560859108009288,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T14:10:17.873Z",
+    "title": "[Threads] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 79,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-6",
+    "lat": 51.468289572065146,
+    "lng": -3.2909875428675615,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T08:14:59.403Z",
+    "title": "[X (Twitter)] Road submerged by rising river",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 72,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Cardiff junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cardiff school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cardiff due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-7",
+    "lat": 51.85227804546482,
+    "lng": -1.2331638000414842,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T10:19:40.691Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 90,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Oxford junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Oxford school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Oxford due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-8",
+    "lat": 50.81357406100114,
+    "lng": -3.6524743347007917,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-13T13:41:50.137Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 72,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-9",
+    "lat": 51.384517241810535,
+    "lng": -2.6663982638286745,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T10:16:43.654Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 91,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-10",
+    "lat": 51.743412262005485,
+    "lng": -1.0645764092937957,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:43:16.982Z",
+    "title": "[X (Twitter)] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 93,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Oxford junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Oxford school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Oxford due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-11",
+    "lat": 51.59317495417694,
+    "lng": -2.6247230605395155,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-13T04:04:23.744Z",
+    "title": "[X (Twitter)] Road submerged by rising river",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 77,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-12",
+    "lat": 51.77982734555023,
+    "lng": -0.23766033127695857,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T10:36:30.810Z",
+    "title": "[Threads] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 83,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at London junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near London school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering London due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-13",
+    "lat": 51.39548397540075,
+    "lng": -2.6185264195801197,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T14:30:14.713Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 98,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-14",
+    "lat": 51.60235514567219,
+    "lng": -3.1475659272255525,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T08:23:15.981Z",
     "title": "[Bluesky] Sandbag deployment request",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
@@ -41,7 +630,7 @@
     "assessment": {
       "confidenceLabel": "High",
       "confidenceColor": "#4ade80",
-      "confidence": 95,
+      "confidence": 90,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
@@ -51,16 +640,77 @@
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Bluesky",
+        "text": "Localized flooding at Cardiff junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cardiff school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cardiff due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-2",
-    "lat": 52.00158523219894,
-    "lng": -0.9737023262178103,
+    "id": "ev-social-15",
+    "lat": 51.58450171638158,
+    "lng": -0.3832854759735247,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T12:37:55.028Z",
+    "timestamp": "2025-11-14T11:58:35.106Z",
     "title": "[X (Twitter)] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 97,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at London junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near London school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering London due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-16",
+    "lat": 51.559537723113046,
+    "lng": -2.445147251125571,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T12:17:19.274Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -68,7 +718,51 @@
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 76,
+      "confidence": 81,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-17",
+    "lat": 51.94016132337543,
+    "lng": 0.29519236775765145,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T12:29:50.722Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 92,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
@@ -77,178 +771,33 @@
       "startTiming": "14:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-3",
-    "lat": 51.33522901832944,
-    "lng": -2.501159928739039,
-    "category": "social",
-    "severity": "severe",
-    "timestamp": "2025-11-14T10:55:19.226Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 76,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-4",
-    "lat": 50.7945219242524,
-    "lng": -3.41649548774468,
-    "category": "social",
-    "severity": "severe",
-    "timestamp": "2025-11-14T06:45:49.218Z",
-    "title": "[Threads] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 96,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Cambridge junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cambridge school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cambridge due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-5",
-    "lat": 50.53665165029866,
-    "lng": -3.674626344890521,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T07:04:52.573Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 89,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-6",
-    "lat": 51.93124457104107,
-    "lng": -2.211788978136177,
+    "id": "ev-social-18",
+    "lat": 50.82545372034625,
+    "lng": -3.6289715959845035,
     "category": "social",
     "severity": "significant",
-    "timestamp": "2025-11-14T10:04:41.896Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 78,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-7",
-    "lat": 51.65657026573681,
-    "lng": -4.002770161192106,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T11:19:06.483Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 74,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-8",
-    "lat": 53.67304218905847,
-    "lng": -1.5601560962094088,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T15:25:37.857Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 95,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-9",
-    "lat": 51.47456058986068,
-    "lng": -2.582709097692349,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T12:10:55.195Z",
+    "timestamp": "2025-11-14T16:01:38.266Z",
     "title": "[X (Twitter)] Structural stress reported by resident",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
@@ -263,344 +812,81 @@
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-10",
-    "lat": 52.59772135022488,
-    "lng": -1.9452082813580924,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T11:18:38.173Z",
-    "title": "[Threads] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 79,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-11",
-    "lat": 51.41975939275738,
-    "lng": -2.7141439464567982,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T11:56:19.105Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 88,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
       "startTiming": "17:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-12",
-    "lat": 51.49796560371314,
-    "lng": -2.6843905218724764,
-    "category": "social",
-    "severity": "severe",
-    "timestamp": "2025-11-14T14:21:42.934Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 74,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-13",
-    "lat": 50.81008834762217,
-    "lng": -3.4195506051533084,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T14:59:51.718Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 72,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-14",
-    "lat": 50.62726587362697,
-    "lng": -3.299557626232625,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T02:06:39.561Z",
-    "title": "[Threads] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 91,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-15",
-    "lat": 53.38629699161371,
-    "lng": -2.4502615766398956,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T13:18:52.405Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 79,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-16",
-    "lat": 51.48967887779066,
-    "lng": -3.092151514696701,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T12:13:39.983Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 99,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-17",
-    "lat": 53.579193941584684,
-    "lng": -1.7633530431563875,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T15:16:13.564Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 70,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-18",
-    "lat": 51.46727565807712,
-    "lng": -2.5997196340866258,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T13:43:31.672Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 83,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-19",
-    "lat": 53.48979085222861,
-    "lng": -2.5154799691863086,
+    "lat": 50.68488485217403,
+    "lng": -3.61773803881772,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T12:43:20.340Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
+    "timestamp": "2025-11-14T14:19:52.186Z",
+    "title": "[Threads] Structural stress reported by resident",
     "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
+    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 81,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 86,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-20",
-    "lat": 51.49732013016739,
-    "lng": -2.5991273391444527,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T16:19:39.929Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 77,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
+      "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
       "startTiming": "14:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-21",
-    "lat": 50.649260204441404,
-    "lng": -3.5519483952648043,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T16:38:28.231Z",
-    "title": "[Bluesky] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Bluesky",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 96,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Bluesky",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-22",
-    "lat": 50.527575510834296,
-    "lng": -3.668969029837088,
+    "id": "ev-social-20",
+    "lat": 51.541087274390975,
+    "lng": -2.5570229705370373,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T07:14:48.096Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
+    "timestamp": "2025-11-14T11:48:53.558Z",
+    "title": "[X (Twitter)] Structural stress reported by resident",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -613,75 +899,38 @@
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
+      "corroborated": false,
       "startTiming": "17:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-23",
-    "lat": 50.72952898679783,
-    "lng": -3.293446316700178,
+    "id": "ev-social-21",
+    "lat": 51.9482295143676,
+    "lng": -2.273117379284362,
     "category": "social",
     "severity": "significant",
-    "timestamp": "2025-11-14T02:51:35.940Z",
+    "timestamp": "2025-11-14T10:03:45.172Z",
     "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 71,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-24",
-    "lat": 50.82157989996464,
-    "lng": -3.2694496599027416,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T03:24:25.256Z",
-    "title": "[Bluesky] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Bluesky",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 77,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Bluesky",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-25",
-    "lat": 51.954055495187184,
-    "lng": -2.2355648046248406,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T12:15:08.039Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -689,7 +938,7 @@
     "assessment": {
       "confidenceLabel": "High",
       "confidenceColor": "#4ade80",
-      "confidence": 96,
+      "confidence": 90,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
@@ -699,124 +948,33 @@
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Gloucester junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Gloucester school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Gloucester due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-26",
-    "lat": 52.410960810440535,
-    "lng": -1.9901582863005187,
+    "id": "ev-social-22",
+    "lat": 51.41691992466629,
+    "lng": -2.719945097831199,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T15:37:23.769Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 83,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-27",
-    "lat": 50.70309894419196,
-    "lng": -3.636837013645956,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T04:48:57.300Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 81,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-28",
-    "lat": 51.41236861982151,
-    "lng": -2.4593841042297733,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T08:00:49.042Z",
+    "timestamp": "2025-11-14T12:36:42.595Z",
     "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 73,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-29",
-    "lat": 50.7116714124984,
-    "lng": -3.5566167255997194,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T11:30:57.538Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 74,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-30",
-    "lat": 51.34661853392042,
-    "lng": -3.054908767066984,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T16:49:33.953Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -824,53 +982,43 @@
     "assessment": {
       "confidenceLabel": "High",
       "confidenceColor": "#4ade80",
-      "confidence": 87,
+      "confidence": 91,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "17:00",
+      "startTiming": "14:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-31",
-    "lat": 50.87421606568625,
-    "lng": -3.5182761078661327,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T04:48:46.444Z",
-    "title": "[Threads] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 81,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-32",
-    "lat": 50.646463411471366,
-    "lng": -3.6287900910385513,
+    "id": "ev-social-23",
+    "lat": 51.44352709750525,
+    "lng": -2.636620923327077,
     "category": "social",
     "severity": "significant",
-    "timestamp": "2025-11-14T10:49:16.183Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
+    "timestamp": "2025-11-14T13:16:08.313Z",
+    "title": "[X (Twitter)] Structural stress reported by resident",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -884,47 +1032,169 @@
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
+      "startTiming": "15:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-24",
+    "lat": 51.42752701531578,
+    "lng": -2.7285569907225775,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:25:48.353Z",
+    "title": "[Bluesky] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 94,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
       "startTiming": "17:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Bluesky",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-33",
-    "lat": 54.04657993963348,
-    "lng": -1.419673074880903,
+    "id": "ev-social-25",
+    "lat": 53.84839829099595,
+    "lng": -1.2758464631275492,
     "category": "social",
     "severity": "significant",
-    "timestamp": "2025-11-14T08:35:47.296Z",
-    "title": "[Threads] Sandbag deployment request",
+    "timestamp": "2025-11-14T08:08:02.126Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
     "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 90,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Leeds junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Leeds school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Leeds due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-26",
+    "lat": 51.466863077568334,
+    "lng": -2.529804064117092,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T15:41:01.249Z",
+    "title": "[Bluesky] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 76,
+      "confidence": 75,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
+      "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "15:00",
+      "startTiming": "14:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a Medium confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Bluesky",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-34",
-    "lat": 50.63276174430865,
-    "lng": -3.6345392634039007,
+    "id": "ev-social-27",
+    "lat": 52.60901140557757,
+    "lng": -1.9002697130216046,
     "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T12:42:40.670Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
+    "severity": "severe",
+    "timestamp": "2025-11-14T16:02:32.893Z",
+    "title": "[X (Twitter)] Road submerged by rising river",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -938,73 +1208,36 @@
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-35",
-    "lat": 51.44687153853602,
-    "lng": -2.5951324663393596,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T13:50:00.633Z",
-    "title": "[Bluesky] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Bluesky",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 91,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Bluesky",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-36",
-    "lat": 51.59278485988205,
-    "lng": -2.5477487096157567,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T15:48:44.655Z",
-    "title": "[Threads] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 73,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
       "startTiming": "17:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Birmingham junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Birmingham school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Birmingham due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-37",
-    "lat": 50.8242247268506,
-    "lng": -3.5252349017612277,
+    "id": "ev-social-28",
+    "lat": 52.334279915493504,
+    "lng": -0.01919899132750426,
     "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T09:17:55.929Z",
+    "severity": "significant",
+    "timestamp": "2025-11-14T16:35:51.307Z",
     "title": "[X (Twitter)] Structural stress reported by resident",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
@@ -1023,42 +1256,32 @@
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a Medium confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Cambridge junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cambridge school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cambridge due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-38",
-    "lat": 50.74206312050046,
-    "lng": -3.4254729411303186,
+    "id": "ev-social-29",
+    "lat": 50.5984953196093,
+    "lng": -3.4861167192315414,
     "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T02:54:07.518Z",
-    "title": "[Threads] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 98,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-39",
-    "lat": 53.7002615330984,
-    "lng": -2.2392764432761036,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T14:09:10.905Z",
+    "severity": "severe",
+    "timestamp": "2025-11-14T12:54:19.950Z",
     "title": "[Bluesky] Structural stress reported by resident",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
@@ -1067,26 +1290,351 @@
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 70,
+      "confidence": 73,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Bluesky",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-30",
+    "lat": 51.56541836146194,
+    "lng": -4.06018994984821,
+    "category": "social",
+    "severity": "severe",
+    "timestamp": "2025-11-14T16:26:17.319Z",
+    "title": "[Bluesky] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 85,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Bluesky",
+        "text": "Localized flooding at Swansea junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Swansea school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Swansea due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-31",
+    "lat": 51.5040221800645,
+    "lng": -2.580823717127371,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T13:36:44.117Z",
+    "title": "[X (Twitter)] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 93,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-32",
+    "lat": 51.61148213053774,
+    "lng": -3.2539401298465,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-13T05:21:36.840Z",
+    "title": "[X (Twitter)] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 90,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Cardiff junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cardiff school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cardiff due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-33",
+    "lat": 51.465887086749774,
+    "lng": -0.10715975830809071,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T08:34:43.918Z",
+    "title": "[Threads] Structural stress reported by resident",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 99,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "16:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at London junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near London school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering London due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-34",
+    "lat": 50.77389632536638,
+    "lng": -3.4433019782715117,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T14:05:10.796Z",
+    "title": "[Bluesky] Structural stress reported by resident",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 90,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "15:00",
+      "startTiming": "17:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Bluesky",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-40",
-    "lat": 51.85391115718635,
-    "lng": -2.2665205397705357,
+    "id": "ev-social-35",
+    "lat": 51.72196167095889,
+    "lng": -0.20979905725149517,
+    "category": "social",
+    "severity": "severe",
+    "timestamp": "2025-11-14T15:40:06.935Z",
+    "title": "[X (Twitter)] Road submerged by rising river",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 97,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at London junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near London school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering London due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-36",
+    "lat": 52.52337674404253,
+    "lng": -1.9759784536159106,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T09:20:22.196Z",
+    "title": "[X (Twitter)] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 93,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Birmingham junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Birmingham school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Birmingham due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-37",
+    "lat": 51.369891654446356,
+    "lng": -3.3214352209404083,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T11:10:02.109Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
+    "timestamp": "2025-11-14T09:49:23.956Z",
+    "title": "[X (Twitter)] Structural stress reported by resident",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -1104,15 +1652,120 @@
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a Medium confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Cardiff junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cardiff school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cardiff due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-41",
-    "lat": 51.59833818609532,
-    "lng": -2.5206340369143496,
+    "id": "ev-social-38",
+    "lat": 51.47861207714049,
+    "lng": -2.735790609954498,
+    "category": "social",
+    "severity": "severe",
+    "timestamp": "2025-11-14T13:51:13.978Z",
+    "title": "[X (Twitter)] Road submerged by rising river",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 93,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-39",
+    "lat": 51.37998320403277,
+    "lng": -2.529732264835675,
     "category": "social",
     "severity": "significant",
-    "timestamp": "2025-11-14T13:29:41.705Z",
+    "timestamp": "2025-11-14T15:26:42.429Z",
+    "title": "[Threads] Structural stress reported by resident",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 97,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "15:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-40",
+    "lat": 51.557241901967146,
+    "lng": -2.481449550680315,
+    "category": "social",
+    "severity": "severe",
+    "timestamp": "2025-11-14T12:27:02.177Z",
     "title": "[X (Twitter)] Sandbag deployment request",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
@@ -1121,7 +1774,51 @@
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 70,
+      "confidence": 73,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Bristol junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Bristol school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Bristol due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-41",
+    "lat": 51.68717110808567,
+    "lng": -3.946418529054677,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T14:59:09.143Z",
+    "title": "[X (Twitter)] Structural stress reported by resident",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 82,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
@@ -1131,16 +1828,165 @@
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a Medium confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Swansea junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Swansea school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Swansea due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-42",
-    "lat": 50.60643056723442,
-    "lng": -3.50468050545856,
+    "lat": 51.364667359285825,
+    "lng": -3.2709015738301774,
     "category": "social",
     "severity": "significant",
-    "timestamp": "2025-11-14T07:38:06.277Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
+    "timestamp": "2025-11-14T12:01:26.632Z",
+    "title": "[X (Twitter)] Sandbag deployment request",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 71,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Cardiff junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cardiff school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cardiff due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-43",
+    "lat": 51.58432265064185,
+    "lng": -3.2399725015240697,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T12:54:55.217Z",
+    "title": "[Bluesky] Structural stress reported by resident",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Bluesky user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 92,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "14:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Bluesky",
+        "text": "Localized flooding at Cardiff junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cardiff school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cardiff due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-44",
+    "lat": 50.809009158993376,
+    "lng": -3.440578725488975,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T11:59:41.027Z",
+    "title": "[X (Twitter)] Road submerged by rising river",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 73,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Exeter junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Exeter school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Exeter due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-45",
+    "lat": 51.38000805005561,
+    "lng": -3.3122959329209105,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:24:09.771Z",
+    "title": "[X (Twitter)] Sandbag deployment request",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
     "source": "X (Twitter)",
@@ -1154,73 +2000,36 @@
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "14:00",
+      "startTiming": "16:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a Medium confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Cardiff junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Cardiff school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Cardiff due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
-    "id": "ev-social-43",
-    "lat": 53.25884520594854,
-    "lng": -2.0719767894402574,
+    "id": "ev-social-46",
+    "lat": 51.69348802287261,
+    "lng": -4.026015503576612,
     "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T14:53:54.310Z",
-    "title": "[Threads] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 76,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-44",
-    "lat": 50.70637226138262,
-    "lng": -3.4645129926232685,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T12:00:08.657Z",
-    "title": "[Threads] User Alert: Localized flooding",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 74,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-45",
-    "lat": 50.654940509129425,
-    "lng": -3.4103441462811475,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T08:23:33.904Z",
+    "severity": "severe",
+    "timestamp": "2025-11-14T10:02:56.402Z",
     "title": "[X (Twitter)] User Alert: Localized flooding",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
@@ -1229,79 +2038,42 @@
     "assessment": {
       "confidenceLabel": "High",
       "confidenceColor": "#4ade80",
-      "confidence": 95,
+      "confidence": 99,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-46",
-    "lat": 51.435126956612,
-    "lng": -2.5277141316646676,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-13T21:39:40.105Z",
-    "title": "[Threads] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 89,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
+      "corroborated": true,
       "startTiming": "16:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Swansea junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Swansea school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Swansea due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-47",
-    "lat": 50.74831154176164,
-    "lng": -3.537206751595994,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T13:36:45.241Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 84,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-48",
-    "lat": 51.34854880200672,
-    "lng": -2.5191010752018745,
+    "lat": 53.74868837100288,
+    "lng": -2.349398404823007,
     "category": "social",
     "severity": "significant",
-    "timestamp": "2025-11-14T11:42:20.463Z",
+    "timestamp": "2025-11-14T11:24:25.715Z",
     "title": "[X (Twitter)] Sandbag deployment request",
     "locationName": "Regional | County | Constituency Placeholder",
     "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
@@ -1310,43 +2082,121 @@
     "assessment": {
       "confidenceLabel": "High",
       "confidenceColor": "#4ade80",
+      "confidence": 86,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "15:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a High confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at Manchester junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Manchester school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Manchester due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-48",
+    "lat": 51.842258338893465,
+    "lng": -2.2456984028116618,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-13T14:17:13.926Z",
+    "title": "[Threads] User Alert: Localized flooding",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 84,
+      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "17:00",
+      "endTiming": "",
+      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
+      "confidenceStatement": "This is a Medium confidence assessment."
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_Threads",
+        "text": "Localized flooding at Gloucester junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near Gloucester school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering Gloucester due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-49",
+    "lat": 51.62086452378218,
+    "lng": 0.005453186758786088,
+    "category": "social",
+    "severity": "significant",
+    "timestamp": "2025-11-14T16:57:31.345Z",
+    "title": "[X (Twitter)] Structural stress reported by resident",
+    "locationName": "Regional | County | Constituency Placeholder",
+    "evidence": "X (Twitter) user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
       "confidence": 89,
       "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "14:00",
+      "startTiming": "17:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-49",
-    "lat": 51.480195589782106,
-    "lng": -0.17722058517738695,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T13:48:40.211Z",
-    "title": "[Threads] Sandbag deployment request",
-    "locationName": "Regional | County | Constituency Placeholder",
-    "evidence": "Threads user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 92,
-      "justification": "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+    },
+    "posts": [
+      {
+        "user": "@WeatherWatch_X",
+        "text": "Localized flooding at London junction. Avoid the area if possible. #flood #storm",
+        "time": "2h ago"
+      },
+      {
+        "user": "@CitizenReporter",
+        "text": "Standing water on main road near London school. Emergency services on site.",
+        "time": "3h ago"
+      },
+      {
+        "user": "@CommuterHelp",
+        "text": "Severe delays entering London due to road closures. Use alternative routes.",
+        "time": "4h ago"
+      }
+    ]
   }
 ]

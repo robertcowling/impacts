@@ -130,55 +130,60 @@ CATEGORIES.forEach(category => {
     // Thursday is > 17 hours ago
     // Friday > 08:00 is < 9 hours ago
 
-    let swFloodingCount = 0;
+    let swRoadsCount = 0;
 
     for (let i = 0; i < count; i++) {
         const hub = weightedHubs[Math.floor(Math.random() * weightedHubs.length)];
-        const sevRand = Math.random();
-        const severity = sevRand < 0.7 ? 'minor' : (sevRand < 0.95 ? 'significant' : 'severe');
         let lat = hub.lat + (Math.random() - 0.5) * hub.radius;
         let lng = hub.lng + (Math.random() - 0.5) * hub.radius;
-        
-        if (category === 'proxy' || category === 'google-trends') {
-            lat = 54.5; lng = -2.0; // National center
-        }
 
         let timestamp;
+        let severity;
         const timeRand = Math.random();
 
-        if (category === 'social' && swFloodingCount < 10 && timeRand < 0.3) {
-            // SW England localized flooding between 00:00 - 08:00 Friday (17 to 9 hours ago)
+        if (category === 'roads' && swRoadsCount < 7) {
+            // SW minor road impacts between 00:00–08:00 Friday (9–17 h ago from snapshot 17:00)
             timestamp = new Date(now.getTime() - (9 + Math.random() * 8) * 60 * 60 * 1000);
-            lat = 50.7 + (Math.random() - 0.5) * 0.5; // SW Area (Exeter hub-ish)
-            lng = -3.5 + (Math.random() - 0.5) * 0.5;
-            swFloodingCount++;
-        } else if (timeRand < 0.1) {
-            // Thursday (Isolated) - 41 to 17 hours ago
+            lat = 50.7 + (Math.random() - 0.5) * 1.5;
+            lng = -3.5 + (Math.random() - 0.5) * 1.5;
+            severity = 'minor';
+            swRoadsCount++;
+        } else if (timeRand < 0.15) {
+            // Isolated Thursday impacts (17–41 h ago)
             timestamp = new Date(now.getTime() - (17 + Math.random() * 24) * 60 * 60 * 1000);
+            severity = Math.random() < 0.8 ? 'minor' : 'significant';
         } else {
-            // Most impacts after 08:00 Friday (0 to 9 hours ago)
+            // Main: Friday after 08:00 (0–9 h ago)
             timestamp = new Date(now.getTime() - (Math.random() * 9) * 60 * 60 * 1000);
+            const sevRand = Math.random();
+            severity = sevRand < 0.35 ? 'minor' : (sevRand < 0.85 ? 'significant' : 'severe');
         }
-        
+
+        if (category === 'proxy' || category === 'google-trends') {
+            lat = 54.5; lng = -2.0; // National centre
+        }
+
         let sourceLabel;
         if (category === 'social') {
             const socialRand = Math.random();
-            if (socialRand < 0.75) sourceLabel = 'X (Twitter)';
-            else if (socialRand < 0.875) sourceLabel = 'Bluesky';
-            else sourceLabel = 'Threads';
+            if (socialRand < 0.7)        sourceLabel = 'X (Twitter)';
+            else if (socialRand < 0.85)  sourceLabel = 'Bluesky';
+            else                         sourceLabel = 'Threads';
         } else if (category === 'roads') {
-            if (isWales(lat, lng)) sourceLabel = 'Traffic Wales';
-            else sourceLabel = 'National Highways';
+            sourceLabel = isWales(lat, lng) ? 'Traffic Wales' : 'National Highways';
         } else {
-            sourceLabel = (category === 'news' ? 'Online News' : 
-                          (category === 'railways' ? 'Railway Marketplace' : 
-                          (category === 'ea-help' ? 'EA Internal' : 
-                          (category === 'energy' ? 'Power Companies' : 
-                          (category === 'proxy' ? 'Met Office Digital' : 
-                          (category === 'google-trends' ? 'Google Trends' : 'Water Analytics'))))));
+            sourceLabel = (
+                category === 'news'          ? 'Online News'          :
+                category === 'railways'      ? 'Railway Marketplace'  :
+                category === 'ea-help'       ? 'EA Internal'          :
+                category === 'energy'        ? 'Power Companies'      :
+                category === 'proxy'         ? 'Met Office Digital'   :
+                category === 'google-trends' ? 'Google Trends'        :
+                                               'Water Analytics'
+            );
         }
 
-        impacts.push({
+        const impact = {
             id: `ev-${category}-${i}`,
             lat,
             lng,
@@ -186,14 +191,26 @@ CATEGORIES.forEach(category => {
             severity,
             timestamp: timestamp.toISOString(),
             title: category === 'proxy' ? 'Met Office Website Hits' : getMockTitle(category, sourceLabel),
-            locationName: category === 'proxy' ? "United Kingdom | National" : "Regional | County | Constituency Placeholder",
+            locationName: category === 'proxy' ? 'United Kingdom | National' : 'Regional | County | Constituency Placeholder',
             evidence: getMockEvidence(category, sourceLabel),
             source: sourceLabel,
-            sourceUrl: "#",
+            sourceUrl: '#',
             assessment: generateAssessment(category, severity, sourceLabel)
-        });
+        };
+
+        // Attach sample social posts to social-category impacts
+        if (category === 'social') {
+            const platform = sourceLabel.split(' ')[0];
+            impact.posts = [
+                { user: `@WeatherWatch_${platform}`, text: `Localized flooding at ${hub.name} junction. Avoid the area if possible. #flood #storm`, time: '2h ago' },
+                { user: `@CitizenReporter`,          text: `Standing water on main road near ${hub.name} school. Emergency services on site.`,    time: '3h ago' },
+                { user: `@CommuterHelp`,             text: `Severe delays entering ${hub.name} due to road closures. Use alternative routes.`,    time: '4h ago' }
+            ];
+        }
+
+        impacts.push(impact);
     }
-    
+
     fs.writeFileSync(path.join(dataDir, `${category}.json`), JSON.stringify(impacts, null, 2));
     console.log(`Generated ${category}.json with ${count} items.`);
 });

@@ -471,16 +471,15 @@ async function init() {
     renderTimelineTicks();
     setupEvents();
     
-    // Set default view period to "Today" (Midnight to Now)
+    // Set default view to 00:00–08:00 on the snapshot day (Friday 14th)
     const nowObj = new Date(FIXED_NOW);
     const todayStart = new Date(nowObj.getFullYear(), nowObj.getMonth(), nowObj.getDate());
-    const hoursSinceTodayStart = (nowObj - todayStart) / (1000 * 60 * 60);
-    
-    // Default to the last 17 hours (to show everything since midnight of that snapshot day)
-    const windowDuration = hoursSinceTodayStart; 
-    State.windowEnd = 48;
-    State.windowStart = Math.max(0, 48 - windowDuration);
-    State.lastWindowDuration = 48 - State.windowStart;
+    const eightAM    = new Date(nowObj.getFullYear(), nowObj.getMonth(), nowObj.getDate(), 8, 0, 0);
+    const hoursAgoMidnight = (nowObj - todayStart) / (1000 * 60 * 60);
+    const hoursAgoEight    = (nowObj - eightAM)    / (1000 * 60 * 60);
+    State.windowStart = 48 - hoursAgoMidnight;   // ~31 on the 48-h scale
+    State.windowEnd   = 48 - hoursAgoEight;       // ~39 on the 48-h scale
+    State.lastWindowDuration = State.windowEnd - State.windowStart;
 
     syncDualSlider();
     renderImpacts();
@@ -539,14 +538,15 @@ function setupEvents() {
     const sliderLow = document.getElementById('timeline-low');
     const sliderHigh = document.getElementById('timeline-high');
 
-    // RHS is Primary - Moves window in tandem
+    // RHS — adjusts end point only (does NOT drag the whole window)
     sliderHigh.addEventListener('input', (e) => {
-        const val = parseFloat(e.target.value);
-        const duration = State.windowEnd - State.windowStart;
-        
-        State.windowEnd = val;
-        State.windowStart = Math.max(0, val - duration);
-        
+        let newEnd = parseFloat(e.target.value);
+        if (newEnd < State.windowStart + 0.5) {
+            newEnd = State.windowStart + 0.5;
+            sliderHigh.value = newEnd;
+        }
+        State.windowEnd = newEnd;
+        State.lastWindowDuration = State.windowEnd - State.windowStart;
         document.getElementById('view-period-select').value = 'custom';
         syncDualSlider();
         renderImpacts();
@@ -1540,6 +1540,26 @@ function renderFeed(filtered) {
                         </div>
                     </div>
                 </div>
+
+                ${imp.posts && imp.posts.length ? `
+                <div class="social-posts-header">
+                    <span>Recent Evidence Feed</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                </div>
+                <div class="social-posts-scroll-wrap">
+                    <div class="social-posts-container">
+                        ${imp.posts.map(post => `
+                            <div class="social-post-mini">
+                                <div class="post-header-mini">
+                                    <span class="post-user">${post.user}</span>
+                                    <span class="post-time">${post.time}</span>
+                                </div>
+                                <div class="post-text">${post.text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
             </div>
         `;
 
