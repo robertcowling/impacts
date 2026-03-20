@@ -1717,5 +1717,200 @@
         "time": "10m ago"
       }
     ]
+  },
+  {
+    "id": "ev-social_converted_batch2-2",
+    "lat": 51.7742,
+    "lng": -2.852,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T07:00:00.000Z",
+    "title": "[X (Twitter)] A40 Eastbound: Surface Water near Raglan (Monmouthshire)",
+    "locationName": "Monmouthshire | A40 Corridor | Monmouth",
+    "evidence": "Traffic Wales CCTV operators report surface water accumulation on A40 eastbound approaching Raglan junction. Advisory speed restriction in place. Light to moderate rain falling. Conditions being monitored.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 42,
+      "justification": "Traffic Wales CCTV observation confirmed. Surface water consistent with rain onset in Monmouthshire. Early indicator of developing conditions on the A40 corridor, a key route between Southeast Wales and the English Midlands.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "02:31",
+      "endTiming": "",
+      "synthesis": "Surface water accumulating on A40 near Raglan in the early hours of Friday. First road-related signal from the Southeast Wales area of primary interest. Conditions likely to develop as rainfall continues.",
+      "confidenceStatement": "Low confidence. Early-stage CCTV observation. Conditions evolving."
+    },
+    "posts": [
+      {
+        "user": "@RoadWatcher_Wales",
+        "text": "Just passed Monmouth. Traffic Wales CCTV operators report surface water accumulation on A40 eastbound approaching Raglan junction. Advisory speed restriction in place. Light to moderate rain falling. Conditions being monitored.",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Caution: A40 Eastbound: Surface Water near Raglan (Monmouthshire). Conditions are worsening.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted_batch2-3",
+    "lat": 51.566,
+    "lng": -3.02,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T03:52:00.000Z",
+    "title": "[X (Twitter)] B4240: Reduced Speeds near Newport",
+    "locationName": "Newport | B4240 | Newport West",
+    "evidence": "Local sensors record speed reduction on B4240 near Newport. Spray and standing water reported by operators. Advisory speed limit of 30mph.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Automated speed sensors corroborated by CCTV operator observation. Rainfall intensifying in Newport area during early hours. Pattern consistent with the approaching frontal system.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "03:52",
+      "endTiming": "",
+      "synthesis": "Early-morning speed reduction on M4 westbound near Newport reflects onset of rainfall on this critical England\u2013Wales corridor. First M4 signal of the event. Conditions developing.",
+      "confidenceStatement": "Low confidence. Automated sensor data only. Conditions developing."
+    },
+    "posts": [
+      {
+        "user": "@RoadWatcher_Wales",
+        "text": "Just passed Newport West. Local sensors record speed reduction on B4240 near Newport. Spray and standing water reported by operators. Advisory speed limit of 30mph.",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Caution: B4240: Reduced Speeds near Newport. Conditions are worsening.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted_batch2-4",
+    "lat": 51.93,
+    "lng": -3.38,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T04:44:00.000Z",
+    "title": "[X (Twitter)] B4601: Surface Water near Brecon",
+    "locationName": "Powys | B4601 | Brecon and Radnorshire",
+    "evidence": "Local advisory for surface water on B4601 approaching Brecon from the south. Reduced visibility in valley sections. Conditions deteriorating slowly.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 40,
+      "justification": "Single Traffic Wales advisory consistent with rain onset in the Brecon Beacons upland area. No corroborating reports at this stage. Relevant as an upstream catchment indicator.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "04:44",
+      "endTiming": "",
+      "synthesis": "Surface water and reduced visibility on A470 near Brecon. Early-stage impact in the upland catchment area north of the primary impact zone. Hydrologically significant given the Usk and Wye headwaters in this area.",
+      "confidenceStatement": "Low confidence. Single advisory. Early stage."
+    },
+    "posts": [
+      {
+        "user": "@RoadWatcher_Wales",
+        "text": "Just passed Brecon and Radnorshire. Local advisory for surface water on B4601 approaching Brecon from the south. Reduced visibility in valley sections. Conditions deteriorating slowly.",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Caution: B4601: Surface Water near Brecon. Conditions are worsening.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted_batch2-6",
+    "lat": 51.6419,
+    "lng": -2.6759,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T06:05:00.000Z",
+    "title": "[X (Twitter)] B4235: Surface Water near Chepstow",
+    "locationName": "Monmouthshire | B4235 | Chepstow",
+    "evidence": "Local reports indicate surface water on B4235 between Chepstow and Caerwent. Spray reducing visibility. No closures. Rainfall persisting.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 43,
+      "justification": "Traffic Wales advisory confirmed. Second A-road impact in Monmouthshire within four hours. Pattern of surface water accumulation building in Southeast Wales. Route is a key diversion for M4 traffic.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "06:05",
+      "endTiming": "",
+      "synthesis": "Surface water advisory on A48 near Chepstow. Second Monmouthshire road impact of the early morning, reinforcing the emerging geographic focus on Southeast Wales.",
+      "confidenceStatement": "Low confidence. Advisory only. Part of emerging pattern in Southeast Wales."
+    },
+    "posts": [
+      {
+        "user": "@RoadWatcher_Wales",
+        "text": "Just passed Chepstow. Local reports indicate surface water on B4235 between Chepstow and Caerwent. Spray reducing visibility. No closures. Rainfall persisting.",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Caution: B4235: Surface Water near Chepstow. Conditions are worsening.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted_batch2-9",
+    "lat": 52.15,
+    "lng": -3.39,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T07:51:00.000Z",
+    "title": "[X (Twitter)] B4520: Surface Water near Builth Wells",
+    "locationName": "Powys | B4520 | Brecon and Radnorshire",
+    "evidence": "Local advisory for B4520 near Builth Wells. Surface water in low-lying sections. River Wye level rising in the adjacent valley.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 46,
+      "justification": "Traffic Wales advisory with notation of rising river levels. River Wye response time from Powys catchment rainfall is hydrologically relevant to downstream conditions at Hereford and Ross-on-Wye. Early upstream indicator.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "07:51",
+      "endTiming": "",
+      "synthesis": "Surface water on A483 near Builth Wells with river levels beginning to rise in the Wye catchment. Early upstream signal with downstream hydrological implications for Herefordshire.",
+      "confidenceStatement": "Low confidence. Early-stage signal. River response developing."
+    },
+    "posts": [
+      {
+        "user": "@RoadWatcher_Wales",
+        "text": "Just passed Brecon and Radnorshire. Local advisory for B4520 near Builth Wells. Surface water in low-lying sections. River Wye level rising in the adjacent valley.",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Caution: B4520: Surface Water near Builth Wells. Conditions are worsening.",
+        "time": "pre-0800"
+      }
+    ]
   }
 ]
