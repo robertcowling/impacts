@@ -37,6 +37,21 @@ const CATEGORIES = {
     'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>' }
 };
 
+const SOCIAL_PLATFORM_ICONS = {
+    'X (Twitter)': {
+        label: 'X',
+        icon: '<svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
+    },
+    'Bluesky': {
+        label: 'Bluesky',
+        icon: '<svg viewBox="0 0 568 501" fill="currentColor" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px"><path d="M123.121 33.664C188.241 82.553 258.287 181.67 284 234.873c25.713-53.203 95.759-152.32 160.879-201.209C491.866-1.611 568-28.906 568 57.947c0 17.346-9.945 145.713-15.778 166.555-20.275 72.453-94.155 90.933-159.875 79.748C507.222 323.8 536.444 388.56 473.333 453.32c-119.86 122.992-172.272-30.859-185.702-70.281-2.462-7.227-3.614-10.608-3.631-7.733-.017-2.875-1.169.506-3.631 7.733-13.43 39.422-65.842 193.273-185.702 70.281-63.111-64.76-33.889-129.52 80.454-149.07-65.72 11.185-139.6-7.295-159.875-79.748C9.945 203.66 0 75.293 0 57.947 0-28.906 76.134-1.611 123.121 33.664Z"/></svg>'
+    },
+    'Threads': {
+        label: 'Threads',
+        icon: '<svg viewBox="0 0 192 192" fill="currentColor" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px"><path d="M141.537 88.988c-.921-.53-1.857-1.043-2.806-1.538-1.675-34.221-20.553-53.76-51.954-53.96-18.71-.122-35.168 7.487-45.025 21.17l17.184 11.797c7.154-10.909 18.398-13.241 27.858-13.241.087 0 .175 0 .262.001 10.77.072 18.906 3.199 24.182 9.295 3.836 4.387 6.413 10.495 7.699 18.254-9.603-1.633-19.975-2.135-31.01-1.499-31.257 1.818-51.387 20.243-50.025 45.805.71 13.192 7.439 24.528 18.96 31.93 9.722 6.309 22.249 9.395 35.31 8.666 17.173-.952 30.623-7.485 40.013-19.421 7.239-9.256 11.815-21.26 13.787-36.425 8.267 4.994 14.396 11.634 17.785 19.668 5.956 14.271 6.309 37.688-12.255 56.194-16.387 16.344-36.067 23.394-65.911 23.614-33.04-.249-58.032-10.884-74.269-31.617-15.098-19.283-22.934-47.466-23.209-83.836.275-36.37 8.111-64.553 23.209-83.836 16.237-20.733 41.229-31.368 74.269-31.617 33.261.25 58.573 10.928 75.225 31.73 8.124 10.274 14.269 23.245 18.328 38.477l20.195-5.376c-4.97-18.575-12.857-34.505-23.616-47.602C151.845 16.943 121.651 3.408 83.999 3.15c-37.88.259-67.736 13.906-88.695 40.563C-23.038 66.009-32.03 97.785-32.03 136c0 38.215 8.992 69.991 27.304 92.287 20.959 26.657 50.815 40.304 88.695 40.563 31.854-.214 55.655-8.647 74.975-27.889 25.389-25.291 24.709-58.032 16.337-78.428-5.969-14.312-17.413-25.994-33.744-34.545z"/></svg>'
+    }
+};
+
 const IMPACT_TYPES = {
     roads: { label: 'Roads', categories: ['roads'], color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>' },
     rail: { label: 'Rail', categories: ['railways'], color: '#5b61a1', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2L7 22M17 2L17 22M7 5H17M7 10H17M7 15H17M7 20H17"/></svg>' },
@@ -427,7 +442,7 @@ async function init() {
     L.control.zoom({ position: 'topright' }).addTo(State.map);
 
     // Fetch and Load Intelligence Data from Folder
-    const dataSources = ['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help', 'proxy', 'google-trends'];
+    const dataSources = ['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help', 'google-trends'];
     try {
         const fetchResults = await Promise.all(
             dataSources.map(src => fetch(`data/${src}.json`).then(r => r.ok ? r.json() : []))
@@ -1472,13 +1487,15 @@ function renderFeed(filtered) {
                 <div class="feed-card-header-inner">
                     <div class="feed-card-meta-new">
                         <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}">
-                            ${CATEGORIES[imp.category].label}
+                            ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
+                                ? SOCIAL_PLATFORM_ICONS[imp.source].icon + SOCIAL_PLATFORM_ICONS[imp.source].label
+                                : CATEGORIES[imp.category].label}
                         </span>
                         <span class="feed-card-time">${timeStr}</span>
                     </div>
                 </div>
                 
-                <h4 class="feed-card-title">${imp.headline || imp.title}</h4>
+                <h4 class="feed-card-title">${imp.headline || (imp.category === 'social' ? (imp.title || '').replace(/^\[.*?\]\s*/, '') : imp.title)}</h4>
                 
                 <div class="feed-card-source-row">
                     <a href="${imp.sourceUrl}" class="source-link-new" target="_blank" onclick="event.stopPropagation()">
@@ -1543,8 +1560,7 @@ function renderFeed(filtered) {
 
                 ${imp.posts && imp.posts.length ? `
                 <div class="social-posts-header">
-                    <span>Recent Evidence Feed</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                    <span>Community posts</span>
                 </div>
                 <div class="social-posts-scroll-wrap">
                     <div class="social-posts-container">

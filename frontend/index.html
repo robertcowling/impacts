@@ -165,10 +165,6 @@
                                         </span>
                                     </label>
                                     <div class="sub-filter-list hidden" id="social-sub-menu">
-                                        <label class="sub-filter-item" data-sub-category="all">
-                                            <span class="sub-dot"></span>
-                                            <span class="sub-label">Show All</span>
-                                        </label>
                                         <label class="sub-filter-item" data-sub-category="x">
                                             <span class="sub-dot"></span>
                                             <span class="sub-label">X (Twitter)</span>
@@ -298,8 +294,14 @@
                 <!-- Fixed Footer with New Button -->
                 <div class="sidebar-footer">
                     <button class="mcp-server-btn" id="mcp-server-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                        API/MCP server
+                        <div class="mcp-btn-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        </div>
+                        <div class="mcp-btn-text">
+                            <span class="mcp-btn-label">MP Intelligence Brief</span>
+                            <span class="mcp-btn-sub">08:00 · via API / MCP</span>
+                        </div>
+                        <svg class="mcp-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
                 </div>
             </aside>
@@ -770,11 +772,48 @@
     <div class="modal-overlay" id="mcp-modal">
         <div class="mcp-modal-content glass">
             <div class="modal-header">
-                <h3>API/MCP Server Status</h3>
+                <div class="mcp-modal-header-meta">
+                    <span class="mcp-modal-badge">Auto-generated · 08:00</span>
+                    <h3>MP Intelligence Brief</h3>
+                    <p class="mcp-modal-sub">Parliamentary Assistant Agent · via Impacts MCP Server</p>
+                </div>
                 <button class="close-modal-btn" id="close-mcp-btn">&times;</button>
             </div>
-            <div class="modal-body" style="padding: 24px; font-size: 0.95rem; line-height: 1.6; color: var(--text-primary);">
-                <p>At 0800 the Parlimentarty Assistan't agent calls the impacts MCP server to return the latest impact information</p>
+            <div class="mcp-modal-body">
+                <p class="mcp-brief-intro">The following briefing was generated automatically at 08:00 by the Parliamentary Assistant agent, which called the Impacts MCP server to retrieve the latest intelligence relevant to your constituency and region.</p>
+                <ul class="mcp-brief-bullets">
+                    <li>
+                        <span class="mcp-bullet-icon mcp-bullet-social">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </span>
+                        <span>Social media is showing localised flooding issues within and around the constituency, with residents reporting surface water on approach roads and concerns about drainage capacity.</span>
+                    </li>
+                    <li>
+                        <span class="mcp-bullet-icon mcp-bullet-roads">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>
+                        </span>
+                        <span>The A40 has been closed in a neighbouring county due to severe flooding, causing significant disruption to regional road connectivity. Diversion routes are under pressure.</span>
+                    </li>
+                    <li>
+                        <span class="mcp-bullet-icon mcp-bullet-ea">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+                        </span>
+                        <span>The Environment Agency has issued flood warnings for rivers in the area and is highlighting the potential for further impacts throughout the day as river levels continue to rise.</span>
+                    </li>
+                    <li>
+                        <span class="mcp-bullet-icon mcp-bullet-rail">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2L7 22M17 2L17 22M7 5H17M7 10H17M7 15H17M7 20H17"/></svg>
+                        </span>
+                        <span>Rail services through Newport and Cardiff Central are severely disrupted following trackside flooding. Passengers are advised to check before travelling; no timeline for restoration has been given.</span>
+                    </li>
+                    <li>
+                        <span class="mcp-bullet-icon mcp-bullet-energy">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </span>
+                        <span>Power outages are affecting over 1,200 properties in Torfaen and Pontypool. Energy companies have deployed crews but access for repair teams is restricted by ongoing road flooding.</span>
+                    </li>
+                </ul>
+                <p class="mcp-brief-footer">This brief was generated from live impact data returned by the Impacts MCP API. All data is synthetic and for demonstration purposes only.</p>
             </div>
         </div>
     </div>
