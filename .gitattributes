@@ -1,0 +1,18 @@
+# Normalise line endings: store as LF in the repo, checkout as native on each OS.
+# This prevents CRLF vs LF mismatches that break string-based file edits on Windows.
+* text=auto
+
+# Force LF in all web files so edits are consistent regardless of platform
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+
+# Binary files — never touch line endings
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
