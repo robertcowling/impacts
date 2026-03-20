@@ -40,16 +40,22 @@ const CATEGORIES = {
 const SOCIAL_PLATFORM_ICONS = {
     'X (Twitter)': {
         label: 'X',
-        icon: '<svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
+        icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
     },
     'Bluesky': {
         label: 'Bluesky',
-        icon: '<svg viewBox="0 0 568 501" fill="currentColor" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px"><path d="M123.121 33.664C188.241 82.553 258.287 181.67 284 234.873c25.713-53.203 95.759-152.32 160.879-201.209C491.866-1.611 568-28.906 568 57.947c0 17.346-9.945 145.713-15.778 166.555-20.275 72.453-94.155 90.933-159.875 79.748C507.222 323.8 536.444 388.56 473.333 453.32c-119.86 122.992-172.272-30.859-185.702-70.281-2.462-7.227-3.614-10.608-3.631-7.733-.017-2.875-1.169.506-3.631 7.733-13.43 39.422-65.842 193.273-185.702 70.281-63.111-64.76-33.889-129.52 80.454-149.07-65.72 11.185-139.6-7.295-159.875-79.748C9.945 203.66 0 75.293 0 57.947 0-28.906 76.134-1.611 123.121 33.664Z"/></svg>'
+        icon: '<svg viewBox="0 0 568 501" fill="currentColor"><path d="M123.121 33.664C188.241 82.553 258.287 181.67 284 234.873c25.713-53.203 95.759-152.32 160.879-201.209C491.866-1.611 568-28.906 568 57.947c0 17.346-9.945 145.713-15.778 166.555-20.275 72.453-94.155 90.933-159.875 79.748C507.222 323.8 536.444 388.56 473.333 453.32c-119.86 122.992-172.272-30.859-185.702-70.281-2.462-7.227-3.614-10.608-3.631-7.733-.017-2.875-1.169.506-3.631 7.733-13.43 39.422-65.842 193.273-185.702 70.281-63.111-64.76-33.889-129.52 80.454-149.07-65.72 11.185-139.6-7.295-159.875-79.748C9.945 203.66 0 75.293 0 57.947 0-28.906 76.134-1.611 123.121 33.664Z"/></svg>'
     },
     'Threads': {
         label: 'Threads',
-        icon: '<svg viewBox="0 0 192 192" fill="currentColor" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:4px"><path d="M141.537 88.988c-.921-.53-1.857-1.043-2.806-1.538-1.675-34.221-20.553-53.76-51.954-53.96-18.71-.122-35.168 7.487-45.025 21.17l17.184 11.797c7.154-10.909 18.398-13.241 27.858-13.241.087 0 .175 0 .262.001 10.77.072 18.906 3.199 24.182 9.295 3.836 4.387 6.413 10.495 7.699 18.254-9.603-1.633-19.975-2.135-31.01-1.499-31.257 1.818-51.387 20.243-50.025 45.805.71 13.192 7.439 24.528 18.96 31.93 9.722 6.309 22.249 9.395 35.31 8.666 17.173-.952 30.623-7.485 40.013-19.421 7.239-9.256 11.815-21.26 13.787-36.425 8.267 4.994 14.396 11.634 17.785 19.668 5.956 14.271 6.309 37.688-12.255 56.194-16.387 16.344-36.067 23.394-65.911 23.614-33.04-.249-58.032-10.884-74.269-31.617-15.098-19.283-22.934-47.466-23.209-83.836.275-36.37 8.111-64.553 23.209-83.836 16.237-20.733 41.229-31.368 74.269-31.617 33.261.25 58.573 10.928 75.225 31.73 8.124 10.274 14.269 23.245 18.328 38.477l20.195-5.376c-4.97-18.575-12.857-34.505-23.616-47.602C151.845 16.943 121.651 3.408 83.999 3.15c-37.88.259-67.736 13.906-88.695 40.563C-23.038 66.009-32.03 97.785-32.03 136c0 38.215 8.992 69.991 27.304 92.287 20.959 26.657 50.815 40.304 88.695 40.563 31.854-.214 55.655-8.647 74.975-27.889 25.389-25.291 24.709-58.032 16.337-78.428-5.969-14.312-17.413-25.994-33.744-34.545z"/></svg>'
+        icon: '<svg viewBox="0 0 192 192" fill="currentColor"><path d="M141.537 88.988c-.921-.53-1.857-1.043-2.806-1.538-1.675-34.221-20.553-53.76-51.954-53.96-18.71-.122-35.168 7.487-45.025 21.17l17.184 11.797c7.154-10.909 18.398-13.241 27.858-13.241.087 0 .175 0 .262.001 10.77.072 18.906 3.199 24.182 9.295 3.836 4.387 6.413 10.495 7.699 18.254-9.603-1.633-19.975-2.135-31.01-1.499-31.257 1.818-51.387 20.243-50.025 45.805.71 13.192 7.439 24.528 18.96 31.93 9.722 6.309 22.249 9.395 35.31 8.666 17.173-.952 30.623-7.485 40.013-19.421 7.239-9.256 11.815-21.26 13.787-36.425 8.267 4.994 14.396 11.634 17.785 19.668 5.956 14.271 6.309 37.688-12.255 56.194-16.387 16.344-36.067 23.394-65.911 23.614-33.04-.249-58.032-10.884-74.269-31.617-15.098-19.283-22.934-47.466-23.209-83.836.275-36.37 8.111-64.553 23.209-83.836 16.237-20.733 41.229-31.368 74.269-31.617 33.261.25 58.573 10.928 75.225 31.73 8.124 10.274 14.269 23.245 18.328 38.477l20.195-5.376c-4.97-18.575-12.857-34.505-23.616-47.602C151.845 16.943 121.651 3.408 83.999 3.15c-37.88.259-67.736 13.906-88.695 40.563C-23.038 66.009-32.03 97.785-32.03 136c0 38.215 8.992 69.991 27.304 92.287 20.959 26.657 50.815 40.304 88.695 40.563 31.854-.214 55.655-8.647 74.975-27.889 25.389-25.291 24.709-58.032 16.337-78.428-5.969-14.312-17.413-25.994-33.744-34.545z"/></svg>'
     }
+};
+
+const SOCIAL_SUB_SOURCE_MAP = {
+    'x': 'X (Twitter)',
+    'bluesky': 'Bluesky',
+    'threads': 'Threads'
 };
 
 const IMPACT_TYPES = {
@@ -248,6 +254,7 @@ const State = {
     lastWindowDuration: 0,
     activeCategories: new Set(['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help']),
     activeSeverities: new Set(['minor', 'significant', 'severe']),
+    activeSocialPlatform: null,
     showSeverity: false,
     selectedImpact: null,
     isDraggingWindow: false,
@@ -712,18 +719,23 @@ function setupEvents() {
                 document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
                 State.activeCategories.add(targetCat);
                 filterChip.classList.add('active');
+                State.activeSocialPlatform = null;
             } else if (subItem) {
-                // For sub-items, we active the parent category and potentially a sub-filter
-                // For now, activating the parent is the primary action since we don't have deep sub-filtering in the state yet
                 const parentGroup = subItem.closest('.nested-filter-group');
                 const parentChip = parentGroup.querySelector('.filter-chip');
                 const targetCat = parentChip.dataset.category;
-                
+                const subCat = subItem.dataset.subCategory;
+
                 State.activeCategories.clear();
                 document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
                 State.activeCategories.add(targetCat);
                 parentChip.classList.add('active');
-                
+
+                // Set social platform filter if applicable
+                State.activeSocialPlatform = (targetCat === 'social' && subCat && SOCIAL_SUB_SOURCE_MAP[subCat])
+                    ? SOCIAL_SUB_SOURCE_MAP[subCat]
+                    : null;
+
                 // Show the menu if it was hidden
                 const subMenu = parentGroup.querySelector('.sub-filter-list');
                 if (subMenu) subMenu.classList.remove('hidden');
@@ -1238,10 +1250,11 @@ function renderImpacts() {
     const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
 
     const filtered = State.impacts.filter(imp => {
-        return imp.timestamp >= startCutoff && 
-               imp.timestamp <= endCutoff && 
-               State.activeCategories.has(imp.category) &&
-               State.activeSeverities.has(imp.severity);
+        if (imp.timestamp < startCutoff || imp.timestamp > endCutoff) return false;
+        if (!State.activeCategories.has(imp.category)) return false;
+        if (!State.activeSeverities.has(imp.severity)) return false;
+        if (imp.category === 'social' && State.activeSocialPlatform && imp.source !== State.activeSocialPlatform) return false;
+        return true;
     });
 
     // Update Feed immediately
@@ -1253,9 +1266,12 @@ function renderImpacts() {
     filteredForMarkers.forEach(imp => {
         const locations = imp.locations || [{ lat: imp.lat, lng: imp.lng }];
         locations.forEach(loc => {
+            const markerSvg = imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
+                ? SOCIAL_PLATFORM_ICONS[imp.source].icon
+                : CATEGORIES[imp.category].icon;
             const markerIcon = L.divIcon({
                 className: 'custom-marker',
-                html: `<div class="marker-inner ${imp.category} ${imp.severity}">${CATEGORIES[imp.category].icon}</div>`,
+                html: `<div class="marker-inner ${imp.category} ${imp.severity}">${markerSvg}</div>`,
                 iconSize: [28, 28],
                 iconAnchor: [14, 14]
             });
@@ -1486,9 +1502,9 @@ function renderFeed(filtered) {
             <div class="feed-card-body">
                 <div class="feed-card-header-inner">
                     <div class="feed-card-meta-new">
-                        <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}">
+                        <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}; display:inline-flex; align-items:center; gap:4px">
                             ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
-                                ? SOCIAL_PLATFORM_ICONS[imp.source].icon + SOCIAL_PLATFORM_ICONS[imp.source].label
+                                ? `<span style="width:11px;height:11px;display:inline-flex;flex-shrink:0">${SOCIAL_PLATFORM_ICONS[imp.source].icon}</span>${SOCIAL_PLATFORM_ICONS[imp.source].label}`
                                 : CATEGORIES[imp.category].label}
                         </span>
                         <span class="feed-card-time">${timeStr}</span>

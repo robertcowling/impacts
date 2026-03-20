@@ -160,5 +160,59 @@
       "synthesis": "Precautionary power disconnection near Ross-on-Wye as River Wye approaches critical levels. Extends the infrastructure impact picture into Herefordshire. Consistent with the A40 flooding threat in the same area.",
       "confidenceStatement": "Medium confidence. Official precautionary disconnection report. Consistent with River Wye gauge data."
     }
+  },
+  {
+    "id": "ev-energy-6",
+    "lat": 51.5558,
+    "lng": -1.7797,
+    "category": "energy",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:15:00.000Z",
+    "title": "Western Power: Approximately 350 Properties Affected – Wiltshire",
+    "locationName": "Wiltshire | Swindon Rural | North Wiltshire",
+    "evidence": "Western Power Distribution reports approximately 350 rural properties in north Wiltshire without power following storm damage to overhead lines. Wind and rain causing conductor clashing on rural distribution circuits. Engineers deployed but access to some sites delayed by surface water on rural lanes.",
+    "source": "Power Companies",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 62,
+      "justification": "Official Western Power report of rural outage in north Wiltshire consistent with storm conditions spreading into the area. Rural overhead line networks are particularly vulnerable to combined wind and rain. 350 properties is a notable but localised impact.",
+      "sourceLabel": "Power Companies",
+      "sourceReliability": "Official",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "11:15",
+      "endTiming": "",
+      "synthesis": "Rural power outage in north Wiltshire affecting approximately 350 properties. Storm damage to overhead lines. Extends the infrastructure impact footprint into central southern England.",
+      "confidenceStatement": "Medium confidence. Official energy company report. Minor localised outage consistent with storm conditions."
+    }
+  },
+  {
+    "id": "ev-energy-7",
+    "lat": 52.1920,
+    "lng": -2.2200,
+    "category": "energy",
+    "severity": "minor",
+    "timestamp": "2025-11-14T13:00:00.000Z",
+    "title": "Western Power: Rural Outages – Worcestershire Countryside",
+    "locationName": "Worcestershire | Vale of Evesham | Mid Worcestershire",
+    "evidence": "Western Power Distribution advises of multiple small rural outages across the Worcestershire countryside, collectively affecting approximately 280 properties. Individual faults on separate rural feeder lines. Cause attributed to storm conditions. Engineers responding to priority cases first.",
+    "source": "Power Companies",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 60,
+      "justification": "Multiple rural outages across Worcestershire is a pattern consistent with storm conditions spreading into the Midlands. Feeder line faults in rural areas are a typical infrastructure response to prolonged rainfall and wind.",
+      "sourceLabel": "Power Companies",
+      "sourceReliability": "Official",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "13:00",
+      "endTiming": "",
+      "synthesis": "Multiple small rural power outages across Worcestershire affecting approximately 280 properties. Adds to the picture of spreading infrastructure impact across central England.",
+      "confidenceStatement": "Medium confidence. Official report of multiple rural faults. Minor distributed impact."
+    }
   }
 ]

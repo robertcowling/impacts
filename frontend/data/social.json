@@ -1098,5 +1098,181 @@
         "time": "~2h ago"
       }
     ]
+  },
+  {
+    "id": "ev-social-25",
+    "lat": 52.1920,
+    "lng": -2.2200,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T09:30:00.000Z",
+    "title": "Worcester – Surface Water Reports on Local Roads",
+    "locationName": "Worcestershire | Worcester City | Worcester",
+    "evidence": "X (Twitter) posts from Worcester and the surrounding Vale of Evesham describe surface water on local roads, particularly on lower-lying routes near the River Severn and Avon. Some posts note queuing on the A44 near Pershore. Residents advised to avoid flood-prone routes.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Community social media reporting from Worcester consistent with developing conditions in the Severn Valley. Surface water on routes near the rivers Severn and Avon is typical during sustained rainfall in this area.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "09:30",
+      "endTiming": "",
+      "synthesis": "Worcester community posting about surface water and minor road disruption. Adds a Worcestershire social media signal to the central England impact picture as conditions spread northward.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor disruption consistent with conditions."
+    },
+    "posts": [
+      {
+        "user": "@WorcesterLocal",
+        "text": "Roads around the Avon floodplain near Pershore are getting very wet. Surface water across the A44 this morning. Slowing right down. #Worcester #flooding",
+        "time": "~7h ago"
+      },
+      {
+        "user": "@SevernValleyLive",
+        "text": "River Severn at Worcester is noticeably high. Lower riverside car parks already under water. Keep an eye on this one.",
+        "time": "~8h ago"
+      },
+      {
+        "user": "@WorcsMorningCommute",
+        "text": "Take it steady out there today in Worcestershire – surface water on a lot of the rural A roads. B4084 through Pershore is particularly bad.",
+        "time": "~7h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-26",
+    "lat": 51.7520,
+    "lng": -1.2577,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T10:45:00.000Z",
+    "title": "Oxford Area – Standing Water and Disruption Reports",
+    "locationName": "Oxfordshire | Oxford City | Oxford East",
+    "evidence": "Bluesky posts from the Oxford area note standing water in low-lying parts of the city and surrounding villages. River Cherwell described as high near Kidlington. A34 approach roads described as slow with standing water. Some cycle paths flooded.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 50,
+      "justification": "Community Bluesky posts from Oxford consistent with rainfall spreading into Oxfordshire. River Cherwell is flood-prone near Oxford and elevated levels are credible given upstream catchment conditions.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "10:45",
+      "endTiming": "",
+      "synthesis": "Oxford community reporting standing water and high river levels. Adds Oxfordshire to the footprint of central England minor impacts during the event.",
+      "confidenceStatement": "Low confidence. Community social media from Oxford. Minor conditions."
+    },
+    "posts": [
+      {
+        "user": "@OxfordFloodWatch.bsky.social",
+        "text": "Cherwell is very high near Kidlington. Port Meadow is a lake again. The usual flood spots around Oxford are doing their thing. #Oxford #flooding",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@OxfordCyclist.bsky.social",
+        "text": "Most of the Thames Path cycle routes are underwater. Stick to higher ground today if you're cycling in Oxford. #Flooding",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@OxfordTraffic.bsky.social",
+        "text": "A34 approaches to Oxford are slow with surface water. Allow extra time. #Oxford #A34",
+        "time": "~6h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-27",
+    "lat": 51.5558,
+    "lng": -1.7797,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:30:00.000Z",
+    "title": "Wiltshire – Heavy Rain and Local Road Flooding",
+    "locationName": "Wiltshire | Swindon Rural | North Wiltshire",
+    "evidence": "Threads posts from Wiltshire residents describe heavy rainfall causing minor flooding on rural roads and low-lying village streets. Some posts from the Marlborough Downs area note waterlogged tracks. North Wiltshire described as 'very wet' with some minor road ponding.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 47,
+      "justification": "Community Threads posts from Wiltshire describing localised flooding conditions consistent with the rainfall pattern spreading south-eastward. Minor and localised but adds to the central England picture.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "11:30",
+      "endTiming": "",
+      "synthesis": "Wiltshire community posting about heavy rain and minor localised flooding. Extends the social media footprint of the event into Wiltshire.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Wiltshire conditions."
+    },
+    "posts": [
+      {
+        "user": "@NorthWiltsLiving",
+        "text": "Very heavy rain in north Wiltshire this morning. Some lanes near the Marlborough Downs are flooded. Farmers not happy. #Wiltshire",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@SwindonSurrounds",
+        "text": "Loads of surface water on rural roads around north Wiltshire. Take it slow on the B roads today.",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@WiltsWeatherWatch",
+        "text": "Wettest morning in a while here in Wiltshire. Lots of puddles turning into proper flooding on the lower roads. Stay careful out there.",
+        "time": "~5h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-28",
+    "lat": 52.0629,
+    "lng": -1.3396,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:00:00.000Z",
+    "title": "Banbury Area – Surface Water and Slow Traffic",
+    "locationName": "Oxfordshire | Banbury | Banbury",
+    "evidence": "X (Twitter) posts from the Banbury area describe surface water on local roads and slow traffic on the A361 and A422. River Cherwell reported as rising near Cropredy. Posts advising drivers to allow extra time for journeys through north Oxfordshire.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 45,
+      "justification": "Community reports from Banbury area consistent with surface water on the A361 advisory from Oxfordshire Highways. River Cherwell rising near Cropredy is credible given upstream conditions.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "12:00",
+      "endTiming": "",
+      "synthesis": "Banbury area community posting about surface water and minor disruption. Consistent with the A361 advisory. Adds north Oxfordshire to the social media footprint of the event.",
+      "confidenceStatement": "Low confidence. Community social media corroborating highway advisory. Minor disruption."
+    },
+    "posts": [
+      {
+        "user": "@BanburyLocal",
+        "text": "A361 south of Banbury has surface water making it pretty slow going. River Cherwell is also looking very high near Cropredy. #Banbury #flooding",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@NorthOxonDriver",
+        "text": "Wet and slow around Banbury this morning. A422 through Wroxton has a big puddle across it. Take it easy if you're heading through.",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@OxonTrafficAlerts",
+        "text": "Allow extra time in north Oxfordshire today – surface water on multiple A roads in the Banbury area. #Oxfordshire",
+        "time": "~4h ago"
+      }
+    ]
   }
 ]

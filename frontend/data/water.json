@@ -160,5 +160,59 @@
       "synthesis": "Combined sewer overflows confirmed at multiple SE Wales locations. Regulatory notification issued. Adds environmental infrastructure failure dimension to the SE Wales event picture.",
       "confidenceStatement": "Medium confidence. Multi-site official report with regulatory notification. Environmental impact confirmed."
     }
+  },
+  {
+    "id": "ev-water-6",
+    "lat": 51.1000,
+    "lng": -2.8000,
+    "category": "water",
+    "severity": "minor",
+    "timestamp": "2025-11-14T10:30:00.000Z",
+    "title": "Bristol Water: Turbidity Monitoring Elevated – Somerset Levels Catchment",
+    "locationName": "Somerset | Cheddar Gorge Area | Wells",
+    "evidence": "Bristol Water reports elevated turbidity at the Cheddar and Chew Valley reservoir intakes due to surface run-off from the Somerset plateau. Water treatment processes adjusted. No supply disruption. Increased chemical dosing applied as a precautionary measure.",
+    "source": "Water Analytics",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 60,
+      "justification": "Bristol Water turbidity alert at Somerset intakes is consistent with heavy rainfall running off the Mendip Hills and Somerset plateau. Standard operational response with no supply disruption. Adds water infrastructure dimension to the Somerset picture.",
+      "sourceLabel": "Water Analytics",
+      "sourceReliability": "Official",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "10:30",
+      "endTiming": "",
+      "synthesis": "Elevated turbidity at Bristol Water Somerset intakes. Precautionary treatment adjustment in place. No supply disruption. Adds infrastructure monitoring signal from the Somerset catchment.",
+      "confidenceStatement": "Medium confidence. Official turbidity monitoring alert. No disruption. Standard operational response."
+    }
+  },
+  {
+    "id": "ev-water-7",
+    "lat": 51.4010,
+    "lng": -1.3230,
+    "category": "water",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:00:00.000Z",
+    "title": "Thames Water: River Kennet Monitoring – Abstraction Under Review Near Newbury",
+    "locationName": "West Berkshire | River Kennet | Newbury",
+    "evidence": "Thames Water places River Kennet abstraction near Newbury under precautionary review as levels rise and turbidity increases. No abstraction suspension at this time. Backup groundwater supplies confirmed available. Monitoring will continue through the afternoon.",
+    "source": "Water Analytics",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 58,
+      "justification": "Thames Water precautionary monitoring of the River Kennet near Newbury is consistent with rainfall accumulation in the upper Kennet catchment. No disruption at present. Adds water infrastructure signal from the Thames Valley area.",
+      "sourceLabel": "Water Analytics",
+      "sourceReliability": "Official",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "12:00",
+      "endTiming": "",
+      "synthesis": "Thames Water precautionary monitoring of Kennet abstraction near Newbury. No supply disruption. Consistent with rainfall in the upper Thames catchment. Adds a central England water infrastructure dimension.",
+      "confidenceStatement": "Medium confidence. Precautionary monitoring only. No disruption confirmed."
+    }
   }
 ]

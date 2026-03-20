@@ -39,9 +39,9 @@
     "source": "EA Internal",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 75,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 88,
       "justification": "EA flood warning for Clydach Gorge corroborates Traffic Wales A465 closure. EA gauge data showing extreme flow rates adds hydrological authority to the event assessment. Field team deployment confirms severity.",
       "sourceLabel": "EA Internal",
       "sourceReliability": "Official",
@@ -50,7 +50,7 @@
       "startTiming": "09:45",
       "endTiming": "",
       "synthesis": "EA flood warning active for Clydach Gorge. Gauge data confirms extreme flow. Strongly corroborates A465 closure and adds hydrological evidence to the primary SE Wales impact.",
-      "confidenceStatement": "Medium confidence. EA flood warning corroborates A465 closure. Gauge data authoritative."
+      "confidenceStatement": "High confidence. Active EA flood warning with gauge data and field team deployment. Strongly corroborates A465 closure."
     }
   },
   {
@@ -66,9 +66,9 @@
     "source": "EA Internal",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 78,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 90,
       "justification": "Flood warning upgrade at Abergavenny with gauge at 3.8m and rising. EA officer presence at at-risk properties confirms on-the-ground severity assessment. Direct notification to properties adds community dimension.",
       "sourceLabel": "EA Internal",
       "sourceReliability": "Official",
@@ -77,7 +77,7 @@
       "startTiming": "10:30",
       "endTiming": "",
       "synthesis": "EA flood warning upgraded at Abergavenny with gauge at 3.8m and rising. EA officers attending. Strongly corroborates Traffic Wales A40 advisory and community social media reports for Abergavenny.",
-      "confidenceStatement": "Medium confidence. Flood warning upgrade with gauge data and officer attendance. Strongly corroborated."
+      "confidenceStatement": "High confidence. Authoritative EA flood warning upgrade with gauge data and officer attendance on the ground."
     }
   },
   {
@@ -93,9 +93,9 @@
     "source": "EA Internal",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 82,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 92,
       "justification": "EA flood warning at Newport with gauge at 4.1m and rising. Predicted peak of 4.5m–4.8m represents a significant flood event for the Newport floodplain. EA staff deployment and predictive modelling adds authoritative assessment.",
       "sourceLabel": "EA Internal",
       "sourceReliability": "Official",
@@ -104,7 +104,7 @@
       "startTiming": "12:00",
       "endTiming": "",
       "synthesis": "EA flood warning active at Newport with River Usk at 4.1m and rising toward predicted peak of 4.5m–4.8m. EA staff deployed. Hydrological peak expected by early evening. Corroborates all concurrent official and community reporting from Newport.",
-      "confidenceStatement": "Medium confidence. Active flood warning with gauge data and hydrological peak prediction. High corroboration."
+      "confidenceStatement": "High confidence. Active EA flood warning with gauge data, staff deployed, and hydrological peak prediction. Extensively corroborated."
     }
   },
   {
@@ -120,9 +120,9 @@
     "source": "EA Internal",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 77,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 88,
       "justification": "EA flood warning at Ross-on-Wye is authoritative confirmation of the River Wye conditions reported by National Highways and the Hereford Times. Gauge at 4.2m is well above normal and rising trajectory is concerning for A40 and adjacent properties.",
       "sourceLabel": "EA Internal",
       "sourceReliability": "Official",
@@ -131,7 +131,7 @@
       "startTiming": "14:00",
       "endTiming": "",
       "synthesis": "EA flood warning at Ross-on-Wye confirms River Wye at 4.2m and rising. Corroborates National Highways A40 advisory and regional media reporting. 120 properties notified.",
-      "confidenceStatement": "Medium confidence. Official EA flood warning with gauge data. Strongly corroborates multiple concurrent sources."
+      "confidenceStatement": "High confidence. Official EA flood warning with gauge data. Cross-corroborated by National Highways, local media, and 120 properties notified."
     }
   },
   {
