@@ -613,6 +613,13 @@ function setupEvents() {
         syncDualSlider();
         renderImpacts();
         updateStats();
+
+        // Pulse the card twice to signal the time change
+        const card = document.getElementById('demo-time-preset');
+        card.classList.remove('pulsing');
+        void card.offsetWidth; // force reflow so animation restarts
+        card.classList.add('pulsing');
+        card.addEventListener('animationend', () => card.classList.remove('pulsing'), { once: true });
     });
 
     // View Period Dropdown
