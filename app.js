@@ -29,11 +29,10 @@ const BASEMAPS = {
 const CATEGORIES = {
     roads: { label: 'National Highways / Traffic Wales', color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>' },
     railways: { label: 'Railway Marketplace', color: '#5b61a1', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2L7 22M17 2L17 22M7 5H17M7 10H17M7 15H17M7 20H17"/></svg>' },
-    social: { label: 'Social', color: '#4e828a', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' },
+    social: { label: 'Social', color: '#4e828a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
     news: { label: 'Online News', color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM6 6h12M6 10h12M6 14h6M6 18h6M16 14v4"/></svg>' },
     energy: { label: 'Power Companies', color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
-    'google-trends': { label: 'Google Trends', color: '#a15b5b', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></circle></svg>' },
     'ea-help': { label: 'EA Help Report', color: '#4e8a6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>' }
 };
 
@@ -91,10 +90,9 @@ const PEXELS_PHOTOS = [
  * Generates a detailed assessment for a single impact
  */
 function generateAssessment(category, severity, sourceLabel) {
-    const isGoogleTrends = category === 'google-trends';
     const isOfficial = ['roads', 'railways', 'energy', 'water', 'ea-help'].includes(category);
     
-    const confValue = isGoogleTrends ? Math.random() : 0.7 + Math.random() * 0.3;
+    const confValue = 0.7 + Math.random() * 0.3;
     let confidenceLabel = 'High';
     let confidenceColor = '#4ade80';
     if (confValue < 0.6) {
@@ -449,7 +447,7 @@ async function init() {
     L.control.zoom({ position: 'topright' }).addTo(State.map);
 
     // Fetch and Load Intelligence Data from Folder
-    const dataSources = ['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help', 'google-trends'];
+    const dataSources = ['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help'];
     try {
         const fetchResults = await Promise.all(
             dataSources.map(src => fetch(`data/${src}.json`).then(r => r.ok ? r.json() : []))
@@ -1503,8 +1501,13 @@ function renderFeed(filtered) {
                 <div class="feed-card-header-inner">
                     <div class="feed-card-meta-new">
                         <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}; display:inline-flex; align-items:center; gap:4px">
+                            <span style="width:11px;height:11px;display:inline-flex;flex-shrink:0">
+                                ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
+                                    ? SOCIAL_PLATFORM_ICONS[imp.source].icon
+                                    : CATEGORIES[imp.category].icon}
+                            </span>
                             ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
-                                ? `<span style="width:11px;height:11px;display:inline-flex;flex-shrink:0">${SOCIAL_PLATFORM_ICONS[imp.source].icon}</span>${SOCIAL_PLATFORM_ICONS[imp.source].label}`
+                                ? SOCIAL_PLATFORM_ICONS[imp.source].label
                                 : CATEGORIES[imp.category].label}
                         </span>
                         <span class="feed-card-time">${timeStr}</span>
@@ -1573,25 +1576,6 @@ function renderFeed(filtered) {
                         </div>
                     </div>
                 </div>
-
-                ${imp.posts && imp.posts.length ? `
-                <div class="social-posts-header">
-                    <span>Community posts</span>
-                </div>
-                <div class="social-posts-scroll-wrap">
-                    <div class="social-posts-container">
-                        ${imp.posts.map(post => `
-                            <div class="social-post-mini">
-                                <div class="post-header-mini">
-                                    <span class="post-user">${post.user}</span>
-                                    <span class="post-time">${post.time}</span>
-                                </div>
-                                <div class="post-text">${post.text}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                ` : ''}
             </div>
         `;
 
