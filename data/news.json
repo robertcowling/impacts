@@ -66,9 +66,9 @@
     "source": "Online News",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 72,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 87,
       "justification": "BBC Wales report corroborates Traffic Wales official closure. Spokesperson quote adds credibility. First major news milestone of the event. Strong signal corroboration.",
       "sourceLabel": "Online News",
       "sourceReliability": "Unofficial",
@@ -77,7 +77,7 @@
       "startTiming": "10:50",
       "endTiming": "",
       "synthesis": "BBC Wales confirming A465 closure with Traffic Wales spokesperson. Marks the event breaking into mainstream news coverage. Strong corroboration of the primary SE Wales road closure.",
-      "confidenceStatement": "Medium confidence. Credible mainstream news coverage with official source interview."
+      "confidenceStatement": "High confidence. BBC Wales with official spokesperson quote. Strongly corroborates Traffic Wales closure data."
     }
   },
   {
@@ -120,9 +120,9 @@
     "source": "Online News",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 75,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 88,
       "justification": "BBC News national coverage strongly corroborates the M4 closure and its strategic significance. Media characterisation of the event as historically significant is consistent with the dual road-rail closure picture emerging from official sources.",
       "sourceLabel": "Online News",
       "sourceReliability": "Unofficial",
@@ -131,7 +131,7 @@
       "startTiming": "13:05",
       "endTiming": "",
       "synthesis": "BBC News providing national-level coverage of the M4 Newport closure. Characterises the event as historically significant for South Wales transport. Strongly corroborates strategic impact of the closure.",
-      "confidenceStatement": "Medium confidence. National BBC coverage. Strongly corroborates strategic significance of M4 closure."
+      "confidenceStatement": "High confidence. National BBC News coverage with cross-corroboration from multiple official transport sources."
     }
   },
   {
@@ -201,9 +201,9 @@
     "source": "Online News",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 70,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 82,
       "justification": "WalesOnline comprehensive community impact article with police attribution. Emergency shelter opening is a strong indicator of significant residential impact. 'Worst in a decade' characterisation is consistent with the scale of road and rail closures.",
       "sourceLabel": "Online News",
       "sourceReliability": "Unofficial",
@@ -212,7 +212,61 @@
       "startTiming": "15:45",
       "endTiming": "",
       "synthesis": "WalesOnline comprehensive coverage of Newport's flooding emergency with police attribution and emergency shelter confirmation. Supports the assessment of this as a significant, high-impact event for Southeast Wales.",
-      "confidenceStatement": "Medium confidence. Comprehensive community impact article with police and emergency services attribution."
+      "confidenceStatement": "High confidence. Confirmed emergency shelters opened and South Wales Police attribution. Multiple official sources corroborate severity."
+    }
+  },
+  {
+    "id": "ev-news-8",
+    "lat": 52.1920,
+    "lng": -2.2200,
+    "category": "news",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:00:00.000Z",
+    "title": "Worcestershire Live: Surface Water Causing Disruption Across County",
+    "locationName": "Worcestershire | Vale of Evesham | Mid Worcestershire",
+    "evidence": "Worcestershire Live publishes a rolling traffic update noting surface water disruption on multiple Worcestershire roads including the A44, A422, and several B-roads across the Vale of Evesham. Highways England and Worcestershire County Council advisories cited. Advice to check before travelling issued to motorists.",
+    "source": "Online News",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 62,
+      "justification": "Worcestershire Live aggregating official highway advisories for the county. Consistent with the pattern of surface water disruption spreading into central England. Regional media amplification of official source data.",
+      "sourceLabel": "Online News",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "11:00",
+      "endTiming": "",
+      "synthesis": "Worcestershire Live covering surface water disruption across the county. Media amplification of official advisories. Adds regional news corroboration to the central England minor impact picture.",
+      "confidenceStatement": "Medium confidence. Regional media aggregating official advisories. Consistent with conditions."
+    }
+  },
+  {
+    "id": "ev-news-9",
+    "lat": 51.4010,
+    "lng": -1.3230,
+    "category": "news",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:30:00.000Z",
+    "title": "Newbury Weekly News: A34 and Local Roads Affected by Surface Water",
+    "locationName": "West Berkshire | A34 | Newbury",
+    "evidence": "Newbury Weekly News online publishes a traffic advisory alert noting surface water on the A34 and on local roads across West Berkshire. Article references National Highways advisory and quotes Berkshire emergency planning team as monitoring the situation. Thames Water also noted as monitoring the River Kennet.",
+    "source": "Online News",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 60,
+      "justification": "Local media coverage in the Thames Valley consistent with National Highways A34 advisory. Multi-agency monitoring (Berkshire emergency planning, Thames Water) adds credibility to the assessment that conditions in the area are being actively watched.",
+      "sourceLabel": "Online News",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "12:30",
+      "endTiming": "",
+      "synthesis": "Newbury local news reporting surface water on A34 and local roads with multi-agency monitoring noted. Adds Thames Valley regional media context to the central England minor impact picture.",
+      "confidenceStatement": "Medium confidence. Local media corroborating official advisory. Multi-agency monitoring mentioned."
     }
   }
 ]

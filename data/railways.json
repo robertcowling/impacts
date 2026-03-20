@@ -93,9 +93,9 @@
     "source": "Railway Marketplace",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 76,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 88,
       "justification": "TfW service suspension confirmed. Trackside flooding near Newport correlates with simultaneous road flooding at M4 J24–J25. Dual road and rail disruption at Newport significantly degrades transport connectivity between England and South Wales.",
       "sourceLabel": "Railway Marketplace",
       "sourceReliability": "Official",
@@ -104,7 +104,7 @@
       "startTiming": "09:30",
       "endTiming": "",
       "synthesis": "All rail services through Newport suspended due to trackside flooding. Combined with the M4 road closure, Newport is now a major bottleneck severing the England–South Wales transport corridor. Replacement buses face the same road conditions affecting all other traffic.",
-      "confidenceStatement": "Medium confidence. Service suspension confirmed. Dual road-rail impact at Newport corroborated."
+      "confidenceStatement": "High confidence. Service suspension confirmed by TfW. Dual road-rail disruption at Newport cross-corroborated by multiple official sources."
     }
   },
   {
@@ -120,9 +120,9 @@
     "source": "Railway Marketplace",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 80,
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 90,
       "justification": "TfW advisory confirmed. Cardiff Central disruption is a direct downstream consequence of the Newport suspension. London services are the busiest and most frequent on this corridor. Significant passenger impact is accumulating at Cardiff.",
       "sourceLabel": "Railway Marketplace",
       "sourceReliability": "Official",
@@ -131,7 +131,7 @@
       "startTiming": "11:15",
       "endTiming": "",
       "synthesis": "Cardiff Central is severely disrupted with London services cancelled. The cascading effect of the Newport closure is now being felt across the entire South Wales main line. Passengers are unable to travel between Cardiff and London by either rail or road.",
-      "confidenceStatement": "Medium confidence. Confirmed disruption. Cascading impact from Newport rail suspension well-established."
+      "confidenceStatement": "High confidence. Confirmed TfW disruption with cascading impacts well-established across multiple corroborating sources."
     }
   },
   {

@@ -53,13 +53,13 @@
     bottom: 16px;
     left: 16px;
     z-index: 1000;
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1.5px solid var(--border-color);
+    padding: 9px 18px;
+    background: rgba(254, 226, 226, 0.95);
+    border: 1.5px solid rgba(220, 38, 38, 0.25);
     border-radius: 8px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--text-secondary);
+    color: #b91c1c;
     pointer-events: none;
     box-shadow: var(--card-shadow);
     letter-spacing: 0.01em;
@@ -1419,64 +1419,41 @@ h1 span {
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 11px 14px;
-    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
-    border: none;
+    gap: 8px;
+    padding: 0 14px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
 .mcp-server-btn:hover {
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
+    background: #ffffff;
+    border-color: var(--text-primary);
     transform: translateY(-1px);
-}
-
-.mcp-btn-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 6px;
-    flex-shrink: 0;
-}
-
-.mcp-btn-icon svg {
-    width: 14px;
-    height: 14px;
-    color: #ffffff;
-}
-
-.mcp-btn-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1px;
-    flex: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .mcp-btn-label {
-    font-size: 0.75rem;
+    flex: 1;
+    text-align: left;
+}
+
+.mcp-badge {
+    font-size: 0.6rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: #ffffff;
-    line-height: 1.2;
-}
-
-.mcp-btn-sub {
-    font-size: 0.65rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.2;
-}
-
-.mcp-btn-arrow {
-    width: 14px;
-    height: 14px;
-    color: rgba(255,255,255,0.5);
+    background: #2563eb;
+    padding: 2px 6px;
+    border-radius: 4px;
     flex-shrink: 0;
 }
 
