@@ -47,8 +47,8 @@ const SOCIAL_PLATFORM_ICONS = {
     },
     'Threads': {
         label: 'Threads',
-        icon: '<svg viewBox="0 0 192 192" fill="currentColor"><path d="M141.537 88.988c-.921-.53-1.857-1.043-2.806-1.538-1.675-34.221-20.553-53.76-51.954-53.96-18.71-.122-35.168 7.487-45.025 21.17l17.184 11.797c7.154-10.909 18.398-13.241 27.858-13.241.087 0 .175 0 .262.001 10.77.072 18.906 3.199 24.182 9.295 3.836 4.387 6.413 10.495 7.699 18.254-9.603-1.633-19.975-2.135-31.01-1.499-31.257 1.818-51.387 20.243-50.025 45.805.71 13.192 7.439 24.528 18.96 31.93 9.722 6.309 22.249 9.395 35.31 8.666 17.173-.952 30.623-7.485 40.013-19.421 7.239-9.256 11.815-21.26 13.787-36.425 8.267 4.994 14.396 11.634 17.785 19.668 5.956 14.271 6.309 37.688-12.255 56.194-16.387 16.344-36.067 23.394-65.911 23.614-33.04-.249-58.032-10.884-74.269-31.617-15.098-19.283-22.934-47.466-23.209-83.836.275-36.37 8.111-64.553 23.209-83.836 16.237-20.733 41.229-31.368 74.269-31.617 33.261.25 58.573 10.928 75.225 31.73 8.124 10.274 14.269 23.245 18.328 38.477l20.195-5.376c-4.97-18.575-12.857-34.505-23.616-47.602C151.845 16.943 121.651 3.408 83.999 3.15c-37.88.259-67.736 13.906-88.695 40.563C-23.038 66.009-32.03 97.785-32.03 136c0 38.215 8.992 69.991 27.304 92.287 20.959 26.657 50.815 40.304 88.695 40.563 31.854-.214 55.655-8.647 74.975-27.889 25.389-25.291 24.709-58.032 16.337-78.428-5.969-14.312-17.413-25.994-33.744-34.545z"/></svg>'
-    }
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 13.5c-.5.5-1.3.5-1.8 0a1.8 1.8 0 1 1 1.8 0c0 1-.8 1.5-1.8 1.5-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4c0 .8-.2 1.5-.5 2M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/></svg>'
+    },
 };
 
 const SOCIAL_SUB_SOURCE_MAP = {
@@ -66,9 +66,9 @@ const IMPACT_TYPES = {
 };
 
 const SEVERITIES = {
-    minor: { label: 'Minor', color: '#dbeafe' },
+    minor: { label: 'Minor', color: '#93c5fd' },
     significant: { label: 'Significant', color: '#2563eb' },
-    severe: { label: 'Severe', color: '#0f172a' }
+    severe: { label: 'Severe', color: '#001f3f' }
 };
 
 const PEXELS_PHOTOS = [
@@ -386,8 +386,21 @@ async function init() {
             dataSources.map(src => fetch(`data/${src}.json`).then(r => r.ok ? r.json() : []))
         );
         
-        // Flatten and enrich with spatial data / Date objects
-        const rawImpacts = fetchResults.flat();
+        // Flatten, limit energy/water to 1 each, and thin minor/significant by 15%
+        const rawImpactsFlat = fetchResults.flat();
+        let eCount = 0;
+        let wCount = 0;
+        const rawImpacts = rawImpactsFlat.filter(imp => {
+            if (imp.category === 'energy') return ++eCount <= 1;
+            if (imp.category === 'water') return ++wCount <= 1;
+            
+            // Thin non-severe impacts by 15%
+            if (imp.severity !== 'severe') {
+                return Math.random() > 0.15;
+            }
+            return true;
+        });
+
         State.impacts = rawImpacts.map(impact => {
             const enriched = { 
                 ...impact, 
@@ -1194,9 +1207,21 @@ function renderImpacts() {
     // Filter for markers (don't show national impacts as single markers)
     const filteredForMarkers = filtered.filter(imp => !imp.isNational);
 
+    const coordCounts = new Map();
     filteredForMarkers.forEach(imp => {
         const locations = imp.locations || [{ lat: imp.lat, lng: imp.lng }];
         locations.forEach(loc => {
+            const coordKey = `${loc.lat.toFixed(5)},${loc.lng.toFixed(5)}`;
+            const count = coordCounts.get(coordKey) || 0;
+            coordCounts.set(coordKey, count + 1);
+            
+            // Spiral jitter for overlapping markers - prevents overlapping icons without linear artifacts
+            const angle = count * 137.5 * (Math.PI / 180); // Golden angle
+            const distStep = 0.032; // Base separation (~2km+)
+            const radius = count === 0 ? 0 : distStep * Math.sqrt(count);
+            const lat = loc.lat + Math.sin(angle) * radius;
+            const lng = loc.lng + (Math.cos(angle) * radius) / Math.cos(loc.lat * Math.PI / 180);
+
             const markerSvg = imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
                 ? SOCIAL_PLATFORM_ICONS[imp.source].icon
                 : CATEGORIES[imp.category].icon;
@@ -1206,7 +1231,7 @@ function renderImpacts() {
                 iconSize: [28, 28],
                 iconAnchor: [14, 14]
             });
-            const marker = L.marker([loc.lat, loc.lng], { icon: markerIcon });
+            const marker = L.marker([lat, lng], { icon: markerIcon });
             marker.impactId = imp.id;
             marker.on('click', () => showImpactDetails(imp)).addTo(State.map);
             State.markers.push(marker);
@@ -1263,9 +1288,9 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
 
     const ramps = {
         severity: { 
-            minor: '#dbeafe', 
+            minor: '#93c5fd', 
             significant: '#2563eb', 
-            severe: '#0f172a' 
+            severe: '#001f3f' 
         },
         trends: { 
             minor: '#fecaca', 
@@ -1435,7 +1460,7 @@ function renderFeed(filtered) {
                     <div class="feed-card-meta-new">
                         <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}; display:inline-flex; align-items:center; gap:4px">
                             ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
-                                ? `<span style="width:11px;height:11px;display:inline-flex;flex-shrink:0">${SOCIAL_PLATFORM_ICONS[imp.source].icon}</span>${SOCIAL_PLATFORM_ICONS[imp.source].label}`
+                                ? `<span style="width:12px;height:12px;display:inline-flex;flex-shrink:0">${SOCIAL_PLATFORM_ICONS[imp.source].icon}</span>`
                                 : CATEGORIES[imp.category].label}
                         </span>
                         <span class="feed-card-time">${timeStr}</span>
@@ -1460,7 +1485,7 @@ function renderFeed(filtered) {
                         <span class="stat-label">Severity</span>
                         <div class="stat-value">
                             <span class="sev-rect-small" style="background: ${SEVERITIES[imp.severity].color}"></span>
-                            <span class="sev-text-bold" style="color: ${SEVERITIES[imp.severity].color}">${SEVERITIES[imp.severity].label}</span>
+                            <span class="sev-text-bold">${SEVERITIES[imp.severity].label}</span>
                         </div>
                     </div>
                     ${imp.assessment ? `
