@@ -14,13 +14,13 @@
     /* Impact Categories - De-saturated */
     --clr-roads: #446b82;
     --clr-railways: #5b61a1;
-    --clr-social: #4e828a;
+    --clr-social: #bae6fd; /* Pale Blue for contrast */
     --clr-news: #8a4e6b;
     --clr-energy: #8a7d4e;
     --clr-water: #4e6b8a;
     --clr-proxy: #64748b;
     --clr-google-trends: #a15b5b;
-    --clr-ea-help: #4e8a6b;
+    --clr-ea-help: #ffffff;
     
     /* Severity Levels - High Contrast Blue Ramp */
     --severity-minor: #93c5fd;
@@ -1939,6 +1939,7 @@ main {
     border-radius: 4px;
     margin-right: 12px;
     flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.15);
 }
 
 /* Indicators */
@@ -2101,6 +2102,7 @@ main {
     width: 14px;
     height: 14px;
     border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.15);
 }
 
 .filter-chip:hover, .severity-chip:hover {
@@ -2175,6 +2177,7 @@ main {
     width: 10px;
     height: 10px;
     border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .chip-dot.transport { background: var(--clr-primary); box-shadow: 0 0 8px var(--clr-primary); }
@@ -3986,11 +3989,18 @@ main {
 /* Marker inner categories */
 .marker-inner.roads { background: var(--clr-roads); border-color: #334155; }
 .marker-inner.railways { background: var(--clr-railways); border-color: #334155; }
-.marker-inner.social { background: var(--clr-social); border-color: #334155; }
+.marker-inner.social { 
+    background: var(--clr-social); 
+    border-color: #7dd3fc;
+    color: #075985; /* Darker Blue icon for contrast on pale background */
+}
 .marker-inner.news { background: var(--clr-news); border-color: #334155; }
 .marker-inner.energy { background: var(--clr-energy); border-color: #334155; }
 .marker-inner.water { background: var(--clr-water); border-color: #334155; }
-.marker-inner.ea-help { background: var(--clr-ea-help); border-color: #334155; }
+.marker-inner.ea-help { 
+    background: #ffffff; 
+    border-color: #cbd5e1; 
+}
 .marker-inner.proxy { background: var(--clr-proxy); border-color: #334155; }
 .marker-inner.google-trends { background: var(--clr-google-trends); border-color: #334155; }
 
