@@ -143,7 +143,7 @@
                             <label class="filter-item-row filter-chip active" data-category="roads">
                                 <input type="checkbox" checked value="roads">
                                 <span class="category-indicator roads"></span>
-                                <span class="item-label">National Highways</span>
+                                <span class="item-label">National Highways / Traffic Wales</span>
                                 <span class="only-trigger">Only</span>
                             </label>
                             <label class="filter-item-row filter-chip active" data-category="railways">
@@ -152,12 +152,40 @@
                                 <span class="item-label">Railway Marketplace</span>
                                 <span class="only-trigger">Only</span>
                             </label>
-                            <label class="filter-item-row filter-chip active" data-category="social">
-                                <input type="checkbox" checked value="social">
-                                <span class="category-indicator social"></span>
-                                <span class="item-label">Twitter</span>
-                                <span class="only-trigger">Only</span>
-                            </label>
+                            
+                            <div class="nested-filter-group">
+                                <label class="filter-item-row filter-chip active" data-category="social" id="social-parent-toggle">
+                                    <input type="checkbox" checked value="social">
+                                    <span class="category-indicator social"></span>
+                                    <span class="item-label">Social</span>
+                                    <span class="only-trigger">Only</span>
+                                    <span class="collapse-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                                    </span>
+                                </label>
+                                <div class="sub-filter-list hidden" id="social-sub-menu">
+                                    <label class="sub-filter-item" data-sub-category="all">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">Show All</span>
+                                    </label>
+                                    <label class="sub-filter-item" data-sub-category="x">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">X (Twitter)</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                    <label class="sub-filter-item" data-sub-category="bluesky">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">Bluesky</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                    <label class="sub-filter-item" data-sub-category="threads">
+                                        <span class="sub-dot"></span>
+                                        <span class="sub-label">Threads</span>
+                                        <span class="only-trigger">Only</span>
+                                    </label>
+                                </div>
+                            </div>
+
                             <label class="filter-item-row filter-chip active" data-category="news">
                                 <input type="checkbox" checked value="news">
                                 <span class="category-indicator news"></span>
@@ -271,6 +299,7 @@
             <main>
                 <div id="map-container">
                     <div id="map"></div>
+                    <div id="demo-label" class="demo-label">Demo only - all data is synthetic</div>
                     
                     <!-- Directed Search Overlay (Minimized/Active State) -->
                     <div id="deep-dive-status" class="deep-dive-overlay hidden">

@@ -48,6 +48,22 @@
     pointer-events: auto;
 }
 
+.demo-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    z-index: 1000;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    pointer-events: none;
+    box-shadow: var(--card-shadow);
+}
+
 .severity-legend.hidden {
     display: none;
 }
