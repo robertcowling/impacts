@@ -53,15 +53,16 @@
     bottom: 16px;
     left: 16px;
     z-index: 1000;
-    padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid var(--border-color);
     border-radius: 8px;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-secondary);
     pointer-events: none;
     box-shadow: var(--card-shadow);
+    letter-spacing: 0.01em;
 }
 
 .severity-legend.hidden {
@@ -1419,33 +1420,69 @@ h1 span {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 14px;
-    background: #ffffff;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-secondary);
+    padding: 11px 14px;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 
 .mcp-server-btn:hover {
-    background: #f1f5f9;
-    border-color: var(--clr-primary);
-    color: var(--clr-primary);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
+    transform: translateY(-1px);
 }
 
-.mcp-server-btn svg {
+.mcp-btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.mcp-btn-icon svg {
     width: 14px;
     height: 14px;
-    color: var(--clr-primary);
+    color: #ffffff;
+}
+
+.mcp-btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    flex: 1;
+}
+
+.mcp-btn-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.mcp-btn-sub {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.2;
+}
+
+.mcp-btn-arrow {
+    width: 14px;
+    height: 14px;
+    color: rgba(255,255,255,0.5);
+    flex-shrink: 0;
 }
 
 /* MCP Modal Content */
 .mcp-modal-content {
-    width: 450px;
+    width: 520px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 40px 100px -20px rgba(0,0,0,0.3);
@@ -1456,6 +1493,92 @@ h1 span {
 @keyframes modalPop {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
+}
+
+.mcp-modal-header-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mcp-modal-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #2563eb;
+    background: #eff6ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    align-self: flex-start;
+}
+
+.mcp-modal-sub {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.mcp-modal-body {
+    padding: 20px 24px 24px;
+}
+
+.mcp-brief-intro {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.mcp-brief-bullets {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mcp-brief-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.mcp-bullet-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.mcp-bullet-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
+.mcp-bullet-social { background: #4e828a20; color: #4e828a; }
+.mcp-bullet-roads  { background: #446b8220; color: #446b82; }
+.mcp-bullet-ea     { background: #4e8a6b20; color: #4e8a6b; }
+.mcp-bullet-rail   { background: #5b61a120; color: #5b61a1; }
+.mcp-bullet-energy { background: #8a7d4e20; color: #8a7d4e; }
+
+.mcp-brief-footer {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin: 0;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+    font-style: italic;
 }
 
 /* View Mode Selector (Sidebar) */
