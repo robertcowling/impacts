@@ -588,6 +588,33 @@ function setupEvents() {
         renderImpacts();
     });
 
+    // Demo Time Preset Dropdown (top-left of map)
+    document.getElementById('demo-time-preset-select').addEventListener('change', (e) => {
+        const val = e.target.value;
+        const now = new Date(FIXED_NOW);
+        const todayStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 0, 0));
+
+        // Convert an absolute Date to a 0–48 slider position (clamped)
+        function toPos(date) {
+            return Math.min(48, Math.max(0, 48 - (now - date) / 3600000));
+        }
+
+        const start = toPos(todayStart); // midnight start — same for all presets
+        let end;
+        if      (val === '0800')          end = toPos(new Date(todayStart.getTime() + 8  * 3600000));
+        else if (val === 'midmorning')    end = toPos(new Date(todayStart.getTime() + 11 * 3600000));
+        else if (val === 'earlyafternoon')end = toPos(new Date(todayStart.getTime() + 14 * 3600000));
+        else /* endofday */               end = toPos(new Date(todayStart.getTime() + 24 * 3600000)); // midnight Sat → capped at 48
+
+        State.windowStart = start;
+        State.windowEnd = end;
+        State.lastWindowDuration = end - start;
+        document.getElementById('view-period-select').value = 'custom';
+        syncDualSlider();
+        renderImpacts();
+        updateStats();
+    });
+
     // View Period Dropdown
     document.getElementById('view-period-select').addEventListener('change', (e) => {
         const val = e.target.value;
