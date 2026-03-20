@@ -1,1352 +1,1588 @@
 [
   {
     "id": "ev-social-0",
-    "lat": 52.4758532596398,
-    "lng": 0.9117331035812297,
+    "lat": 53.3811,
+    "lng": -1.4701,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T11:17:47.914Z",
-    "title": "[Threads] Road submerged by rising river",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
-    "source": "Threads",
+    "timestamp": "2025-11-13T15:33:00.000Z",
+    "title": "[X (Twitter)] Weather Warning Shared – Sheffield",
+    "locationName": "South Yorkshire | Sheffield | Sheffield Central",
+    "evidence": "X (Twitter) user in Sheffield shares Met Office yellow weather warning for rain affecting Wales and western England. Post is generic and informational. Low engagement. No direct reports of disruption.",
+    "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 96,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Threads",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 22,
+      "justification": "Generic weather warning share from an unverified public account. Geographically dispersed. No direct observation or evidence of disruption. Background social media noise only.",
+      "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
+      "corroborated": false,
+      "startTiming": "15:33",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Generic weather warning share from Sheffield. No indication of local impact. Dispersed from area of primary interest. Baseline social media noise.",
+      "confidenceStatement": "Low confidence. Dispersed location. Informational share only."
+    },
+    "posts": [
+      {
+        "user": "@SheffieldWeather",
+        "text": "Yellow rain warning in place for Wales and western England tonight into Friday. Stay safe out there 🌧️ #MetOffice",
+        "time": "~25h ago"
+      },
+      {
+        "user": "@NorthernCommuter",
+        "text": "Looks like it's going to be a wet one for parts of Wales and the south west. Hope the roads hold up.",
+        "time": "~26h ago"
+      },
+      {
+        "user": "@WeatherNerd_UK",
+        "text": "Atlantic low tracking in tonight – heavy rain focus on Wales/SW England. Worth watching.",
+        "time": "~26h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-1",
-    "lat": 52.59179007088137,
-    "lng": 1.0499992057155718,
+    "lat": 52.9540,
+    "lng": -1.1550,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T13:15:52.987Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "timestamp": "2025-11-13T19:58:00.000Z",
+    "title": "[X (Twitter)] Weather Discussion – Nottingham",
+    "locationName": "Nottinghamshire | Nottingham | Nottingham South",
+    "evidence": "X (Twitter) discussion thread in Nottingham area about incoming rain and forecast. No local impact reported. Users discussing weekend plans being disrupted by weather. Generic commentary only.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 93,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 18,
+      "justification": "Forecast discussion with no direct disruption reported. Geographically dispersed from primary area of interest. No actionable intelligence. Background noise.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "15:00",
+      "startTiming": "19:58",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Routine weather conversation from Nottingham. No direct evidence of impact. Dispersed and unrelated to developing event focus.",
+      "confidenceStatement": "Low confidence. Generic forecast discussion. No relevance to primary area."
+    },
+    "posts": [
+      {
+        "user": "@NottmWeatherWatch",
+        "text": "Heavy rain on the way for Wales and the west tonight. Might catch the edge of it here by morning.",
+        "time": "~21h ago"
+      },
+      {
+        "user": "@MidlandsTraffic",
+        "text": "Seeing weather warnings for Wales/SW – expect knock-on delays on the M5 and M4 tomorrow morning.",
+        "time": "~21h ago"
+      },
+      {
+        "user": "@EastMidsCommute",
+        "text": "Glad I'm not heading west tomorrow. Looks horrible for Wales.",
+        "time": "~22h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-2",
-    "lat": 51.46441726577922,
-    "lng": -3.1804933594059768,
+    "lat": 51.4545,
+    "lng": -2.5879,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T15:51:18.435Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-13T22:30:00.000Z",
+    "title": "[X (Twitter)] Rain Arriving in Bristol – General Observation",
+    "locationName": "Bristol | Bristol | Bristol West",
+    "evidence": "X (Twitter) users in Bristol noting rain arriving overnight. General observations about heavy rain sounds and wet conditions. No disruption reported. Posts are anecdotal.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 78,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 25,
+      "justification": "Anecdotal rain arrival reports from Bristol. Geographically relevant as a downstream indicator of the approaching frontal system. Low informational value but consistent with expected pattern.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "17:00",
+      "startTiming": "22:30",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Rain observed arriving in Bristol late Thursday evening. Anecdotal but geographically consistent with the approaching weather system. No disruption reported at this stage.",
+      "confidenceStatement": "Low confidence. Anecdotal observation. No direct evidence of disruption."
+    },
+    "posts": [
+      {
+        "user": "@BristolLive_user",
+        "text": "Rain absolutely hammering Bristol right now. Must be that front they were warning about.",
+        "time": "~18h ago"
+      },
+      {
+        "user": "@BristolMum2024",
+        "text": "Can hear the rain from inside the house – sounds intense. Hope the drains keep up.",
+        "time": "~19h ago"
+      },
+      {
+        "user": "@CliftonCommuter",
+        "text": "Getting heavy now in Bristol. Setting my alarm earlier tomorrow just in case the roads are bad.",
+        "time": "~19h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-3",
-    "lat": 51.91028421267913,
-    "lng": -2.8089381418703674,
+    "lat": 53.4084,
+    "lng": -2.9916,
     "category": "social",
-    "severity": "severe",
-    "timestamp": "2025-11-14T14:53:13.827Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "severity": "minor",
+    "timestamp": "2025-11-13T17:45:00.000Z",
+    "title": "[Bluesky] Yellow Warning Noted – Liverpool",
+    "locationName": "Merseyside | Liverpool | Liverpool Riverside",
+    "evidence": "Bluesky post from Liverpool noting the Met Office yellow rain warning for Wales and the south west. Informational share with no local disruption reported. Low engagement.",
+    "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 88,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 20,
+      "justification": "Informational share from Liverpool. Dispersed from primary area of interest. No direct observation or disruption reported. Baseline social media activity.",
+      "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "15:00",
+      "startTiming": "17:45",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Weather warning noted on Bluesky from Liverpool. Geographically dispersed. Baseline noise only.",
+      "confidenceStatement": "Low confidence. Informational share from dispersed location."
+    },
+    "posts": [
+      {
+        "user": "@LiverpoolWeather.bsky.social",
+        "text": "Yellow rain warning still in place for Wales and parts of the south west heading into Friday. Looks significant.",
+        "time": "~23h ago"
+      },
+      {
+        "user": "@NWEnglandWx.bsky.social",
+        "text": "Atlantic low looks pretty potent for SE Wales and the Marches. River flooding possible by Friday afternoon.",
+        "time": "~24h ago"
+      },
+      {
+        "user": "@WxWatcher_UK.bsky.social",
+        "text": "Rainfall totals for Friday could be quite high in SE Wales if the model is right. Watching closely.",
+        "time": "~24h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-4",
-    "lat": 50.83364941762835,
-    "lng": -3.5805864174255078,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T13:20:49.795Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 83,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-5",
-    "lat": 52.51421974000329,
-    "lng": -0.9327556366421725,
+    "lat": 51.3837,
+    "lng": -2.3599,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T16:02:58.316Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 90,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-6",
-    "lat": 51.37007927644576,
-    "lng": -2.4665173610460243,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T14:52:52.341Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 70,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-7",
-    "lat": 51.38628757695915,
-    "lng": -2.728633922150736,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T16:42:09.664Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 75,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-8",
-    "lat": 51.57330172080768,
-    "lng": -3.052378292665898,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T11:19:12.688Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 75,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-9",
-    "lat": 51.88511038812797,
-    "lng": -2.6156483484530404,
-    "category": "social",
-    "severity": "severe",
-    "timestamp": "2025-11-14T09:20:10.772Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 92,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-10",
-    "lat": 51.98860786725335,
-    "lng": 0.09706921902928377,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T16:51:41.105Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 80,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-11",
-    "lat": 53.259380843957096,
-    "lng": -2.0474933008630662,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T08:16:01.995Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 85,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-12",
-    "lat": 52.509330906374615,
-    "lng": -1.614671373435388,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T09:53:49.675Z",
-    "title": "[Threads] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
+    "timestamp": "2025-11-13T21:10:00.000Z",
+    "title": "[Threads] Heavy Rain Noted in Bath",
+    "locationName": "Bath and North East Somerset | Bath | Bath",
+    "evidence": "Threads post from Bath noting heavy rain onset in the late evening. User describes flooding concerns for the River Avon. No direct disruption reported. Local weather observation only.",
     "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 92,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 23,
+      "justification": "Anecdotal rain observation from Bath. Avon catchment concerns noted by local user but no disruption reported. Background noise adjacent to the primary geographic area of interest.",
       "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
+      "corroborated": false,
+      "startTiming": "21:10",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Rain noted in Bath on Thursday evening with informal concern about River Avon. No disruption. Background noise with some geographic proximity to the developing event area.",
+      "confidenceStatement": "Low confidence. Anecdotal observation. No disruption reported."
+    },
+    "posts": [
+      {
+        "user": "@BathLocal",
+        "text": "Heavy rain here in Bath now. River Avon looking higher than usual already. Hope it doesn't get worse tomorrow.",
+        "time": "~20h ago"
+      },
+      {
+        "user": "@SomersetResident",
+        "text": "The Avon always rises fast when it rains like this. Fingers crossed for the weekend.",
+        "time": "~20h ago"
+      },
+      {
+        "user": "@VisitBath_fan",
+        "text": "Torrential rain in Bath tonight. Avoid driving if you can – spray on the roads is bad.",
+        "time": "~21h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-5",
+    "lat": 51.5660,
+    "lng": -3.0200,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T01:28:00.000Z",
+    "title": "[X (Twitter)] M4 Newport – Poor Spray Conditions Reported",
+    "locationName": "Newport | M4 | Newport West",
+    "evidence": "X (Twitter) user travelling westbound on M4 near Newport reports severe spray and reduced visibility. Describes conditions as 'dangerous' but no incidents reported. Advises other drivers to slow down.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 38,
+      "justification": "Unverified first-person account from M4 near Newport in early hours. Consistent with Traffic Wales CCTV observations of speed reduction in the same area. First social signal from the M4 Newport corridor.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "01:28",
+      "endTiming": "",
+      "synthesis": "First social media report from the M4 Newport corridor. Spray and visibility concerns raised by a driver heading west. Consistent with early-morning road conditions emerging in Southeast Wales.",
+      "confidenceStatement": "Low confidence. Unverified first-person account. Consistent with concurrent official data."
+    },
+    "posts": [
+      {
+        "user": "@M4Driver_Wales",
+        "text": "M4 westbound near Newport is absolutely awful right now. Spray everywhere, can barely see 50 metres. Slow down people. #M4 #Wales",
+        "time": "~15h ago"
+      },
+      {
+        "user": "@LateNightDrive_UK",
+        "text": "Just passed Newport on the M4 heading to Cardiff. Conditions are horrendous, standing water in the slow lane.",
+        "time": "~16h ago"
+      },
+      {
+        "user": "@NightShift_Driver",
+        "text": "M4 J28 Newport eastbound – big puddles forming. Traffic Wales should get the VMSs up before it gets worse.",
+        "time": "~16h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-6",
+    "lat": 51.7742,
+    "lng": -2.8520,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T03:15:00.000Z",
+    "title": "[X (Twitter)] A40 Monmouth – Surface Water Warning",
+    "locationName": "Monmouthshire | A40 | Monmouth",
+    "evidence": "X (Twitter) user warns of surface water on A40 near Raglan and Monmouth area. Advises caution for early morning travellers. No closure reported. Post has limited engagement.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 40,
+      "justification": "Unverified user report for A40 near Raglan. Geographically consistent with Traffic Wales CCTV data from the same route. Second social signal from the A40 corridor in Monmouthshire.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "03:15",
+      "endTiming": "",
+      "synthesis": "Social media alert for surface water on A40 near Monmouth. Consistent with concurrent official advisory from Traffic Wales. Pattern of early-morning signal building along the A40 corridor in Southeast Wales.",
+      "confidenceStatement": "Low confidence. Unverified user report. Consistent with official data from same corridor."
+    },
+    "posts": [
+      {
+        "user": "@MonmouthshireDriver",
+        "text": "Caution on the A40 near Raglan early this morning – standing water on the eastbound. Drive carefully. #A40 #Monmouthshire",
+        "time": "~14h ago"
+      },
+      {
+        "user": "@WalesRoadWatch",
+        "text": "Getting reports of surface water on the A40 near Monmouth. Anyone heading that way please take care.",
+        "time": "~14h ago"
+      },
+      {
+        "user": "@SouthWalesAlert",
+        "text": "Early hours and already seeing road water reports for SE Wales. A40 near Raglan is one to watch.",
+        "time": "~14h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-7",
+    "lat": 51.4442,
+    "lng": -2.6100,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T05:30:00.000Z",
+    "title": "[X (Twitter)] M5 Bristol Approach – Heavy Rain Reported",
+    "locationName": "South Gloucestershire | M5 | Filton and Bradley Stoke",
+    "evidence": "X (Twitter) commuter reports heavy rain on M5 northbound approaching Bristol from the south. Spray described as severe. Standing water in nearside lane near J16 M5. No incidents. Traffic flowing slowly.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 42,
+      "justification": "Commuter report from M5 near Bristol. Geographically consistent with the developing picture of road impacts across Southwest England. Adds social signal to the M5 corridor pattern.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "05:30",
+      "endTiming": "",
+      "synthesis": "Heavy rain and spray on M5 northbound near Bristol reported by an early commuter. Part of the emerging pattern of social signals from Southwest England and Southeast Wales.",
+      "confidenceStatement": "Low confidence. Unverified commuter report. Consistent with National Highways M5 data."
+    },
+    "posts": [
+      {
+        "user": "@BristolCommuter",
+        "text": "M5 northbound near J16 is nasty this morning. Heavy spray, can barely see. Going well under 50. #M5 #Bristol",
+        "time": "~11h ago"
+      },
+      {
+        "user": "@SWEnglandTraffic",
+        "text": "M5 south of Bristol seeing bad conditions in the early hours. Take care if heading north.",
+        "time": "~12h ago"
+      },
+      {
+        "user": "@MorningCommute_SW",
+        "text": "Up early for work and the M5 near Bristol is grim. Standing water in the slow lane. Be careful out there.",
+        "time": "~12h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-8",
+    "lat": 51.6419,
+    "lng": -2.6759,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T06:45:00.000Z",
+    "title": "[X (Twitter)] SE Wales Roads – Warning Posted",
+    "locationName": "Monmouthshire | A48 Corridor | Chepstow",
+    "evidence": "X (Twitter) account focused on South Wales road conditions posts early morning warning about A48 near Chepstow and A40 approaches to Abergavenny. Describes 'widespread surface water' and urges drivers to leave extra time.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Road-conditions account aggregating reports from the A48 and A40 in Monmouthshire. Consistent with multiple concurrent Traffic Wales advisories. Pattern of surface water becoming a recurring early-morning theme in Southeast Wales.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "06:45",
+      "endTiming": "",
+      "synthesis": "Early morning social media warning for Southeast Wales roads, focusing on A48 near Chepstow and A40 towards Abergavenny. Consistent with official advisories. Signal volume from SE Wales increasing.",
+      "confidenceStatement": "Low confidence. Aggregated reports from social account. Consistent with concurrent official advisories."
+    },
+    "posts": [
+      {
+        "user": "@SWWalesRoads",
+        "text": "EARLY WARNING: Widespread surface water reported on A48 near Chepstow and A40 towards Abergavenny. Leave extra time. #SouthWales #flooding",
+        "time": "~10h ago"
+      },
+      {
+        "user": "@ChepstowLocal",
+        "text": "A48 is horrible this morning. Spray, standing water. It's not safe at normal speeds. Slow down.",
+        "time": "~10h ago"
+      },
+      {
+        "user": "@MonmouthCommuter",
+        "text": "Roads around Chepstow and the A40 are getting bad. Taking longer route this morning.",
+        "time": "~11h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-9",
+    "lat": 51.9449,
+    "lng": -3.3905,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T04:30:00.000Z",
+    "title": "[Bluesky] Brecon Area – Surface Water and Rising River Levels",
+    "locationName": "Powys | Brecon Beacons | Brecon and Radnorshire",
+    "evidence": "Bluesky post from a user in the Brecon area noting surface water on local roads and an observable rise in the River Usk at Brecon. Describes rain as 'non-stop since midnight'. Early hours post with low engagement.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 43,
+      "justification": "First-person account from Brecon noting river level rise in the Usk catchment. Hydrologically significant as the Usk headwaters feed the critical SE Wales lowland areas. Unverified but consistent with catchment rainfall.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "04:30",
+      "endTiming": "",
+      "synthesis": "User in Brecon reports surface water and rising River Usk in the early hours of Friday. Hydrologically significant upstream indicator for conditions in the Usk valley and Newport area.",
+      "confidenceStatement": "Low confidence. Unverified first-person account. Hydrologically relevant upstream signal."
+    },
+    "posts": [
+      {
+        "user": "@BreconResident.bsky.social",
+        "text": "Rain has been relentless since midnight here in Brecon. River Usk is already looking higher than normal. Not reassured.",
+        "time": "~12h ago"
+      },
+      {
+        "user": "@WalesWildlife.bsky.social",
+        "text": "Standing water on several roads near Brecon Beacons this morning. A470 looks passable but barely.",
+        "time": "~13h ago"
+      },
+      {
+        "user": "@PowysLocal.bsky.social",
+        "text": "Can hear the river from my house tonight – it's running fast. If this keeps up I'm worried about lower down the valley.",
+        "time": "~13h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-10",
+    "lat": 50.8400,
+    "lng": -3.3600,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T07:15:00.000Z",
+    "title": "[Bluesky] Devon M5 – Poor Conditions Reported by Driver",
+    "locationName": "Devon | M5 | Central Devon",
+    "evidence": "Bluesky post from a lorry driver on M5 northbound near Cullompton, Devon, describing very poor driving conditions including standing water and reduced visibility. Advises HGVs in particular to take care.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 44,
+      "justification": "HGV driver first-person account from M5 near Cullompton. Consistent with National Highways data from this stretch. Adds social signal to the Southwest England picture.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "07:15",
+      "endTiming": "",
+      "synthesis": "Lorry driver reports very poor conditions on M5 near Cullompton, Devon. Part of the broader early-morning Southwest England pattern. Peripheral to the primary focus area.",
+      "confidenceStatement": "Low confidence. Unverified driver report. Peripheral to primary area."
+    },
+    "posts": [
+      {
+        "user": "@TruckDriver_SW.bsky.social",
+        "text": "M5 northbound near Cullompton is bad. Standing water half a metre wide in the nearside lane. HGVs please slow right down. #M5 #Devon",
+        "time": "~10h ago"
+      },
+      {
+        "user": "@DevonRoads.bsky.social",
+        "text": "Getting reports of surface water on M5 in Devon. Early morning commuters take care heading north.",
+        "time": "~10h ago"
+      },
+      {
+        "user": "@SWFreight.bsky.social",
+        "text": "Delivery running late – M5 Devon is slow and wet this morning. Not safe to push it.",
+        "time": "~11h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-11",
+    "lat": 51.4816,
+    "lng": -3.1791,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T06:00:00.000Z",
+    "title": "[Threads] Cardiff – Early Morning Flooding Concerns",
+    "locationName": "Cardiff | Cardiff | Cardiff Central",
+    "evidence": "Threads post from Cardiff resident noting flooding in a low-lying residential street. Drains overwhelmed by run-off. No emergency response reported. General early morning concern about conditions.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 40,
+      "justification": "Unverified residential flooding report from Cardiff. Drain overflow is consistent with heavy rainfall. Adds early social signal from the Cardiff area. Isolated incident at this stage.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "06:00",
+      "endTiming": "",
+      "synthesis": "Early morning flooding report from Cardiff resident. Drains overwhelmed. Consistent with heavy rainfall in the area. Early-stage signal from the broader SE Wales area.",
+      "confidenceStatement": "Low confidence. Unverified residential report. Early-stage signal."
+    },
+    "posts": [
+      {
+        "user": "@CardiffResident",
+        "text": "Flooding in our street this morning – drains can't cope. Water coming up to the pavement edge. Not seen it this bad in years.",
+        "time": "~11h ago"
+      },
+      {
+        "user": "@CardiffMum",
+        "text": "Worried about getting the kids to school today – standing water outside already and it's only 6am.",
+        "time": "~11h ago"
+      },
+      {
+        "user": "@CommunityCardiFF",
+        "text": "Several streets in Cardiff reporting flooded gutters and drains. Rain has been very heavy overnight.",
+        "time": "~12h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-12",
+    "lat": 51.0183,
+    "lng": -3.1007,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T07:45:00.000Z",
+    "title": "[Threads] Somerset – Road Conditions Warning",
+    "locationName": "Somerset | M5 Corridor | Taunton Deane",
+    "evidence": "Threads post from Somerset resident warning about road conditions on approaches to Taunton and the M5. Describes standing water and slow traffic. Advises commuters to leave early.",
+    "source": "Threads",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 42,
+      "justification": "Unverified road conditions report from Somerset. Consistent with National Highways M5 data near Bridgwater. Adds early morning social signal from the Southwest England periphery.",
+      "sourceLabel": "Threads",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "07:45",
+      "endTiming": "",
+      "synthesis": "Road conditions warning from Somerset ahead of peak commute. Standing water reported near Taunton and M5. Peripheral to primary area of interest.",
+      "confidenceStatement": "Low confidence. Unverified local report. Peripheral location."
+    },
+    "posts": [
+      {
+        "user": "@SomersetLocal",
+        "text": "Roads around Taunton are bad this morning – standing water and slow traffic everywhere. Leave early if you can. #Somerset",
+        "time": "~9h ago"
+      },
+      {
+        "user": "@TauntonTraffic",
+        "text": "Heavy surface water near the M5 junction at Taunton. Commuters take care.",
+        "time": "~10h ago"
+      },
+      {
+        "user": "@SWCommuterSomerset",
+        "text": "A358 near Taunton is flooding at the low dip near Henlade. Avoid if you can.",
+        "time": "~10h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-13",
-    "lat": 51.45942876769315,
-    "lng": -3.148746185610543,
+    "lat": 51.7978,
+    "lng": -3.1847,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T16:32:22.777Z",
-    "title": "[Threads] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
-    "source": "Threads",
+    "severity": "minor",
+    "timestamp": "2025-11-14T10:45:00.000Z",
+    "title": "[X (Twitter)] A465 Brynmawr Closure – Reports Going Viral",
+    "locationName": "Blaenau Gwent | A465 | Blaenau Gwent",
+    "evidence": "X (Twitter) posts about the A465 closure near Brynmawr rapidly gaining engagement. Photos and video of flood water on the carriageway being shared. Locals describing the scene as 'like a river'. Multiple accounts reporting diversion chaos on alternative routes.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 68,
+      "justification": "High-volume social media reporting of A465 closure consistent with Traffic Wales official confirmation. Photo and video evidence shared widely. Diversion chaos on A4047 corroborated by multiple independent accounts.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "10:45",
+      "endTiming": "",
+      "synthesis": "Social media activity around the A465 Brynmawr closure is intense and rapidly growing. Photo and video evidence circulating widely. The scale of community reporting strongly corroborates the official closure and reflects the severity of flooding in the Clydach Gorge area.",
+      "confidenceStatement": "Medium confidence. High-volume community reporting corroborated by official closure confirmation."
+    },
+    "posts": [
+      {
+        "user": "@BrynmawrLocal",
+        "text": "A465 is completely underwater near Brynmawr. You can't see the road at all – it's like a river. Avoid avoid avoid. #A465 #flooding #BlaenauGwent",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@HeadsOfValleys",
+        "text": "The Heads of the Valleys Road is properly shut. Not just advisory – full closure. Clydach Gorge has flooded badly. Sharing video now.",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@SWalesDriver",
+        "text": "Diverted off the A465 near Brynmawr. A4047 is already backing up badly. This is a serious one. #Wales #flooding",
+        "time": "~7h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-14",
+    "lat": 51.5720,
+    "lng": -3.0500,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T13:10:00.000Z",
+    "title": "[X (Twitter)] M4 Newport Closure – High-Volume Public Response",
+    "locationName": "Newport | M4 | Newport East",
+    "evidence": "X (Twitter) flooded with posts about the M4 closure between J24 and J25 Newport. Hundreds of posts sharing diversionary route advice, photos of flood water and queuing traffic. Strong emotional responses from those trapped or unable to travel.",
+    "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
       "confidence": 72,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-14",
-    "lat": 53.28316061963233,
-    "lng": -2.4900155741893024,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T09:39:51.742Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 91,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "justification": "Extremely high social media volume for M4 Newport closure. Posts corroborate depth of flood water and scale of queuing. Strong cross-platform corroboration. Social signal fully consistent with Traffic Wales official closure.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:00",
+      "corroborated": true,
+      "startTiming": "13:10",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "The M4 Newport closure is now the dominant topic on social media in Wales and southwest England. Posts describe flood water depths over 1 metre, extensive queuing, and widespread travel disruption. Social signal volume and tone reflect the severity and strategic significance of this closure.",
+      "confidenceStatement": "Medium confidence. Extremely high volume. Strongly corroborates official M4 closure."
+    },
+    "posts": [
+      {
+        "user": "@NewsportStranded",
+        "text": "M4 is CLOSED between Newport J24 and J25. Water over a metre deep on the carriageway apparently. Massive queues. #M4 #Newport #flooding",
+        "time": "~4h ago"
+      },
+      {
+        "user": "@CardiffToLondon",
+        "text": "Trying to get to London for a meeting – M4 shut, Newport rail suspended, A48 gridlocked. There is literally no way through. This is serious.",
+        "time": "~4h ago"
+      },
+      {
+        "user": "@WalesTrafficLive",
+        "text": "M4 J24-J25 closed both ways now. A48 diversion in chaos. Police asking people to stay off the roads in the Newport area entirely.",
+        "time": "~4h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-15",
-    "lat": 51.90154552177098,
-    "lng": -2.6809663190589403,
+    "lat": 51.8234,
+    "lng": -3.0163,
     "category": "social",
-    "severity": "severe",
-    "timestamp": "2025-11-14T14:35:25.847Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T09:45:00.000Z",
+    "title": "[X (Twitter)] Abergavenny Flooding – Community Reports",
+    "locationName": "Monmouthshire | Abergavenny | Brecon and Radnorshire",
+    "evidence": "X (Twitter) community in Abergavenny posting about flooding in the town and on approach roads. River Usk described as 'very high and fast'. A40 approaches reported as partially flooded. Residents asking local council for sandbags.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 85,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 63,
+      "justification": "Community reports from Abergavenny describing high River Usk levels and A40 flooding. Consistent with Traffic Wales advisory for A40 at Abergavenny. Sandbag requests suggest community concern is significant.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:00",
+      "corroborated": true,
+      "startTiming": "09:45",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Abergavenny community reporting flood conditions in the town and on approach roads. River Usk levels described as very high. Consistent with concurrent Traffic Wales A40 advisory. Community distress evident.",
+      "confidenceStatement": "Medium confidence. Community reporting consistent with official advisories. River level observations credible."
+    },
+    "posts": [
+      {
+        "user": "@AbergavennyLocal",
+        "text": "River Usk at Abergavenny is incredibly high and fast this morning. A40 into town is partially flooded. Stay away if you can. #Abergavenny #flooding",
+        "time": "~7h ago"
+      },
+      {
+        "user": "@MonmouthshireMum",
+        "text": "Can't get into Abergavenny – A40 is flooded from the riverside. Massive puddle across both lanes. Hoping sandbags arrive soon.",
+        "time": "~8h ago"
+      },
+      {
+        "user": "@AbergavennyTownCentre",
+        "text": "Some shops in town are sandbagging their doors. River Usk is very close to overtopping. Situation developing.",
+        "time": "~8h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-16",
-    "lat": 51.987945434056826,
-    "lng": -2.8419209131349157,
+    "lat": 51.5842,
+    "lng": -2.9977,
     "category": "social",
-    "severity": "severe",
-    "timestamp": "2025-11-14T08:26:07.935Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:30:00.000Z",
+    "title": "[X (Twitter)] Newport Flooding – Residential Streets Affected",
+    "locationName": "Newport | City Centre | Newport",
+    "evidence": "X (Twitter) users in Newport reporting flooding in residential streets and in the city centre. River Usk levels described as extremely high. Calls for emergency services being reported. Photos of flooded streets circulating.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 80,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidence": 65,
+      "justification": "Multiple unverified but consistent community reports from Newport city indicating residential and commercial flooding. High Usk levels consistent with upstream conditions. Pattern of report is credible.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "14:00",
+      "startTiming": "11:30",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Newport experiencing residential and commercial flooding according to community social media reports. High River Usk levels consistent with upstream conditions. Community impact adding context to the broader SE Wales picture.",
+      "confidenceStatement": "Medium confidence. Multiple consistent community reports. Corroborated by upstream river conditions."
+    },
+    "posts": [
+      {
+        "user": "@NewportResident",
+        "text": "Our street in Newport is flooded – water coming under the front door now. This is worse than 2019. Waiting for the council to respond. #Newport #floods",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@NewportCityLive",
+        "text": "Several streets in Newport city centre are flooded. Emergency services responding. River Usk very high. Please don't drive through flood water.",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@GwentAlerts",
+        "text": "Widespread flooding reports coming in from Newport. Residential areas around the Usk are worst affected. Stay safe.",
+        "time": "~6h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-17",
-    "lat": 51.53670042188682,
-    "lng": -3.9968201562110743,
+    "lat": 51.8113,
+    "lng": -2.7161,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T09:05:56.784Z",
-    "title": "[Threads] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
-    "source": "Threads",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:15:00.000Z",
+    "title": "[X (Twitter)] Monmouth – Town Flooding Reports",
+    "locationName": "Monmouthshire | Monmouth Town | Monmouth",
+    "evidence": "X (Twitter) users in Monmouth report flooding around Monnow Street and riverside areas. River Monnow overtopping in the town centre. A449 approach road described as 'like a lake'. Local businesses posting about closure.",
+    "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 93,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Threads",
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 62,
+      "justification": "Community reports of River Monnow overtopping in Monmouth town centre. Consistent with elevated river conditions across the SE Wales catchment. Corroborated by concurrent A449 advisory from Traffic Wales.",
+      "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "17:00",
+      "startTiming": "12:15",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Monmouth town reporting flooding from the River Monnow overtopping in the centre. Adds a further dimension to the SE Wales picture beyond road closures, indicating direct community impact in a historic market town.",
+      "confidenceStatement": "Medium confidence. Community river overflow report consistent with current catchment conditions."
+    },
+    "posts": [
+      {
+        "user": "@MonmouthTownLocal",
+        "text": "Monnow Street is flooding – water coming in from the river end. Businesses are shutting up early. Hope the barriers hold. #Monmouth #flooding",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@WyeValleyWalker",
+        "text": "River Monnow has overtopped in the town centre. A449 into Monmouth from the south is a lake. Don't attempt it.",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@MonmouthshireAlerts",
+        "text": "Flooding developing in Monmouth town. Businesses on the riverside are evacuating stock. Emergency services on their way.",
+        "time": "~6h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-18",
-    "lat": 53.603849636500584,
-    "lng": -1.984048076878081,
+    "lat": 52.0567,
+    "lng": -2.7160,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T08:41:19.779Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "timestamp": "2025-11-14T14:30:00.000Z",
+    "title": "[X (Twitter)] Herefordshire Roads – Disruption Reports",
+    "locationName": "Herefordshire | Hereford City | Hereford",
+    "evidence": "X (Twitter) users in Hereford reporting road disruption on approaches to the city. River Wye described as very high and brown. A40 from the west reported as partially blocked. Commuters asking for alternative route advice.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 86,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 60,
+      "justification": "Community reports from Hereford area consistent with elevated Wye gauge readings and National Highways advisory for A40 at Ross-on-Wye. River Wye response in Hereford is a downstream consequence of upstream conditions in Powys and the Welsh Marches.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "15:00",
+      "startTiming": "14:30",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Hereford community reporting high River Wye and road disruption on approach routes. Consistent with upstream gauge data and A40 advisory. Demonstrates geographic spread of impact into Herefordshire.",
+      "confidenceStatement": "Medium confidence. Community report consistent with river gauge data and official advisories."
+    },
+    "posts": [
+      {
+        "user": "@HerefordLocal",
+        "text": "The Wye at Hereford is incredibly high and brown. A40 into town from the west is partially blocked apparently. Nightmare morning. #Hereford #flooding",
+        "time": "~2h ago"
+      },
+      {
+        "user": "@HerefordCommuter",
+        "text": "Avoid A40 west of Hereford – surface water making it single lane. Takes ages to get through.",
+        "time": "~3h ago"
+      },
+      {
+        "user": "@WyeRiverWatch",
+        "text": "Wye at Hereford gauge is very high. River is angry and fast. Significant flood risk for low-lying areas of the city if this continues.",
+        "time": "~3h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-19",
-    "lat": 52.311162976844614,
-    "lng": 1.0809690520651527,
+    "lat": 51.8234,
+    "lng": -3.0163,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T14:48:18.196Z",
-    "title": "[Threads] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
-    "source": "Threads",
+    "timestamp": "2025-11-14T10:15:00.000Z",
+    "title": "[Bluesky] SE Wales Flooding Photos – Widespread Sharing",
+    "locationName": "Monmouthshire | Abergavenny | Brecon and Radnorshire",
+    "evidence": "Bluesky posts sharing photos and short video clips of flooding across Southeast Wales, including Abergavenny, the Clydach Gorge area, and rural Monmouthshire. High engagement. Images show extensive inundation of roads and fields.",
+    "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 95,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Threads",
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 62,
+      "justification": "Photo and video evidence of flooding shared on Bluesky. Visual evidence from multiple locations in SE Wales adds strong corroboration to official reports. Geographic clustering of posts in Monmouthshire and the Abergavenny area consistent with event narrative.",
+      "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "17:00",
+      "startTiming": "10:15",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Photo and video evidence of SE Wales flooding circulating widely on Bluesky. Images show extensive inundation in Abergavenny area and Clydach Gorge, strongly corroborating official reports.",
+      "confidenceStatement": "Medium confidence. Visual evidence corroborates official reports. Geographic clustering consistent with event."
+    },
+    "posts": [
+      {
+        "user": "@SEWalesFloods.bsky.social",
+        "text": "Photos coming in from across SE Wales – it's extensive. Abergavenny, Clydach, Pontypool all affected. This is a major event. Sharing images now.",
+        "time": "~7h ago"
+      },
+      {
+        "user": "@WalesPics.bsky.social",
+        "text": "Incredible and concerning images of the A465 flooding near Brynmawr. The road has completely disappeared under water.",
+        "time": "~7h ago"
+      },
+      {
+        "user": "@MonmouthshireLife.bsky.social",
+        "text": "Sharing photos from friends in Abergavenny and Monmouth – flooding is severe and spreading.",
+        "time": "~7h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-20",
-    "lat": 51.88411782522505,
-    "lng": -2.291048900633118,
+    "lat": 51.4816,
+    "lng": -3.1791,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T12:31:47.847Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:45:00.000Z",
+    "title": "[Bluesky] Cardiff Community Update – Conditions Worsening",
+    "locationName": "Cardiff | Cardiff | Cardiff Central",
+    "evidence": "Bluesky posts from Cardiff community accounts providing updates on worsening conditions. School closures being reported in some areas. Some residential flooding described near the River Taff. Transport disruption updates shared.",
+    "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 77,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidence": 58,
+      "justification": "Community updates from Cardiff consistent with the broader pattern of SE Wales disruption. River Taff proximity flooding and school closures are credible secondary impacts in a sustained rainfall event.",
+      "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
+      "corroborated": false,
+      "startTiming": "12:45",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Cardiff community reporting school closures and residential flooding near the River Taff. Transport disruption spreading. Adds urban dimension to the SE Wales picture.",
+      "confidenceStatement": "Medium confidence. Community reporting consistent with broader event. Some elements unverified."
+    },
+    "posts": [
+      {
+        "user": "@CardiffCommunity.bsky.social",
+        "text": "Schools in several Cardiff areas closed today due to flooding risk. River Taff is very high. Community transport is severely disrupted.",
+        "time": "~4h ago"
+      },
+      {
+        "user": "@CardiffMums.bsky.social",
+        "text": "School closed, can't get to work because of the M4 closure, flooding outside the front door. What a day. #Cardiff",
+        "time": "~4h ago"
+      },
+      {
+        "user": "@SouthWalesUpdate.bsky.social",
+        "text": "Cardiff is taking the knock-on effects of everything – M4 shutdown, rail cancelled, local flooding. City is struggling to function today.",
+        "time": "~5h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-21",
-    "lat": 52.29143112078627,
-    "lng": -0.09698243572099474,
+    "lat": 51.8642,
+    "lng": -2.2442,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T14:24:18.353Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "timestamp": "2025-11-14T14:00:00.000Z",
+    "title": "[Bluesky] Gloucestershire – Flooding and Diversion Impact",
+    "locationName": "Gloucestershire | Gloucester City | Gloucester",
+    "evidence": "Bluesky posts from Gloucestershire area discussing road disruption caused by both local flooding and the impact of traffic diverting from the M4 via the A417. Comments about unusual congestion in and around Gloucester.",
+    "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 76,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidence": 55,
+      "justification": "Community posts from Gloucestershire noting both local road flooding and unusual traffic volumes from M4 diversion. Consistent with the A417 obstruction near Cirencester and expected diversion patterns.",
+      "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
+      "corroborated": false,
+      "startTiming": "14:00",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Gloucestershire experiencing unusual congestion from diverted M4 traffic combined with local road flooding. Adds to the picture of Gloucestershire as a secondary impact zone.",
+      "confidenceStatement": "Medium confidence. Community observation consistent with diversion pattern. Some elements speculative."
+    },
+    "posts": [
+      {
+        "user": "@GloucesterResident.bsky.social",
+        "text": "Gloucester is gridlocked. Must be all the M4 diversion traffic piling through. A417 not helping either. #Gloucestershire",
+        "time": "~3h ago"
+      },
+      {
+        "user": "@CotswoldDriver.bsky.social",
+        "text": "A417 near Cirencester is chaos – half the road flooded, other half backed up. Everyone trying to avoid the M4.",
+        "time": "~3h ago"
+      },
+      {
+        "user": "@GlosRoads.bsky.social",
+        "text": "Gloucestershire road network is under real pressure today. Flooding on A417, massive volumes from M4 diversion. Not a good day to drive.",
+        "time": "~3h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-22",
-    "lat": 52.27341180668445,
-    "lng": -1.7474062709766305,
+    "lat": 51.6500,
+    "lng": -3.0300,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T14:44:38.082Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "timestamp": "2025-11-14T11:00:00.000Z",
+    "title": "[Threads] SE Wales – Emergency Updates Being Shared",
+    "locationName": "Torfaen | Cwmbran | Torfaen",
+    "evidence": "Threads posts across Southeast Wales communities sharing emergency advice, flood warning information, and updates on road closures. High engagement across local community groups. Posts include practical advice about not driving through flood water.",
+    "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
-      "confidence": 85,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidence": 58,
+      "justification": "Community emergency information sharing consistent with the scale of disruption in SE Wales. High engagement patterns suggest broad community awareness and concern. Practical safety advice being amplified.",
+      "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
+      "corroborated": false,
+      "startTiming": "11:00",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Threads users in SE Wales actively sharing emergency information and flood warnings. Community engagement scale reflects the severity of the event and the extent of public concern across the region.",
+      "confidenceStatement": "Medium confidence. High-engagement community sharing. Pattern consistent with significant community impact."
+    },
+    "posts": [
+      {
+        "user": "@SEWalesCommunity",
+        "text": "Please share: A465 closed, M4 closed, Newport rail suspended. Stay home if you can. Don't drive through flood water. Emergency services are stretched. #SouthWales",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@TorfaenHelps",
+        "text": "Community hall in Cwmbran open for anyone displaced by flooding. Hot drinks and sandwiches available. Stay safe everyone.",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@LocalEmergencySW",
+        "text": "If you're in SE Wales – check @TrafficWales and @NaturalResourcesWales for latest flood warnings before you travel.",
+        "time": "~6h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-23",
-    "lat": 52.36784026879649,
-    "lng": -1.6848386079033972,
+    "lat": 51.5720,
+    "lng": -3.0500,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T05:30:58.403Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "timestamp": "2025-11-14T13:45:00.000Z",
+    "title": "[Threads] Newport M4 Closure – Alternative Route Chaos",
+    "locationName": "Newport | M4 | Newport East",
+    "evidence": "Threads posts describing chaos on alternative routes around the M4 Newport closure. A48 and local roads described as gridlocked. Several posts from drivers stuck for hours. Business disruption being reported.",
+    "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 93,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 65,
+      "justification": "Community reports of diversion chaos are consistent with expected impact of full M4 motorway closure at this location. A48 is the primary diversion and is inadequate for the volume of displaced traffic.",
+      "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "14:00",
+      "corroborated": true,
+      "startTiming": "13:45",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Alternative routes around the Newport M4 closure in chaos. A48 gridlocked. Community reporting paints a picture of widespread immobility across the Newport area as the motorway diversion overwhelms local road capacity.",
+      "confidenceStatement": "Medium confidence. Diversion chaos pattern consistent with M4 closure impact. Corroborated across multiple accounts."
+    },
+    "posts": [
+      {
+        "user": "@Newport_Stuck",
+        "text": "Been on the A48 diversion for 2 hours and moved about 3 miles. Absolute chaos. Newport is gridlocked. This is like nothing I've seen before. #M4 #Newport",
+        "time": "~3h ago"
+      },
+      {
+        "user": "@BusinessNewport",
+        "text": "Staff can't get in, deliveries can't get through, customers can't reach us. The M4 closure is killing business today in Newport.",
+        "time": "~3h ago"
+      },
+      {
+        "user": "@NewportParent",
+        "text": "Stuck on the A48 trying to pick up my kids from school. Been here an hour and not moved. Newport is completely gridlocked.",
+        "time": "~4h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-24",
-    "lat": 52.25311553878878,
-    "lng": -0.10867651090209929,
+    "lat": 51.8234,
+    "lng": -3.0163,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T14:54:29.226Z",
-    "title": "[Bluesky] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
-    "source": "Bluesky",
+    "severity": "minor",
+    "timestamp": "2025-11-14T15:30:00.000Z",
+    "title": "[Threads] Abergavenny – Rescue and Community Response",
+    "locationName": "Monmouthshire | Abergavenny | Brecon and Radnorshire",
+    "evidence": "Threads posts from Abergavenny area reporting that community rescue teams are helping residents in flooded properties. River Usk described as 'at its highest in a decade'. Local resilience volunteers assisting emergency services.",
+    "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 99,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Bluesky",
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 63,
+      "justification": "Community rescue activity in Abergavenny consistent with the scale of flooding indicated by official sources. River Usk at a decade high is a credible description given catchment rainfall totals. Volunteer activity is a strong indicator of event severity.",
+      "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "15:00",
+      "startTiming": "15:30",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Community rescue operations underway in Abergavenny as River Usk reaches its highest level in approximately a decade. Volunteer involvement and rescue activity strongly indicate severe local impact.",
+      "confidenceStatement": "Medium confidence. Community rescue activity corroborates severity. River height claim credible given rainfall totals."
+    },
+    "posts": [
+      {
+        "user": "@AbergavennyResilienceTeam",
+        "text": "Our community rescue team is out helping residents in flooded properties near the Usk. River is at its highest in memory. Please support your neighbours. #Abergavenny",
+        "time": "~1h ago"
+      },
+      {
+        "user": "@MonmouthshireVolunteers",
+        "text": "Volunteers out in force in Abergavenny helping with sandbags and evacuations. Incredible community spirit in a difficult situation.",
+        "time": "~2h ago"
+      },
+      {
+        "user": "@WalesFloodRelief",
+        "text": "Reports from Abergavenny of properties flooded and residents needing assistance. Emergency services and volunteers responding. Stay safe.",
+        "time": "~2h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-25",
-    "lat": 52.72856580227953,
-    "lng": -1.8549774781304018,
+    "lat": 52.1920,
+    "lng": -2.2200,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T15:05:17.120Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T09:30:00.000Z",
+    "title": "Worcester – Surface Water Reports on Local Roads",
+    "locationName": "Worcestershire | Worcester City | Worcester",
+    "evidence": "X (Twitter) posts from Worcester and the surrounding Vale of Evesham describe surface water on local roads, particularly on lower-lying routes near the River Severn and Avon. Some posts note queuing on the A44 near Pershore. Residents advised to avoid flood-prone routes.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 99,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Community social media reporting from Worcester consistent with developing conditions in the Severn Valley. Surface water on routes near the rivers Severn and Avon is typical during sustained rainfall in this area.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
+      "corroborated": false,
+      "startTiming": "09:30",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Worcester community posting about surface water and minor road disruption. Adds a Worcestershire social media signal to the central England impact picture as conditions spread northward.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor disruption consistent with conditions."
+    },
+    "posts": [
+      {
+        "user": "@WorcesterLocal",
+        "text": "Roads around the Avon floodplain near Pershore are getting very wet. Surface water across the A44 this morning. Slowing right down. #Worcester #flooding",
+        "time": "~7h ago"
+      },
+      {
+        "user": "@SevernValleyLive",
+        "text": "River Severn at Worcester is noticeably high. Lower riverside car parks already under water. Keep an eye on this one.",
+        "time": "~8h ago"
+      },
+      {
+        "user": "@WorcsMorningCommute",
+        "text": "Take it steady out there today in Worcestershire – surface water on a lot of the rural A roads. B4084 through Pershore is particularly bad.",
+        "time": "~7h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-26",
-    "lat": 51.8341680210481,
-    "lng": -2.2174636338909477,
+    "lat": 51.7520,
+    "lng": -1.2577,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T08:39:37.458Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "severity": "minor",
+    "timestamp": "2025-11-14T10:45:00.000Z",
+    "title": "Oxford Area – Standing Water and Disruption Reports",
+    "locationName": "Oxfordshire | Oxford City | Oxford East",
+    "evidence": "Bluesky posts from the Oxford area note standing water in low-lying parts of the city and surrounding villages. River Cherwell described as high near Kidlington. A34 approach roads described as slow with standing water. Some cycle paths flooded.",
+    "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 76,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 50,
+      "justification": "Community Bluesky posts from Oxford consistent with rainfall spreading into Oxfordshire. River Cherwell is flood-prone near Oxford and elevated levels are credible given upstream catchment conditions.",
+      "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "15:00",
+      "startTiming": "10:45",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Oxford community reporting standing water and high river levels. Adds Oxfordshire to the footprint of central England minor impacts during the event.",
+      "confidenceStatement": "Low confidence. Community social media from Oxford. Minor conditions."
+    },
+    "posts": [
+      {
+        "user": "@OxfordFloodWatch.bsky.social",
+        "text": "Cherwell is very high near Kidlington. Port Meadow is a lake again. The usual flood spots around Oxford are doing their thing. #Oxford #flooding",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@OxfordCyclist.bsky.social",
+        "text": "Most of the Thames Path cycle routes are underwater. Stick to higher ground today if you're cycling in Oxford. #Flooding",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@OxfordTraffic.bsky.social",
+        "text": "A34 approaches to Oxford are slow with surface water. Allow extra time. #Oxford #A34",
+        "time": "~6h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-27",
-    "lat": 52.2328909273908,
-    "lng": 0.8356764303144799,
+    "lat": 51.5558,
+    "lng": -1.7797,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T13:55:22.873Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:30:00.000Z",
+    "title": "Wiltshire – Heavy Rain and Local Road Flooding",
+    "locationName": "Wiltshire | Swindon Rural | North Wiltshire",
+    "evidence": "Threads posts from Wiltshire residents describe heavy rainfall causing minor flooding on rural roads and low-lying village streets. Some posts from the Marlborough Downs area note waterlogged tracks. North Wiltshire described as 'very wet' with some minor road ponding.",
+    "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 98,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 47,
+      "justification": "Community Threads posts from Wiltshire describing localised flooding conditions consistent with the rainfall pattern spreading south-eastward. Minor and localised but adds to the central England picture.",
+      "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
+      "corroborated": false,
+      "startTiming": "11:30",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Wiltshire community posting about heavy rain and minor localised flooding. Extends the social media footprint of the event into Wiltshire.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Wiltshire conditions."
+    },
+    "posts": [
+      {
+        "user": "@NorthWiltsLiving",
+        "text": "Very heavy rain in north Wiltshire this morning. Some lanes near the Marlborough Downs are flooded. Farmers not happy. #Wiltshire",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@SwindonSurrounds",
+        "text": "Loads of surface water on rural roads around north Wiltshire. Take it slow on the B roads today.",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@WiltsWeatherWatch",
+        "text": "Wettest morning in a while here in Wiltshire. Lots of puddles turning into proper flooding on the lower roads. Stay careful out there.",
+        "time": "~5h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-28",
-    "lat": 51.36563081677009,
-    "lng": -2.549592649904064,
+    "lat": 52.0629,
+    "lng": -1.3396,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T12:51:52.492Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:00:00.000Z",
+    "title": "Banbury Area – Surface Water and Slow Traffic",
+    "locationName": "Oxfordshire | Banbury | Banbury",
+    "evidence": "X (Twitter) posts from the Banbury area describe surface water on local roads and slow traffic on the A361 and A422. River Cherwell reported as rising near Cropredy. Posts advising drivers to allow extra time for journeys through north Oxfordshire.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 91,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 45,
+      "justification": "Community reports from Banbury area consistent with surface water on the A361 advisory from Oxfordshire Highways. River Cherwell rising near Cropredy is credible given upstream conditions.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "17:00",
+      "startTiming": "12:00",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Banbury area community posting about surface water and minor disruption. Consistent with the A361 advisory. Adds north Oxfordshire to the social media footprint of the event.",
+      "confidenceStatement": "Low confidence. Community social media corroborating highway advisory. Minor disruption."
+    },
+    "posts": [
+      {
+        "user": "@BanburyLocal",
+        "text": "A361 south of Banbury has surface water making it pretty slow going. River Cherwell is also looking very high near Cropredy. #Banbury #flooding",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@NorthOxonDriver",
+        "text": "Wet and slow around Banbury this morning. A422 through Wroxton has a big puddle across it. Take it easy if you're heading through.",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@OxonTrafficAlerts",
+        "text": "Allow extra time in north Oxfordshire today – surface water on multiple A roads in the Banbury area. #Oxfordshire",
+        "time": "~4h ago"
+      }
+    ]
   },
   {
     "id": "ev-social-29",
-    "lat": 51.351915770540714,
-    "lng": -2.545606724439004,
+    "lat": 52.4080,
+    "lng": -1.5100,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T16:07:39.355Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "timestamp": "2025-11-14T09:50:00.000Z",
+    "title": "Coventry – Wet Roads and Surface Water on Approach Routes",
+    "locationName": "Warwickshire | Coventry | Coventry",
+    "evidence": "X (Twitter) posts from Coventry describe wet and slow conditions on the A45 and A46 approach roads. Surface water visible on the ring road at low dips. Some minor delays. No closures reported.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 85,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 45,
+      "justification": "Community social media from Coventry. Surface water on approach roads is consistent with sustained rainfall reaching Warwickshire. Low volume of posts at this stage.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "16:00",
+      "startTiming": "09:50",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Coventry community noting surface water on approach roads. Minor disruption. Adds Warwickshire to the social media footprint.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Warwickshire conditions."
+    },
+    "posts": [
+      { "user": "@CoventryCommuter", "text": "A45 into Coventry is slow with surface water at the Meriden dip. Take it easy. #Coventry #flooding", "time": "~7h ago" },
+      { "user": "@WestMidlandsWeather", "text": "Wet morning in Coventry. A46 bypass has some standing water. Allow extra time. #Warwickshire", "time": "~7h ago" }
+    ]
   },
   {
     "id": "ev-social-30",
-    "lat": 52.18703452607397,
-    "lng": -2.0549584896020834,
+    "lat": 52.6350,
+    "lng": -1.1300,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T10:01:47.687Z",
-    "title": "[Bluesky] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T10:35:00.000Z",
+    "title": "Leicester – River Soar Rising, Local Road Disruption",
+    "locationName": "Leicestershire | Leicester City | Leicester",
+    "evidence": "Bluesky posts from Leicester note the River Soar is running high through the city. Parks near the river are flooded. Some road closures on low-lying routes near the watermeadows. Cyclists and pedestrians warned away from riverside paths.",
     "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 85,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Bluesky community posts from Leicester consistent with River Soar responding to rainfall. Watermeadow flooding is a regular occurrence; the credibility of this report is moderate.",
       "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "15:00",
+      "startTiming": "10:35",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "River Soar high in Leicester with some watermeadow and low road flooding. Adds East Midlands city dimension to the central England social media picture.",
+      "confidenceStatement": "Low confidence. Community social media. River flooding consistent with event conditions."
+    },
+    "posts": [
+      { "user": "@LeicesterNaturalist.bsky.social", "text": "River Soar very high through Leicester today. Watermeadows completely flooded. Beautiful but a bit concerning. #Leicester", "time": "~6h ago" },
+      { "user": "@LeicesterCyclist.bsky.social", "text": "Avoid riverside cycle routes in Leicester – they're underwater. Stick to higher ground. #flooding", "time": "~6h ago" }
+    ]
   },
   {
     "id": "ev-social-31",
-    "lat": 51.849379538226394,
-    "lng": -2.221521279640923,
+    "lat": 52.9500,
+    "lng": -1.1500,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T11:17:36.447Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
+    "severity": "minor",
+    "timestamp": "2025-11-14T11:15:00.000Z",
+    "title": "Nottingham – Surface Water and Road Disruption Reports",
+    "locationName": "Nottinghamshire | Nottingham City | Nottingham",
+    "evidence": "Threads posts from Nottinghamshire describe surface water on radial routes into Nottingham and reports of the River Trent running noticeably high. Some parks on the Trent floodplain reported flooded. Traffic slow on the A52.",
+    "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 97,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 47,
+      "justification": "Community Threads posts from Nottingham consistent with rainfall reaching the East Midlands. River Trent response is credible given upstream conditions in the Peak District and South Pennines.",
+      "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "14:00",
+      "startTiming": "11:15",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Nottingham community reporting surface water and high River Trent. Minor disruption extending the social media footprint into Nottinghamshire.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Nottinghamshire conditions."
+    },
+    "posts": [
+      { "user": "@NottsFloodWatch", "text": "Trent is very high through Nottingham. Meadows park is flooded. A52 slow with surface water. #Nottingham #flooding", "time": "~6h ago" },
+      { "user": "@NottsTrafficUpdates", "text": "Slow going on A52 and A6 into Nottingham – surface water at several spots. #Nottinghamshire", "time": "~5h ago" }
+    ]
   },
   {
     "id": "ev-social-32",
-    "lat": 51.38439524717569,
-    "lng": 0.06918801309034009,
+    "lat": 52.9100,
+    "lng": -0.6400,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T10:54:12.862Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T12:00:00.000Z",
+    "title": "Grantham – A1 Surface Water and Local Flooding Reports",
+    "locationName": "Lincolnshire | Grantham | Grantham",
+    "evidence": "X (Twitter) posts from the Grantham area note surface water on the A1 and surrounding road network. River Witham described as high. Some local residential areas reporting minor garden flooding. Residents advising caution on the A1.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 80,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 50,
+      "justification": "Community reports from Grantham corroborate the National Highways A1 advisory for this area. River Witham response is consistent with upstream rainfall conditions.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "17:00",
+      "startTiming": "12:00",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Grantham community corroborating A1 surface water and reporting high River Witham. Adds Lincolnshire social media dimension to the event.",
+      "confidenceStatement": "Low confidence. Community social media corroborating highway advisory."
+    },
+    "posts": [
+      { "user": "@GranthamLocal", "text": "A1 near Grantham has standing water in the dips. Driving carefully. River Witham looking very high too. #Grantham #Lincolnshire", "time": "~5h ago" },
+      { "user": "@LincsRoadWatch", "text": "Heads up on the A1 south of Grantham – surface water making it dangerous. Slow right down. #A1", "time": "~5h ago" }
+    ]
   },
   {
     "id": "ev-social-33",
-    "lat": 52.425385056373834,
-    "lng": 0.095407360296631,
+    "lat": 53.2300,
+    "lng": -0.5400,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T16:58:09.862Z",
-    "title": "[Bluesky] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T13:00:00.000Z",
+    "title": "Lincoln – Brayford Pool and City Flooding",
+    "locationName": "Lincolnshire | Lincoln City | Lincoln",
+    "evidence": "Bluesky posts from Lincoln note Brayford Pool is very full and overflow concerns raised. Witham tributaries running high through the city. The Brayford waterfront area has minor surface flooding. Some road ponding on lower routes.",
     "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 96,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 50,
+      "justification": "Brayford Pool in Lincoln is a known indicator of catchment saturation. Community posts consistent with conditions in the River Witham catchment. Minor at present.",
       "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "17:00",
+      "startTiming": "13:00",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Lincoln community noting Brayford Pool overtopping concern and high river levels. Minor conditions adding to the Lincolnshire picture.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Lincoln conditions."
+    },
+    "posts": [
+      { "user": "@LincolnCityLife.bsky.social", "text": "Brayford Pool is really full today. Some water lapping over the edges near the university. #Lincoln #flooding", "time": "~4h ago" },
+      { "user": "@WithamWatcher.bsky.social", "text": "Witham through Lincoln is running very fast and high. Keep children away from the river today. #Lincolnshire", "time": "~4h ago" }
+    ]
   },
   {
     "id": "ev-social-34",
-    "lat": 51.59153487766504,
-    "lng": -2.6961258855541166,
+    "lat": 52.9800,
+    "lng": 0.0200,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T09:14:27.165Z",
-    "title": "[Bluesky] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
-    "source": "Bluesky",
+    "timestamp": "2025-11-14T13:20:00.000Z",
+    "title": "Boston – Low-lying Areas Flooding, A17 Reports",
+    "locationName": "Lincolnshire | Boston | Boston",
+    "evidence": "X (Twitter) posts from the Boston area describe flooding in low-lying parts of town and surface water on the A17. The Haven (River Witham tidal section) is described as 'very high'. Some residential gardens and car parks flooded.",
+    "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 83,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Bluesky",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Boston is historically flood-prone and community reports of tidal section height are credible. Consistent with upstream Witham conditions and potential tidal influence. Minor at present.",
+      "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
+      "corroborated": false,
+      "startTiming": "13:20",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Boston community reporting low-lying flooding and high Haven levels. Extends the Lincolnshire picture toward the coast.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor coastal Lincolnshire conditions."
+    },
+    "posts": [
+      { "user": "@BostonLincs", "text": "The Haven in Boston is very high today. Some low-lying gardens near the river have flooding. A17 is slow too. #Boston #Lincolnshire", "time": "~4h ago" },
+      { "user": "@SLincsTraffic", "text": "A17 near Boston is slow with standing water in places. Allow extra time. #Lincolnshire", "time": "~4h ago" }
+    ]
   },
   {
     "id": "ev-social-35",
-    "lat": 54.08634843838059,
-    "lng": -1.7787436292750645,
+    "lat": 52.6600,
+    "lng": 0.1600,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-14T09:42:18.970Z",
-    "title": "[Threads] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
+    "timestamp": "2025-11-14T13:40:00.000Z",
+    "title": "Wisbech – Fenland Surface Flooding Reports",
+    "locationName": "Cambridgeshire | Wisbech | North East Cambridgeshire",
+    "evidence": "Threads posts from the Wisbech area describe surface water on Fenland roads and some low-lying field flooding. The River Nene described as running high at the Wisbech gauge. Some Fenland drains described as 'close to capacity'. No closures.",
     "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 74,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 47,
+      "justification": "Fenland conditions near Wisbech are entirely consistent with sustained rainfall. Drain capacity concerns are a predictable Fenland response. Community reporting credible.",
       "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
+      "corroborated": false,
+      "startTiming": "13:40",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Wisbech community reporting Fenland surface flooding and high River Nene. Adds Cambridgeshire Fens to the social media footprint.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Fenland conditions."
+    },
+    "posts": [
+      { "user": "@WisbechLocal", "text": "Fenland drains are very full today around Wisbech. Some field flooding visible. River Nene is high at the gauging station. #Wisbech #Fens", "time": "~3h ago" },
+      { "user": "@FenlandDriver", "text": "Lots of surface water on the B roads around Wisbech. The Fens don't drain quickly when it's this wet. Be careful.", "time": "~4h ago" }
+    ]
   },
   {
     "id": "ev-social-36",
-    "lat": 50.624854833438135,
-    "lng": -3.450685936816872,
+    "lat": 52.7500,
+    "lng": 0.4000,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T09:30:56.717Z",
-    "title": "[Bluesky] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T14:10:00.000Z",
+    "title": "King's Lynn – Coastal Plain Flooding and Road Reports",
+    "locationName": "Norfolk | King's Lynn | North West Norfolk",
+    "evidence": "Bluesky posts from King's Lynn note some flooding on low-lying land around the town. The Great Ouse described as running high. A149 coastal road reported as having standing water. Residents advised to monitor conditions.",
     "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 71,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 46,
+      "justification": "King's Lynn is at low elevation and the Great Ouse is a large tidal river. High levels combined with coastal plain conditions make this community report credible.",
       "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "15:00",
+      "startTiming": "14:10",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "King's Lynn community reporting flooding on coastal plain and high Great Ouse. Extends the social media footprint to the Norfolk coast.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Norfolk coastal conditions."
+    },
+    "posts": [
+      { "user": "@KingsLynnLife.bsky.social", "text": "Great Ouse is very high through King's Lynn. A149 has some standing water. Nothing major yet but watching it. #Norfolk", "time": "~3h ago" },
+      { "user": "@NorfolkWeatherWatch.bsky.social", "text": "Coastal plain areas near King's Lynn and Hunstanton getting very wet. Low roads starting to flood. #NorfolkFloods", "time": "~3h ago" }
+    ]
   },
   {
     "id": "ev-social-37",
-    "lat": 51.60971982799497,
-    "lng": -3.1338641304038086,
+    "lat": 52.6300,
+    "lng": 1.3000,
     "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T16:58:41.063Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
+    "severity": "minor",
+    "timestamp": "2025-11-14T14:45:00.000Z",
+    "title": "Norwich – Surface Water and River Wensum High",
+    "locationName": "Norfolk | Norwich City | Norwich",
+    "evidence": "X (Twitter) posts from Norwich describe surface water on the A47 approaching the city and the River Wensum running visibly higher than normal. Some riverside paths flooded. City centre generally moving but traffic slow.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 88,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Community posts from Norwich consistent with rainfall reaching East Anglia. River Wensum running high is a credible early-stage impact. A47 surface water corroborates highway advisory.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "15:00",
+      "startTiming": "14:45",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
+      "synthesis": "Norwich community reporting high River Wensum and A47 surface water. Consistent with the easternmost reach of the event. Corroborates highway advisory.",
+      "confidenceStatement": "Low confidence. Community social media corroborating highway advisory. Minor Norfolk city conditions."
+    },
+    "posts": [
+      { "user": "@NorwichLocal", "text": "A47 into Norwich has surface water near Dereham Road. River Wensum looks very high in the city. #Norwich #flooding", "time": "~2h ago" },
+      { "user": "@EastAngliaTraffic", "text": "Allow extra time approaching Norwich on the A47 today – surface water at a couple of points. #Norfolk", "time": "~3h ago" }
+    ]
   },
   {
     "id": "ev-social-38",
-    "lat": 51.36162381857233,
-    "lng": -2.62190027269837,
+    "lat": 52.2400,
+    "lng": -0.9000,
     "category": "social",
     "severity": "minor",
-    "timestamp": "2025-11-13T22:16:23.067Z",
-    "title": "[Threads] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
+    "timestamp": "2025-11-14T10:10:00.000Z",
+    "title": "Northamptonshire – Surface Water on Rural Routes",
+    "locationName": "Northamptonshire | Northampton | Northampton",
+    "evidence": "Threads posts from Northamptonshire describe surface water on rural A-roads around Northampton and Wellingborough. Some B-roads temporarily impassable. River Nene described as running higher than usual. General advisory circulated.",
     "source": "Threads",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 73,
-      "justification": "Volume of social media reports corroborated by imagery.",
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 47,
+      "justification": "Community reports from Northamptonshire consistent with conditions in the central England corridor. River Nene rising at Northampton is a predictable response to sustained rainfall in the upper Nene catchment.",
       "sourceLabel": "Threads",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-39",
-    "lat": 50.832644346665745,
-    "lng": -3.583649312105097,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T09:40:44.089Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 88,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-40",
-    "lat": 51.56375568442016,
-    "lng": -2.6150683907049945,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T12:22:53.520Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 76,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-41",
-    "lat": 51.506658529418566,
-    "lng": -2.556232552188775,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T13:40:54.824Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 76,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "16:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-42",
-    "lat": 51.93366370547463,
-    "lng": -2.2228997372996533,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T12:52:44.547Z",
-    "title": "[Bluesky] Road submerged by rising river",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
-    "source": "Bluesky",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 88,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Bluesky",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
       "corroborated": false,
-      "startTiming": "16:00",
+      "startTiming": "10:10",
       "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-43",
-    "lat": 51.71488985565754,
-    "lng": -0.33955164644862457,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T11:31:25.735Z",
-    "title": "[Bluesky] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
-    "source": "Bluesky",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 87,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Bluesky",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-44",
-    "lat": 51.476280114334564,
-    "lng": -2.6691620380684373,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T08:24:07.858Z",
-    "title": "[X (Twitter)] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 93,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-45",
-    "lat": 51.34809137043657,
-    "lng": -2.5887770724951107,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T09:04:33.194Z",
-    "title": "[X (Twitter)] Structural stress reported by resident",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 73,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-46",
-    "lat": 51.330601313479605,
-    "lng": -2.5846085892837247,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T16:23:21.477Z",
-    "title": "[Bluesky] Sandbag deployment request",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Bluesky user identifies localized flooding. Footage uploaded.",
-    "source": "Bluesky",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 84,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Bluesky",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-47",
-    "lat": 51.59036880234747,
-    "lng": -2.6855287646213206,
-    "category": "social",
-    "severity": "significant",
-    "timestamp": "2025-11-14T09:02:53.794Z",
-    "title": "[X (Twitter)] Road submerged by rising river",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 97,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "15:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a High confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-48",
-    "lat": 51.33909557425827,
-    "lng": -2.667455498946944,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T11:03:24.105Z",
-    "title": "[X (Twitter)] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "X (Twitter) user identifies localized flooding. Footage uploaded.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 74,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "14:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
-  },
-  {
-    "id": "ev-social-49",
-    "lat": 51.94451659235878,
-    "lng": -2.341974710789654,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-14T12:46:34.571Z",
-    "title": "[Threads] User Alert: Localized flooding",
-    "locationName": "United Kingdom | Regional",
-    "evidence": "Threads user identifies localized flooding. Footage uploaded.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 76,
-      "justification": "Volume of social media reports corroborated by imagery.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "17:00",
-      "endTiming": "",
-      "synthesis": "Evidence shows localized stress.",
-      "confidenceStatement": "This is a Medium confidence assessment."
-    }
+      "synthesis": "Northamptonshire community reporting surface water on rural routes and high River Nene. Adds Northamptonshire to the central England social media impact footprint.",
+      "confidenceStatement": "Low confidence. Community social media only. Minor Northamptonshire conditions."
+    },
+    "posts": [
+      { "user": "@NorthantsLife", "text": "Surface water all over the place on the rural roads around Northampton and Wellingborough this morning. Take it steady. #Northamptonshire", "time": "~7h ago" },
+      { "user": "@NeneWatcher", "text": "River Nene is noticeably high through Northampton today. Keeping an eye on it. #Nene #flooding", "time": "~7h ago" }
+    ]
   }
 ]
