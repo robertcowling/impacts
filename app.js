@@ -87,73 +87,6 @@ const PEXELS_PHOTOS = [
 ];
 
 /**
- * Generates a detailed assessment for a single impact
- */
-function generateAssessment(category, severity, sourceLabel) {
-    const isOfficial = ['roads', 'railways', 'energy', 'water', 'ea-help'].includes(category);
-    
-    const confValue = 0.7 + Math.random() * 0.3;
-    let confidenceLabel = 'High';
-    let confidenceColor = '#4ade80';
-    if (confValue < 0.6) {
-        confidenceLabel = 'Low';
-        confidenceColor = '#ef4444';
-    } else if (confValue < 0.85) {
-        confidenceLabel = 'Medium';
-        confidenceColor = '#facc15';
-    }
-
-    const justifications = {
-        roads: "National Highways reports confirmed lane closures. Traffic sensors show speeds < 10mph in affected sections.",
-        railways: "Railway Marketplace advisory issued for the region. Multiple infrastructure failures and track flooding reported.",
-        social: "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
-        news: "Major regional and national news outlets confirming widespread disruption and active emergency response.",
-        energy: "South Western Power monitoring systems detect voltage fluctuations and localized substation failures in the area.",
-        water: "Utility provider logs show multiple burst mains and pressure drops aligned with reported flooding locations.",
-        proxy: "Strong statistical correlation between surge in Met Office digital traffic and localized severe weather triggers.",
-        'google-trends': "Anomalous spike in search volume for flood-related safety terms within the specific geographic region.",
-        'ea-help': "Official Internal HELP report from Environment Agency. Validated by regional operational duty officer."
-    };
-
-    const sourceName = sourceLabel || (category === 'social' ? 'Social Monitoring' : (category === 'news' ? 'Media Intelligence' : 'Infrastructure Network'));
-
-    // Timing logic
-    const now = new Date(FIXED_NOW);
-    const startOffset = Math.floor(Math.random() * 4);
-    const endOffset = 6 + Math.floor(Math.random() * 12);
-    const startTime = new Date(now.getTime() - startOffset * 60 * 60 * 1000);
-    const endTime = new Date(now.getTime() + endOffset * 60 * 60 * 1000);
-
-    const vividExamples = {
-        roads: "a section of the A-road with standing water and 2 vehicle recoveries underway",
-        railways: "signalling failure affecting multiple platforms with overhead line damage",
-        social: "a street with perhaps 30 properties flooded and residents requesting sandbags",
-        news: "emergency services attending a localized structural collapse in the town center",
-        energy: "a cluster of 500+ properties without power and localized substation arcing",
-        water: "a major burst water main causing surface flooding and low pressure for 1000+ homes",
-        proxy: "anomalous data patterns suggesting significant localized flood risk development",
-        'google-trends': "unprecedented search volume for emergency flood protection in the area",
-        'ea-help': "official reports of river bank overtopping with immediate risk to adjacent properties"
-    };
-
-    const ex = vividExamples[category] || "localized environmental stress and reported infrastructure failure";
-
-    return {
-        confidenceLabel,
-        confidenceColor,
-        justification: justifications[category] || "Automated assessment based on multi-source impact analysis and framework criteria.",
-        sourceLabel: sourceName,
-        sourceReliability: isOfficial ? 'Official' : 'Unofficial',
-        intelligenceType: isGoogleTrends ? 'Proxy' : 'Direct',
-        corroborated: Math.random() > 0.3,
-        startTiming: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        endTiming: "", // Left blank as requested
-        synthesis: `Evidence shows ${ex}${isOfficial ? ' as reported by official channels' : ' based on emerging field reports'}. Given the scale and urgency, this observation satisfies the criteria for an escalation in response.`,
-        confidenceStatement: `This is a <strong>${confidenceLabel}</strong> confidence assessment. It is based on <strong>${isOfficial ? 'Official' : 'Unofficial'}</strong> data from <strong>${isGoogleTrends ? 'Proxy' : 'Direct'}</strong> sources, which have been ${Math.random() > 0.3 ? 'successfully corroborated' : 'identified as isolated reports'} across the network.`
-    };
-}
-
-/**
  * Generates an aggregate summary assessment for a region or county
  */
 function generateSummaryAssessment(name, severity, count) {
@@ -1501,13 +1434,8 @@ function renderFeed(filtered) {
                 <div class="feed-card-header-inner">
                     <div class="feed-card-meta-new">
                         <span class="feed-card-tag" style="background: ${CATEGORIES[imp.category].color}20; color: ${CATEGORIES[imp.category].color}; display:inline-flex; align-items:center; gap:4px">
-                            <span style="width:11px;height:11px;display:inline-flex;flex-shrink:0">
-                                ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
-                                    ? SOCIAL_PLATFORM_ICONS[imp.source].icon
-                                    : CATEGORIES[imp.category].icon}
-                            </span>
                             ${imp.category === 'social' && SOCIAL_PLATFORM_ICONS[imp.source]
-                                ? SOCIAL_PLATFORM_ICONS[imp.source].label
+                                ? `<span style="width:11px;height:11px;display:inline-flex;flex-shrink:0">${SOCIAL_PLATFORM_ICONS[imp.source].icon}</span>${SOCIAL_PLATFORM_ICONS[imp.source].label}`
                                 : CATEGORIES[imp.category].label}
                         </span>
                         <span class="feed-card-time">${timeStr}</span>
@@ -1576,6 +1504,7 @@ function renderFeed(filtered) {
                         </div>
                     </div>
                 </div>
+
             </div>
         `;
 
