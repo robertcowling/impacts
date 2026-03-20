@@ -81,33 +81,6 @@
     }
   },
   {
-    "id": "ev-roads-13",
-    "lat": 51.8113,
-    "lng": -2.7161,
-    "category": "roads",
-    "severity": "severe",
-    "timestamp": "2025-11-14T11:03:00.000Z",
-    "title": "A449 Northbound: Flooding and Lane Closures between Raglan and Monmouth",
-    "locationName": "Monmouthshire | A449 | Monmouth",
-    "evidence": "Traffic Wales reports flooding on A449 northbound between Raglan and Monmouth. Lane 2 closed. Emergency vehicles attending. Flood water from adjacent farmland overtopping drainage. Significant queuing developing southbound from Monmouth.",
-    "source": "Traffic Wales",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "High",
-      "confidenceColor": "#4ade80",
-      "confidence": 88,
-      "justification": "Traffic Wales lane closure confirmed and corroborated by emergency vehicle attendance. Flooding from Raglan fields is well-documented in this event type. Monmouth community reports on social media consistent with official data. High-confidence closure at a strategically important junction.",
-      "sourceLabel": "Traffic Wales",
-      "sourceReliability": "Official",
-      "intelligenceType": "Direct",
-      "corroborated": true,
-      "startTiming": "11:03",
-      "endTiming": "",
-      "synthesis": "A449 northbound severely disrupted by flooding between Raglan and Monmouth. Multiple corroborating sources including emergency services attendance and social media reports from Monmouth town. Critical route now failing as diversionary capacity continues to erode.",
-      "confidenceStatement": "High confidence. Official closure confirmed by Traffic Wales and corroborated by emergency services and community reporting."
-    }
-  },
-  {
     "id": "ev-roads-14",
     "lat": 51.7189,
     "lng": -1.9698,
