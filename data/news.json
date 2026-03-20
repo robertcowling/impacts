@@ -214,5 +214,32 @@
       "synthesis": "Newbury local news reporting surface water on A34 and local roads with multi-agency monitoring noted. Adds Thames Valley regional media context to the central England minor impact picture.",
       "confidenceStatement": "Medium confidence. Local media corroborating official advisory. Multi-agency monitoring mentioned."
     }
+  },
+  {
+    "id": "ev-news-monmouth-1103",
+    "lat": 51.8113,
+    "lng": -2.7161,
+    "category": "news",
+    "severity": "severe",
+    "timestamp": "2025-11-14T11:03:00.000Z",
+    "title": "Monmouth Emergency: Dozens of Properties Flooded by Fast-Flowing Water",
+    "locationName": "Monmouthshire | Monmouth | Monmouth Central",
+    "evidence": "BBC News reports that dozens of properties in communities surrounding Monmouth are starting to flood as local watercourses reach record levels. Residents describe deep, dangerous, and fast-flowing water entering homes and commercial buildings. Search and rescue teams are currently being deployed to low-lying areas as local authorities declare a critical incident.",
+    "source": "BBC News",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 92,
+      "justification": "BBC News report corroborated by local emergency service declarations and Environment Agency gauge data. Resident accounts of deep, fast-flowing water are consistent with the volume of rainfall recorded in the Wye and Monnow catchments. Critical incident status adds authoritative weight.",
+      "sourceLabel": "Online News",
+      "sourceReliability": "Official",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "11:03",
+      "endTiming": "",
+      "synthesis": "Major residential and commercial flooding in Monmouth. The event has escalated from road disruption to a significant threat to life and property. Fast-flowing flood water in urban areas creates a highly dangerous environment, necessitating emergency rescues and critical incident management.",
+      "confidenceStatement": "High confidence. BBC News reporting corroborated by multi-agency emergency response and localized hydrological signals."
+    }
   }
 ]
