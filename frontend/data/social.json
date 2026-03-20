@@ -221,44 +221,44 @@
   },
   {
     "id": "ev-social-10",
-    "lat": 50.84,
-    "lng": -3.36,
+    "lat": 52.037,
+    "lng": -2.432,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T07:15:00.000Z",
-    "title": "[Bluesky] Devon M5 \u2013 Poor Conditions Reported by Driver",
-    "locationName": "Devon | M5 | Central Devon",
-    "evidence": "Bluesky post from a lorry driver on M5 northbound near Cullompton, Devon, describing very poor driving conditions including standing water and reduced visibility. Advises HGVs in particular to take care.",
+    "title": "[Bluesky] A449 Ledbury \u2013 Surface Water on Road, Commuters Warned",
+    "locationName": "Herefordshire | A449 | Ledbury",
+    "evidence": "Bluesky post from an early commuter near Ledbury, Herefordshire reporting standing water on the A449 southbound. Describes the road as 'sheet of water' across the nearside lane approaching the town. River Leadon already noticeably high. Post gaining traction among local commuters.",
     "source": "Bluesky",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Low",
       "confidenceColor": "#ef4444",
       "confidence": 44,
-      "justification": "HGV driver first-person account from M5 near Cullompton. Consistent with National Highways data from this stretch. Adds social signal to the Southwest England picture.",
+      "justification": "First-person commuter account from A449 near Ledbury. Geographically consistent with the overnight rainfall pattern tracking northeast from SE Wales into the Wye and Leadon catchments. Early upstream Herefordshire signal.",
       "sourceLabel": "Bluesky",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
       "startTiming": "07:15",
       "endTiming": "",
-      "synthesis": "Lorry driver reports very poor conditions on M5 near Cullompton, Devon. Part of the broader early-morning Southwest England pattern. Peripheral to the primary focus area.",
-      "confidenceStatement": "Low confidence. Unverified driver report. Peripheral to primary area."
+      "synthesis": "Early morning surface water reported on A449 near Ledbury. River Leadon already elevated. First social signal from Herefordshire as the weather front tracks northeast from SE Wales.",
+      "confidenceStatement": "Low confidence. Single unverified commuter report. Consistent with catchment rainfall pattern."
     },
     "posts": [
       {
-        "user": "@TruckDriver_SW.bsky.social",
-        "text": "M5 northbound near Cullompton is bad. Standing water half a metre wide in the nearside lane. HGVs please slow right down. #M5 #Devon",
+        "user": "@LedburyCommuter.bsky.social",
+        "text": "A449 into Ledbury this morning is a sheet of water on the nearside lane. Drive carefully everyone, River Leadon is looking very high. #Ledbury #Herefordshire",
         "time": "~10h ago"
       },
       {
-        "user": "@DevonRoads.bsky.social",
-        "text": "Getting reports of surface water on M5 in Devon. Early morning commuters take care heading north.",
+        "user": "@HerefordshireRoads.bsky.social",
+        "text": "Getting reports of surface water on A449 near Ledbury. Early warning \u2013 conditions likely to worsen through the morning.",
         "time": "~10h ago"
       },
       {
-        "user": "@SWFreight.bsky.social",
-        "text": "Delivery running late \u2013 M5 Devon is slow and wet this morning. Not safe to push it.",
+        "user": "@WyeValleyDriver.bsky.social",
+        "text": "Heading out early from Ledbury \u2013 roads already very wet. Take it steady on A449 and B4214 this morning.",
         "time": "~11h ago"
       }
     ]
@@ -1564,78 +1564,83 @@
   },
   {
     "id": "ev-social_converted-7",
-    "lat": 50.84,
-    "lng": -3.36,
+    "lat": 51.914,
+    "lng": -2.584,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T07:08:00.000Z",
-    "title": "[X (Twitter)] B3181: Slow Traffic near Cullompton",
-    "locationName": "Devon | B3181 | Central Devon",
-    "evidence": "Local reports indicate slow-moving traffic on B3181 near Cullompton due to heavy rainfall and spray. Standing water in nearside lane. No closures.",
+    "title": "[X (Twitter)] Ross-on-Wye \u2013 River Wye Noticeably High, Riverside Path Flooded",
+    "locationName": "Herefordshire | Ross-on-Wye | Ross-on-Wye",
+    "evidence": "X (Twitter) user in Ross-on-Wye reports that the River Wye is already significantly higher than normal for this time of morning. The riverside walk near the bandstand is underwater. Post includes a photo described as 'never seen it this high before 8am'. Early indicator of upstream conditions reaching Ross.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Low",
       "confidenceColor": "#ef4444",
-      "confidence": 44,
-      "justification": "Automated sensor and CCTV corroboration for M5 J28 near Cullompton. Rainfall affecting Devon ahead of the main frontal passage. Consistent with broader Southwest England pattern.",
+      "confidence": 46,
+      "justification": "Community observation of elevated River Wye levels at Ross-on-Wye. Geographically consistent with overnight rainfall in the upper Wye catchment in Wales. Riverside path flooding is a known early-warning indicator at Ross before flood warnings are formally issued.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
       "startTiming": "07:08",
       "endTiming": "",
-      "synthesis": "M5 northbound impacted by heavy rain near Cullompton, Devon. Peripheral impact in Southwest England consistent with the developing weather event moving northeast.",
-      "confidenceStatement": "Low confidence. Minor disruption. Peripheral to primary area of interest."
+      "synthesis": "River Wye elevated at Ross-on-Wye before 08:00. Riverside walk already flooded. Early community signal of upstream conditions propagating downstream into Herefordshire ahead of any formal EA warning.",
+      "confidenceStatement": "Low confidence. Single community observation. Early upstream indicator for the Wye at Ross-on-Wye."
     },
     "posts": [
       {
-        "user": "@RoadUser_UK",
-        "text": "Just seen b3181: slow traffic near cullompton. Be careful everyone!",
+        "user": "@RossOnWyeLocal",
+        "text": "The Wye at Ross is already very high this morning \u2013 riverside walk near the bandstand is underwater. Never seen it like this before 8am. #RossOnWye #RiverWye",
         "time": "pre-0800"
       },
       {
-        "user": "@Commuter_Alert",
-        "text": "Local reports indicate slow-moving traffic on B3181 near Cullompton due to heavy rainfall and spray. Standing water in nearside lane. No closures.",
+        "user": "@WyeWatch",
+        "text": "Early morning check on the Wye at Ross \u2013 levels are concerning. Looks like overnight rain in Wales is coming through fast.",
         "time": "pre-0800"
       }
     ]
   },
   {
     "id": "ev-social_converted-8",
-    "lat": 50.4714,
-    "lng": -4.7184,
+    "lat": 52.056,
+    "lng": -2.716,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T07:34:00.000Z",
-    "title": "[X (Twitter)] B3266: Spray and Reduced Visibility near Bodmin",
-    "locationName": "Cornwall | B3266 | North Cornwall",
-    "evidence": "Local reports indicate poor visibility on B3266 due to heavy spray near Bodmin. Speed restrictions in place. Conditions expected to ease as front moves northeast.",
+    "title": "[X (Twitter)] Hereford \u2013 River Wye Rising Fast, City Centre Commuters Concerned",
+    "locationName": "Herefordshire | Hereford City | Hereford",
+    "evidence": "X (Twitter) user in Hereford city centre reports that the River Wye at Hereford is rising noticeably fast since first light. The Victoria Bridge footpath is already partially submerged. Multiple replies from local residents expressing concern about conditions worsening through the morning.",
     "source": "X (Twitter)",
     "sourceUrl": "#",
     "assessment": {
       "confidenceLabel": "Low",
       "confidenceColor": "#ef4444",
-      "confidence": 38,
-      "justification": "National Highways report for A30 near Bodmin. Conditions consistent with passage of frontal system through Cornwall. Peripheral to primary area of interest. No escalation expected here.",
+      "confidence": 42,
+      "justification": "Community observation of rapid river rise at Hereford city. Victoria Bridge inundation is a recognised early indicator for the city. Multiple community replies add weight. Consistent with upstream conditions in the Wye catchment.",
       "sourceLabel": "X (Twitter)",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": false,
       "startTiming": "07:34",
       "endTiming": "",
-      "synthesis": "Poor visibility and spray on A30 near Bodmin, Cornwall. Frontal conditions affecting the far southwest of England. Peripheral context impact only, consistent with the broad sweep of the system.",
-      "confidenceStatement": "Low confidence. Peripheral location. Minor disruption."
+      "synthesis": "River Wye rising rapidly at Hereford city before 08:00. Victoria Bridge partially flooded. Community concern growing. Early urban signal for Hereford consistent with the developing upstream event.",
+      "confidenceStatement": "Low confidence. Community observation with corroborating replies. River rise consistent with upstream catchment conditions."
     },
     "posts": [
       {
-        "user": "@RoadUser_UK",
-        "text": "Just seen b3266: spray and reduced visibility near bodmin. Be careful everyone!",
+        "user": "@HerefordCity",
+        "text": "The Wye at Hereford is rising really fast this morning. Victoria Bridge footpath already underwater at 7:30. Is anyone else watching this? #Hereford #flooding",
         "time": "pre-0800"
       },
       {
-        "user": "@Commuter_Alert",
-        "text": "Local reports indicate poor visibility on B3266 due to heavy spray near Bodmin. Speed restrictions in place. Conditions expected to ease as front moves northeast.",
+        "user": "@HfdCommuter",
+        "text": "Just walked past the Wye on the way in \u2013 it\u2019s very high for this time. Keep an eye on it if you're near the river today. #HerefordCity",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@WyeWatcher_Hfd",
+        "text": "Wye gauge at Hereford must be spiking. That river is way up from yesterday. Something big coming through from Wales.",
         "time": "pre-0800"
       }
     ]
