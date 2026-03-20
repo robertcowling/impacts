@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// --- Mock Data Constants (Replicated from app.js) ---
+// --- Mock Data Constants ---
 const CATEGORIES = ['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help', 'proxy', 'google-trends'];
 const SEVERITIES = ['minor', 'significant', 'severe'];
 
@@ -14,7 +14,9 @@ const hubs = [
     { lat: 53.4808, lng: -2.2426, name: 'Manchester', weight: 0.8, radius: 0.6 },
     { lat: 53.8008, lng: -1.5491, name: 'Leeds', weight: 0.5, radius: 0.6 },
     { lat: 52.2053, lng: 0.1218, name: 'Cambridge', weight: 0.5, radius: 0.6 },
-    { lat: 51.7520, lng: -1.2577, name: 'Oxford', weight: 0.5, radius: 0.6 }
+    { lat: 51.7520, lng: -1.2577, name: 'Oxford', weight: 0.5, radius: 0.6 },
+    { lat: 51.4816, lng: -3.1791, name: 'Cardiff', weight: 1.2, radius: 0.3 },
+    { lat: 51.6214, lng: -3.9436, name: 'Swansea', weight: 1.0, radius: 0.3 }
 ];
 
 const weightedHubs = [];
@@ -23,8 +25,16 @@ hubs.forEach(h => {
     for(let j=0; j<count; j++) weightedHubs.push(h);
 });
 
-function getMockTitle(cat) {
-    const roads = ['A1(M)', 'M6', 'M25', 'A14', 'A303', 'M1', 'M4', 'A42'];
+function isWales(lat, lng) {
+    return lat >= 51.3 && lat <= 53.5 && lng >= -5.5 && lng <= -2.5;
+}
+
+function isSWEngland(lat, lng) {
+    return lat >= 50.0 && lat <= 51.5 && lng >= -6.0 && lng <= -2.0;
+}
+
+function getMockTitle(cat, source) {
+    const roads = ['A1(M)', 'M6', 'M25', 'A14', 'A303', 'M1', 'M4', 'A42', 'A470', 'A48', 'A40'];
     const statuses = ['Road Closure', 'Lane Closure', 'Surface Flooding', 'Severe Congestion'];
     const stations = ['Drax Power Station', 'Ratcliffe-on-Soar', 'Hinkley Point', 'Heysham', 'Torness', 'Pembroke'];
     const energyAlerts = ['Grid Stability Alert', 'Substation Failure', 'Partial Blackout risk', 'Frequency Drop'];
@@ -32,7 +42,10 @@ function getMockTitle(cat) {
     const titles = {
         roads: () => `${roads[Math.floor(Math.random()*roads.length)]}: ${statuses[Math.floor(Math.random()*statuses.length)]}`,
         railways: () => ['Asset Failure: West Coast', 'Track Flooding near Leeds', 'Tree on Line: East Coast', 'Network Rail Speed Restriction'][Math.floor(Math.random()*4)],
-        social: () => ['User Alert: Localized flooding', 'Sandbag deployment request', 'Road submerged by rising river', 'Structural stress reported by resident'][Math.floor(Math.random()*4)],
+        social: () => {
+            const prefix = source ? `[${source}] ` : "";
+            return `${prefix}${['User Alert: Localized flooding', 'Sandbag deployment request', 'Road submerged by rising river', 'Structural stress reported by resident'][Math.floor(Math.random()*4)]}`;
+        },
         news: () => ['BBC NEWS: Regional Storm Report', 'BREAKING: Met Office Amber Warning', 'ITV: Flooding causes local outages', 'Regional Dispatch: Infrastructure stress'][Math.floor(Math.random()*4)],
         energy: () => `${stations[Math.floor(Math.random()*stations.length)]}: ${energyAlerts[Math.floor(Math.random()*energyAlerts.length)]}`,
         water: () => ['Water Supply Advisory: Turbidity', 'Mains Pressure Warning', 'Storage Tank Level Threshold', 'System-wide Utility Alert'][Math.floor(Math.random()*4)],
@@ -44,11 +57,11 @@ function getMockTitle(cat) {
     return typeof res === 'function' ? res() : res;
 }
 
-function getMockEvidence(cat) {
+function getMockEvidence(cat, source) {
     const texts = {
-        roads: 'Social media reports indicate 30cm of standing water. National Highways confirming closure of northbound lanes.',
+        roads: 'Social media reports indicate 30cm of standing water. Official channels confirming closure of northbound lanes.',
         railways: 'Network Rail reports infrastructure failure due to water ingress in cable duct. Delays of up to 45 mins expected.',
-        social: 'Twitter user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.',
+        social: `${source || 'Social media'} user @WeatherAlert identifies localized flooding at primary school entrance. Footage uploaded.`,
         news: 'Local news outlet reports emergency services on site. "We\'ve never seen the water rise this fast," says resident.',
         energy: 'Automated sensor alert: Level 1 threshold exceeded at regional substation. Cooling systems operational.',
         water: 'High pressure alarm triggered at downstream filtration unit. System bypass activated to prevent surge damage.',
@@ -71,7 +84,7 @@ function generateAssessment(category, severity, sourceLabel) {
     }
 
     const justifications = {
-        roads: "National Highways reports confirmed lane closures. Traffic sensors show speeds < 10mph in affected sections.",
+        roads: `${sourceLabel} reports confirmed lane closures. Traffic sensors show speeds < 10mph in affected sections.`,
         railways: "Railway Marketplace advisory issued for the region. Multiple infrastructure failures and track flooding reported.",
         social: "High volume of localized social media reports corroborated by uploaded imagery showing infrastructure stress.",
         news: "Major regional and national news outlets confirming widespread disruption and active emergency response.",
@@ -86,6 +99,7 @@ function generateAssessment(category, severity, sourceLabel) {
     return {
         confidenceLabel,
         confidenceColor,
+        confidence: Math.round(confValue * 100),
         justification: justifications[category] || "Automated assessment based on multi-source impact analysis and framework criteria.",
         sourceLabel: sourceLabel,
         sourceReliability: isOfficial ? 'Official' : 'Unofficial',
@@ -107,15 +121,21 @@ const now = new Date('2025-11-14T17:00:00Z');
 
 CATEGORIES.forEach(category => {
     const impacts = [];
-    let count = 15;
-    if (category === 'social') count = 30;
-    if (category === 'proxy') count = 2; // Only 2 national proxy alerts
-    if (category === 'google-trends') count = 10;
+    let count = 20;
+    if (category === 'social') count = 50;
+    if (category === 'proxy') count = 2;
+    if (category === 'google-trends') count = 15;
     
+    // Friday 00:00 - 08:00 is 17 to 9 hours ago
+    // Thursday is > 17 hours ago
+    // Friday > 08:00 is < 9 hours ago
+
+    let swFloodingCount = 0;
+
     for (let i = 0; i < count; i++) {
         const hub = weightedHubs[Math.floor(Math.random() * weightedHubs.length)];
         const sevRand = Math.random();
-        const severity = sevRand < 0.8 ? 'minor' : (sevRand < 0.98 ? 'significant' : 'severe');
+        const severity = sevRand < 0.7 ? 'minor' : (sevRand < 0.95 ? 'significant' : 'severe');
         let lat = hub.lat + (Math.random() - 0.5) * hub.radius;
         let lng = hub.lng + (Math.random() - 0.5) * hub.radius;
         
@@ -123,16 +143,40 @@ CATEGORIES.forEach(category => {
             lat = 54.5; lng = -2.0; // National center
         }
 
-        const timestamp = new Date(now.getTime() - (Math.random() * 48) * 60 * 60 * 1000);
+        let timestamp;
+        const timeRand = Math.random();
+
+        if (category === 'social' && swFloodingCount < 10 && timeRand < 0.3) {
+            // SW England localized flooding between 00:00 - 08:00 Friday (17 to 9 hours ago)
+            timestamp = new Date(now.getTime() - (9 + Math.random() * 8) * 60 * 60 * 1000);
+            lat = 50.7 + (Math.random() - 0.5) * 0.5; // SW Area (Exeter hub-ish)
+            lng = -3.5 + (Math.random() - 0.5) * 0.5;
+            swFloodingCount++;
+        } else if (timeRand < 0.1) {
+            // Thursday (Isolated) - 41 to 17 hours ago
+            timestamp = new Date(now.getTime() - (17 + Math.random() * 24) * 60 * 60 * 1000);
+        } else {
+            // Most impacts after 08:00 Friday (0 to 9 hours ago)
+            timestamp = new Date(now.getTime() - (Math.random() * 9) * 60 * 60 * 1000);
+        }
         
-        const sourceLabel = category === 'social' ? 'Twitter' : 
-                          (category === 'news' ? 'Online News' : 
-                          (category === 'roads' ? 'National Highways' : 
+        let sourceLabel;
+        if (category === 'social') {
+            const socialRand = Math.random();
+            if (socialRand < 0.75) sourceLabel = 'X (Twitter)';
+            else if (socialRand < 0.875) sourceLabel = 'Bluesky';
+            else sourceLabel = 'Threads';
+        } else if (category === 'roads') {
+            if (isWales(lat, lng)) sourceLabel = 'Traffic Wales';
+            else sourceLabel = 'National Highways';
+        } else {
+            sourceLabel = (category === 'news' ? 'Online News' : 
                           (category === 'railways' ? 'Railway Marketplace' : 
                           (category === 'ea-help' ? 'EA Internal' : 
                           (category === 'energy' ? 'Power Companies' : 
                           (category === 'proxy' ? 'Met Office Digital' : 
-                          (category === 'google-trends' ? 'Google Trends' : 'Water Analytics')))))));
+                          (category === 'google-trends' ? 'Google Trends' : 'Water Analytics'))))));
+        }
 
         impacts.push({
             id: `ev-${category}-${i}`,
@@ -141,9 +185,9 @@ CATEGORIES.forEach(category => {
             category,
             severity,
             timestamp: timestamp.toISOString(),
-            title: category === 'proxy' ? 'Met Office Website Hits' : getMockTitle(category),
+            title: category === 'proxy' ? 'Met Office Website Hits' : getMockTitle(category, sourceLabel),
             locationName: category === 'proxy' ? "United Kingdom | National" : "Regional | County | Constituency Placeholder",
-            evidence: getMockEvidence(category),
+            evidence: getMockEvidence(category, sourceLabel),
             source: sourceLabel,
             sourceUrl: "#",
             assessment: generateAssessment(category, severity, sourceLabel)

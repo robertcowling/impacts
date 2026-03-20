@@ -27,9 +27,9 @@ const BASEMAPS = {
 };
 
 const CATEGORIES = {
-    roads: { label: 'National Highways', color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>' },
+    roads: { label: 'National Highways / Traffic Wales', color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>' },
     railways: { label: 'Railway Marketplace', color: '#5b61a1', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2L7 22M17 2L17 22M7 5H17M7 10H17M7 15H17M7 20H17"/></svg>' },
-    social: { label: 'Twitter', color: '#4e828a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>' },
+    social: { label: 'Social', color: '#4e828a', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' },
     news: { label: 'Online News', color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM6 6h12M6 10h12M6 14h6M6 18h6M16 14v4"/></svg>' },
     energy: { label: 'Power Companies', color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
@@ -794,6 +794,21 @@ function setupEvents() {
             energySubMenu.classList.toggle('hidden');
             if (icon) {
                 icon.style.transform = energySubMenu.classList.contains('hidden') ? 'rotate(-90deg)' : 'rotate(0deg)';
+            }
+        });
+    }
+
+    // Social Sub-menu Toggle
+    const socialToggle = document.getElementById('social-parent-toggle');
+    const socialSubMenu = document.getElementById('social-sub-menu');
+    if (socialToggle && socialSubMenu) {
+        const icon = socialToggle.querySelector('.collapse-icon');
+        if (icon) icon.style.transform = 'rotate(-90deg)';
+        
+        socialToggle.addEventListener('click', (e) => {
+            socialSubMenu.classList.toggle('hidden');
+            if (icon) {
+                icon.style.transform = socialSubMenu.classList.contains('hidden') ? 'rotate(-90deg)' : 'rotate(0deg)';
             }
         });
     }

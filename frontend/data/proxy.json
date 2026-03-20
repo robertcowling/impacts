@@ -5,7 +5,7 @@
     "lng": -2,
     "category": "proxy",
     "severity": "minor",
-    "timestamp": "2025-11-14T01:52:31.360Z",
+    "timestamp": "2025-11-14T14:01:56.984Z",
     "title": "Met Office Website Hits",
     "locationName": "United Kingdom | National",
     "source": "Met Office Digital",
@@ -13,12 +13,13 @@
     "assessment": {
       "confidenceLabel": "Medium",
       "confidenceColor": "#facc15",
+      "confidence": 79,
       "justification": "Automated assessment based on multi-source impact analysis and framework criteria.",
       "sourceLabel": "Met Office Digital",
       "sourceReliability": "Unofficial",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "17:00",
+      "startTiming": "16:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
       "confidenceStatement": "This is a Medium confidence assessment."
@@ -30,14 +31,15 @@
     "lng": -2,
     "category": "proxy",
     "severity": "minor",
-    "timestamp": "2025-11-14T04:00:58.374Z",
+    "timestamp": "2025-11-14T11:23:41.644Z",
     "title": "Met Office Website Hits",
     "locationName": "United Kingdom | National",
     "source": "Met Office Digital",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 97,
       "justification": "Automated assessment based on multi-source impact analysis and framework criteria.",
       "sourceLabel": "Met Office Digital",
       "sourceReliability": "Unofficial",
@@ -46,7 +48,7 @@
       "startTiming": "17:00",
       "endTiming": "",
       "synthesis": "Evidence shows localized environmental stress and reported infrastructure failure based on emerging reports.",
-      "confidenceStatement": "This is a Medium confidence assessment."
+      "confidenceStatement": "This is a High confidence assessment."
     }
   }
 ]
