@@ -58,241 +58,250 @@
         <section class="workspace">
             <!-- Left Sidebar (Summary/Filters) -->
             <aside id="left-sidebar" class="flat-side-panel-left">
-                <div class="sidebar-header-wrap no-border">
-                    <h3 class="sidebar-main-header">Summary</h3>
-                </div>
-                
-                <div class="sidebar-section" id="spatial-severity-section">
-                    <h4>Spatial Severity</h4>
-                    <div class="filter-list-vertical">
-                        <label class="toggle-row" id="spatial-mode-toggle">
-                            <input type="checkbox" id="spatial-checkbox">
-                            <span class="toggle-slider-wrap">
-                                <span class="toggle-dot"></span>
-                            </span>
-                            <span class="item-label">Region</span>
-                        </label>
-                        <label class="toggle-row" id="county-mode-toggle">
-                            <input type="checkbox" id="county-checkbox" checked>
-                            <span class="toggle-slider-wrap">
-                                <span class="toggle-dot"></span>
-                            </span>
-                            <span class="item-label">County</span>
-                        </label>
-                        <label class="toggle-row" id="const-mode-toggle">
-                            <input type="checkbox" id="const-checkbox">
-                            <span class="toggle-slider-wrap">
-                                <span class="toggle-dot"></span>
-                            </span>
-                            <span class="item-label">MP Constituency</span>
-                        </label>
+                <div class="sidebar-content">
+                    <div class="sidebar-header-wrap no-border">
+                        <h3 class="sidebar-main-header">Summary</h3>
                     </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <h4>Impact Severity</h4>
-                    <div class="filter-list-vertical">
-                        <label class="severity-item-row severity-chip active" data-severity="minor">
-                            <input type="checkbox" checked value="minor">
-                            <span class="severity-indicator minor"></span>
-                            <span class="item-label">Minor</span>
-                        </label>
-                        <label class="severity-item-row severity-chip active" data-severity="significant">
-                            <input type="checkbox" checked value="significant">
-                            <span class="severity-indicator significant"></span>
-                            <span class="item-label">Significant</span>
-                        </label>
-                        <label class="severity-item-row severity-chip active" data-severity="severe">
-                            <input type="checkbox" checked value="severe">
-                            <span class="severity-indicator severe"></span>
-                            <span class="item-label">Severe</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="sidebar-section" id="forecast-section">
-                    <h4>Forecast</h4>
-                    <div class="filter-list-vertical">
-                        <label class="toggle-row" id="forecast-toggle">
-                            <input type="checkbox" id="forecast-checkbox">
-                            <span class="toggle-slider-wrap">
-                                <span class="toggle-dot"></span>
-                            </span>
-                            <span class="item-label">Forecast Overlays</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="sidebar-header-wrap">
-                    <h3 class="sidebar-main-header">Impacts</h3>
-                    <div class="header-right-actions">
-                        <div class="view-sub-selector">
-                            <button class="view-sub-btn active" data-view="sources">Sources</button>
-                            <button class="view-sub-btn" data-view="types">Types</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="sidebar-sources-view">
-                    <div class="sidebar-section">
-                        <div class="section-header-flex">
-                            <h4>Impact Sources</h4>
-                            <button class="show-all-btn-flat" id="show-all-sources">Show All</button>
-                        </div>
+                    
+                    <div class="sidebar-section" id="spatial-severity-section">
+                        <h4>Spatial Severity</h4>
                         <div class="filter-list-vertical">
-                            <label class="filter-item-row filter-chip active" data-category="roads">
-                                <input type="checkbox" checked value="roads">
-                                <span class="category-indicator roads"></span>
-                                <span class="item-label">National Highways / Traffic Wales</span>
-                                <span class="only-trigger">Only</span>
+                            <label class="toggle-row" id="spatial-mode-toggle">
+                                <input type="checkbox" id="spatial-checkbox">
+                                <span class="toggle-slider-wrap">
+                                    <span class="toggle-dot"></span>
+                                </span>
+                                <span class="item-label">Region</span>
                             </label>
-                            <label class="filter-item-row filter-chip active" data-category="railways">
-                                <input type="checkbox" checked value="railways">
-                                <span class="category-indicator railways"></span>
-                                <span class="item-label">Railway Marketplace</span>
-                                <span class="only-trigger">Only</span>
+                            <label class="toggle-row" id="county-mode-toggle">
+                                <input type="checkbox" id="county-checkbox" checked>
+                                <span class="toggle-slider-wrap">
+                                    <span class="toggle-dot"></span>
+                                </span>
+                                <span class="item-label">County</span>
                             </label>
-                            
-                            <div class="nested-filter-group">
-                                <label class="filter-item-row filter-chip active" data-category="social" id="social-parent-toggle">
-                                    <input type="checkbox" checked value="social">
-                                    <span class="category-indicator social"></span>
-                                    <span class="item-label">Social</span>
-                                    <span class="only-trigger">Only</span>
-                                    <span class="collapse-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                                    </span>
-                                </label>
-                                <div class="sub-filter-list hidden" id="social-sub-menu">
-                                    <label class="sub-filter-item" data-sub-category="all">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">Show All</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="x">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">X (Twitter)</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="bluesky">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">Bluesky</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="threads">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">Threads</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <label class="filter-item-row filter-chip active" data-category="news">
-                                <input type="checkbox" checked value="news">
-                                <span class="category-indicator news"></span>
-                                <span class="item-label">Online News</span>
-                                <span class="only-trigger">Only</span>
+                            <label class="toggle-row" id="const-mode-toggle">
+                                <input type="checkbox" id="const-checkbox">
+                                <span class="toggle-slider-wrap">
+                                    <span class="toggle-dot"></span>
+                                </span>
+                                <span class="item-label">MP Constituency</span>
                             </label>
-                            
-                            <div class="nested-filter-group">
-                                <label class="filter-item-row filter-chip active" data-category="energy" id="energy-parent-toggle">
-                                    <input type="checkbox" checked value="energy">
-                                    <span class="category-indicator energy"></span>
-                                    <span class="item-label">Power Companies</span>
-                                    <span class="only-trigger">Only</span>
-                                    <span class="collapse-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                                    </span>
-                                </label>
-                                <div class="sub-filter-list hidden" id="energy-sub-menu">
-                                    <label class="sub-filter-item" data-sub-category="all">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">Show All</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="national-grid">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">National Grid</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="sse">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">SSE</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="uk-power-networks">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">UK Power Networks</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="nested-filter-group">
-                                <label class="filter-item-row filter-chip active" data-category="water" id="water-parent-toggle">
-                                    <input type="checkbox" checked value="water">
-                                    <span class="category-indicator water"></span>
-                                    <span class="item-label">Water Companies</span>
-                                    <span class="only-trigger">Only</span>
-                                    <span class="collapse-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                                    </span>
-                                </label>
-                                <div class="sub-filter-list hidden" id="water-sub-menu">
-                                    <label class="sub-filter-item" data-sub-category="all">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">Show All</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="thames-water">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">Thames Water</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="south-west-water">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">South West Water</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                    <label class="sub-filter-item" data-sub-category="severn-trent-water">
-                                        <span class="sub-dot"></span>
-                                        <span class="sub-label">Severn Trent Water</span>
-                                        <span class="only-trigger">Only</span>
-                                    </label>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     <div class="sidebar-section">
-                        <div class="internal-header">
-                            <h4>Trusted Internal</h4>
-                            <span class="lock-icon" title="Restricted to internal network">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                            </span>
-                        </div>
+                        <h4>Impact Severity</h4>
                         <div class="filter-list-vertical">
-                            <label class="filter-item-row filter-chip active" data-category="ea-help">
-                                <input type="checkbox" checked value="ea-help">
-                                <span class="category-indicator ea-help"></span>
-                                <span class="item-label">EA Help Reports</span>
-                                <span class="only-trigger">Only</span>
+                            <label class="severity-item-row severity-chip active" data-severity="minor">
+                                <input type="checkbox" checked value="minor">
+                                <span class="severity-indicator minor"></span>
+                                <span class="item-label">Minor</span>
+                            </label>
+                            <label class="severity-item-row severity-chip active" data-severity="significant">
+                                <input type="checkbox" checked value="significant">
+                                <span class="severity-indicator significant"></span>
+                                <span class="item-label">Significant</span>
+                            </label>
+                            <label class="severity-item-row severity-chip active" data-severity="severe">
+                                <input type="checkbox" checked value="severe">
+                                <span class="severity-indicator severe"></span>
+                                <span class="item-label">Severe</span>
                             </label>
                         </div>
                     </div>
-                </div>
 
-                <div id="sidebar-types-view" class="hidden">
-                    <div class="sidebar-section">
-                        <div class="section-header-flex">
-                            <h4>Impact Types</h4>
-                            <button class="show-all-btn-flat" id="show-all-types">Show All</button>
-                        </div>
-                        <div class="filter-list-vertical" id="type-filter-list">
-                            <!-- Populated by JS -->
+                    <div class="sidebar-section" id="forecast-section">
+                        <h4>Forecast</h4>
+                        <div class="filter-list-vertical">
+                            <label class="toggle-row" id="forecast-toggle">
+                                <input type="checkbox" id="forecast-checkbox">
+                                <span class="toggle-slider-wrap">
+                                    <span class="toggle-dot"></span>
+                                </span>
+                                <span class="item-label">Forecast Overlays</span>
+                            </label>
                         </div>
                     </div>
+
+                    <div class="sidebar-header-wrap">
+                        <h3 class="sidebar-main-header">Impacts</h3>
+                        <div class="header-right-actions">
+                            <div class="view-sub-selector">
+                                <button class="view-sub-btn active" data-view="sources">Sources</button>
+                                <button class="view-sub-btn" data-view="types">Types</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sidebar-sources-view">
+                        <div class="sidebar-section">
+                            <div class="section-header-flex">
+                                <h4>Impact Sources</h4>
+                                <button class="show-all-btn-flat" id="show-all-sources">Show All</button>
+                            </div>
+                            <div class="filter-list-vertical">
+                                <label class="filter-item-row filter-chip active" data-category="roads">
+                                    <input type="checkbox" checked value="roads">
+                                    <span class="category-indicator roads"></span>
+                                    <span class="item-label">National Highways / Traffic Wales</span>
+                                    <span class="only-trigger">Only</span>
+                                </label>
+                                <label class="filter-item-row filter-chip active" data-category="railways">
+                                    <input type="checkbox" checked value="railways">
+                                    <span class="category-indicator railways"></span>
+                                    <span class="item-label">Railway Marketplace</span>
+                                    <span class="only-trigger">Only</span>
+                                </label>
+                                
+                                <div class="nested-filter-group">
+                                    <label class="filter-item-row filter-chip active" data-category="social" id="social-parent-toggle">
+                                        <input type="checkbox" checked value="social">
+                                        <span class="category-indicator social"></span>
+                                        <span class="item-label">Social</span>
+                                        <span class="only-trigger">Only</span>
+                                        <span class="collapse-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                                        </span>
+                                    </label>
+                                    <div class="sub-filter-list hidden" id="social-sub-menu">
+                                        <label class="sub-filter-item" data-sub-category="all">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">Show All</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="x">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">X (Twitter)</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="bluesky">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">Bluesky</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="threads">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">Threads</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <label class="filter-item-row filter-chip active" data-category="news">
+                                    <input type="checkbox" checked value="news">
+                                    <span class="category-indicator news"></span>
+                                    <span class="item-label">Online News</span>
+                                    <span class="only-trigger">Only</span>
+                                </label>
+                                
+                                <div class="nested-filter-group">
+                                    <label class="filter-item-row filter-chip active" data-category="energy" id="energy-parent-toggle">
+                                        <input type="checkbox" checked value="energy">
+                                        <span class="category-indicator energy"></span>
+                                        <span class="item-label">Power Companies</span>
+                                        <span class="only-trigger">Only</span>
+                                        <span class="collapse-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                                        </span>
+                                    </label>
+                                    <div class="sub-filter-list hidden" id="energy-sub-menu">
+                                        <label class="sub-filter-item" data-sub-category="all">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">Show All</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="national-grid">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">National Grid</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="sse">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">SSE</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="uk-power-networks">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">UK Power Networks</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="nested-filter-group">
+                                    <label class="filter-item-row filter-chip active" data-category="water" id="water-parent-toggle">
+                                        <input type="checkbox" checked value="water">
+                                        <span class="category-indicator water"></span>
+                                        <span class="item-label">Water Companies</span>
+                                        <span class="only-trigger">Only</span>
+                                        <span class="collapse-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                                        </span>
+                                    </label>
+                                    <div class="sub-filter-list hidden" id="water-sub-menu">
+                                        <label class="sub-filter-item" data-sub-category="all">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">Show All</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="thames-water">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">Thames Water</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="south-west-water">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">South West Water</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                        <label class="sub-filter-item" data-sub-category="severn-trent-water">
+                                            <span class="sub-dot"></span>
+                                            <span class="sub-label">Severn Trent Water</span>
+                                            <span class="only-trigger">Only</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <div class="internal-header">
+                                <h4>Trusted Internal</h4>
+                                <span class="lock-icon" title="Restricted to internal network">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                </span>
+                            </div>
+                            <div class="filter-list-vertical">
+                                <label class="filter-item-row filter-chip active" data-category="ea-help">
+                                    <input type="checkbox" checked value="ea-help">
+                                    <span class="category-indicator ea-help"></span>
+                                    <span class="item-label">EA Help Reports</span>
+                                    <span class="only-trigger">Only</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sidebar-types-view" class="hidden">
+                        <div class="sidebar-section">
+                            <div class="section-header-flex">
+                                <h4>Impact Types</h4>
+                                <button class="show-all-btn-flat" id="show-all-types">Show All</button>
+                            </div>
+                            <div class="filter-list-vertical" id="type-filter-list">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-divider"></div>
+                    <div class="sidebar-spacer"></div>
                 </div>
 
-                <div class="filter-divider"></div>
-                <div class="sidebar-spacer"></div>
+                <!-- Fixed Footer with New Button -->
+                <div class="sidebar-footer">
+                    <button class="mcp-server-btn" id="mcp-server-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        API/MCP server
+                    </button>
+                </div>
             </aside>
 
             <!-- Map Side (Center) -->
@@ -753,6 +762,19 @@
                 <button class="btn-action-primary" id="start-dive-confirm-btn">
                     Start Search
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MCP Modal -->
+    <div class="modal-overlay" id="mcp-modal">
+        <div class="mcp-modal-content glass">
+            <div class="modal-header">
+                <h3>API/MCP Server Status</h3>
+                <button class="close-modal-btn" id="close-mcp-btn">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 24px; font-size: 0.95rem; line-height: 1.6; color: var(--text-primary);">
+                <p>At 0800 the Parlimentarty Assistan't agent calls the impacts MCP server to return the latest impact information</p>
             </div>
         </div>
     </div>

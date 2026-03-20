@@ -1397,8 +1397,65 @@ h1 span {
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: hidden; /* Change to hidden as we move scroll to content */
     z-index: 100;
+}
+
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border-color);
+    background: #f8fafc;
+}
+
+.mcp-server-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mcp-server-btn:hover {
+    background: #f1f5f9;
+    border-color: var(--clr-primary);
+    color: var(--clr-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.mcp-server-btn svg {
+    width: 14px;
+    height: 14px;
+    color: var(--clr-primary);
+}
+
+/* MCP Modal Content */
+.mcp-modal-content {
+    width: 450px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* View Mode Selector (Sidebar) */

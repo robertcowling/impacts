@@ -1022,8 +1022,6 @@ function setupEvents() {
     });
     
     // Modal tabs
-
-    // Modal tabs
     document.querySelectorAll('.modal-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             const group = tab.dataset.tab;
@@ -1034,6 +1032,30 @@ function setupEvents() {
             document.getElementById(`tab-${group}`).classList.add('active');
         });
     });
+
+    // MCP Modal Listeners
+    const mcpModal = document.getElementById('mcp-modal');
+    const openMcpBtn = document.getElementById('mcp-server-btn');
+    const closeMcpBtn = document.getElementById('close-mcp-btn');
+
+    if (openMcpBtn && mcpModal) {
+        openMcpBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mcpModal.classList.add('active');
+        });
+    }
+
+    if (closeMcpBtn && mcpModal) {
+        closeMcpBtn.addEventListener('click', () => {
+            mcpModal.classList.remove('active');
+        });
+    }
+
+    if (mcpModal) {
+        mcpModal.addEventListener('click', (e) => {
+            if (e.target === mcpModal) mcpModal.classList.remove('active');
+        });
+    }
 }
 
 function renderTypeFilters() {
