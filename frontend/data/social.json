@@ -1,232 +1,12 @@
 [
   {
-    "id": "ev-social-0",
-    "lat": 53.3811,
-    "lng": -1.4701,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-13T15:33:00.000Z",
-    "title": "[X (Twitter)] Weather Warning Shared – Sheffield",
-    "locationName": "South Yorkshire | Sheffield | Sheffield Central",
-    "evidence": "X (Twitter) user in Sheffield shares Met Office yellow weather warning for rain affecting Wales and western England. Post is generic and informational. Low engagement. No direct reports of disruption.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Low",
-      "confidenceColor": "#ef4444",
-      "confidence": 22,
-      "justification": "Generic weather warning share from an unverified public account. Geographically dispersed. No direct observation or evidence of disruption. Background social media noise only.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "15:33",
-      "endTiming": "",
-      "synthesis": "Generic weather warning share from Sheffield. No indication of local impact. Dispersed from area of primary interest. Baseline social media noise.",
-      "confidenceStatement": "Low confidence. Dispersed location. Informational share only."
-    },
-    "posts": [
-      {
-        "user": "@SheffieldWeather",
-        "text": "Yellow rain warning in place for Wales and western England tonight into Friday. Stay safe out there 🌧️ #MetOffice",
-        "time": "~25h ago"
-      },
-      {
-        "user": "@NorthernCommuter",
-        "text": "Looks like it's going to be a wet one for parts of Wales and the south west. Hope the roads hold up.",
-        "time": "~26h ago"
-      },
-      {
-        "user": "@WeatherNerd_UK",
-        "text": "Atlantic low tracking in tonight – heavy rain focus on Wales/SW England. Worth watching.",
-        "time": "~26h ago"
-      }
-    ]
-  },
-  {
-    "id": "ev-social-1",
-    "lat": 52.9540,
-    "lng": -1.1550,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-13T19:58:00.000Z",
-    "title": "[X (Twitter)] Weather Discussion – Nottingham",
-    "locationName": "Nottinghamshire | Nottingham | Nottingham South",
-    "evidence": "X (Twitter) discussion thread in Nottingham area about incoming rain and forecast. No local impact reported. Users discussing weekend plans being disrupted by weather. Generic commentary only.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Low",
-      "confidenceColor": "#ef4444",
-      "confidence": 18,
-      "justification": "Forecast discussion with no direct disruption reported. Geographically dispersed from primary area of interest. No actionable intelligence. Background noise.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "19:58",
-      "endTiming": "",
-      "synthesis": "Routine weather conversation from Nottingham. No direct evidence of impact. Dispersed and unrelated to developing event focus.",
-      "confidenceStatement": "Low confidence. Generic forecast discussion. No relevance to primary area."
-    },
-    "posts": [
-      {
-        "user": "@NottmWeatherWatch",
-        "text": "Heavy rain on the way for Wales and the west tonight. Might catch the edge of it here by morning.",
-        "time": "~21h ago"
-      },
-      {
-        "user": "@MidlandsTraffic",
-        "text": "Seeing weather warnings for Wales/SW – expect knock-on delays on the M5 and M4 tomorrow morning.",
-        "time": "~21h ago"
-      },
-      {
-        "user": "@EastMidsCommute",
-        "text": "Glad I'm not heading west tomorrow. Looks horrible for Wales.",
-        "time": "~22h ago"
-      }
-    ]
-  },
-  {
-    "id": "ev-social-2",
-    "lat": 51.4545,
-    "lng": -2.5879,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-13T22:30:00.000Z",
-    "title": "[X (Twitter)] Rain Arriving in Bristol – General Observation",
-    "locationName": "Bristol | Bristol | Bristol West",
-    "evidence": "X (Twitter) users in Bristol noting rain arriving overnight. General observations about heavy rain sounds and wet conditions. No disruption reported. Posts are anecdotal.",
-    "source": "X (Twitter)",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Low",
-      "confidenceColor": "#ef4444",
-      "confidence": 25,
-      "justification": "Anecdotal rain arrival reports from Bristol. Geographically relevant as a downstream indicator of the approaching frontal system. Low informational value but consistent with expected pattern.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "22:30",
-      "endTiming": "",
-      "synthesis": "Rain observed arriving in Bristol late Thursday evening. Anecdotal but geographically consistent with the approaching weather system. No disruption reported at this stage.",
-      "confidenceStatement": "Low confidence. Anecdotal observation. No direct evidence of disruption."
-    },
-    "posts": [
-      {
-        "user": "@BristolLive_user",
-        "text": "Rain absolutely hammering Bristol right now. Must be that front they were warning about.",
-        "time": "~18h ago"
-      },
-      {
-        "user": "@BristolMum2024",
-        "text": "Can hear the rain from inside the house – sounds intense. Hope the drains keep up.",
-        "time": "~19h ago"
-      },
-      {
-        "user": "@CliftonCommuter",
-        "text": "Getting heavy now in Bristol. Setting my alarm earlier tomorrow just in case the roads are bad.",
-        "time": "~19h ago"
-      }
-    ]
-  },
-  {
-    "id": "ev-social-3",
-    "lat": 53.4084,
-    "lng": -2.9916,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-13T17:45:00.000Z",
-    "title": "[Bluesky] Yellow Warning Noted – Liverpool",
-    "locationName": "Merseyside | Liverpool | Liverpool Riverside",
-    "evidence": "Bluesky post from Liverpool noting the Met Office yellow rain warning for Wales and the south west. Informational share with no local disruption reported. Low engagement.",
-    "source": "Bluesky",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Low",
-      "confidenceColor": "#ef4444",
-      "confidence": 20,
-      "justification": "Informational share from Liverpool. Dispersed from primary area of interest. No direct observation or disruption reported. Baseline social media activity.",
-      "sourceLabel": "Bluesky",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "17:45",
-      "endTiming": "",
-      "synthesis": "Weather warning noted on Bluesky from Liverpool. Geographically dispersed. Baseline noise only.",
-      "confidenceStatement": "Low confidence. Informational share from dispersed location."
-    },
-    "posts": [
-      {
-        "user": "@LiverpoolWeather.bsky.social",
-        "text": "Yellow rain warning still in place for Wales and parts of the south west heading into Friday. Looks significant.",
-        "time": "~23h ago"
-      },
-      {
-        "user": "@NWEnglandWx.bsky.social",
-        "text": "Atlantic low looks pretty potent for SE Wales and the Marches. River flooding possible by Friday afternoon.",
-        "time": "~24h ago"
-      },
-      {
-        "user": "@WxWatcher_UK.bsky.social",
-        "text": "Rainfall totals for Friday could be quite high in SE Wales if the model is right. Watching closely.",
-        "time": "~24h ago"
-      }
-    ]
-  },
-  {
-    "id": "ev-social-4",
-    "lat": 51.3837,
-    "lng": -2.3599,
-    "category": "social",
-    "severity": "minor",
-    "timestamp": "2025-11-13T21:10:00.000Z",
-    "title": "[Threads] Heavy Rain Noted in Bath",
-    "locationName": "Bath and North East Somerset | Bath | Bath",
-    "evidence": "Threads post from Bath noting heavy rain onset in the late evening. User describes flooding concerns for the River Avon. No direct disruption reported. Local weather observation only.",
-    "source": "Threads",
-    "sourceUrl": "#",
-    "assessment": {
-      "confidenceLabel": "Low",
-      "confidenceColor": "#ef4444",
-      "confidence": 23,
-      "justification": "Anecdotal rain observation from Bath. Avon catchment concerns noted by local user but no disruption reported. Background noise adjacent to the primary geographic area of interest.",
-      "sourceLabel": "Threads",
-      "sourceReliability": "Unofficial",
-      "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "21:10",
-      "endTiming": "",
-      "synthesis": "Rain noted in Bath on Thursday evening with informal concern about River Avon. No disruption. Background noise with some geographic proximity to the developing event area.",
-      "confidenceStatement": "Low confidence. Anecdotal observation. No disruption reported."
-    },
-    "posts": [
-      {
-        "user": "@BathLocal",
-        "text": "Heavy rain here in Bath now. River Avon looking higher than usual already. Hope it doesn't get worse tomorrow.",
-        "time": "~20h ago"
-      },
-      {
-        "user": "@SomersetResident",
-        "text": "The Avon always rises fast when it rains like this. Fingers crossed for the weekend.",
-        "time": "~20h ago"
-      },
-      {
-        "user": "@VisitBath_fan",
-        "text": "Torrential rain in Bath tonight. Avoid driving if you can – spray on the roads is bad.",
-        "time": "~21h ago"
-      }
-    ]
-  },
-  {
     "id": "ev-social-5",
-    "lat": 51.5660,
-    "lng": -3.0200,
+    "lat": 51.566,
+    "lng": -3.02,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T01:28:00.000Z",
-    "title": "[X (Twitter)] M4 Newport – Poor Spray Conditions Reported",
+    "title": "[X (Twitter)] M4 Newport \u2013 Poor Spray Conditions Reported",
     "locationName": "Newport | M4 | Newport West",
     "evidence": "X (Twitter) user travelling westbound on M4 near Newport reports severe spray and reduced visibility. Describes conditions as 'dangerous' but no incidents reported. Advises other drivers to slow down.",
     "source": "X (Twitter)",
@@ -258,7 +38,7 @@
       },
       {
         "user": "@NightShift_Driver",
-        "text": "M4 J28 Newport eastbound – big puddles forming. Traffic Wales should get the VMSs up before it gets worse.",
+        "text": "M4 J28 Newport eastbound \u2013 big puddles forming. Traffic Wales should get the VMSs up before it gets worse.",
         "time": "~16h ago"
       }
     ]
@@ -266,11 +46,11 @@
   {
     "id": "ev-social-6",
     "lat": 51.7742,
-    "lng": -2.8520,
+    "lng": -2.852,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T03:15:00.000Z",
-    "title": "[X (Twitter)] A40 Monmouth – Surface Water Warning",
+    "title": "[X (Twitter)] A40 Monmouth \u2013 Surface Water Warning",
     "locationName": "Monmouthshire | A40 | Monmouth",
     "evidence": "X (Twitter) user warns of surface water on A40 near Raglan and Monmouth area. Advises caution for early morning travellers. No closure reported. Post has limited engagement.",
     "source": "X (Twitter)",
@@ -292,7 +72,7 @@
     "posts": [
       {
         "user": "@MonmouthshireDriver",
-        "text": "Caution on the A40 near Raglan early this morning – standing water on the eastbound. Drive carefully. #A40 #Monmouthshire",
+        "text": "Caution on the A40 near Raglan early this morning \u2013 standing water on the eastbound. Drive carefully. #A40 #Monmouthshire",
         "time": "~14h ago"
       },
       {
@@ -310,11 +90,11 @@
   {
     "id": "ev-social-7",
     "lat": 51.4442,
-    "lng": -2.6100,
+    "lng": -2.61,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T05:30:00.000Z",
-    "title": "[X (Twitter)] M5 Bristol Approach – Heavy Rain Reported",
+    "title": "[X (Twitter)] M5 Bristol Approach \u2013 Heavy Rain Reported",
     "locationName": "South Gloucestershire | M5 | Filton and Bradley Stoke",
     "evidence": "X (Twitter) commuter reports heavy rain on M5 northbound approaching Bristol from the south. Spray described as severe. Standing water in nearside lane near J16 M5. No incidents. Traffic flowing slowly.",
     "source": "X (Twitter)",
@@ -358,7 +138,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T06:45:00.000Z",
-    "title": "[X (Twitter)] SE Wales Roads – Warning Posted",
+    "title": "[X (Twitter)] SE Wales Roads \u2013 Warning Posted",
     "locationName": "Monmouthshire | A48 Corridor | Chepstow",
     "evidence": "X (Twitter) account focused on South Wales road conditions posts early morning warning about A48 near Chepstow and A40 approaches to Abergavenny. Describes 'widespread surface water' and urges drivers to leave extra time.",
     "source": "X (Twitter)",
@@ -402,7 +182,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T04:30:00.000Z",
-    "title": "[Bluesky] Brecon Area – Surface Water and Rising River Levels",
+    "title": "[Bluesky] Brecon Area \u2013 Surface Water and Rising River Levels",
     "locationName": "Powys | Brecon Beacons | Brecon and Radnorshire",
     "evidence": "Bluesky post from a user in the Brecon area noting surface water on local roads and an observable rise in the River Usk at Brecon. Describes rain as 'non-stop since midnight'. Early hours post with low engagement.",
     "source": "Bluesky",
@@ -434,19 +214,19 @@
       },
       {
         "user": "@PowysLocal.bsky.social",
-        "text": "Can hear the river from my house tonight – it's running fast. If this keeps up I'm worried about lower down the valley.",
+        "text": "Can hear the river from my house tonight \u2013 it's running fast. If this keeps up I'm worried about lower down the valley.",
         "time": "~13h ago"
       }
     ]
   },
   {
     "id": "ev-social-10",
-    "lat": 50.8400,
-    "lng": -3.3600,
+    "lat": 50.84,
+    "lng": -3.36,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T07:15:00.000Z",
-    "title": "[Bluesky] Devon M5 – Poor Conditions Reported by Driver",
+    "title": "[Bluesky] Devon M5 \u2013 Poor Conditions Reported by Driver",
     "locationName": "Devon | M5 | Central Devon",
     "evidence": "Bluesky post from a lorry driver on M5 northbound near Cullompton, Devon, describing very poor driving conditions including standing water and reduced visibility. Advises HGVs in particular to take care.",
     "source": "Bluesky",
@@ -478,7 +258,7 @@
       },
       {
         "user": "@SWFreight.bsky.social",
-        "text": "Delivery running late – M5 Devon is slow and wet this morning. Not safe to push it.",
+        "text": "Delivery running late \u2013 M5 Devon is slow and wet this morning. Not safe to push it.",
         "time": "~11h ago"
       }
     ]
@@ -490,7 +270,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T06:00:00.000Z",
-    "title": "[Threads] Cardiff – Early Morning Flooding Concerns",
+    "title": "[Threads] Cardiff \u2013 Early Morning Flooding Concerns",
     "locationName": "Cardiff | Cardiff | Cardiff Central",
     "evidence": "Threads post from Cardiff resident noting flooding in a low-lying residential street. Drains overwhelmed by run-off. No emergency response reported. General early morning concern about conditions.",
     "source": "Threads",
@@ -512,12 +292,12 @@
     "posts": [
       {
         "user": "@CardiffResident",
-        "text": "Flooding in our street this morning – drains can't cope. Water coming up to the pavement edge. Not seen it this bad in years.",
+        "text": "Flooding in our street this morning \u2013 drains can't cope. Water coming up to the pavement edge. Not seen it this bad in years.",
         "time": "~11h ago"
       },
       {
         "user": "@CardiffMum",
-        "text": "Worried about getting the kids to school today – standing water outside already and it's only 6am.",
+        "text": "Worried about getting the kids to school today \u2013 standing water outside already and it's only 6am.",
         "time": "~11h ago"
       },
       {
@@ -534,7 +314,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T07:45:00.000Z",
-    "title": "[Threads] Somerset – Road Conditions Warning",
+    "title": "[Threads] Somerset \u2013 Road Conditions Warning",
     "locationName": "Somerset | M5 Corridor | Taunton Deane",
     "evidence": "Threads post from Somerset resident warning about road conditions on approaches to Taunton and the M5. Describes standing water and slow traffic. Advises commuters to leave early.",
     "source": "Threads",
@@ -556,7 +336,7 @@
     "posts": [
       {
         "user": "@SomersetLocal",
-        "text": "Roads around Taunton are bad this morning – standing water and slow traffic everywhere. Leave early if you can. #Somerset",
+        "text": "Roads around Taunton are bad this morning \u2013 standing water and slow traffic everywhere. Leave early if you can. #Somerset",
         "time": "~9h ago"
       },
       {
@@ -578,7 +358,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T10:45:00.000Z",
-    "title": "[X (Twitter)] A465 Brynmawr Closure – Reports Going Viral",
+    "title": "[X (Twitter)] A465 Brynmawr Closure \u2013 Reports Going Viral",
     "locationName": "Blaenau Gwent | A465 | Blaenau Gwent",
     "evidence": "X (Twitter) posts about the A465 closure near Brynmawr rapidly gaining engagement. Photos and video of flood water on the carriageway being shared. Locals describing the scene as 'like a river'. Multiple accounts reporting diversion chaos on alternative routes.",
     "source": "X (Twitter)",
@@ -600,12 +380,12 @@
     "posts": [
       {
         "user": "@BrynmawrLocal",
-        "text": "A465 is completely underwater near Brynmawr. You can't see the road at all – it's like a river. Avoid avoid avoid. #A465 #flooding #BlaenauGwent",
+        "text": "A465 is completely underwater near Brynmawr. You can't see the road at all \u2013 it's like a river. Avoid avoid avoid. #A465 #flooding #BlaenauGwent",
         "time": "~6h ago"
       },
       {
         "user": "@HeadsOfValleys",
-        "text": "The Heads of the Valleys Road is properly shut. Not just advisory – full closure. Clydach Gorge has flooded badly. Sharing video now.",
+        "text": "The Heads of the Valleys Road is properly shut. Not just advisory \u2013 full closure. Clydach Gorge has flooded badly. Sharing video now.",
         "time": "~6h ago"
       },
       {
@@ -617,12 +397,12 @@
   },
   {
     "id": "ev-social-14",
-    "lat": 51.5720,
-    "lng": -3.0500,
+    "lat": 51.572,
+    "lng": -3.05,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T13:10:00.000Z",
-    "title": "[X (Twitter)] M4 Newport Closure – High-Volume Public Response",
+    "title": "[X (Twitter)] M4 Newport Closure \u2013 High-Volume Public Response",
     "locationName": "Newport | M4 | Newport East",
     "evidence": "X (Twitter) flooded with posts about the M4 closure between J24 and J25 Newport. Hundreds of posts sharing diversionary route advice, photos of flood water and queuing traffic. Strong emotional responses from those trapped or unable to travel.",
     "source": "X (Twitter)",
@@ -649,7 +429,7 @@
       },
       {
         "user": "@CardiffToLondon",
-        "text": "Trying to get to London for a meeting – M4 shut, Newport rail suspended, A48 gridlocked. There is literally no way through. This is serious.",
+        "text": "Trying to get to London for a meeting \u2013 M4 shut, Newport rail suspended, A48 gridlocked. There is literally no way through. This is serious.",
         "time": "~4h ago"
       },
       {
@@ -666,7 +446,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T09:45:00.000Z",
-    "title": "[X (Twitter)] Abergavenny Flooding – Community Reports",
+    "title": "[X (Twitter)] Abergavenny Flooding \u2013 Community Reports",
     "locationName": "Monmouthshire | Abergavenny | Brecon and Radnorshire",
     "evidence": "X (Twitter) community in Abergavenny posting about flooding in the town and on approach roads. River Usk described as 'very high and fast'. A40 approaches reported as partially flooded. Residents asking local council for sandbags.",
     "source": "X (Twitter)",
@@ -693,7 +473,7 @@
       },
       {
         "user": "@MonmouthshireMum",
-        "text": "Can't get into Abergavenny – A40 is flooded from the riverside. Massive puddle across both lanes. Hoping sandbags arrive soon.",
+        "text": "Can't get into Abergavenny \u2013 A40 is flooded from the riverside. Massive puddle across both lanes. Hoping sandbags arrive soon.",
         "time": "~8h ago"
       },
       {
@@ -710,7 +490,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T11:30:00.000Z",
-    "title": "[X (Twitter)] Newport Flooding – Residential Streets Affected",
+    "title": "[X (Twitter)] Newport Flooding \u2013 Residential Streets Affected",
     "locationName": "Newport | City Centre | Newport",
     "evidence": "X (Twitter) users in Newport reporting flooding in residential streets and in the city centre. River Usk levels described as extremely high. Calls for emergency services being reported. Photos of flooded streets circulating.",
     "source": "X (Twitter)",
@@ -732,7 +512,7 @@
     "posts": [
       {
         "user": "@NewportResident",
-        "text": "Our street in Newport is flooded – water coming under the front door now. This is worse than 2019. Waiting for the council to respond. #Newport #floods",
+        "text": "Our street in Newport is flooded \u2013 water coming under the front door now. This is worse than 2019. Waiting for the council to respond. #Newport #floods",
         "time": "~5h ago"
       },
       {
@@ -754,7 +534,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T12:15:00.000Z",
-    "title": "[X (Twitter)] Monmouth – Town Flooding Reports",
+    "title": "[X (Twitter)] Monmouth \u2013 Town Flooding Reports",
     "locationName": "Monmouthshire | Monmouth Town | Monmouth",
     "evidence": "X (Twitter) users in Monmouth report flooding around Monnow Street and riverside areas. River Monnow overtopping in the town centre. A449 approach road described as 'like a lake'. Local businesses posting about closure.",
     "source": "X (Twitter)",
@@ -776,7 +556,7 @@
     "posts": [
       {
         "user": "@MonmouthTownLocal",
-        "text": "Monnow Street is flooding – water coming in from the river end. Businesses are shutting up early. Hope the barriers hold. #Monmouth #flooding",
+        "text": "Monnow Street is flooding \u2013 water coming in from the river end. Businesses are shutting up early. Hope the barriers hold. #Monmouth #flooding",
         "time": "~5h ago"
       },
       {
@@ -794,11 +574,11 @@
   {
     "id": "ev-social-18",
     "lat": 52.0567,
-    "lng": -2.7160,
+    "lng": -2.716,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T14:30:00.000Z",
-    "title": "[X (Twitter)] Herefordshire Roads – Disruption Reports",
+    "title": "[X (Twitter)] Herefordshire Roads \u2013 Disruption Reports",
     "locationName": "Herefordshire | Hereford City | Hereford",
     "evidence": "X (Twitter) users in Hereford reporting road disruption on approaches to the city. River Wye described as very high and brown. A40 from the west reported as partially blocked. Commuters asking for alternative route advice.",
     "source": "X (Twitter)",
@@ -825,7 +605,7 @@
       },
       {
         "user": "@HerefordCommuter",
-        "text": "Avoid A40 west of Hereford – surface water making it single lane. Takes ages to get through.",
+        "text": "Avoid A40 west of Hereford \u2013 surface water making it single lane. Takes ages to get through.",
         "time": "~3h ago"
       },
       {
@@ -842,7 +622,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T10:15:00.000Z",
-    "title": "[Bluesky] SE Wales Flooding Photos – Widespread Sharing",
+    "title": "[Bluesky] SE Wales Flooding Photos \u2013 Widespread Sharing",
     "locationName": "Monmouthshire | Abergavenny | Brecon and Radnorshire",
     "evidence": "Bluesky posts sharing photos and short video clips of flooding across Southeast Wales, including Abergavenny, the Clydach Gorge area, and rural Monmouthshire. High engagement. Images show extensive inundation of roads and fields.",
     "source": "Bluesky",
@@ -864,7 +644,7 @@
     "posts": [
       {
         "user": "@SEWalesFloods.bsky.social",
-        "text": "Photos coming in from across SE Wales – it's extensive. Abergavenny, Clydach, Pontypool all affected. This is a major event. Sharing images now.",
+        "text": "Photos coming in from across SE Wales \u2013 it's extensive. Abergavenny, Clydach, Pontypool all affected. This is a major event. Sharing images now.",
         "time": "~7h ago"
       },
       {
@@ -874,7 +654,7 @@
       },
       {
         "user": "@MonmouthshireLife.bsky.social",
-        "text": "Sharing photos from friends in Abergavenny and Monmouth – flooding is severe and spreading.",
+        "text": "Sharing photos from friends in Abergavenny and Monmouth \u2013 flooding is severe and spreading.",
         "time": "~7h ago"
       }
     ]
@@ -886,7 +666,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T12:45:00.000Z",
-    "title": "[Bluesky] Cardiff Community Update – Conditions Worsening",
+    "title": "[Bluesky] Cardiff Community Update \u2013 Conditions Worsening",
     "locationName": "Cardiff | Cardiff | Cardiff Central",
     "evidence": "Bluesky posts from Cardiff community accounts providing updates on worsening conditions. School closures being reported in some areas. Some residential flooding described near the River Taff. Transport disruption updates shared.",
     "source": "Bluesky",
@@ -918,7 +698,7 @@
       },
       {
         "user": "@SouthWalesUpdate.bsky.social",
-        "text": "Cardiff is taking the knock-on effects of everything – M4 shutdown, rail cancelled, local flooding. City is struggling to function today.",
+        "text": "Cardiff is taking the knock-on effects of everything \u2013 M4 shutdown, rail cancelled, local flooding. City is struggling to function today.",
         "time": "~5h ago"
       }
     ]
@@ -930,7 +710,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T14:00:00.000Z",
-    "title": "[Bluesky] Gloucestershire – Flooding and Diversion Impact",
+    "title": "[Bluesky] Gloucestershire \u2013 Flooding and Diversion Impact",
     "locationName": "Gloucestershire | Gloucester City | Gloucester",
     "evidence": "Bluesky posts from Gloucestershire area discussing road disruption caused by both local flooding and the impact of traffic diverting from the M4 via the A417. Comments about unusual congestion in and around Gloucester.",
     "source": "Bluesky",
@@ -957,7 +737,7 @@
       },
       {
         "user": "@CotswoldDriver.bsky.social",
-        "text": "A417 near Cirencester is chaos – half the road flooded, other half backed up. Everyone trying to avoid the M4.",
+        "text": "A417 near Cirencester is chaos \u2013 half the road flooded, other half backed up. Everyone trying to avoid the M4.",
         "time": "~3h ago"
       },
       {
@@ -969,12 +749,12 @@
   },
   {
     "id": "ev-social-22",
-    "lat": 51.6500,
-    "lng": -3.0300,
+    "lat": 51.65,
+    "lng": -3.03,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T11:00:00.000Z",
-    "title": "[Threads] SE Wales – Emergency Updates Being Shared",
+    "title": "[Threads] SE Wales \u2013 Emergency Updates Being Shared",
     "locationName": "Torfaen | Cwmbran | Torfaen",
     "evidence": "Threads posts across Southeast Wales communities sharing emergency advice, flood warning information, and updates on road closures. High engagement across local community groups. Posts include practical advice about not driving through flood water.",
     "source": "Threads",
@@ -1006,19 +786,19 @@
       },
       {
         "user": "@LocalEmergencySW",
-        "text": "If you're in SE Wales – check @TrafficWales and @NaturalResourcesWales for latest flood warnings before you travel.",
+        "text": "If you're in SE Wales \u2013 check @TrafficWales and @NaturalResourcesWales for latest flood warnings before you travel.",
         "time": "~6h ago"
       }
     ]
   },
   {
     "id": "ev-social-23",
-    "lat": 51.5720,
-    "lng": -3.0500,
+    "lat": 51.572,
+    "lng": -3.05,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T13:45:00.000Z",
-    "title": "[Threads] Newport M4 Closure – Alternative Route Chaos",
+    "title": "[Threads] Newport M4 Closure \u2013 Alternative Route Chaos",
     "locationName": "Newport | M4 | Newport East",
     "evidence": "Threads posts describing chaos on alternative routes around the M4 Newport closure. A48 and local roads described as gridlocked. Several posts from drivers stuck for hours. Business disruption being reported.",
     "source": "Threads",
@@ -1062,7 +842,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T15:30:00.000Z",
-    "title": "[Threads] Abergavenny – Rescue and Community Response",
+    "title": "[Threads] Abergavenny \u2013 Rescue and Community Response",
     "locationName": "Monmouthshire | Abergavenny | Brecon and Radnorshire",
     "evidence": "Threads posts from Abergavenny area reporting that community rescue teams are helping residents in flooded properties. River Usk described as 'at its highest in a decade'. Local resilience volunteers assisting emergency services.",
     "source": "Threads",
@@ -1101,12 +881,12 @@
   },
   {
     "id": "ev-social-25",
-    "lat": 52.1920,
-    "lng": -2.2200,
+    "lat": 52.192,
+    "lng": -2.22,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T09:30:00.000Z",
-    "title": "Worcester – Surface Water Reports on Local Roads",
+    "title": "Worcester \u2013 Surface Water Reports on Local Roads",
     "locationName": "Worcestershire | Worcester City | Worcester",
     "evidence": "X (Twitter) posts from Worcester and the surrounding Vale of Evesham describe surface water on local roads, particularly on lower-lying routes near the River Severn and Avon. Some posts note queuing on the A44 near Pershore. Residents advised to avoid flood-prone routes.",
     "source": "X (Twitter)",
@@ -1138,19 +918,19 @@
       },
       {
         "user": "@WorcsMorningCommute",
-        "text": "Take it steady out there today in Worcestershire – surface water on a lot of the rural A roads. B4084 through Pershore is particularly bad.",
+        "text": "Take it steady out there today in Worcestershire \u2013 surface water on a lot of the rural A roads. B4084 through Pershore is particularly bad.",
         "time": "~7h ago"
       }
     ]
   },
   {
     "id": "ev-social-26",
-    "lat": 51.7520,
+    "lat": 51.752,
     "lng": -1.2577,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T10:45:00.000Z",
-    "title": "Oxford Area – Standing Water and Disruption Reports",
+    "title": "Oxford Area \u2013 Standing Water and Disruption Reports",
     "locationName": "Oxfordshire | Oxford City | Oxford East",
     "evidence": "Bluesky posts from the Oxford area note standing water in low-lying parts of the city and surrounding villages. River Cherwell described as high near Kidlington. A34 approach roads described as slow with standing water. Some cycle paths flooded.",
     "source": "Bluesky",
@@ -1194,7 +974,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T11:30:00.000Z",
-    "title": "Wiltshire – Heavy Rain and Local Road Flooding",
+    "title": "Wiltshire \u2013 Heavy Rain and Local Road Flooding",
     "locationName": "Wiltshire | Swindon Rural | North Wiltshire",
     "evidence": "Threads posts from Wiltshire residents describe heavy rainfall causing minor flooding on rural roads and low-lying village streets. Some posts from the Marlborough Downs area note waterlogged tracks. North Wiltshire described as 'very wet' with some minor road ponding.",
     "source": "Threads",
@@ -1238,7 +1018,7 @@
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T12:00:00.000Z",
-    "title": "Banbury Area – Surface Water and Slow Traffic",
+    "title": "Banbury Area \u2013 Surface Water and Slow Traffic",
     "locationName": "Oxfordshire | Banbury | Banbury",
     "evidence": "X (Twitter) posts from the Banbury area describe surface water on local roads and slow traffic on the A361 and A422. River Cherwell reported as rising near Cropredy. Posts advising drivers to allow extra time for journeys through north Oxfordshire.",
     "source": "X (Twitter)",
@@ -1270,19 +1050,19 @@
       },
       {
         "user": "@OxonTrafficAlerts",
-        "text": "Allow extra time in north Oxfordshire today – surface water on multiple A roads in the Banbury area. #Oxfordshire",
+        "text": "Allow extra time in north Oxfordshire today \u2013 surface water on multiple A roads in the Banbury area. #Oxfordshire",
         "time": "~4h ago"
       }
     ]
   },
   {
     "id": "ev-social-29",
-    "lat": 52.4080,
-    "lng": -1.5100,
+    "lat": 52.408,
+    "lng": -1.51,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T09:50:00.000Z",
-    "title": "Coventry – Wet Roads and Surface Water on Approach Routes",
+    "title": "Coventry \u2013 Wet Roads and Surface Water on Approach Routes",
     "locationName": "Warwickshire | Coventry | Coventry",
     "evidence": "X (Twitter) posts from Coventry describe wet and slow conditions on the A45 and A46 approach roads. Surface water visible on the ring road at low dips. Some minor delays. No closures reported.",
     "source": "X (Twitter)",
@@ -1302,18 +1082,26 @@
       "confidenceStatement": "Low confidence. Community social media only. Minor Warwickshire conditions."
     },
     "posts": [
-      { "user": "@CoventryCommuter", "text": "A45 into Coventry is slow with surface water at the Meriden dip. Take it easy. #Coventry #flooding", "time": "~7h ago" },
-      { "user": "@WestMidlandsWeather", "text": "Wet morning in Coventry. A46 bypass has some standing water. Allow extra time. #Warwickshire", "time": "~7h ago" }
+      {
+        "user": "@CoventryCommuter",
+        "text": "A45 into Coventry is slow with surface water at the Meriden dip. Take it easy. #Coventry #flooding",
+        "time": "~7h ago"
+      },
+      {
+        "user": "@WestMidlandsWeather",
+        "text": "Wet morning in Coventry. A46 bypass has some standing water. Allow extra time. #Warwickshire",
+        "time": "~7h ago"
+      }
     ]
   },
   {
     "id": "ev-social-30",
-    "lat": 52.6350,
-    "lng": -1.1300,
+    "lat": 52.635,
+    "lng": -1.13,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T10:35:00.000Z",
-    "title": "Leicester – River Soar Rising, Local Road Disruption",
+    "title": "Leicester \u2013 River Soar Rising, Local Road Disruption",
     "locationName": "Leicestershire | Leicester City | Leicester",
     "evidence": "Bluesky posts from Leicester note the River Soar is running high through the city. Parks near the river are flooded. Some road closures on low-lying routes near the watermeadows. Cyclists and pedestrians warned away from riverside paths.",
     "source": "Bluesky",
@@ -1333,18 +1121,26 @@
       "confidenceStatement": "Low confidence. Community social media. River flooding consistent with event conditions."
     },
     "posts": [
-      { "user": "@LeicesterNaturalist.bsky.social", "text": "River Soar very high through Leicester today. Watermeadows completely flooded. Beautiful but a bit concerning. #Leicester", "time": "~6h ago" },
-      { "user": "@LeicesterCyclist.bsky.social", "text": "Avoid riverside cycle routes in Leicester – they're underwater. Stick to higher ground. #flooding", "time": "~6h ago" }
+      {
+        "user": "@LeicesterNaturalist.bsky.social",
+        "text": "River Soar very high through Leicester today. Watermeadows completely flooded. Beautiful but a bit concerning. #Leicester",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@LeicesterCyclist.bsky.social",
+        "text": "Avoid riverside cycle routes in Leicester \u2013 they're underwater. Stick to higher ground. #flooding",
+        "time": "~6h ago"
+      }
     ]
   },
   {
     "id": "ev-social-31",
-    "lat": 52.9500,
-    "lng": -1.1500,
+    "lat": 52.95,
+    "lng": -1.15,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T11:15:00.000Z",
-    "title": "Nottingham – Surface Water and Road Disruption Reports",
+    "title": "Nottingham \u2013 Surface Water and Road Disruption Reports",
     "locationName": "Nottinghamshire | Nottingham City | Nottingham",
     "evidence": "Threads posts from Nottinghamshire describe surface water on radial routes into Nottingham and reports of the River Trent running noticeably high. Some parks on the Trent floodplain reported flooded. Traffic slow on the A52.",
     "source": "Threads",
@@ -1364,18 +1160,26 @@
       "confidenceStatement": "Low confidence. Community social media only. Minor Nottinghamshire conditions."
     },
     "posts": [
-      { "user": "@NottsFloodWatch", "text": "Trent is very high through Nottingham. Meadows park is flooded. A52 slow with surface water. #Nottingham #flooding", "time": "~6h ago" },
-      { "user": "@NottsTrafficUpdates", "text": "Slow going on A52 and A6 into Nottingham – surface water at several spots. #Nottinghamshire", "time": "~5h ago" }
+      {
+        "user": "@NottsFloodWatch",
+        "text": "Trent is very high through Nottingham. Meadows park is flooded. A52 slow with surface water. #Nottingham #flooding",
+        "time": "~6h ago"
+      },
+      {
+        "user": "@NottsTrafficUpdates",
+        "text": "Slow going on A52 and A6 into Nottingham \u2013 surface water at several spots. #Nottinghamshire",
+        "time": "~5h ago"
+      }
     ]
   },
   {
     "id": "ev-social-32",
-    "lat": 52.9100,
-    "lng": -0.6400,
+    "lat": 52.91,
+    "lng": -0.64,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T12:00:00.000Z",
-    "title": "Grantham – A1 Surface Water and Local Flooding Reports",
+    "title": "Grantham \u2013 A1 Surface Water and Local Flooding Reports",
     "locationName": "Lincolnshire | Grantham | Grantham",
     "evidence": "X (Twitter) posts from the Grantham area note surface water on the A1 and surrounding road network. River Witham described as high. Some local residential areas reporting minor garden flooding. Residents advising caution on the A1.",
     "source": "X (Twitter)",
@@ -1395,18 +1199,26 @@
       "confidenceStatement": "Low confidence. Community social media corroborating highway advisory."
     },
     "posts": [
-      { "user": "@GranthamLocal", "text": "A1 near Grantham has standing water in the dips. Driving carefully. River Witham looking very high too. #Grantham #Lincolnshire", "time": "~5h ago" },
-      { "user": "@LincsRoadWatch", "text": "Heads up on the A1 south of Grantham – surface water making it dangerous. Slow right down. #A1", "time": "~5h ago" }
+      {
+        "user": "@GranthamLocal",
+        "text": "A1 near Grantham has standing water in the dips. Driving carefully. River Witham looking very high too. #Grantham #Lincolnshire",
+        "time": "~5h ago"
+      },
+      {
+        "user": "@LincsRoadWatch",
+        "text": "Heads up on the A1 south of Grantham \u2013 surface water making it dangerous. Slow right down. #A1",
+        "time": "~5h ago"
+      }
     ]
   },
   {
     "id": "ev-social-33",
-    "lat": 53.2300,
-    "lng": -0.5400,
+    "lat": 53.23,
+    "lng": -0.54,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T13:00:00.000Z",
-    "title": "Lincoln – Brayford Pool and City Flooding",
+    "title": "Lincoln \u2013 Brayford Pool and City Flooding",
     "locationName": "Lincolnshire | Lincoln City | Lincoln",
     "evidence": "Bluesky posts from Lincoln note Brayford Pool is very full and overflow concerns raised. Witham tributaries running high through the city. The Brayford waterfront area has minor surface flooding. Some road ponding on lower routes.",
     "source": "Bluesky",
@@ -1426,18 +1238,26 @@
       "confidenceStatement": "Low confidence. Community social media only. Minor Lincoln conditions."
     },
     "posts": [
-      { "user": "@LincolnCityLife.bsky.social", "text": "Brayford Pool is really full today. Some water lapping over the edges near the university. #Lincoln #flooding", "time": "~4h ago" },
-      { "user": "@WithamWatcher.bsky.social", "text": "Witham through Lincoln is running very fast and high. Keep children away from the river today. #Lincolnshire", "time": "~4h ago" }
+      {
+        "user": "@LincolnCityLife.bsky.social",
+        "text": "Brayford Pool is really full today. Some water lapping over the edges near the university. #Lincoln #flooding",
+        "time": "~4h ago"
+      },
+      {
+        "user": "@WithamWatcher.bsky.social",
+        "text": "Witham through Lincoln is running very fast and high. Keep children away from the river today. #Lincolnshire",
+        "time": "~4h ago"
+      }
     ]
   },
   {
     "id": "ev-social-34",
-    "lat": 52.9800,
-    "lng": 0.0200,
+    "lat": 52.98,
+    "lng": 0.02,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T13:20:00.000Z",
-    "title": "Boston – Low-lying Areas Flooding, A17 Reports",
+    "title": "Boston \u2013 Low-lying Areas Flooding, A17 Reports",
     "locationName": "Lincolnshire | Boston | Boston",
     "evidence": "X (Twitter) posts from the Boston area describe flooding in low-lying parts of town and surface water on the A17. The Haven (River Witham tidal section) is described as 'very high'. Some residential gardens and car parks flooded.",
     "source": "X (Twitter)",
@@ -1457,18 +1277,26 @@
       "confidenceStatement": "Low confidence. Community social media only. Minor coastal Lincolnshire conditions."
     },
     "posts": [
-      { "user": "@BostonLincs", "text": "The Haven in Boston is very high today. Some low-lying gardens near the river have flooding. A17 is slow too. #Boston #Lincolnshire", "time": "~4h ago" },
-      { "user": "@SLincsTraffic", "text": "A17 near Boston is slow with standing water in places. Allow extra time. #Lincolnshire", "time": "~4h ago" }
+      {
+        "user": "@BostonLincs",
+        "text": "The Haven in Boston is very high today. Some low-lying gardens near the river have flooding. A17 is slow too. #Boston #Lincolnshire",
+        "time": "~4h ago"
+      },
+      {
+        "user": "@SLincsTraffic",
+        "text": "A17 near Boston is slow with standing water in places. Allow extra time. #Lincolnshire",
+        "time": "~4h ago"
+      }
     ]
   },
   {
     "id": "ev-social-35",
-    "lat": 52.6600,
-    "lng": 0.1600,
+    "lat": 52.66,
+    "lng": 0.16,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T13:40:00.000Z",
-    "title": "Wisbech – Fenland Surface Flooding Reports",
+    "title": "Wisbech \u2013 Fenland Surface Flooding Reports",
     "locationName": "Cambridgeshire | Wisbech | North East Cambridgeshire",
     "evidence": "Threads posts from the Wisbech area describe surface water on Fenland roads and some low-lying field flooding. The River Nene described as running high at the Wisbech gauge. Some Fenland drains described as 'close to capacity'. No closures.",
     "source": "Threads",
@@ -1488,18 +1316,26 @@
       "confidenceStatement": "Low confidence. Community social media only. Minor Fenland conditions."
     },
     "posts": [
-      { "user": "@WisbechLocal", "text": "Fenland drains are very full today around Wisbech. Some field flooding visible. River Nene is high at the gauging station. #Wisbech #Fens", "time": "~3h ago" },
-      { "user": "@FenlandDriver", "text": "Lots of surface water on the B roads around Wisbech. The Fens don't drain quickly when it's this wet. Be careful.", "time": "~4h ago" }
+      {
+        "user": "@WisbechLocal",
+        "text": "Fenland drains are very full today around Wisbech. Some field flooding visible. River Nene is high at the gauging station. #Wisbech #Fens",
+        "time": "~3h ago"
+      },
+      {
+        "user": "@FenlandDriver",
+        "text": "Lots of surface water on the B roads around Wisbech. The Fens don't drain quickly when it's this wet. Be careful.",
+        "time": "~4h ago"
+      }
     ]
   },
   {
     "id": "ev-social-36",
-    "lat": 52.7500,
-    "lng": 0.4000,
+    "lat": 52.75,
+    "lng": 0.4,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T14:10:00.000Z",
-    "title": "King's Lynn – Coastal Plain Flooding and Road Reports",
+    "title": "King's Lynn \u2013 Coastal Plain Flooding and Road Reports",
     "locationName": "Norfolk | King's Lynn | North West Norfolk",
     "evidence": "Bluesky posts from King's Lynn note some flooding on low-lying land around the town. The Great Ouse described as running high. A149 coastal road reported as having standing water. Residents advised to monitor conditions.",
     "source": "Bluesky",
@@ -1519,18 +1355,26 @@
       "confidenceStatement": "Low confidence. Community social media only. Minor Norfolk coastal conditions."
     },
     "posts": [
-      { "user": "@KingsLynnLife.bsky.social", "text": "Great Ouse is very high through King's Lynn. A149 has some standing water. Nothing major yet but watching it. #Norfolk", "time": "~3h ago" },
-      { "user": "@NorfolkWeatherWatch.bsky.social", "text": "Coastal plain areas near King's Lynn and Hunstanton getting very wet. Low roads starting to flood. #NorfolkFloods", "time": "~3h ago" }
+      {
+        "user": "@KingsLynnLife.bsky.social",
+        "text": "Great Ouse is very high through King's Lynn. A149 has some standing water. Nothing major yet but watching it. #Norfolk",
+        "time": "~3h ago"
+      },
+      {
+        "user": "@NorfolkWeatherWatch.bsky.social",
+        "text": "Coastal plain areas near King's Lynn and Hunstanton getting very wet. Low roads starting to flood. #NorfolkFloods",
+        "time": "~3h ago"
+      }
     ]
   },
   {
     "id": "ev-social-37",
-    "lat": 52.6300,
-    "lng": 1.3000,
+    "lat": 52.63,
+    "lng": 1.3,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T14:45:00.000Z",
-    "title": "Norwich – Surface Water and River Wensum High",
+    "title": "Norwich \u2013 Surface Water and River Wensum High",
     "locationName": "Norfolk | Norwich City | Norwich",
     "evidence": "X (Twitter) posts from Norwich describe surface water on the A47 approaching the city and the River Wensum running visibly higher than normal. Some riverside paths flooded. City centre generally moving but traffic slow.",
     "source": "X (Twitter)",
@@ -1550,18 +1394,26 @@
       "confidenceStatement": "Low confidence. Community social media corroborating highway advisory. Minor Norfolk city conditions."
     },
     "posts": [
-      { "user": "@NorwichLocal", "text": "A47 into Norwich has surface water near Dereham Road. River Wensum looks very high in the city. #Norwich #flooding", "time": "~2h ago" },
-      { "user": "@EastAngliaTraffic", "text": "Allow extra time approaching Norwich on the A47 today – surface water at a couple of points. #Norfolk", "time": "~3h ago" }
+      {
+        "user": "@NorwichLocal",
+        "text": "A47 into Norwich has surface water near Dereham Road. River Wensum looks very high in the city. #Norwich #flooding",
+        "time": "~2h ago"
+      },
+      {
+        "user": "@EastAngliaTraffic",
+        "text": "Allow extra time approaching Norwich on the A47 today \u2013 surface water at a couple of points. #Norfolk",
+        "time": "~3h ago"
+      }
     ]
   },
   {
     "id": "ev-social-38",
-    "lat": 52.2400,
-    "lng": -0.9000,
+    "lat": 52.24,
+    "lng": -0.9,
     "category": "social",
     "severity": "minor",
     "timestamp": "2025-11-14T10:10:00.000Z",
-    "title": "Northamptonshire – Surface Water on Rural Routes",
+    "title": "Northamptonshire \u2013 Surface Water on Rural Routes",
     "locationName": "Northamptonshire | Northampton | Northampton",
     "evidence": "Threads posts from Northamptonshire describe surface water on rural A-roads around Northampton and Wellingborough. Some B-roads temporarily impassable. River Nene described as running higher than usual. General advisory circulated.",
     "source": "Threads",
@@ -1581,8 +1433,289 @@
       "confidenceStatement": "Low confidence. Community social media only. Minor Northamptonshire conditions."
     },
     "posts": [
-      { "user": "@NorthantsLife", "text": "Surface water all over the place on the rural roads around Northampton and Wellingborough this morning. Take it steady. #Northamptonshire", "time": "~7h ago" },
-      { "user": "@NeneWatcher", "text": "River Nene is noticeably high through Northampton today. Keeping an eye on it. #Nene #flooding", "time": "~7h ago" }
+      {
+        "user": "@NorthantsLife",
+        "text": "Surface water all over the place on the rural roads around Northampton and Wellingborough this morning. Take it steady. #Northamptonshire",
+        "time": "~7h ago"
+      },
+      {
+        "user": "@NeneWatcher",
+        "text": "River Nene is noticeably high through Northampton today. Keeping an eye on it. #Nene #flooding",
+        "time": "~7h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted-0",
+    "lat": 52.8036,
+    "lng": -2.1141,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-13T13:47:00.000Z",
+    "title": "[X (Twitter)] B5066: Minor Debris near Stafford",
+    "locationName": "Staffordshire | B5066 Corridor | Stafford",
+    "evidence": "Local highways reports indicate minor carriageway debris on B5066 near Stafford following overnight winds. Traffic moving slowly but no significant queuing. Routine maintenance crew deployed.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 35,
+      "justification": "Single-source automated sensor report. No corroboration from other channels. Routine incident with no connection to the developing meteorological situation in the west.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "13:47",
+      "endTiming": "",
+      "synthesis": "Routine lane closure on M6 northbound due to carriageway debris near Stafford. No significant disruption anticipated. Geographically dispersed and unrelated to the developing weather pattern.",
+      "confidenceStatement": "Low confidence. Single automated sensor report. No contextual relevance to developing situation."
+    },
+    "posts": [
+      {
+        "user": "@RoadUser_UK",
+        "text": "Just seen b5066: minor debris near stafford. Be careful everyone!",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Local highways reports indicate minor carriageway debris on B5066 near Stafford following overnight winds. Traffic moving slowly but no significant queuing. Routine maintenance crew deployed.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted-1",
+    "lat": 51.85,
+    "lng": -0.2,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-13T19:23:00.000Z",
+    "title": "[X (Twitter)] B197: Surface Water near Stevenage",
+    "locationName": "Hertfordshire | B197 | Stevenage",
+    "evidence": "Local reports indicate minor surface water on B197 near Stevenage. Reduced visibility. No closures in place. Traffic building through evening peak. Standard advisory issued.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 30,
+      "justification": "Routine evening congestion on A1(M). Reduced visibility may be associated with early frontal cloud but no direct connection to the developing weather system is established. Dispersed from area of primary interest.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "19:23",
+      "endTiming": "",
+      "synthesis": "Routine congestion on A1(M) southbound during evening peak near Stevenage. Peripheral and dispersed from the primary area of interest. Baseline noise only.",
+      "confidenceStatement": "Low confidence. Routine incident with no clear link to the developing meteorological event."
+    },
+    "posts": [
+      {
+        "user": "@RoadUser_UK",
+        "text": "Just seen b197: surface water near stevenage. Be careful everyone!",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Local reports indicate minor surface water on B197 near Stevenage. Reduced visibility. No closures in place. Traffic building through evening peak. Standard advisory issued.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted-5",
+    "lat": 51.14,
+    "lng": -3.01,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T05:18:00.000Z",
+    "title": "[X (Twitter)] B3141: Heavy Rain near Bridgwater",
+    "locationName": "Somerset | B3141 | Bridgwater and Taunton",
+    "evidence": "Local reports indicate standing water on B3141 near Bridgwater. Traffic flowing with caution. Rainfall rate increasing. No closures in place.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 45,
+      "justification": "National Highways NTIS data confirmed. Rainfall reaching Somerset ahead of frontal passage. Consistent with the approaching system tracking northeast. Part of broader Southwest England pattern.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "05:18",
+      "endTiming": "",
+      "synthesis": "Standing water developing on M5 near Bridgwater in the early morning. Part of a broad pattern of minor road impacts emerging across Southwest England and Southeast Wales as the weather system advances.",
+      "confidenceStatement": "Low confidence. Early-stage impacts across a wide area. Pattern emerging."
+    },
+    "posts": [
+      {
+        "user": "@RoadUser_UK",
+        "text": "Just seen b3141: heavy rain near bridgwater. Be careful everyone!",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Local reports indicate standing water on B3141 near Bridgwater. Traffic flowing with caution. Rainfall rate increasing. No closures in place.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted-7",
+    "lat": 50.84,
+    "lng": -3.36,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T07:08:00.000Z",
+    "title": "[X (Twitter)] B3181: Slow Traffic near Cullompton",
+    "locationName": "Devon | B3181 | Central Devon",
+    "evidence": "Local reports indicate slow-moving traffic on B3181 near Cullompton due to heavy rainfall and spray. Standing water in nearside lane. No closures.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 44,
+      "justification": "Automated sensor and CCTV corroboration for M5 J28 near Cullompton. Rainfall affecting Devon ahead of the main frontal passage. Consistent with broader Southwest England pattern.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "07:08",
+      "endTiming": "",
+      "synthesis": "M5 northbound impacted by heavy rain near Cullompton, Devon. Peripheral impact in Southwest England consistent with the developing weather event moving northeast.",
+      "confidenceStatement": "Low confidence. Minor disruption. Peripheral to primary area of interest."
+    },
+    "posts": [
+      {
+        "user": "@RoadUser_UK",
+        "text": "Just seen b3181: slow traffic near cullompton. Be careful everyone!",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Local reports indicate slow-moving traffic on B3181 near Cullompton due to heavy rainfall and spray. Standing water in nearside lane. No closures.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social_converted-8",
+    "lat": 50.4714,
+    "lng": -4.7184,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T07:34:00.000Z",
+    "title": "[X (Twitter)] B3266: Spray and Reduced Visibility near Bodmin",
+    "locationName": "Cornwall | B3266 | North Cornwall",
+    "evidence": "Local reports indicate poor visibility on B3266 due to heavy spray near Bodmin. Speed restrictions in place. Conditions expected to ease as front moves northeast.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 38,
+      "justification": "National Highways report for A30 near Bodmin. Conditions consistent with passage of frontal system through Cornwall. Peripheral to primary area of interest. No escalation expected here.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "07:34",
+      "endTiming": "",
+      "synthesis": "Poor visibility and spray on A30 near Bodmin, Cornwall. Frontal conditions affecting the far southwest of England. Peripheral context impact only, consistent with the broad sweep of the system.",
+      "confidenceStatement": "Low confidence. Peripheral location. Minor disruption."
+    },
+    "posts": [
+      {
+        "user": "@RoadUser_UK",
+        "text": "Just seen b3266: spray and reduced visibility near bodmin. Be careful everyone!",
+        "time": "pre-0800"
+      },
+      {
+        "user": "@Commuter_Alert",
+        "text": "Local reports indicate poor visibility on B3266 due to heavy spray near Bodmin. Speed restrictions in place. Conditions expected to ease as front moves northeast.",
+        "time": "pre-0800"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-birmingham-1300",
+    "lat": 52.4814,
+    "lng": -1.8998,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T13:00:00.000Z",
+    "title": "[X (Twitter)] Birmingham \u2013 Surface Water Affecting City Centre Businesses",
+    "locationName": "West Midlands | Birmingham | Birmingham Central",
+    "evidence": "X (Twitter) users in Birmingham city centre report heavy surface water on local roads and some run-off affecting access to street-level businesses. No major property flooding reported but commuters and shoppers describe 'significant puddles' and 'drenched pavements'.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 62,
+      "justification": "Multiple independent reports from a high-density urban area. Geographic spread of reports consistent with heavy rainfall in the West Midlands. Direct observation of surface water affecting business access.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": true,
+      "startTiming": "13:00",
+      "endTiming": "",
+      "synthesis": "Surface water disruption in Birmingham city centre as the weather system moves through the West Midlands. Impacts focalised on business access and pedestrian movement. Part of the broader central England minor impact picture.",
+      "confidenceStatement": "Medium confidence. Multiple community reports from city centre locations. Consistent with rainfall pattern."
+    },
+    "posts": [
+      {
+        "user": "@BrumShopper",
+        "text": "Cardiff style rain in Birmingham today! Drains around Grand Central and New Street can't cope. Street level shops starting to get worried #Brum #rain",
+        "time": "just now"
+      },
+      {
+        "user": "@MidlandsNews_user",
+        "text": "Nasty surface water in Birmingham city centre this lunchtime. Drains are overwhelmed. Avoid walking if you can!",
+        "time": "15m ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-social-peterborough-1300",
+    "lat": 52.5739,
+    "lng": -0.2431,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T13:15:00.000Z",
+    "title": "[X (Twitter)] Peterborough \u2013 Residential Street Surface Water",
+    "locationName": "Cambridgeshire | Peterborough | Peterborough Central",
+    "evidence": "X (Twitter) report from Peterborough residential area noting surface water accumulation 'halfway up the kerbs'. Residents sharing photos of water pooling near driveways and houses. No internal flooding confirmed but high local concern.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 48,
+      "justification": "Single localized report with photographic evidence on social media. Geographically consistent with the eastern movement of the frontal system. Reflects early stage of potential residential impact in East of England.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Direct",
+      "corroborated": false,
+      "startTiming": "13:15",
+      "endTiming": "",
+      "synthesis": "Early report of residential surface water in Peterborough. Rain intensity increasing. First signal of potential residential impact in the East of England as the front progresses.",
+      "confidenceStatement": "Low confidence. Localised social report with photo. Early indicator of East of England impact."
+    },
+    "posts": [
+      {
+        "user": "@PeterboroughLocal",
+        "text": "Water is getting high on our street in Peterborough. Drains are just not taking it. Right up to the pavement edge. #Peterborough #flood",
+        "time": "just now"
+      },
+      {
+        "user": "@CambsWx_watch",
+        "text": "Seeing some photos of big puddles in residential Peterborough. Rain is hammering down now.",
+        "time": "10m ago"
+      }
     ]
   }
 ]
