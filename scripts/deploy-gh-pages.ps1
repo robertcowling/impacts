@@ -17,11 +17,8 @@ Write-Host "==> Cloning $branch branch..." -ForegroundColor Cyan
 git clone --branch $branch --single-branch $remoteUrl $tmpDir
 
 Write-Host "==> Copying frontend files..." -ForegroundColor Cyan
-# Copy everything from frontend/ into the root of the gh-pages clone
-Get-ChildItem -Path $frontendDir | ForEach-Object {
-    $dest = Join-Path $tmpDir $_.Name
-    Copy-Item $_.FullName $dest -Recurse -Force
-}
+# Use robocopy to mirror frontend/ into tmpDir reliably (avoids Copy-Item nested-dir quirk)
+robocopy $frontendDir $tmpDir /E /NFL /NDL /NJH /NJS /nc /ns /np | Out-Null
 
 Write-Host "==> Staging changes..." -ForegroundColor Cyan
 Push-Location $tmpDir
