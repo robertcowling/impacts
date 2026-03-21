@@ -1395,6 +1395,20 @@ function setupEvents() {
         userDropdown.classList.remove('active');
     });
 
+    // Navbar Alerting button — open config modal directly on Agentic Alerting tab
+    const navAlertingBtn = document.getElementById('nav-alerting-btn');
+    if (navAlertingBtn) {
+        navAlertingBtn.addEventListener('click', () => {
+            configModal.classList.add('active');
+            document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            const alertTab = document.querySelector('.modal-tab[data-tab="agentic-alerting"]');
+            const alertContent = document.getElementById('tab-agentic-alerting');
+            if (alertTab) alertTab.classList.add('active');
+            if (alertContent) alertContent.classList.add('active');
+        });
+    }
+
     closeConfigBtn.addEventListener('click', () => {
         configModal.classList.remove('active');
     });
