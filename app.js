@@ -371,16 +371,27 @@ function renderAlertTab() {
       </div>
     `).join('');
 
+    const defaultNL = `I'm the on-call duty manager for Highways England covering Herefordshire, Monmouthshire, and Gloucestershire.\n\nAlert me by Teams message and browser notification if there are any significant or severe impacts to roads or rail in my area. Err on the side of caution \u2014 I'd rather have early warning than miss something developing. Use AI clustering to catch patterns across neighbouring areas.`;
+
     el.innerHTML = `
     <div style="padding: 4px 0 12px">
-      <p class="alert-section-title">Create Alert</p>
+      <p class="alert-section-title">Describe what you need</p>
+      <p class="alert-nl-hint">Tell the AI what you're responsible for, what matters to you, and how you'd like to be alerted. It will interpret your requirements and configure monitoring automatically.</p>
       <div class="alert-nl-row">
-        <textarea class="alert-nl-input" id="alert-nl-input" placeholder='e.g. "Alert me for any severe impacts in Herefordshire via Teams" or "Err on caution for road closures everywhere"'>${editing ? (editing.nlDescription || '') : ''}</textarea>
-        <button class="alert-parse-btn" id="alert-parse-btn">Parse \u2192</button>
+        <textarea class="alert-nl-input" id="alert-nl-input">${editing ? (editing.nlDescription || '') : defaultNL}</textarea>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:14px">
+        <button class="alert-ai-btn" id="alert-ai-btn">
+          <span class="alert-ai-btn-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3v1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-1v1a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2v-1a3 3 0 0 1 3-3V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="13" r="1" fill="currentColor"/><circle cx="15" cy="13" r="1" fill="currentColor"/></svg></span>
+          Configure with AI
+        </button>
+        <span class="alert-ai-status" id="alert-ai-status"></span>
       </div>
 
+      <div id="alert-ai-interpretation" class="alert-ai-interpretation" style="display:none"></div>
+
       <div class="alert-advanced">
-        <div class="alert-advanced-toggle" id="alert-advanced-toggle">\u25b8 Advanced controls</div>
+        <div class="alert-advanced-toggle" id="alert-advanced-toggle">\u25b8 Fine-tune controls</div>
         <div class="alert-advanced-body" id="alert-advanced-body" style="display:none">
 
           <div>
@@ -390,7 +401,7 @@ function renderAlertTab() {
             </div>
             <div class="alert-ai-row" style="margin-top:7px">
               <input type="checkbox" id="alert-ai-mode" ${editing?.aiMode ? 'checked' : ''}>
-              <label for="alert-ai-mode">Let AI decide based on activity clustering (err on caution)</label>
+              <label for="alert-ai-mode">AI clustering mode (detect patterns, err on the side of caution)</label>
             </div>
           </div>
 
@@ -432,40 +443,75 @@ function renderAlertTab() {
     <div class="alert-history-list">${histHtml}</div>
   `;
 
-    // Wire events
-    const parseBtn = document.getElementById('alert-parse-btn');
-    if (parseBtn) {
-        parseBtn.addEventListener('click', () => {
+    // Wire "Configure with AI" button
+    const aiBtn = document.getElementById('alert-ai-btn');
+    if (aiBtn) {
+        aiBtn.addEventListener('click', () => {
             const nlText = document.getElementById('alert-nl-input')?.value || '';
             if (!nlText.trim()) return;
-            const parsed = parseAlertNL(nlText);
-            // Open advanced body
-            const body = document.getElementById('alert-advanced-body');
-            const toggle = document.getElementById('alert-advanced-toggle');
-            if (body) body.style.display = 'flex';
-            if (toggle) toggle.textContent = '\u25be Advanced controls';
-            // Apply severity
-            document.querySelectorAll('.alert-sev-btn').forEach(b => {
-                b.classList.toggle('active', b.dataset.sev === parsed.minSeverity);
-            });
-            // Apply AI mode
-            const aiCb = document.getElementById('alert-ai-mode');
-            if (aiCb) aiCb.checked = parsed.aiMode;
-            // Apply area
-            const sel = document.getElementById('alert-area-select');
-            if (sel) {
-                const val = `${parsed.areaScope}||${parsed.areaName || 'everywhere'}`;
-                if ([...sel.options].some(o => o.value === val)) sel.value = val;
-            }
-            // Apply categories
-            document.querySelectorAll('.alert-cat-btn').forEach(b => {
-                b.classList.toggle('active', parsed.categories ? parsed.categories.includes(b.dataset.cat) : false);
-            });
-            // Apply channels
-            document.querySelectorAll('.alert-channel-btn').forEach(b => {
-                b.classList.toggle('active', parsed.channels.includes(b.dataset.ch));
-            });
-            refreshChannelDetails();
+            const statusEl = document.getElementById('alert-ai-status');
+            const interpEl = document.getElementById('alert-ai-interpretation');
+            aiBtn.disabled = true;
+            aiBtn.classList.add('processing');
+
+            // Phase 1: "Interpreting..."
+            if (statusEl) statusEl.innerHTML = '<span class="alert-ai-thinking">Interpreting your requirements\u2026</span>';
+
+            setTimeout(() => {
+                // Phase 2: "Configuring..."
+                if (statusEl) statusEl.innerHTML = '<span class="alert-ai-thinking">Configuring alert parameters\u2026</span>';
+
+                setTimeout(() => {
+                    const parsed = parseAlertNL(nlText);
+
+                    // Build interpretation summary
+                    const areaLabel = parsed.areaName || 'all areas';
+                    const sevLabel = parsed.aiMode ? 'AI-determined (err on caution)' : `${parsed.minSeverity} or above`;
+                    const catLabel = parsed.categories ? parsed.categories.map(c => CATEGORIES[c]?.label?.split('/')[0]?.trim() || c).join(', ') : 'all sectors';
+                    const chLabel = parsed.channels.join(', ');
+
+                    if (interpEl) {
+                        interpEl.style.display = 'block';
+                        interpEl.innerHTML = `
+                            <div class="ai-interp-header"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3v1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-1v1a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-1H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2v-1a3 3 0 0 1 3-3V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="13" r="1" fill="currentColor"/><circle cx="15" cy="13" r="1" fill="currentColor"/></svg> AI Interpretation</div>
+                            <div class="ai-interp-body">
+                                I\u2019ve configured monitoring for <strong>${catLabel}</strong> impacts in <strong>${areaLabel}</strong> at threshold <strong>${sevLabel}</strong>.
+                                ${parsed.aiMode ? ' AI clustering is enabled \u2014 I\u2019ll watch for developing patterns across neighbouring areas and alert early if a situation appears to be building, even before individual thresholds are crossed.' : ''}
+                                Notifications will be sent via <strong>${chLabel}</strong>.
+                                <span class="ai-interp-adjust">You can fine-tune these settings below before saving.</span>
+                            </div>
+                        `;
+                    }
+
+                    if (statusEl) statusEl.innerHTML = '<span class="alert-ai-done">\u2713 Configuration ready</span>';
+                    aiBtn.disabled = false;
+                    aiBtn.classList.remove('processing');
+
+                    // Open fine-tune controls and populate
+                    const body = document.getElementById('alert-advanced-body');
+                    const toggle = document.getElementById('alert-advanced-toggle');
+                    if (body) body.style.display = 'flex';
+                    if (toggle) toggle.textContent = '\u25be Fine-tune controls';
+
+                    document.querySelectorAll('.alert-sev-btn').forEach(b => {
+                        b.classList.toggle('active', b.dataset.sev === parsed.minSeverity);
+                    });
+                    const aiCb = document.getElementById('alert-ai-mode');
+                    if (aiCb) aiCb.checked = parsed.aiMode;
+                    const sel = document.getElementById('alert-area-select');
+                    if (sel) {
+                        const val = `${parsed.areaScope}||${parsed.areaName || 'everywhere'}`;
+                        if ([...sel.options].some(o => o.value === val)) sel.value = val;
+                    }
+                    document.querySelectorAll('.alert-cat-btn').forEach(b => {
+                        b.classList.toggle('active', parsed.categories ? parsed.categories.includes(b.dataset.cat) : false);
+                    });
+                    document.querySelectorAll('.alert-channel-btn').forEach(b => {
+                        b.classList.toggle('active', parsed.channels.includes(b.dataset.ch));
+                    });
+                    refreshChannelDetails();
+                }, 800);
+            }, 1000);
         });
     }
 

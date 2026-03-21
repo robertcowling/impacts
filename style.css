@@ -4810,6 +4810,50 @@ body.show-severity .marker-inner.severe {
 .alert-history-impacts li { color: var(--text-primary); font-size: 0.76rem; }
 .alert-empty { font-size: 0.82rem; color: var(--text-secondary); font-style: italic; }
 
+.alert-nl-hint { font-size: 0.82rem; color: var(--text-secondary); margin: 0 0 10px; line-height: 1.4; }
+.alert-nl-input { min-height: 100px; line-height: 1.5; }
+
+.alert-ai-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 18px; background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff; border: none; border-radius: 8px; font-weight: 600; font-size: 0.88rem;
+    cursor: pointer; transition: opacity 0.15s, transform 0.15s; box-shadow: 0 2px 8px rgba(99,102,241,0.25);
+}
+.alert-ai-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.alert-ai-btn:disabled { opacity: 0.6; cursor: wait; }
+.alert-ai-btn.processing { animation: alert-ai-pulse 1s ease-in-out infinite; }
+.alert-ai-btn-icon { display: inline-flex; align-items: center; }
+
+@keyframes alert-ai-pulse {
+    0%, 100% { box-shadow: 0 2px 8px rgba(99,102,241,0.25); }
+    50% { box-shadow: 0 2px 16px rgba(99,102,241,0.5); }
+}
+
+.alert-ai-status { font-size: 0.8rem; }
+.alert-ai-thinking { color: #6366f1; font-weight: 500; }
+.alert-ai-thinking::after { content: ''; animation: alert-dots 1.2s steps(4,end) infinite; }
+@keyframes alert-dots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+}
+.alert-ai-done { color: #16a34a; font-weight: 600; }
+
+.alert-ai-interpretation {
+    background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(139,92,246,0.06));
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 14px;
+}
+.ai-interp-header {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: #6366f1; margin-bottom: 7px;
+}
+.ai-interp-body { font-size: 0.84rem; color: var(--text-primary); line-height: 1.55; }
+.ai-interp-body strong { font-weight: 700; }
+.ai-interp-adjust { display: block; margin-top: 6px; font-size: 0.78rem; color: var(--text-secondary); font-style: italic; }
+
 /* ========================================
    RESPONSIVE BREAKPOINTS
    ======================================== */
