@@ -94,33 +94,29 @@
                     <div class="sidebar-section">
                         <h4>Impact Severity</h4>
                         <div class="filter-list-vertical">
-                            <label class="severity-item-row severity-chip active" data-severity="minor">
+                            <label class="severity-toggle-row severity-chip active" data-severity="minor">
                                 <input type="checkbox" checked value="minor">
+                                <span class="severity-toggle-slider" data-level="minor">
+                                    <span class="severity-toggle-dot"></span>
+                                </span>
                                 <span class="severity-indicator minor"></span>
                                 <span class="item-label">Minor</span>
                             </label>
-                            <label class="severity-item-row severity-chip active" data-severity="significant">
+                            <label class="severity-toggle-row severity-chip active" data-severity="significant">
                                 <input type="checkbox" checked value="significant">
+                                <span class="severity-toggle-slider" data-level="significant">
+                                    <span class="severity-toggle-dot"></span>
+                                </span>
                                 <span class="severity-indicator significant"></span>
                                 <span class="item-label">Significant</span>
                             </label>
-                            <label class="severity-item-row severity-chip active" data-severity="severe">
+                            <label class="severity-toggle-row severity-chip active" data-severity="severe">
                                 <input type="checkbox" checked value="severe">
+                                <span class="severity-toggle-slider" data-level="severe">
+                                    <span class="severity-toggle-dot"></span>
+                                </span>
                                 <span class="severity-indicator severe"></span>
                                 <span class="item-label">Severe</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-section" id="forecast-section">
-                        <h4>Forecast</h4>
-                        <div class="filter-list-vertical">
-                            <label class="toggle-row" id="forecast-toggle">
-                                <input type="checkbox" id="forecast-checkbox">
-                                <span class="toggle-slider-wrap">
-                                    <span class="toggle-dot"></span>
-                                </span>
-                                <span class="item-label">Forecast Overlays</span>
                             </label>
                         </div>
                     </div>
@@ -275,6 +271,7 @@
                                 </label>
                             </div>
                         </div>
+
                     </div>
 
                     <div id="sidebar-types-view" class="hidden">
@@ -288,7 +285,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="filter-divider"></div>
+
+                    <div class="sidebar-header-wrap sidebar-header-top-divider" id="forecast-section">
+                        <h3 class="sidebar-main-header">Forecast</h3>
+                    </div>
+                    <div class="sidebar-section">
+                        <div class="filter-list-vertical">
+                            <label class="toggle-row" id="forecast-toggle">
+                                <input type="checkbox" id="forecast-checkbox">
+                                <span class="toggle-slider-wrap">
+                                    <span class="toggle-dot"></span>
+                                </span>
+                                <span class="item-label">Forecast Overlays</span>
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="sidebar-spacer"></div>
                 </div>
 
@@ -297,6 +309,10 @@
                     <button class="mcp-server-btn" id="mcp-server-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;flex-shrink:0"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
                         <span class="mcp-btn-label">API / MCP Server</span>
+                    </button>
+                    <button class="mcp-server-btn" id="qr-modal-btn" style="margin-top:6px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;flex-shrink:0"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path d="M14 14h3v3M14 20h7M20 14v3"/></svg>
+                        <span class="mcp-btn-label">Explore the Demo</span>
                     </button>
                 </div>
             </aside>
@@ -352,7 +368,7 @@
                         <!-- AI Assessment Card -->
                         <div class="national-narrative-card">
                             <div class="narration-header">
-                                <h3>Intelligence Summary</h3>
+                                <h3>Impact Summary</h3>
                                 <span class="time-ref" id="summary-time-ref">Selected Period</span>
                             </div>
                             <div id="llm-narrative-text" class="narrative-prose">
@@ -478,7 +494,7 @@
             </div>
             <div class="modal-body">
                 <aside class="modal-sidebar">
-                    <div class="modal-tab active" data-tab="agentic-flow">Agentic Flow</div>
+                    <div class="modal-tab active" data-tab="agentic-flow">Agentic Maintenance</div>
                     <div class="modal-tab" data-tab="agentic-alerting">Agentic Alerting</div>
                     <div class="modal-tab" data-tab="impact-framework">Impact Framework</div>
                 </aside>
@@ -531,7 +547,7 @@
                         <div class="workflow-header">
                             <h4>Impact Framework: Severity Matrix</h4>
                         </div>
-                        <p class="workflow-desc">The following criteria represent the Civil Service standard for assigning severity levels. These quantitative thresholds are used to synthesize impact from multiple data sources. </p>
+                        <p class="workflow-desc">The following quantitative thresholds are used to synthesize impact severity from multiple data sources.</p>
                         
                         <!-- Section 1: Life & Safety -->
                         <div class="framework-section">
@@ -805,6 +821,20 @@
                     </li>
                 </ul>
                 <p class="mcp-brief-footer">This brief was generated from live impact data returned by the Impacts MCP API. All data is synthetic and for demonstration purposes only.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div class="modal-overlay" id="qr-modal">
+        <div class="qr-modal-content glass">
+            <button class="modal-close-btn" id="qr-modal-close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+            <h2 class="qr-modal-title">Explore the Demo</h2>
+            <div class="qr-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="qr-placeholder-icon"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path d="M14 14h3v3M14 20h7M20 14v3"/></svg>
+                <span>QR code coming soon</span>
             </div>
         </div>
     </div>

@@ -47,43 +47,38 @@
     "id": "ev-social-6",
     "lat": 51.7742,
     "lng": -2.852,
-    "category": "social",
+    "category": "roads",
     "severity": "minor",
-    "timestamp": "2025-11-14T03:15:00.000Z",
-    "title": "[X (Twitter)] A40 Monmouth \u2013 Surface Water Warning",
+    "timestamp": "2025-11-14T06:00:00.000Z",
+    "title": "[Traffic Wales] A40 Monmouth \u2013 Surface Water Warning",
     "locationName": "Monmouthshire | A40 | Monmouth",
-    "evidence": "X (Twitter) user warns of surface water on A40 near Raglan and Monmouth area. Advises caution for early morning travellers. No closure reported. Post has limited engagement.",
-    "source": "X (Twitter)",
+    "evidence": "Traffic Wales posts advisory on X warning of surface water on A40 near Raglan and Monmouth area. Advises caution for morning travellers. Advisory speed restriction in place. Conditions being monitored.",
+    "source": "Traffic Wales",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Low",
-      "confidenceColor": "#ef4444",
-      "confidence": 40,
-      "justification": "Unverified user report for A40 near Raglan. Geographically consistent with Traffic Wales CCTV data from the same route. Second social signal from the A40 corridor in Monmouthshire.",
-      "sourceLabel": "X (Twitter)",
-      "sourceReliability": "Unofficial",
+      "confidenceLabel": "Medium",
+      "confidenceColor": "#facc15",
+      "confidence": 72,
+      "justification": "Official Traffic Wales advisory posted on X. Geographically consistent with CCTV observations on the A40 corridor in Monmouthshire. Official source increases confidence over unverified user reports.",
+      "sourceLabel": "Traffic Wales",
+      "sourceReliability": "Official",
       "intelligenceType": "Direct",
-      "corroborated": false,
-      "startTiming": "03:15",
+      "corroborated": true,
+      "startTiming": "06:00",
       "endTiming": "",
-      "synthesis": "Social media alert for surface water on A40 near Monmouth. Consistent with concurrent official advisory from Traffic Wales. Pattern of early-morning signal building along the A40 corridor in Southeast Wales.",
-      "confidenceStatement": "Low confidence. Unverified user report. Consistent with official data from same corridor."
+      "synthesis": "Traffic Wales official advisory for surface water on A40 near Monmouth. Consistent with early-morning rainfall pattern in Southeast Wales. Official corroboration of developing conditions on this key corridor.",
+      "confidenceStatement": "Medium confidence. Official Traffic Wales advisory. Corroborates concurrent CCTV data from the A40 corridor."
     },
     "posts": [
       {
-        "user": "@MonmouthshireDriver",
-        "text": "Caution on the A40 near Raglan early this morning \u2013 standing water on the eastbound. Drive carefully. #A40 #Monmouthshire",
-        "time": "~14h ago"
+        "user": "@TrafficWales",
+        "text": "\u26a0\ufe0f A40 near Raglan, Monmouthshire \u2013 surface water on the eastbound carriageway. Please reduce speed and drive to conditions. Advisory speed restriction in place. We are monitoring. #A40 #Monmouthshire",
+        "time": "06:00"
       },
       {
-        "user": "@WalesRoadWatch",
-        "text": "Getting reports of surface water on the A40 near Monmouth. Anyone heading that way please take care.",
-        "time": "~14h ago"
-      },
-      {
-        "user": "@SouthWalesAlert",
-        "text": "Early hours and already seeing road water reports for SE Wales. A40 near Raglan is one to watch.",
-        "time": "~14h ago"
+        "user": "@TrafficWales",
+        "text": "Update: A40 Monmouth area \u2013 surface water remains on eastbound. Traffic flowing but slow in places. Motorists advised to allow extra time. #TrafficWales #A40",
+        "time": "06:18"
       }
     ]
   },
