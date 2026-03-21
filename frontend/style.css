@@ -14,7 +14,7 @@
     /* Impact Categories - De-saturated */
     --clr-roads: #446b82;
     --clr-railways: #5b61a1;
-    --clr-social: #bae6fd; /* Pale Blue for contrast */
+    --clr-social: #fdf2f8; /* Soft Pink */
     --clr-news: #8a4e6b;
     --clr-energy: #8a7d4e;
     --clr-water: #4e6b8a;
@@ -49,20 +49,17 @@
 }
 
 .demo-label {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    z-index: 1000;
-    padding: 11px 22px;
-    background: rgba(254, 226, 226, 0.95);
-    border: 1.5px solid rgba(220, 38, 38, 0.25);
+    margin-left: 8px;
+    padding: 6px 14px;
+    background: rgba(254, 226, 226, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.2);
     border-radius: 8px;
-    font-size: 1.14rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: #b91c1c;
     pointer-events: none;
-    box-shadow: var(--card-shadow);
     letter-spacing: 0.01em;
+    white-space: nowrap;
 }
 
 .severity-legend.hidden {
@@ -83,13 +80,13 @@
     top: 16px;
     left: 16px;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.68);
-    backdrop-filter: blur(14px) saturate(180%);
-    -webkit-backdrop-filter: blur(14px) saturate(180%);
-    border: 1.5px solid rgba(99, 102, 241, 0.28);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1.5px dashed rgba(99, 102, 241, 0.45);
+    border-radius: 14px;
     padding: 14px 19px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.07);
+    box-shadow: 0 8px 32px rgba(99,102,241,0.10), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -102,16 +99,24 @@
 }
 
 .demo-time-preset-label {
-    font-size: 0.86rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    letter-spacing: 0.01em;
-    color: #6366f1;
+    letter-spacing: 0.02em;
+    color: #818cf8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.demo-time-preset-label::before {
+    content: "\25C8";
+    font-size: 0.7rem;
 }
 
 .demo-time-preset select {
-    background: rgba(255, 255, 255, 0.82);
-    border: 1.5px solid rgba(99, 102, 241, 0.22);
-    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    border-radius: 8px;
     color: var(--text-primary);
     font-family: inherit;
     font-size: 1.2rem;
@@ -125,8 +130,8 @@
 
 .demo-time-preset select:hover,
 .demo-time-preset select:focus {
-    border-color: #6366f1;
-    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(255, 255, 255, 0.72);
 }
 
 .conf-pill {
@@ -1603,7 +1608,7 @@ h1 span {
     height: 12px;
 }
 
-.mcp-bullet-social { background: #4e828a20; color: #4e828a; }
+.mcp-bullet-social { background: #fdf2f850; color: #9d174d; }
 .mcp-bullet-roads  { background: #446b8220; color: #446b82; }
 .mcp-bullet-ea     { background: #00a65120; color: #00a651; }
 .mcp-bullet-rail   { background: #5b61a120; color: #5b61a1; }
@@ -4049,10 +4054,10 @@ main {
 /* Marker inner categories */
 .marker-inner.roads { background: var(--clr-roads); border-color: #334155; }
 .marker-inner.railways { background: var(--clr-railways); border-color: #334155; }
-.marker-inner.social { 
-    background: var(--clr-social); 
-    border-color: #7dd3fc;
-    color: #075985; /* Darker Blue icon for contrast on pale background */
+.marker-inner.social {
+    background: var(--clr-social);
+    border-color: #f9a8d4;
+    color: #831843; /* Dark pink icon for contrast on soft pink background */
 }
 .marker-inner.news { background: var(--clr-news); border-color: #334155; }
 .marker-inner.energy { background: var(--clr-energy); border-color: #334155; }

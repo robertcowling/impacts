@@ -29,7 +29,7 @@ const BASEMAPS = {
 const CATEGORIES = {
     roads: { label: 'National Highways / Traffic Wales', color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>' },
     railways: { label: 'Railway Marketplace', color: '#5b61a1', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2L7 22M17 2L17 22M7 5H17M7 10H17M7 15H17M7 20H17"/></svg>' },
-    social: { label: 'Social', color: '#4e828a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
+    social: { label: 'Social', color: '#9d174d', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
     news: { label: 'Online News', color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM6 6h12M6 10h12M6 14h6M6 18h6M16 14v4"/></svg>' },
     energy: { label: 'Power Companies', color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
