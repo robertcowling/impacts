@@ -111,20 +111,11 @@ function parseAlertNL(text) {
     // AI mode
     result.aiMode = /(caution|model|judgement|judgment|clusters?)/.test(t);
 
-    // Area
-    result.areaScope = 'everywhere';
-    result.areaName = null;
-    const countyMatch = (State.countyNames || []).find(n => t.includes(n.toLowerCase()));
-    if (countyMatch) {
-        result.areaScope = 'county';
-        result.areaName = countyMatch;
-    } else {
-        const regionMatch = (State.regionNames || []).find(n => t.includes(n.toLowerCase()));
-        if (regionMatch) {
-            result.areaScope = 'region';
-            result.areaName = regionMatch;
-        }
-    }
+    // Areas — find all matching counties and regions
+    const matchedAreas = [];
+    (State.countyNames || []).forEach(n => { if (t.includes(n.toLowerCase())) matchedAreas.push({ scope: 'county', name: n }); });
+    (State.regionNames || []).forEach(n => { if (t.includes(n.toLowerCase())) matchedAreas.push({ scope: 'region', name: n }); });
+    result.areas = matchedAreas.length ? matchedAreas : [];
 
     // Categories
     const cats = [];
@@ -146,14 +137,14 @@ function parseAlertNL(text) {
     result.channels = channels;
 
     // Derived name
-    const areaLabel = result.areaName || 'Everywhere';
+    const areaLabel = result.areas.length ? result.areas.map(a => a.name).join(', ') : 'Everywhere';
     const sevLabel = result.aiMode ? 'AI clustering' : (result.minSeverity.charAt(0).toUpperCase() + result.minSeverity.slice(1));
     result.name = `${sevLabel} — ${areaLabel}`;
 
     return result;
 }
 
-function impactWithinArea(imp, areaScope, areaName) {
+function impactMatchesOneArea(imp, areaScope, areaName) {
     if (areaScope === 'everywhere') return true;
     if (areaScope === 'county') {
         return (
@@ -167,8 +158,14 @@ function impactWithinArea(imp, areaScope, areaName) {
     return false;
 }
 
+function impactWithinArea(imp, areas) {
+    // areas: array of {scope, name} — impact matches if it matches any area
+    if (!areas || areas.length === 0) return true;
+    return areas.some(a => impactMatchesOneArea(imp, a.scope, a.name));
+}
+
 function buildAlertBody(config, impacts) {
-    const area = config.areaName || 'everywhere';
+    const area = (config.areas && config.areas.length) ? config.areas.map(a => a.name).join(', ') : 'everywhere';
     let body = `${impacts.length} new impact(s) in ${area}:\n`;
     impacts.slice(0, 5).forEach(i => {
         body += `\u2022 ${i.title} (${i.severity}) \u2014 ${i.source || i.category}\n`;
@@ -237,7 +234,7 @@ function evaluateAlerts() {
             candidates = windowedImpacts
                 .filter(i => SEVERITY_ORDER[i.severity] >= SEVERITY_ORDER[config.minSeverity])
                 .filter(i => !config.categories || config.categories.includes(i.category))
-                .filter(i => impactWithinArea(i, config.areaScope, config.areaName))
+                .filter(i => impactWithinArea(i, config.areas))
                 .filter(i => !config.firedImpactIds.includes(i.id));
         }
 
@@ -264,16 +261,14 @@ function saveAlertFromForm() {
     const nl = document.getElementById('alert-nl-input')?.value?.trim() || '';
     const activeSev = document.querySelector('.alert-sev-btn.active')?.dataset.sev || 'minor';
     const aiMode = document.getElementById('alert-ai-mode')?.checked || false;
-    const areaRaw = document.getElementById('alert-area-select')?.value || 'everywhere||everywhere';
-    const [areaScope, areaName] = areaRaw.split('||');
+    const areaChips = [...document.querySelectorAll('.alert-area-chip')].map(c => ({ scope: c.dataset.scope, name: c.dataset.name }));
     const activeCats = [...document.querySelectorAll('.alert-cat-btn.active')].map(b => b.dataset.cat);
     const activeChannels = [...document.querySelectorAll('.alert-channel-btn.active')].map(b => b.dataset.ch);
     const channelDetails = {};
     document.querySelectorAll('[data-ch-detail]').forEach(inp => { channelDetails[inp.dataset.chDetail] = inp.value.trim(); });
 
-    const name = (areaName && areaName !== 'everywhere')
-        ? `${aiMode ? 'AI clustering' : (activeSev.charAt(0).toUpperCase() + activeSev.slice(1))} \u2014 ${areaName}`
-        : `${aiMode ? 'AI clustering' : (activeSev.charAt(0).toUpperCase() + activeSev.slice(1))} \u2014 Everywhere`;
+    const areaLabel = areaChips.length ? areaChips.map(a => a.name).join(', ') : 'Everywhere';
+    const name = `${aiMode ? 'AI clustering' : (activeSev.charAt(0).toUpperCase() + activeSev.slice(1))} \u2014 ${areaLabel}`;
 
     if (AlertState.editingId) {
         const idx = AlertState.alerts.findIndex(a => a.id === AlertState.editingId);
@@ -281,7 +276,7 @@ function saveAlertFromForm() {
             AlertState.alerts[idx] = {
                 ...AlertState.alerts[idx],
                 nlDescription: nl, name, minSeverity: activeSev, aiMode,
-                areaScope, areaName: areaName === 'everywhere' ? null : areaName,
+                areas: areaChips,
                 categories: activeCats.length ? activeCats : null,
                 channels: activeChannels, channelDetails,
                 firedImpactIds: []  // reset on edit
@@ -291,8 +286,8 @@ function saveAlertFromForm() {
     } else {
         AlertState.alerts.push({
             id: `alert-${Date.now()}`, name, nlDescription: nl, active: true,
-            minSeverity: activeSev, aiMode, areaScope,
-            areaName: areaName === 'everywhere' ? null : areaName,
+            minSeverity: activeSev, aiMode,
+            areas: areaChips,
             categories: activeCats.length ? activeCats : null,
             channels: activeChannels.length ? activeChannels : ['browser'],
             channelDetails, firedImpactIds: [], lastTriggered: null,
@@ -351,7 +346,7 @@ function renderAlertTab() {
           </div>
         </div>
         <div class="alert-item-meta">
-          ${a.aiMode ? '🤖 AI clustering' : `\u2265 ${a.minSeverity}`} \u00b7 ${a.areaName || 'Everywhere'} \u00b7 ${a.channels.join(', ')}
+          ${a.aiMode ? '🤖 AI clustering' : `\u2265 ${a.minSeverity}`} \u00b7 ${(a.areas && a.areas.length) ? a.areas.map(x => x.name).join(', ') : 'Everywhere'} \u00b7 ${a.channels.join(', ')}
           ${a.lastTriggered ? `\u00b7 Last fired ${new Date(a.lastTriggered).toLocaleTimeString()}` : ''}
         </div>
       </div>
@@ -406,10 +401,16 @@ function renderAlertTab() {
           </div>
 
           <div>
-            <div class="alert-field-label">Area of interest</div>
-            <select class="alert-area-select" id="alert-area-select">
-              ${areaOptions}
-            </select>
+            <div class="alert-field-label">Areas of interest <span style="font-weight:400;color:var(--text-secondary)">(add one or more; leave empty for everywhere)</span></div>
+            <div class="alert-area-chips" id="alert-area-chips">
+              ${(editing?.areas || []).map(a => `<span class="alert-area-chip" data-scope="${a.scope}" data-name="${a.name}">${a.name}<button class="alert-area-chip-remove" data-scope="${a.scope}" data-name="${a.name}">&times;</button></span>`).join('')}
+            </div>
+            <div style="display:flex;gap:6px;margin-top:6px">
+              <select class="alert-area-select" id="alert-area-select">
+                ${areaOptions}
+              </select>
+              <button class="alert-area-add-btn" id="alert-area-add-btn">+ Add</button>
+            </div>
           </div>
 
           <div>
@@ -465,7 +466,7 @@ function renderAlertTab() {
                     const parsed = parseAlertNL(nlText);
 
                     // Build interpretation summary
-                    const areaLabel = parsed.areaName || 'all areas';
+                    const areaLabel = (parsed.areas && parsed.areas.length) ? parsed.areas.map(a => a.name).join(', ') : 'all areas';
                     const sevLabel = parsed.aiMode ? 'AI-determined (err on caution)' : `${parsed.minSeverity} or above`;
                     const catLabel = parsed.categories ? parsed.categories.map(c => CATEGORIES[c]?.label?.split('/')[0]?.trim() || c).join(', ') : 'all sectors';
                     const chLabel = parsed.channels.join(', ');
@@ -498,10 +499,19 @@ function renderAlertTab() {
                     });
                     const aiCb = document.getElementById('alert-ai-mode');
                     if (aiCb) aiCb.checked = parsed.aiMode;
-                    const sel = document.getElementById('alert-area-select');
-                    if (sel) {
-                        const val = `${parsed.areaScope}||${parsed.areaName || 'everywhere'}`;
-                        if ([...sel.options].some(o => o.value === val)) sel.value = val;
+                    // Populate area chips from parsed areas
+                    const chips = document.getElementById('alert-area-chips');
+                    if (chips && parsed.areas) {
+                        chips.innerHTML = '';
+                        parsed.areas.forEach(a => {
+                            const chip = document.createElement('span');
+                            chip.className = 'alert-area-chip';
+                            chip.dataset.scope = a.scope;
+                            chip.dataset.name = a.name;
+                            chip.innerHTML = `${a.name}<button class="alert-area-chip-remove">&times;</button>`;
+                            chip.querySelector('.alert-area-chip-remove').addEventListener('click', (e) => { e.stopPropagation(); chip.remove(); });
+                            chips.appendChild(chip);
+                        });
                     }
                     document.querySelectorAll('.alert-cat-btn').forEach(b => {
                         b.classList.toggle('active', parsed.categories ? parsed.categories.includes(b.dataset.cat) : false);
@@ -530,6 +540,38 @@ function renderAlertTab() {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.alert-sev-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+        });
+    });
+
+    // Multi-area picker
+    const addAreaBtn = document.getElementById('alert-area-add-btn');
+    if (addAreaBtn) {
+        addAreaBtn.addEventListener('click', () => {
+            const sel = document.getElementById('alert-area-select');
+            if (!sel) return;
+            const [scope, name] = sel.value.split('||');
+            if (scope === 'everywhere') return;
+            const chips = document.getElementById('alert-area-chips');
+            if (!chips) return;
+            // Avoid duplicates
+            if (chips.querySelector(`[data-scope="${scope}"][data-name="${name}"]`)) return;
+            const chip = document.createElement('span');
+            chip.className = 'alert-area-chip';
+            chip.dataset.scope = scope;
+            chip.dataset.name = name;
+            chip.innerHTML = `${name}<button class="alert-area-chip-remove" data-scope="${scope}" data-name="${name}">&times;</button>`;
+            chips.appendChild(chip);
+            chip.querySelector('.alert-area-chip-remove').addEventListener('click', (e) => {
+                e.stopPropagation();
+                chip.remove();
+            });
+        });
+    }
+    // Wire remove on pre-populated chips
+    document.querySelectorAll('.alert-area-chip-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            btn.closest('.alert-area-chip').remove();
         });
     });
 

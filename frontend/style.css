@@ -1633,6 +1633,10 @@ h1 span {
     border: 1px solid var(--border-color);
 }
 
+.sidebar-view-toggle {
+    margin: 0 0 10px 0;
+}
+
 .view-toggle-btn {
     flex: 1;
     display: flex;
@@ -4853,6 +4857,13 @@ body.show-severity .marker-inner.severe {
 .ai-interp-body { font-size: 0.84rem; color: var(--text-primary); line-height: 1.55; }
 .ai-interp-body strong { font-weight: 700; }
 .ai-interp-adjust { display: block; margin-top: 6px; font-size: 0.78rem; color: var(--text-secondary); font-style: italic; }
+
+.alert-area-chips { display: flex; flex-wrap: wrap; gap: 5px; min-height: 10px; margin-bottom: 2px; }
+.alert-area-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); border-radius: 20px; font-size: 0.78rem; font-weight: 600; color: #4f46e5; }
+.alert-area-chip-remove { background: none; border: none; cursor: pointer; color: #818cf8; font-size: 0.9rem; padding: 0; line-height: 1; margin-left: 1px; }
+.alert-area-chip-remove:hover { color: #4f46e5; }
+.alert-area-add-btn { padding: 6px 12px; background: var(--bg-surface); border: 1.5px solid var(--border-color); border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; color: var(--text-primary); white-space: nowrap; }
+.alert-area-add-btn:hover { border-color: #6366f1; color: #6366f1; }
 
 /* ========================================
    RESPONSIVE BREAKPOINTS
