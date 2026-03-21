@@ -71,6 +71,475 @@ const SEVERITIES = {
     severe: { label: 'Severe', color: '#001f3f' }
 };
 
+// --- Agentic Alerting ---
+const AlertState = {
+    alerts: [],       // loaded from localStorage on init
+    history: [],      // triggered alert log (session only, last 50)
+    editingId: null   // id of alert being edited, or null for new
+};
+const SEVERITY_ORDER = { minor: 1, significant: 2, severe: 3 };
+
+function loadAlerts() {
+    try {
+        const raw = localStorage.getItem('impact-alerts');
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed.alerts) AlertState.alerts = parsed.alerts;
+        }
+    } catch (e) {
+        console.warn('loadAlerts: failed to parse localStorage', e);
+    }
+}
+
+function saveAlerts() {
+    try {
+        localStorage.setItem('impact-alerts', JSON.stringify({ alerts: AlertState.alerts }));
+    } catch (e) {
+        console.warn('saveAlerts: failed', e);
+    }
+}
+
+function parseAlertNL(text) {
+    const t = text.toLowerCase();
+    const result = {};
+
+    // Severity
+    if (/severe/.test(t)) result.minSeverity = 'severe';
+    else if (/significant/.test(t)) result.minSeverity = 'significant';
+    else result.minSeverity = 'minor';
+
+    // AI mode
+    result.aiMode = /(caution|model|judgement|judgment|clusters?)/.test(t);
+
+    // Area
+    result.areaScope = 'everywhere';
+    result.areaName = null;
+    const countyMatch = (State.countyNames || []).find(n => t.includes(n.toLowerCase()));
+    if (countyMatch) {
+        result.areaScope = 'county';
+        result.areaName = countyMatch;
+    } else {
+        const regionMatch = (State.regionNames || []).find(n => t.includes(n.toLowerCase()));
+        if (regionMatch) {
+            result.areaScope = 'region';
+            result.areaName = regionMatch;
+        }
+    }
+
+    // Categories
+    const cats = [];
+    if (/road/.test(t)) cats.push('roads');
+    if (/rail/.test(t)) cats.push('railways');
+    if (/social/.test(t)) cats.push('social');
+    if (/news/.test(t)) cats.push('news');
+    if (/energy/.test(t)) cats.push('energy');
+    if (/water/.test(t)) cats.push('water');
+    if (/(ea|environment)/.test(t)) cats.push('ea-help');
+    result.categories = cats.length ? cats : null;
+
+    // Channels
+    const channels = ['browser'];
+    if (/teams/.test(t)) channels.push('teams');
+    if (/(sms|text)/.test(t)) channels.push('sms');
+    if (/email/.test(t)) channels.push('email');
+    if (/(call|phone)/.test(t)) channels.push('phone');
+    result.channels = channels;
+
+    // Derived name
+    const areaLabel = result.areaName || 'Everywhere';
+    const sevLabel = result.aiMode ? 'AI clustering' : (result.minSeverity.charAt(0).toUpperCase() + result.minSeverity.slice(1));
+    result.name = `${sevLabel} — ${areaLabel}`;
+
+    return result;
+}
+
+function impactWithinArea(imp, areaScope, areaName) {
+    if (areaScope === 'everywhere') return true;
+    if (areaScope === 'county') {
+        return (
+            (imp.intersectingCounties && imp.intersectingCounties.includes(areaName)) ||
+            (imp.locationName && imp.locationName.split('|')[1]?.trim() === areaName)
+        );
+    }
+    if (areaScope === 'region') {
+        return imp.locationName && imp.locationName.split('|')[0]?.trim() === areaName;
+    }
+    return false;
+}
+
+function buildAlertBody(config, impacts) {
+    const area = config.areaName || 'everywhere';
+    let body = `${impacts.length} new impact(s) in ${area}:\n`;
+    impacts.slice(0, 5).forEach(i => {
+        body += `\u2022 ${i.title} (${i.severity}) \u2014 ${i.source || i.category}\n`;
+    });
+    return body.trim();
+}
+
+function fireAlert(config, impacts) {
+    // Record in history
+    const entry = {
+        alertName: config.name,
+        timestamp: new Date().toISOString(),
+        impacts: impacts.map(i => ({ id: i.id, title: i.title, severity: i.severity, category: i.category })),
+        channels: config.channels
+    };
+    AlertState.history.push(entry);
+    if (AlertState.history.length > 50) AlertState.history = AlertState.history.slice(-50);
+
+    // Mark fired
+    config.firedImpactIds.push(...impacts.map(i => i.id));
+    config.lastTriggered = new Date().toISOString();
+
+    // Browser notification
+    if (config.channels.includes('browser') && typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+        try {
+            new Notification('\u26a0 Impact Alert', {
+                body: buildAlertBody(config, impacts),
+                icon: 'favicon.svg'
+            });
+        } catch (e) {
+            console.warn('Notification failed', e);
+        }
+    }
+
+    saveAlerts();
+    renderAlertTab();
+}
+
+function evaluateAlerts() {
+    const now = new Date(FIXED_NOW);
+    const startCutoff = new Date(now.getTime() - (48 - State.windowStart) * 3600000);
+    const endCutoff   = new Date(now.getTime() - (48 - State.windowEnd)   * 3600000);
+    const windowedImpacts = State.impacts.filter(i => i.timestamp >= startCutoff && i.timestamp <= endCutoff);
+
+    AlertState.alerts.forEach(config => {
+        if (!config.active) return;
+
+        let candidates;
+        if (config.aiMode) {
+            // Clustering: any county with >=3 impacts OR >=1 severe
+            const byCounty = {};
+            windowedImpacts.forEach(i => {
+                const county = i.locationName ? i.locationName.split('|')[1]?.trim() : null;
+                if (!county) return;
+                if (!byCounty[county]) byCounty[county] = [];
+                byCounty[county].push(i);
+            });
+            candidates = [];
+            Object.values(byCounty).forEach(group => {
+                if (group.length >= 3 || group.some(i => i.severity === 'severe')) {
+                    candidates.push(...group);
+                }
+            });
+            candidates = candidates.filter(i => !config.firedImpactIds.includes(i.id));
+        } else {
+            candidates = windowedImpacts
+                .filter(i => SEVERITY_ORDER[i.severity] >= SEVERITY_ORDER[config.minSeverity])
+                .filter(i => !config.categories || config.categories.includes(i.category))
+                .filter(i => impactWithinArea(i, config.areaScope, config.areaName))
+                .filter(i => !config.firedImpactIds.includes(i.id));
+        }
+
+        if (candidates.length > 0) {
+            fireAlert(config, candidates);
+        }
+    });
+}
+
+function refreshChannelDetails() {
+    const activeChs = [...document.querySelectorAll('.alert-channel-btn.active')].map(b => b.dataset.ch);
+    const detailEl = document.getElementById('alert-channel-details');
+    if (!detailEl) return;
+    const editing = AlertState.editingId ? AlertState.alerts.find(a => a.id === AlertState.editingId) : null;
+    const inputs = activeChs.filter(c => c !== 'browser').map(ch => {
+        const placeholders = { teams: 'Teams webhook URL', sms: '+44 7xxx xxxxxx', email: 'email@example.com', phone: '+44 7xxx xxxxxx' };
+        const val = editing?.channelDetails?.[ch] || '';
+        return `<input class="alert-channel-detail" data-ch-detail="${ch}" placeholder="${placeholders[ch]}" value="${val}">`;
+    });
+    detailEl.innerHTML = inputs.join('');
+}
+
+function saveAlertFromForm() {
+    const nl = document.getElementById('alert-nl-input')?.value?.trim() || '';
+    const activeSev = document.querySelector('.alert-sev-btn.active')?.dataset.sev || 'minor';
+    const aiMode = document.getElementById('alert-ai-mode')?.checked || false;
+    const areaRaw = document.getElementById('alert-area-select')?.value || 'everywhere||everywhere';
+    const [areaScope, areaName] = areaRaw.split('||');
+    const activeCats = [...document.querySelectorAll('.alert-cat-btn.active')].map(b => b.dataset.cat);
+    const activeChannels = [...document.querySelectorAll('.alert-channel-btn.active')].map(b => b.dataset.ch);
+    const channelDetails = {};
+    document.querySelectorAll('[data-ch-detail]').forEach(inp => { channelDetails[inp.dataset.chDetail] = inp.value.trim(); });
+
+    const name = (areaName && areaName !== 'everywhere')
+        ? `${aiMode ? 'AI clustering' : (activeSev.charAt(0).toUpperCase() + activeSev.slice(1))} \u2014 ${areaName}`
+        : `${aiMode ? 'AI clustering' : (activeSev.charAt(0).toUpperCase() + activeSev.slice(1))} \u2014 Everywhere`;
+
+    if (AlertState.editingId) {
+        const idx = AlertState.alerts.findIndex(a => a.id === AlertState.editingId);
+        if (idx !== -1) {
+            AlertState.alerts[idx] = {
+                ...AlertState.alerts[idx],
+                nlDescription: nl, name, minSeverity: activeSev, aiMode,
+                areaScope, areaName: areaName === 'everywhere' ? null : areaName,
+                categories: activeCats.length ? activeCats : null,
+                channels: activeChannels, channelDetails,
+                firedImpactIds: []  // reset on edit
+            };
+        }
+        AlertState.editingId = null;
+    } else {
+        AlertState.alerts.push({
+            id: `alert-${Date.now()}`, name, nlDescription: nl, active: true,
+            minSeverity: activeSev, aiMode, areaScope,
+            areaName: areaName === 'everywhere' ? null : areaName,
+            categories: activeCats.length ? activeCats : null,
+            channels: activeChannels.length ? activeChannels : ['browser'],
+            channelDetails, firedImpactIds: [], lastTriggered: null,
+            createdAt: new Date().toISOString()
+        });
+    }
+    saveAlerts();
+    renderAlertTab();
+
+    if (activeChannels.includes('browser') && typeof Notification !== 'undefined' && Notification.permission === 'default') {
+        Notification.requestPermission();
+    }
+}
+
+function deleteAlert(id) {
+    AlertState.alerts = AlertState.alerts.filter(a => a.id !== id);
+    saveAlerts();
+    renderAlertTab();
+}
+
+function toggleAlert(id) {
+    const alert = AlertState.alerts.find(a => a.id === id);
+    if (alert) alert.active = !alert.active;
+    saveAlerts();
+    renderAlertTab();
+}
+
+function editAlert(id) {
+    AlertState.editingId = id;
+    renderAlertTab();
+}
+
+function renderAlertTab() {
+    const el = document.getElementById('tab-agentic-alerting');
+    if (!el) return;
+
+    // Build area options
+    const countyOpts = (State.countyNames || []).slice().sort().map(n => `<option value="county||${n}">${n}</option>`).join('');
+    const regionOpts = (State.regionNames || []).slice().sort().map(n => `<option value="region||${n}">${n}</option>`).join('');
+    const areaOptions = `<option value="everywhere||everywhere">Everywhere</option><optgroup label="Counties">${countyOpts}</optgroup><optgroup label="Regions">${regionOpts}</optgroup>`;
+
+    const editing = AlertState.editingId ? AlertState.alerts.find(a => a.id === AlertState.editingId) : null;
+
+    // Alert list HTML
+    const alertListHtml = AlertState.alerts.length === 0
+        ? '<p class="alert-empty">No alerts configured yet.</p>'
+        : AlertState.alerts.map(a => `
+      <div class="alert-item" data-id="${a.id}">
+        <div class="alert-item-header">
+          <span class="alert-active-dot ${a.active ? 'on' : ''}"></span>
+          <span class="alert-item-name">${a.name}</span>
+          <div class="alert-item-actions">
+            <button data-action="toggle" data-id="${a.id}">${a.active ? 'Pause' : 'Resume'}</button>
+            <button data-action="edit" data-id="${a.id}">Edit</button>
+            <button data-action="delete" data-id="${a.id}">Delete</button>
+          </div>
+        </div>
+        <div class="alert-item-meta">
+          ${a.aiMode ? '🤖 AI clustering' : `\u2265 ${a.minSeverity}`} \u00b7 ${a.areaName || 'Everywhere'} \u00b7 ${a.channels.join(', ')}
+          ${a.lastTriggered ? `\u00b7 Last fired ${new Date(a.lastTriggered).toLocaleTimeString()}` : ''}
+        </div>
+      </div>
+    `).join('');
+
+    // History HTML (last 10)
+    const histHtml = AlertState.history.length === 0
+        ? '<p class="alert-empty">No alerts triggered yet.</p>'
+        : AlertState.history.slice(-10).reverse().map(h => `
+      <div class="alert-history-item">
+        <span class="ah-time">${new Date(h.timestamp).toLocaleTimeString()}</span>
+        <span class="ah-name"> \u2014 ${h.alertName}</span>
+        <ul class="alert-history-impacts">
+          ${h.impacts.slice(0, 3).map(i => `<li>${i.title} (${i.severity})</li>`).join('')}
+          ${h.impacts.length > 3 ? `<li>+${h.impacts.length - 3} more</li>` : ''}
+        </ul>
+      </div>
+    `).join('');
+
+    el.innerHTML = `
+    <div style="padding: 4px 0 12px">
+      <p class="alert-section-title">Create Alert</p>
+      <div class="alert-nl-row">
+        <textarea class="alert-nl-input" id="alert-nl-input" placeholder='e.g. "Alert me for any severe impacts in Herefordshire via Teams" or "Err on caution for road closures everywhere"'>${editing ? (editing.nlDescription || '') : ''}</textarea>
+        <button class="alert-parse-btn" id="alert-parse-btn">Parse \u2192</button>
+      </div>
+
+      <div class="alert-advanced">
+        <div class="alert-advanced-toggle" id="alert-advanced-toggle">\u25b8 Advanced controls</div>
+        <div class="alert-advanced-body" id="alert-advanced-body" style="display:none">
+
+          <div>
+            <div class="alert-field-label">Minimum severity</div>
+            <div class="alert-severity-row">
+              ${['minor','significant','severe'].map(s => `<button class="alert-sev-btn${(editing?.minSeverity || 'minor') === s ? ' active' : ''}" data-sev="${s}">${s.charAt(0).toUpperCase() + s.slice(1)}</button>`).join('')}
+            </div>
+            <div class="alert-ai-row" style="margin-top:7px">
+              <input type="checkbox" id="alert-ai-mode" ${editing?.aiMode ? 'checked' : ''}>
+              <label for="alert-ai-mode">Let AI decide based on activity clustering (err on caution)</label>
+            </div>
+          </div>
+
+          <div>
+            <div class="alert-field-label">Area of interest</div>
+            <select class="alert-area-select" id="alert-area-select">
+              ${areaOptions}
+            </select>
+          </div>
+
+          <div>
+            <div class="alert-field-label">Sectors (click to toggle; none selected = all)</div>
+            <div class="alert-cats" id="alert-cats">
+              ${Object.entries(CATEGORIES).map(([k, v]) => `<button class="alert-cat-btn${editing?.categories?.includes(k) ? ' active' : ''}" data-cat="${k}">${v.label.split('/')[0].trim()}</button>`).join('')}
+            </div>
+          </div>
+
+          <div>
+            <div class="alert-field-label">Notification channels</div>
+            <div class="alert-channels" id="alert-channels">
+              ${['browser','teams','sms','email','phone'].map(ch => `<button class="alert-channel-btn${(editing ? editing.channels : ['browser']).includes(ch) ? ' active' : ''}" data-ch="${ch}">${ch.charAt(0).toUpperCase() + ch.slice(1)}</button>`).join('')}
+            </div>
+            <div id="alert-channel-details" style="margin-top:8px;display:flex;flex-direction:column;gap:5px"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="alert-form-actions">
+        ${AlertState.editingId ? '<button class="alert-cancel-btn" id="alert-cancel-btn">Cancel</button>' : ''}
+        <button class="alert-save-btn" id="alert-save-btn">${AlertState.editingId ? 'Update Alert' : 'Save Alert'}</button>
+      </div>
+    </div>
+
+    <p class="alert-section-title">Active Alerts</p>
+    <div class="alert-list">${alertListHtml}</div>
+
+    <p class="alert-section-title">Recent Triggers</p>
+    <div class="alert-history-list">${histHtml}</div>
+  `;
+
+    // Wire events
+    const parseBtn = document.getElementById('alert-parse-btn');
+    if (parseBtn) {
+        parseBtn.addEventListener('click', () => {
+            const nlText = document.getElementById('alert-nl-input')?.value || '';
+            if (!nlText.trim()) return;
+            const parsed = parseAlertNL(nlText);
+            // Open advanced body
+            const body = document.getElementById('alert-advanced-body');
+            const toggle = document.getElementById('alert-advanced-toggle');
+            if (body) body.style.display = 'flex';
+            if (toggle) toggle.textContent = '\u25be Advanced controls';
+            // Apply severity
+            document.querySelectorAll('.alert-sev-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.sev === parsed.minSeverity);
+            });
+            // Apply AI mode
+            const aiCb = document.getElementById('alert-ai-mode');
+            if (aiCb) aiCb.checked = parsed.aiMode;
+            // Apply area
+            const sel = document.getElementById('alert-area-select');
+            if (sel) {
+                const val = `${parsed.areaScope}||${parsed.areaName || 'everywhere'}`;
+                if ([...sel.options].some(o => o.value === val)) sel.value = val;
+            }
+            // Apply categories
+            document.querySelectorAll('.alert-cat-btn').forEach(b => {
+                b.classList.toggle('active', parsed.categories ? parsed.categories.includes(b.dataset.cat) : false);
+            });
+            // Apply channels
+            document.querySelectorAll('.alert-channel-btn').forEach(b => {
+                b.classList.toggle('active', parsed.channels.includes(b.dataset.ch));
+            });
+            refreshChannelDetails();
+        });
+    }
+
+    const advToggle = document.getElementById('alert-advanced-toggle');
+    if (advToggle) {
+        advToggle.addEventListener('click', () => {
+            const body = document.getElementById('alert-advanced-body');
+            if (!body) return;
+            const open = body.style.display !== 'none';
+            body.style.display = open ? 'none' : 'flex';
+            advToggle.textContent = open ? '\u25b8 Advanced controls' : '\u25be Advanced controls';
+        });
+    }
+
+    document.querySelectorAll('.alert-sev-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.alert-sev-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    document.querySelectorAll('.alert-cat-btn').forEach(btn => {
+        btn.addEventListener('click', () => btn.classList.toggle('active'));
+    });
+
+    document.querySelectorAll('.alert-channel-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('active');
+            refreshChannelDetails();
+        });
+    });
+
+    const saveBtn = document.getElementById('alert-save-btn');
+    if (saveBtn) saveBtn.addEventListener('click', saveAlertFromForm);
+
+    const cancelBtn = document.getElementById('alert-cancel-btn');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => {
+            AlertState.editingId = null;
+            renderAlertTab();
+        });
+    }
+
+    // Alert list action buttons
+    document.querySelectorAll('.alert-item-actions button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const action = btn.dataset.action;
+            const id = btn.dataset.id;
+            if (action === 'toggle') toggleAlert(id);
+            else if (action === 'edit') editAlert(id);
+            else if (action === 'delete') deleteAlert(id);
+        });
+    });
+
+    // Pre-select area value for editing
+    if (editing) {
+        const sel = document.getElementById('alert-area-select');
+        if (sel) {
+            const val = `${editing.areaScope}||${editing.areaName || 'everywhere'}`;
+            if ([...sel.options].some(o => o.value === val)) sel.value = val;
+        }
+    }
+
+    // Open advanced panel if editing
+    if (editing) {
+        const body = document.getElementById('alert-advanced-body');
+        const toggle = document.getElementById('alert-advanced-toggle');
+        if (body) body.style.display = 'flex';
+        if (toggle) toggle.textContent = '\u25be Advanced controls';
+    }
+
+    refreshChannelDetails();
+}
+
 const PEXELS_PHOTOS = [
     'photos/pexels-connorscottmcmanus-13865772.jpg',
     'photos/pexels-dibakar-roy-2432543-26202087.jpg',
@@ -433,7 +902,10 @@ async function init() {
         console.error("Error loading impact data:", err);
         State.impacts = [];
     }
-    
+
+    loadAlerts();
+    evaluateAlerts();
+
     renderTimelineTicks();
     setupEvents();
     
@@ -613,6 +1085,7 @@ function setupEvents() {
         syncDualSlider();
         renderImpacts();
         updateStats();
+        evaluateAlerts();
 
         // Pulse the card twice to signal the time change
         const card = document.getElementById('demo-time-preset');
@@ -1061,6 +1534,8 @@ function setupEvents() {
             if (e.target === mcpModal) mcpModal.classList.remove('active');
         });
     }
+
+    renderAlertTab();
 }
 
 function renderTypeFilters() {
