@@ -27,13 +27,13 @@ const BASEMAPS = {
 };
 
 const CATEGORIES = {
-    roads: { label: 'National Highways / Traffic Wales', color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>' },
-    railways: { label: 'Railway Marketplace', color: '#5b61a1', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2L7 22M17 2L17 22M7 5H17M7 10H17M7 15H17M7 20H17"/></svg>' },
+    roads: { label: 'National Highways / Traffic Wales', color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19L9 3h6l5 16"/><line x1="12" y1="5" x2="12" y2="8"/><line x1="12" y1="11" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="19"/></svg>' },
+    railways: { label: 'Railway Marketplace', color: '#5b61a1', icon: '<img src="assets/logos/National_Rail_logo.svg.png" style="width:22px;height:22px;display:block;object-fit:contain;filter:brightness(0) invert(1);">' },
     social: { label: 'Social', color: '#9d174d', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
     news: { label: 'Online News', color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM6 6h12M6 10h12M6 14h6M6 18h6M16 14v4"/></svg>' },
     energy: { label: 'Power Companies', color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
-    'ea-help': { label: 'EA HELP report', color: '#00a651', icon: '<img src="EnvAgency.png" style="width:20px; height:20px; display:block; object-fit: contain;">' }
+    'ea-help': { label: 'EA HELP report', color: '#00a651', icon: '<img src="assets/logos/EnvAgency.png" style="width:20px; height:20px; display:block; object-fit: contain;">' }
 };
 
 const SOCIAL_PLATFORM_ICONS = {
@@ -58,8 +58,8 @@ const SOCIAL_SUB_SOURCE_MAP = {
 };
 
 const IMPACT_TYPES = {
-    roads: { label: 'Roads', categories: ['roads'], color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>' },
-    rail: { label: 'Rail', categories: ['railways'], color: '#5b61a1', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2L7 22M17 2L17 22M7 5H17M7 10H17M7 15H17M7 20H17"/></svg>' },
+    roads: { label: 'Roads', categories: ['roads'], color: '#446b82', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19L9 3h6l5 16"/><line x1="12" y1="5" x2="12" y2="8"/><line x1="12" y1="11" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="19"/></svg>' },
+    rail: { label: 'Rail', categories: ['railways'], color: '#5b61a1', icon: '<img src="assets/logos/National_Rail_logo.svg.png" style="width:22px;height:22px;display:block;object-fit:contain;filter:brightness(0) invert(1);">' },
     housing: { label: 'Homes and Businesses', categories: ['social', 'news', 'ea-help'], color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>' },
     energy: { label: 'Energy', categories: ['energy'], color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     utilities: { label: 'Utilities', categories: ['water'], color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' }
@@ -70,6 +70,22 @@ const SEVERITIES = {
     significant: { label: 'Significant', color: '#2563eb' },
     severe: { label: 'Severe', color: '#001f3f' }
 };
+
+// Returns the impact TYPE (what sector is affected) regardless of which data source reported it
+function getImpactType(imp) {
+    // Explicit field in data takes priority
+    if (imp.impactType) return imp.impactType;
+    // Direct category → type mappings
+    const catDefaults = { roads: 'roads', railways: 'rail', energy: 'energy', water: 'utilities', 'ea-help': 'housing' };
+    if (catDefaults[imp.category]) return catDefaults[imp.category];
+    // For social/news: infer from title + evidence text
+    const text = ((imp.title || '') + ' ' + (imp.evidence || '')).toLowerCase();
+    if (/\bm\d+\b|a\d{2,3}\b|b\d{3,4}\b|motorway|carriageway|road closure|traffic wales|national highways|highway|road flood/.test(text)) return 'roads';
+    if (/\brail\b|railway|train|gwr|tfw|transport for wales|station/.test(text)) return 'rail';
+    if (/\bpower\b|electric|energy|outage|grid/.test(text)) return 'energy';
+    if (/water company|sewage|water supply|utilities/.test(text)) return 'utilities';
+    return 'housing'; // default for community/residential flood impacts
+}
 
 // --- Agentic Alerting ---
 const AlertState = {
@@ -741,6 +757,7 @@ const State = {
     windowEnd: 48,
     lastWindowDuration: 0,
     activeCategories: new Set(['roads', 'railways', 'social', 'news', 'energy', 'water', 'ea-help']),
+    activeTypes: new Set(['roads', 'rail', 'housing', 'energy', 'utilities']),
     activeSeverities: new Set(['minor', 'significant', 'severe']),
     activeSocialPlatform: null,
     showSeverity: false,
@@ -841,9 +858,9 @@ async function init() {
     try {
         console.log("Starting data fetch...");
         const [regionsRes, countiesRes, constRes] = await Promise.all([
-            fetch('uk-regions.geojson').then(r => r.json()),
-            fetch('uk-counties.geojson').then(r => r.json()),
-            fetch('westminister.json').then(r => r.json())
+            fetch('geo/uk-regions.geojson').then(r => r.json()),
+            fetch('geo/uk-counties.geojson').then(r => r.json()),
+            fetch('geo/westminister.json').then(r => r.json())
         ]);
 
         State.rawRegions = regionsRes;
@@ -852,12 +869,12 @@ async function init() {
 
         // Separate fetch for forecast to be more resilient
         try {
-            const fRes = await fetch('warning_cords.json?v=' + Date.now());
+            const fRes = await fetch('data/warning_cords.json?v=' + Date.now());
             if (fRes.ok) {
                 State.forecastData = await fRes.json();
-                console.log("Forecast data loaded successfully from warning_cords.json:", State.forecastData);
+                console.log("Forecast data loaded successfully from data/warning_cords.json:", State.forecastData);
             } else {
-                console.warn("Forecast file warning_cords.json not found or error. Using fallback.");
+                console.warn("Forecast file data/warning_cords.json not found or error. Using fallback.");
                 throw new Error("404");
             }
         } catch (e) {
@@ -1305,12 +1322,15 @@ function setupEvents() {
         chip.addEventListener('click', (e) => {
             e.preventDefault();
             const severity = chip.dataset.severity;
+            const cb = chip.querySelector('input[type="checkbox"]');
             if (State.activeSeverities.has(severity)) {
                 State.activeSeverities.delete(severity);
                 chip.classList.remove('active');
+                if (cb) cb.checked = false;
             } else {
                 State.activeSeverities.add(severity);
                 chip.classList.add('active');
+                if (cb) cb.checked = true;
             }
             renderImpacts();
             updateStats();
@@ -1618,6 +1638,18 @@ function setupEvents() {
     const openMcpBtn = document.getElementById('mcp-server-btn');
     const closeMcpBtn = document.getElementById('close-mcp-btn');
 
+    const qrModal = document.getElementById('qr-modal');
+    document.getElementById('qr-modal-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        qrModal?.classList.add('active');
+    });
+    document.getElementById('qr-modal-close')?.addEventListener('click', () => {
+        qrModal?.classList.remove('active');
+    });
+    qrModal?.addEventListener('click', (e) => {
+        if (e.target === qrModal) qrModal.classList.remove('active');
+    });
+
     if (openMcpBtn && mcpModal) {
         openMcpBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -1644,67 +1676,71 @@ function renderTypeFilters() {
     const list = document.getElementById('type-filter-list');
     if (!list) return;
     list.innerHTML = '';
-    
+
+    // Count impacts per type so we can show live counts
+    const typeCounts = {};
+    Object.keys(IMPACT_TYPES).forEach(k => { typeCounts[k] = 0; });
+    State.impacts.filter(imp => {
+        const ts = imp.timestamp;
+        const now = new Date(FIXED_NOW);
+        const start = new Date(now.getTime() - (48 - State.windowStart) * 3600000);
+        const end   = new Date(now.getTime() - (48 - State.windowEnd)   * 3600000);
+        return ts >= start && ts <= end && State.activeCategories.has(imp.category) && State.activeSeverities.has(imp.severity);
+    }).forEach(imp => {
+        const t = getImpactType(imp);
+        if (t in typeCounts) typeCounts[t]++;
+    });
+
     Object.entries(IMPACT_TYPES).forEach(([key, type]) => {
-        const isActive = type.categories.every(cat => State.activeCategories.has(cat));
-        
+        const isActive = State.activeTypes.has(key);
+        const count = typeCounts[key];
+
         const row = document.createElement('label');
         row.className = `filter-item-row filter-chip ${isActive ? 'active' : ''}`;
         row.dataset.type = key;
-        
+
         row.innerHTML = `
             <div class="custom-checkbox ${isActive ? 'checked' : ''}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="check-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <span class="item-label">${type.label}</span>
+            ${count > 0 ? `<span class="filter-count">${count}</span>` : ''}
             <span class="only-trigger">Only</span>
         `;
-        
+
         row.addEventListener('click', (e) => {
             e.preventDefault();
-            const categories = type.categories;
-            const currentlyActive = categories.every(cat => State.activeCategories.has(cat));
-            
-            categories.forEach(cat => {
-                if (currentlyActive) {
-                    State.activeCategories.delete(cat);
-                } else {
-                    State.activeCategories.add(cat);
-                }
-            });
-            
+            if (State.activeTypes.has(key)) {
+                State.activeTypes.delete(key);
+            } else {
+                State.activeTypes.add(key);
+            }
             renderTypeFilters();
             renderImpacts();
             updateStats();
-            syncSourceChecks();
         });
 
         row.querySelector('.only-trigger').addEventListener('click', (e) => {
             e.stopPropagation();
             e.preventDefault();
-            State.activeCategories.clear();
-            type.categories.forEach(cat => State.activeCategories.add(cat));
+            State.activeTypes.clear();
+            State.activeTypes.add(key);
             renderTypeFilters();
             renderImpacts();
             updateStats();
-            syncSourceChecks();
         });
 
         list.appendChild(row);
     });
 
-    // Add Show All listener if not already added (though it's static in HTML)
     const showAllTypes = document.getElementById('show-all-types');
     if (showAllTypes && !showAllTypes.dataset.listener) {
         showAllTypes.dataset.listener = "true";
         showAllTypes.addEventListener('click', () => {
-            Object.values(IMPACT_TYPES).forEach(type => {
-                type.categories.forEach(cat => State.activeCategories.add(cat));
-            });
+            Object.keys(IMPACT_TYPES).forEach(k => State.activeTypes.add(k));
             renderTypeFilters();
             renderImpacts();
             updateStats();
-            syncSourceChecks();
         });
     }
 }
@@ -1808,6 +1844,7 @@ function renderImpacts() {
         if (imp.timestamp < startCutoff || imp.timestamp > endCutoff) return false;
         if (!State.activeCategories.has(imp.category)) return false;
         if (!State.activeSeverities.has(imp.severity)) return false;
+        if (!State.activeTypes.has(getImpactType(imp))) return false;
         if (imp.category === 'social' && State.activeSocialPlatform && imp.source !== State.activeSocialPlatform) return false;
         return true;
     });
@@ -1839,8 +1876,8 @@ function renderImpacts() {
             const markerIcon = L.divIcon({
                 className: 'custom-marker',
                 html: `<div class="marker-inner ${imp.category} ${imp.severity}">${markerSvg}</div>`,
-                iconSize: [28, 28],
-                iconAnchor: [14, 14]
+                iconSize: [32, 37],
+                iconAnchor: [16, 37]
             });
             const marker = L.marker([lat, lng], { icon: markerIcon });
             marker.impactId = imp.id;
@@ -2172,10 +2209,11 @@ function showSpatialSummaryModal(areaName, mode) {
     const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
     
     const filtered = State.impacts.filter(imp => {
-        return imp.timestamp >= startCutoff && 
-               imp.timestamp <= endCutoff && 
+        return imp.timestamp >= startCutoff &&
+               imp.timestamp <= endCutoff &&
                State.activeCategories.has(imp.category) &&
-               State.activeSeverities.has(imp.severity);
+               State.activeSeverities.has(imp.severity) &&
+               State.activeTypes.has(getImpactType(imp));
     });
 
     const results = { count: 0, sources: new Set(), severity: 'minor', impacts: [] };
@@ -2346,20 +2384,24 @@ function selectImpact(imp, isRerender = true) {
         const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
         
         const filtered = State.impacts.filter(imp => {
-            return imp.timestamp >= startCutoff && 
-                   imp.timestamp <= endCutoff && 
+            return imp.timestamp >= startCutoff &&
+                   imp.timestamp <= endCutoff &&
                    State.activeCategories.has(imp.category) &&
-                   State.activeSeverities.has(imp.severity);
+                   State.activeSeverities.has(imp.severity) &&
+                   State.activeTypes.has(getImpactType(imp));
         });
         renderFeed(filtered);
 
-        // Scroll into view in RHS feed
+        // Scroll selected card to top of the RHS feed panel
         setTimeout(() => {
             const cardElement = document.getElementById(`card-${imp.id}`);
-            if (cardElement) {
-                cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const feedPanel = document.getElementById('feed-container');
+            if (cardElement && feedPanel) {
+                feedPanel.scrollTop = cardElement.offsetTop - feedPanel.offsetTop;
+                cardElement.classList.add('card-flash');
+                setTimeout(() => cardElement.classList.remove('card-flash'), 600);
             }
-        }, 100);
+        }, 50);
     }
 }
 
@@ -2647,10 +2689,42 @@ function deployAgenticSearch(location, modules, polygonPoints = null) {
         center = State.map.getCenter();
     }
     
-    // Zoom map to the search area
+    // Zoom map to the search area and flash polygon
     if (polygonPoints) {
         const bounds = L.latLngBounds(polygonPoints.map(p => L.latLng(p[0], p[1])));
         State.map.fitBounds(bounds, { padding: [50, 50], maxZoom: 10 });
+
+        // Flash polygon on main map
+        const flashPoly = L.polygon(polygonPoints, {
+            color: '#6366f1',
+            fillColor: '#6366f1',
+            fillOpacity: 0.15,
+            weight: 2,
+            dashArray: '6, 4',
+            className: 'search-flash-polygon'
+        }).addTo(State.map);
+
+        // Add label at polygon center
+        const polyCenter = bounds.getCenter();
+        const flashLabel = L.marker(polyCenter, {
+            icon: L.divIcon({
+                className: 'search-flash-label',
+                html: '<div class="search-flash-label-inner">Enhanced search in this area</div>',
+                iconSize: [240, 40],
+                iconAnchor: [120, 20]
+            }),
+            pane: 'tooltipPane'  // sits above markerPane (z-index 650 vs 400)
+        }).addTo(State.map);
+
+        // Remove after 2 seconds with fade
+        setTimeout(() => {
+            flashPoly.getElement()?.classList.add('search-flash-fade');
+            flashLabel.getElement()?.classList.add('search-flash-fade');
+            setTimeout(() => {
+                State.map.removeLayer(flashPoly);
+                State.map.removeLayer(flashLabel);
+            }, 500);
+        }, 2000);
     }
 
     State.deepDiveSessions.push(session);
@@ -2837,10 +2911,11 @@ function renderSummaryView() {
     const endCutoff = new Date(now.getTime() - (48 - State.windowEnd) * 60 * 60 * 1000);
 
     const filtered = State.impacts.filter(imp => {
-        return imp.timestamp >= startCutoff && 
-               imp.timestamp <= endCutoff && 
+        return imp.timestamp >= startCutoff &&
+               imp.timestamp <= endCutoff &&
                State.activeCategories.has(imp.category) &&
-               State.activeSeverities.has(imp.severity);
+               State.activeSeverities.has(imp.severity) &&
+               State.activeTypes.has(getImpactType(imp));
     });
 
     updateSummaryStats(filtered);
