@@ -4,7 +4,12 @@
       "Bash(powershell -ExecutionPolicy Bypass -File scripts/deploy-gh-pages.ps1)",
       "WebFetch(domain:robertcowling.github.io)",
       "Bash(curl -s \"https://robertcowling.github.io/impacts/app.js\")",
-      "Bash(awk 'NR>=50 && NR<=100')"
+      "Bash(awk 'NR>=50 && NR<=100')",
+      "Bash(python -m http.server 8000)",
+      "Bash(where python:*)",
+      "Bash(where python3:*)",
+      "Bash(where py:*)",
+      "Bash(py -m http.server 8000)"
     ]
   }
 }

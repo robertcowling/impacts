@@ -81,28 +81,29 @@
 
 .demo-time-preset {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 12px;
+    left: 12px;
     z-index: 1000;
     background: rgba(255, 255, 255, 0.38);
     backdrop-filter: blur(24px) saturate(200%);
     -webkit-backdrop-filter: blur(24px) saturate(200%);
     border: 1.5px solid rgba(220, 38, 38, 0.2);
-    border-radius: 14px;
-    padding: 17px 23px;
+    border-radius: 12px;
+    padding: 12px 16px;
     box-shadow: 0 8px 32px rgba(220,38,38,0.22), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
     transition: box-shadow 0.2s;
+    max-width: calc(100% - 100px);
 }
 
 .demo-time-preset-left {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    min-width: 216px;
+    gap: 6px;
+    min-width: 140px;
     flex-shrink: 0;
 }
 
@@ -110,9 +111,9 @@
 .persona-card {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
     border-left: 1px solid rgba(220, 38, 38, 0.15);
-    padding-left: 20px;
+    padding-left: 14px;
     min-width: 0;
 }
 
@@ -128,15 +129,15 @@
 .persona-item-top {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
 }
 .persona-item-top .persona-info {
     flex-grow: 1;
 }
 
 .persona-photo {
-    width: 110px;
-    height: 110px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     object-fit: cover;
     object-position: top center;
@@ -147,19 +148,19 @@
 .persona-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    flex-shrink: 0;
+    gap: 2px;
+    min-width: 0;
 }
 
 .persona-role {
-    font-size: 1.87rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-primary);
     white-space: nowrap;
 }
 
 .persona-blurb {
-    font-size: 1.68rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
     max-width: 400px;
     line-height: 1.35;
@@ -167,8 +168,8 @@
 
 /* Benefits toggle arrow — right side of persona row */
 .benefits-toggle {
-    width: 52px;
-    height: 52px;
+    width: 32px;
+    height: 32px;
     border: 1.5px solid rgba(22, 101, 52, 0.25);
     background: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
@@ -181,8 +182,8 @@
     flex-shrink: 0;
 }
 .benefits-toggle svg {
-    width: 26px;
-    height: 26px;
+    width: 16px;
+    height: 16px;
     color: #166534;
     transform: rotate(90deg);
 }
@@ -236,12 +237,12 @@
 }
 .benefit-tick {
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background: #166534;
     color: #fff;
-    font-size: 1.0rem;
+    font-size: 0.7rem;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -249,7 +250,7 @@
     margin-top: 1px;
 }
 .benefit-text {
-    font-size: 1.48rem;
+    font-size: 0.82rem;
     color: var(--text-primary);
     line-height: 1.4;
     font-weight: 500;
@@ -260,7 +261,7 @@
 }
 
 .demo-time-preset-label {
-    font-size: 1.48rem;
+    font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: #dc2626;
@@ -279,9 +280,9 @@
     border-radius: 8px;
     color: var(--text-primary);
     font-family: inherit;
-    font-size: 1.44rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    padding: 12px 14px;
+    padding: 8px 10px;
     cursor: pointer;
     outline: none;
     width: 100%;
@@ -1696,7 +1697,7 @@ h1 span {
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    font-size: 0.94rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-primary);
     cursor: pointer;
@@ -1817,7 +1818,7 @@ h1 span {
 }
 
 .mcp-modal-sub {
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-primary);
     margin: 0;
@@ -1828,7 +1829,7 @@ h1 span {
 }
 
 .mcp-brief-intro {
-    font-size: 1rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0 0 16px;
@@ -1849,7 +1850,7 @@ h1 span {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-size: 1.1rem;
+    font-size: 0.88rem;
     line-height: 1.5;
     color: var(--text-primary);
 }
@@ -2373,7 +2374,7 @@ main {
 .toggle-row input:checked + .toggle-slider-wrap .toggle-dot { left: 14px; }
 
 .item-label {
-    font-size: 1.01rem;
+    font-size: 0.82rem;
     font-weight: 500;
     color: var(--text-primary);
     flex: 1;
@@ -4415,7 +4416,7 @@ main {
 }
 
 .tick-label {
-    font-size: 1.24rem;
+    font-size: 0.68rem;
     font-weight: 600;
     color: var(--text-secondary);
     white-space: nowrap;
@@ -4435,7 +4436,7 @@ main {
 
 .tick-label.moderate {
     color: #94a3b8;
-    font-size: 1.3rem;
+    font-size: 0.62rem;
     font-weight: 500;
 }
 
@@ -4634,10 +4635,10 @@ body.show-severity .marker-inner.severe {
     flex: 1;
     background: #f8fafc;
     overflow-y: auto;
-    padding: 48px;
+    padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
 }
 
 .summary-content {
@@ -5414,6 +5415,35 @@ body.show-severity .marker-inner.severe {
         font-size: 0.8rem;
         padding: 0 12px;
     }
+
+    /* Demo preset scaling */
+    .demo-time-preset {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+
+    .persona-photo {
+        width: 56px;
+        height: 56px;
+    }
+
+    .persona-role {
+        font-size: 0.95rem;
+    }
+
+    .persona-blurb {
+        font-size: 0.82rem;
+        max-width: 320px;
+    }
+
+    #summary-view {
+        padding: 28px;
+        gap: 20px;
+    }
+
+    .national-narrative-card {
+        padding: 28px;
+    }
 }
 
 /* --- Standard Laptop (≤1440px) --- */
@@ -5479,7 +5509,7 @@ body.show-severity .marker-inner.severe {
     }
 
     .item-label {
-        font-size: 0.92rem;
+        font-size: 0.78rem;
     }
 
     .sidebar-main-header {
@@ -5521,6 +5551,95 @@ body.show-severity .marker-inner.severe {
 
     .header-nav {
         gap: 8px;
+    }
+
+    /* Demo preset scaling */
+    .demo-time-preset {
+        padding: 8px 12px;
+        gap: 8px;
+        border-radius: 10px;
+    }
+
+    .demo-time-preset-left {
+        min-width: 120px;
+        gap: 4px;
+    }
+
+    .demo-time-preset-label {
+        font-size: 0.75rem;
+    }
+
+    .demo-time-preset select {
+        font-size: 0.82rem;
+        padding: 6px 8px;
+    }
+
+    .persona-photo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .persona-role {
+        font-size: 0.88rem;
+    }
+
+    .persona-blurb {
+        font-size: 0.76rem;
+        max-width: 260px;
+    }
+
+    .persona-card {
+        gap: 8px;
+        padding-left: 10px;
+    }
+
+    .persona-item-top {
+        gap: 8px;
+    }
+
+    .benefits-toggle {
+        width: 28px;
+        height: 28px;
+    }
+
+    .benefits-toggle svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .benefit-tick {
+        width: 18px;
+        height: 18px;
+        font-size: 0.65rem;
+    }
+
+    .benefit-text {
+        font-size: 0.76rem;
+    }
+
+    #summary-view {
+        padding: 24px;
+        gap: 18px;
+    }
+
+    .national-narrative-card {
+        padding: 24px;
+    }
+
+    .narration-header h3 {
+        font-size: 1.25rem;
+    }
+
+    .narrative-prose {
+        font-size: 1rem;
+    }
+
+    .national-impact-table td {
+        padding: 20px 24px;
+    }
+
+    .national-impact-table th {
+        padding: 12px 24px;
     }
 }
 
@@ -5668,7 +5787,7 @@ body.show-severity .marker-inner.severe {
     }
 
     .item-label {
-        font-size: 0.86rem;
+        font-size: 0.74rem;
     }
 
     .sidebar-main-header {
@@ -5722,6 +5841,137 @@ body.show-severity .marker-inner.severe {
     .legend-dot {
         width: 14px;
         height: 14px;
+    }
+
+    /* Demo preset — compact for small laptops */
+    .demo-time-preset {
+        padding: 7px 10px;
+        gap: 8px;
+        border-radius: 9px;
+    }
+
+    .demo-time-preset-left {
+        min-width: 110px;
+        gap: 3px;
+    }
+
+    .demo-time-preset-label {
+        font-size: 0.7rem;
+    }
+
+    .demo-time-preset select {
+        font-size: 0.78rem;
+        padding: 5px 7px;
+        border-radius: 6px;
+    }
+
+    .persona-photo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .persona-role {
+        font-size: 0.82rem;
+    }
+
+    .persona-blurb {
+        font-size: 0.72rem;
+        max-width: 200px;
+    }
+
+    .persona-card {
+        gap: 6px;
+        padding-left: 8px;
+    }
+
+    .persona-item-top {
+        gap: 6px;
+    }
+
+    .benefits-toggle {
+        width: 24px;
+        height: 24px;
+    }
+
+    .benefits-toggle svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .benefit-tick {
+        width: 16px;
+        height: 16px;
+        font-size: 0.6rem;
+    }
+
+    .benefit-text {
+        font-size: 0.72rem;
+    }
+
+    .benefits-list {
+        gap: 6px;
+        padding: 6px 0 2px 0;
+    }
+
+    .demo-preset-toggle {
+        width: 18px;
+        height: 18px;
+        font-size: 0.85rem;
+        top: 4px;
+        right: 5px;
+    }
+
+    /* Summary view compaction */
+    #summary-view {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .national-narrative-card {
+        padding: 20px;
+    }
+
+    .narration-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .narration-header {
+        margin-bottom: 16px;
+    }
+
+    .narrative-prose {
+        font-size: 0.92rem;
+    }
+
+    .national-impact-table td {
+        padding: 16px 20px;
+    }
+
+    .national-impact-table th {
+        padding: 10px 20px;
+        font-size: 0.75rem;
+    }
+
+    .cluster-name {
+        font-size: 0.95rem;
+    }
+
+    .evidence-synthesis {
+        font-size: 0.78rem;
+    }
+
+    /* Config modal — fit to smaller viewport */
+    .config-modal-content {
+        width: 90%;
+        height: 80vh;
+    }
+
+    .modal-sidebar {
+        width: 160px;
+    }
+
+    .modal-main-content {
+        padding: 20px;
     }
 }
 
@@ -5804,7 +6054,7 @@ body.show-severity .marker-inner.severe {
     }
 
     .item-label {
-        font-size: 0.82rem;
+        font-size: 0.7rem;
     }
 
     .sidebar-main-header {
@@ -5843,5 +6093,112 @@ body.show-severity .marker-inner.severe {
     .deep-dive-overlay {
         bottom: 80px;
         right: 12px;
+    }
+
+    /* Demo preset — very compact */
+    .demo-time-preset {
+        padding: 6px 8px;
+        gap: 6px;
+        border-radius: 8px;
+    }
+
+    .demo-time-preset-left {
+        min-width: 100px;
+        gap: 3px;
+    }
+
+    .demo-time-preset-label {
+        font-size: 0.65rem;
+    }
+
+    .demo-time-preset select {
+        font-size: 0.72rem;
+        padding: 4px 6px;
+    }
+
+    .persona-photo {
+        width: 34px;
+        height: 34px;
+    }
+
+    .persona-role {
+        font-size: 0.75rem;
+    }
+
+    .persona-blurb {
+        font-size: 0.68rem;
+        max-width: 160px;
+    }
+
+    .persona-card {
+        gap: 4px;
+        padding-left: 6px;
+    }
+
+    .persona-item-top {
+        gap: 5px;
+    }
+
+    .benefits-toggle {
+        width: 22px;
+        height: 22px;
+    }
+
+    .benefits-toggle svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    .benefit-text {
+        font-size: 0.68rem;
+    }
+
+    .benefit-tick {
+        width: 14px;
+        height: 14px;
+        font-size: 0.55rem;
+    }
+
+    /* Summary view very compact */
+    #summary-view {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .national-narrative-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .narration-header h3 {
+        font-size: 1rem;
+    }
+
+    .narrative-prose {
+        font-size: 0.88rem;
+    }
+
+    .summary-content {
+        gap: 16px;
+    }
+
+    /* Config modal — very small screen */
+    .config-modal-content {
+        width: 95%;
+        height: 85vh;
+    }
+
+    .modal-sidebar {
+        width: 140px;
+        padding: 12px 0;
+    }
+
+    .modal-tab {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+
+    .modal-main-content {
+        padding: 16px;
     }
 }
