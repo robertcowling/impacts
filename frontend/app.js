@@ -104,25 +104,28 @@ function renderPersonaCard(val) {
     const personas = PERSONAS[val];
     if (!personas) { card.innerHTML = ''; return; }
     card.innerHTML = personas.map((p, idx) => {
-        const benefits = PERSONA_BENEFITS[p.role] || [];
-        const benefitsHtml = benefits.length ? `
+        const benefits = val === '1400' ? [] : (PERSONA_BENEFITS[p.role] || []);
+        const toggleBtn = benefits.length ? `
             <button class="benefits-toggle" aria-label="Show benefits" data-persona-idx="${idx}">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
+            </button>` : '';
+        const benefitsPanel = benefits.length ? `
             <div class="benefits-panel" id="benefits-panel-${idx}">
                 <div class="benefits-list">
                     ${benefits.map(b => `<div class="benefit-item"><span class="benefit-tick">&#10003;</span><span class="benefit-text">${b}</span></div>`).join('')}
                 </div>
-            </div>
-        ` : '';
+            </div>` : '';
         return `
             <div class="persona-item">
-                <img class="persona-photo" src="${p.photo}" alt="${p.role}">
-                <div class="persona-info">
-                    <div class="persona-role">${p.role}</div>
-                    <div class="persona-blurb">${p.blurb}</div>
+                <div class="persona-item-top">
+                    <img class="persona-photo" src="${p.photo}" alt="${p.role}">
+                    <div class="persona-info">
+                        <div class="persona-role">${p.role}</div>
+                        <div class="persona-blurb">${p.blurb}</div>
+                    </div>
+                    ${toggleBtn}
                 </div>
-                ${benefitsHtml}
+                ${benefitsPanel}
             </div>
         `;
     }).join('');
@@ -1048,10 +1051,13 @@ async function init() {
         const rawImpacts = rawImpactsFlat.filter(imp => {
             if (imp.category === 'energy') return ++eCount <= 1;
             if (imp.category === 'water') return ++wCount <= 1;
-            
-            // Thin non-severe impacts by 15%
+
+            // Thin non-severe impacts by 15% (deterministic hash so results are stable across refreshes)
             if (imp.severity !== 'severe') {
-                return Math.random() > 0.15;
+                const key = imp.id || imp.title || '';
+                let h = 0;
+                for (let i = 0; i < key.length; i++) h = ((h << 5) - h + key.charCodeAt(i)) | 0;
+                return (Math.abs(h) % 100) >= 15;
             }
             return true;
         });
@@ -1958,8 +1964,9 @@ function renderImpacts() {
 
     const coordCounts = new Map();
     filteredForMarkers.forEach(imp => {
-        const locations = imp.locations || [{ lat: imp.lat, lng: imp.lng }];
+        const locations = imp.locations || (imp.lat != null && imp.lng != null ? [{ lat: imp.lat, lng: imp.lng }] : []);
         locations.forEach(loc => {
+            if (loc.lat == null || loc.lng == null) return;
             const coordKey = `${loc.lat.toFixed(5)},${loc.lng.toFixed(5)}`;
             const count = coordCounts.get(coordKey) || 0;
             coordCounts.set(coordKey, count + 1);
