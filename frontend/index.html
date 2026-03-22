@@ -265,7 +265,7 @@
                                 <label class="filter-item-row filter-chip active" data-category="ea-help">
                                     <input type="checkbox" checked value="ea-help">
                                     <span class="category-indicator ea-help"></span>
-                                    <span class="item-label">EA Help Reports</span>
+                                    <span class="item-label">Environment Agency</span>
                                     <span class="only-trigger">Only</span>
                                 </label>
                             </div>
@@ -414,9 +414,9 @@
                 <div class="severity-legend glass hidden" id="map-severity-legend">
                     <div class="legend-title">Impact Severity</div>
                     <div class="legend-items">
-                        <div class="legend-item"><span class="legend-dot" style="background:#93c5fd"></span>Minor</div>
-                        <div class="legend-item"><span class="legend-dot" style="background:#2563eb"></span>Significant</div>
-                        <div class="legend-item"><span class="legend-dot" style="background:#001f3f"></span>Severe</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:rgba(191,219,254,0.55); border:1px solid rgba(191,219,254,0.9)"></span>Minor</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:rgba(37,99,235,0.5); border:1px solid rgba(37,99,235,0.85)"></span>Significant</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:rgba(30,58,138,0.5); border:1px solid rgba(30,58,138,0.85)"></span>Severe</div>
                     </div>
                 </div>
             </main>
@@ -794,34 +794,33 @@
             <div class="modal-header">
                 <div class="mcp-modal-header-meta">
                     <span class="mcp-modal-badge">Auto-generated · 08:00</span>
-                    <h3>API / MCP Server</h3>
-                    <p class="mcp-modal-sub">MP Morning brief</p>
+                    <h3>MP Morning Brief</h3>
+                    <p class="mcp-modal-sub">Information obtained via Impacts MCP</p>
                 </div>
                 <button class="close-modal-btn" id="close-mcp-btn">&times;</button>
             </div>
             <div class="mcp-modal-body">
-                <p class="mcp-brief-intro">The following briefing was generated automatically at 08:00 by the Parliamentary Assistant agent, which called the Impacts MCP server to retrieve the latest intelligence relevant to your constituency and region.</p>
+                <p class="mcp-brief-intro">Generated at 08:00 by the Parliamentary Assistant agent via the Impacts MCP server.</p>
                 <ul class="mcp-brief-bullets">
                     <li>
                         <span class="mcp-bullet-icon mcp-bullet-social">
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </span>
-                        <span>Localized flooding reported on social media in the constituency, with surface water on approach roads.</span>
+                        <span>Surface water flooding reported on constituency approach roads.</span>
                     </li>
                     <li>
                         <span class="mcp-bullet-icon mcp-bullet-roads">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22L7 2M17 2l3 20M12 4v4m0 6v4"/></svg>
                         </span>
-                        <span>The A40 is closed in a neighboring county due to severe flooding, causing road disruption.</span>
+                        <span>A40 closed in neighbouring county — severe flooding causing road disruption.</span>
                     </li>
                     <li>
                         <span class="mcp-bullet-icon mcp-bullet-ea">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
                         </span>
-                        <span>Environment Agency flood warnings issued for local rivers, with rising levels expected throughout the day.</span>
+                        <span>EA Flood Guidance Statement suggests potential for flooding impacts on local rivers throughout the day.</span>
                     </li>
                 </ul>
-                <p class="mcp-brief-footer">This brief was generated from live impact data returned by the Impacts MCP API. All data is synthetic and for demonstration purposes only.</p>
             </div>
         </div>
     </div>

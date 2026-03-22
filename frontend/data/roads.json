@@ -59,25 +59,25 @@
     "lng": -3.0163,
     "category": "roads",
     "severity": "significant",
-    "timestamp": "2025-11-14T09:15:00.000Z",
-    "title": "A40 Westbound: Partial Closure and Flooding near Abergavenny",
+    "timestamp": "2025-11-14T06:00:00.000Z",
+    "title": "A40 Westbound: Road Closed — Surface Water Flooding near Abergavenny",
     "locationName": "Monmouthshire | A40 | Abergavenny",
-    "evidence": "Traffic Wales reports partial closure of A40 westbound approaching Abergavenny. Flood water across nearside lane, advisory speed limit in place for remaining lane. River Usk tributary overtopping nearby. Emergency services on standby. Conditions deteriorating.",
+    "evidence": "Traffic Wales confirms full closure of A40 westbound near Abergavenny due to surface water flooding. Flood water across the full carriageway at a low-lying section west of the town. Emergency diversion via B4269 in place. River Usk tributary overtopping nearby. Emergency services on scene. No re-opening time given.",
     "source": "Traffic Wales",
     "sourceUrl": "#",
     "assessment": {
-      "confidenceLabel": "Medium",
-      "confidenceColor": "#facc15",
-      "confidence": 75,
-      "justification": "Traffic Wales confirmation of partial lane closure. Flood water visible on CCTV. River Usk tributary response consistent with accumulated rainfall in the Usk catchment. Conditions assessed as likely to worsen.",
+      "confidenceLabel": "High",
+      "confidenceColor": "#4ade80",
+      "confidence": 85,
+      "justification": "Traffic Wales confirms full road closure due to surface water flooding. Emergency diversion activated. River Usk tributary overtopping corroborates cause. A40 is a key strategic route connecting South Wales to Herefordshire and the Midlands.",
       "sourceLabel": "Traffic Wales",
       "sourceReliability": "Official",
       "intelligenceType": "Direct",
       "corroborated": true,
-      "startTiming": "09:15",
+      "startTiming": "06:00",
       "endTiming": "",
-      "synthesis": "A40 westbound partially blocked by flooding west of Abergavenny. This strategic route connecting the Vale of Glamorgan to Brecon and Herefordshire is under increasing pressure. River levels rising rapidly. Full closure assessed as a likely outcome if conditions continue.",
-      "confidenceStatement": "Medium confidence. Partial closure confirmed. Conditions developing. Full closure risk elevated."
+      "synthesis": "A40 westbound fully closed by surface water flooding west of Abergavenny from 06:00. This early-hours closure on a key arterial route is causing significant diversions onto minor roads ahead of the morning peak. Conditions are expected to persist as river levels remain elevated.",
+      "confidenceStatement": "High confidence. Full closure confirmed by Traffic Wales. Emergency diversion in place. Corroborated by river level data."
     }
   },
   {
@@ -646,5 +646,137 @@
       "synthesis": "Surface water advisory on A47 approaching Norwich. Extends the road impact picture to the Norfolk coastline. Minor but consistent with the event footprint.",
       "confidenceStatement": "Medium confidence. Advisory only. Minor Norfolk road disruption."
     }
+  },
+  {
+    "id": "ev-roads-35",
+    "lat": 51.0632,
+    "lng": -1.3085,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T08:15:00.000Z",
+    "title": "[X (Twitter)] M3 near Winchester — surface water reports from commuters",
+    "locationName": "Hampshire | M3 | Winchester",
+    "evidence": "Multiple X (Twitter) users reporting surface water and slow traffic on M3 southbound near Winchester J9–J10 during morning commute. Posts describe standing water in nearside lanes and reduced visibility from spray. No official closure confirmed at time of detection.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 42,
+      "justification": "Unverified first-person accounts from M3 near Winchester. Multiple independent posts increase signal strength but no official confirmation received. Consistent with rainfall totals in the Test Valley catchment overnight.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Social",
+      "corroborated": false,
+      "startTiming": "08:15",
+      "endTiming": "",
+      "synthesis": "Early social media signal of surface water conditions on M3 southbound near Winchester during peak commute. Multiple independent posts suggest a genuine developing situation. Awaiting official Traffic England corroboration.",
+      "confidenceStatement": "Low confidence. Unverified social media reports. Consistent with overnight rainfall. Monitoring for official confirmation."
+    },
+    "posts": [
+      {
+        "user": "@HantsCommuter",
+        "text": "M3 southbound J9–J10 Winchester absolutely swimming this morning. Spray unbelievable, taking it slow. #M3 #Hampshire",
+        "time": "~9h ago"
+      },
+      {
+        "user": "@SouthernDrive_",
+        "text": "Standing water across the slow lane on the M3 near Winchester. Nearly came off it. Be careful out there.",
+        "time": "~9h ago"
+      },
+      {
+        "user": "@WinchesterLocal",
+        "text": "Anyone else stuck on the M3 this morning? Looks like surface water causing havoc between J9 and J10.",
+        "time": "~9h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-roads-36",
+    "lat": 51.7548,
+    "lng": -1.2544,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T08:15:00.000Z",
+    "title": "[Bluesky] A34 Oxford — flooding reports from morning commuters",
+    "locationName": "Oxfordshire | A34 | Oxford",
+    "evidence": "Bluesky users reporting significant surface water on A34 northbound approaching Oxford from the south. Posts describe traffic moving at walking pace between Hinksey Hill and Botley. One user reports seeing a car partially submerged in a dip section. No official advisory issued at time of social detection.",
+    "source": "Bluesky",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 39,
+      "justification": "Bluesky reports from A34 near Oxford during morning commute. Report of partially submerged vehicle increases concern but remains unverified. A34 at this location is known to collect surface water in heavy rainfall events. Corroboration from official sources being sought.",
+      "sourceLabel": "Bluesky",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Social",
+      "corroborated": false,
+      "startTiming": "08:15",
+      "endTiming": "",
+      "synthesis": "Bluesky posts indicate developing surface water situation on A34 northbound near Oxford during the morning peak. The report of a partially submerged vehicle suggests conditions may be more severe than a standard spray event. Monitoring for National Highways confirmation.",
+      "confidenceStatement": "Low confidence. Unverified social media signal. Potential vehicle in water warrants monitoring. Awaiting official confirmation."
+    },
+    "posts": [
+      {
+        "user": "@OxfordCommutes",
+        "text": "A34 into Oxford is a disaster this morning. Huge puddles on the northbound, barely moving from Hinksey Hill. #Oxford #flooding",
+        "time": "~9h ago"
+      },
+      {
+        "user": "@ThamesValleyDriver",
+        "text": "Just saw a car stuck in a dip on the A34 near Botley. Looks like it's gone into deep water. Avoid if you can.",
+        "time": "~9h ago"
+      },
+      {
+        "user": "@OxonRoads",
+        "text": "A34 northbound Oxford — nose to tail from the bypass. Surface water everywhere. Turn around if you have an alternative.",
+        "time": "~9h ago"
+      }
+    ]
+  },
+  {
+    "id": "ev-roads-37",
+    "lat": 51.4816,
+    "lng": -3.1791,
+    "category": "social",
+    "severity": "minor",
+    "timestamp": "2025-11-14T08:40:00.000Z",
+    "title": "[X (Twitter)] A48(M) Cardiff — surface water and delays reported",
+    "locationName": "Cardiff | A48(M) | Cardiff West",
+    "evidence": "X (Twitter) users reporting surface water and heavy delays on A48(M) eastbound approaching Cardiff city centre from M4 J29. Posts describe standing water and vehicles slowing significantly. Multiple reports from Cardiff commuters. No Traffic Wales advisory issued at time of social detection.",
+    "source": "X (Twitter)",
+    "sourceUrl": "#",
+    "assessment": {
+      "confidenceLabel": "Low",
+      "confidenceColor": "#ef4444",
+      "confidence": 41,
+      "justification": "Multiple X (Twitter) reports from commuters on A48(M) approaching Cardiff. Independent accounts increase confidence in a genuine surface water event. A48(M) is a known flash-point in heavy rain given its low-lying sections. Awaiting Traffic Wales confirmation.",
+      "sourceLabel": "X (Twitter)",
+      "sourceReliability": "Unofficial",
+      "intelligenceType": "Social",
+      "corroborated": false,
+      "startTiming": "08:40",
+      "endTiming": "",
+      "synthesis": "Social media signal indicates surface water developing on A48(M) eastbound approach to Cardiff city centre. Multiple independent commuter reports suggest a genuine and developing situation on this key arterial. Monitoring for Traffic Wales advisory.",
+      "confidenceStatement": "Low confidence. Multiple unverified social reports. Consistent with rainfall pattern. Awaiting Traffic Wales confirmation."
+    },
+    "posts": [
+      {
+        "user": "@CardiffCommuter_",
+        "text": "A48M into Cardiff is gridlocked this morning. Surface water near the M4 junction. Takes ages to get through. #Cardiff #flooding",
+        "time": "~8h ago"
+      },
+      {
+        "user": "@WalesDriver",
+        "text": "Avoid the A48M eastbound if you can — standing water and loads of cars slowing right down. Took me 40 mins from J29.",
+        "time": "~8h ago"
+      },
+      {
+        "user": "@CardiffMorning",
+        "text": "Someone really needs to sort the drainage on the A48M — floods every time it rains hard. Absolute state of it this morning.",
+        "time": "~8h ago"
+      }
+    ]
   }
 ]

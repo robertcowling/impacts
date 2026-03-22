@@ -3,7 +3,7 @@
  */
 
 // --- Configuration & Constants ---
-const FIXED_NOW = new Date('2025-11-14T17:00:00Z');
+const FIXED_NOW = new Date('2025-11-14T23:00:00Z');
 
 function getFeatureName(p) {
     if (!p) return null;
@@ -33,7 +33,7 @@ const CATEGORIES = {
     news: { label: 'Online News', color: '#8a4e6b', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM6 6h12M6 10h12M6 14h6M6 18h6M16 14v4"/></svg>' },
     energy: { label: 'Power Companies', color: '#8a7d4e', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>' },
     water: { label: 'Water Companies', color: '#4e6b8a', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>' },
-    'ea-help': { label: 'EA HELP report', color: '#00a651', icon: '<img src="assets/logos/EnvAgency.png" style="width:20px; height:20px; display:block; object-fit: contain;">' }
+    'ea-help': { label: 'Environment Agency', color: '#00a651', icon: '<img src="assets/logos/EnvAgency.png" style="width:20px; height:20px; display:block; object-fit: contain;">' }
 };
 
 const SOCIAL_PLATFORM_ICONS = {
@@ -66,22 +66,22 @@ const IMPACT_TYPES = {
 };
 
 const SEVERITIES = {
-    minor: { label: 'Minor', color: '#93c5fd' },
+    minor: { label: 'Minor', color: '#bfdbfe' },
     significant: { label: 'Significant', color: '#2563eb' },
-    severe: { label: 'Severe', color: '#001f3f' }
+    severe: { label: 'Severe', color: '#1e3a8a' }
 };
 
 const PERSONAS = {
-    '0800': [{ role: 'Flood Forecaster',           blurb: 'Issues, monitors and updates the forecast',              photo: 'photos/Flood_forecaster.jpg' }],
-    '0830': [{ role: 'Fire and Rescue Controller', blurb: 'Makes operational decisions on resources and equipment', photo: 'photos/Fire_rescue_controller.jpg' }],
-    '0845': [{ role: 'Parliamentary Assistant',    blurb: 'Ensures MP is briefed on key constituency issues',      photo: 'photos/MP_assistant.jpg' }],
-    '1100': [{ role: 'Flood Forecaster',           blurb: 'Issues, monitors and updates the forecast',              photo: 'photos/Flood_forecaster.jpg' }],
+    '0800': [{ role: 'Flood Forecaster',           blurb: 'Uses impact intelligence to support decision to update forecast',                                    photo: 'photos/Flood_forecaster.jpg' }],
+    '0830': [{ role: 'Fire and Rescue Controller', blurb: 'Uses forecast to make operational decisions on resources and equipment',                             photo: 'photos/Fire_rescue_controller.jpg' }],
+    '0845': [{ role: 'Parliamentary Assistant',    blurb: 'Agent uses intelligence to create morning brief for Monmouth MP',                                   photo: 'photos/MP_assistant.jpg' }],
+    '1100': [{ role: 'Flood Forecaster',           blurb: 'Focusses agentic search in key risk areas',                                                         photo: 'photos/Flood_forecaster.jpg' }],
     '1400': [
-        { role: 'Flood Forecaster',           blurb: 'Issues, monitors and updates the forecast',              photo: 'photos/Flood_forecaster.jpg' },
-        { role: 'Fire and Rescue Controller', blurb: 'Makes operational decisions on resources and equipment', photo: 'photos/Fire_rescue_controller.jpg' },
-        { role: 'Parliamentary Assistant',    blurb: 'Ensures MP is briefed on key constituency issues',      photo: 'photos/MP_assistant.jpg' }
+        { role: 'Flood Forecaster',           blurb: 'Utilises severity assessment to check and update forecast again',                                        photo: 'photos/Flood_forecaster.jpg' },
+        { role: 'Fire and Rescue Controller', blurb: 'Deploys inflatable rescue boats to Monmouth to support evacuations',                                     photo: 'photos/Fire_rescue_controller.jpg' },
+        { role: 'Parliamentary Assistant',    blurb: 'Clears the diary of Monmouth MP so that they can support constituents',                                  photo: 'photos/MP_assistant.jpg' }
     ],
-    '2300': [{ role: 'Flood Forecaster', blurb: 'Issues, monitors and updates the forecast', photo: 'photos/Flood_forecaster.jpg' }]
+    '2300': [{ role: 'Flood Forecaster', blurb: 'Saves impact information to learn for future floods and develop new ML forecasting techniques', photo: 'photos/Flood_forecaster.jpg' }]
 };
 
 function renderPersonaCard(val) {
@@ -1980,10 +1980,10 @@ function updateSpatialSummary(filtered, leafletLayer, rawJson, ramp) {
     if (!rawJson || !leafletLayer) return;
 
     const ramps = {
-        severity: { 
-            minor: '#93c5fd', 
-            significant: '#2563eb', 
-            severe: '#001f3f' 
+        severity: {
+            minor: '#bfdbfe',
+            significant: '#2563eb',
+            severe: '#1e3a8a'
         },
         trends: { 
             minor: '#fecaca', 
