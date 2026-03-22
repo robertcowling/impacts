@@ -17,7 +17,6 @@
         <header class="app-header glass">
             <div class="logo-group">
                 <a href="." id="home-logo" style="text-decoration:none;color:inherit;cursor:pointer"><h1>Impact<span>Intelligence Tool</span></h1></a>
-                <div id="demo-label" class="demo-label">Demo. Synthetic data.</div>
             </div>
             <div class="header-nav">
                 <button class="agentic-search-btn" id="agentic-action-btn">
@@ -310,10 +309,6 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;flex-shrink:0"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
                         <span class="mcp-btn-label">API / MCP Server</span>
                     </button>
-                    <button class="mcp-server-btn" id="qr-modal-btn" style="margin-top:6px;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;flex-shrink:0"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path d="M14 14h3v3M14 20h7M20 14v3"/></svg>
-                        <span class="mcp-btn-label">Explore the Demo</span>
-                    </button>
                 </div>
             </aside>
 
@@ -324,13 +319,19 @@
 
                     <!-- Demo Time Preset Selector (top-left of map) -->
                     <div id="demo-time-preset" class="demo-time-preset">
-                        <div class="demo-time-preset-label">Demo time period</div>
-                        <select id="demo-time-preset-select">
-                            <option value="0800">Morning — up to 08:00</option>
-                            <option value="midmorning">Mid-morning — up to 11:00</option>
-                            <option value="earlyafternoon">Early afternoon — up to 14:00</option>
-                            <option value="endofday">End of day — midnight</option>
-                        </select>
+                        <button id="demo-preset-toggle" class="demo-preset-toggle" title="Minimize demo control" aria-label="Minimize demo control">&minus;</button>
+                        <div class="demo-time-preset-left">
+                            <div class="demo-time-preset-label">Demo time</div>
+                            <select id="demo-time-preset-select">
+                                <option value="0800">08:00</option>
+                                <option value="0830">08:30</option>
+                                <option value="0845">08:45</option>
+                                <option value="1100">11:00</option>
+                                <option value="1400">14:00</option>
+                                <option value="2300">23:00</option>
+                            </select>
+                        </div>
+                        <div id="persona-card" class="persona-card"></div>
                     </div>
 
 

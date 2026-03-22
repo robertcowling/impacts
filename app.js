@@ -71,6 +71,35 @@ const SEVERITIES = {
     severe: { label: 'Severe', color: '#001f3f' }
 };
 
+const PERSONAS = {
+    '0800': [{ role: 'Flood Forecaster',           blurb: 'Issues, monitors and updates the forecast',              photo: 'photos/Flood_forecaster.jpg' }],
+    '0830': [{ role: 'Fire and Rescue Controller', blurb: 'Makes operational decisions on resources and equipment', photo: 'photos/Fire_rescue_controller.jpg' }],
+    '0845': [{ role: 'Parliamentary Assistant',    blurb: 'Ensures MP is briefed on key constituency issues',      photo: 'photos/MP_assistant.jpg' }],
+    '1100': [{ role: 'Flood Forecaster',           blurb: 'Issues, monitors and updates the forecast',              photo: 'photos/Flood_forecaster.jpg' }],
+    '1400': [
+        { role: 'Flood Forecaster',           blurb: 'Issues, monitors and updates the forecast',              photo: 'photos/Flood_forecaster.jpg' },
+        { role: 'Fire and Rescue Controller', blurb: 'Makes operational decisions on resources and equipment', photo: 'photos/Fire_rescue_controller.jpg' },
+        { role: 'Parliamentary Assistant',    blurb: 'Ensures MP is briefed on key constituency issues',      photo: 'photos/MP_assistant.jpg' }
+    ],
+    '2300': [{ role: 'Flood Forecaster', blurb: 'Issues, monitors and updates the forecast', photo: 'photos/Flood_forecaster.jpg' }]
+};
+
+function renderPersonaCard(val) {
+    const card = document.getElementById('persona-card');
+    if (!card) return;
+    const personas = PERSONAS[val];
+    if (!personas) { card.innerHTML = ''; return; }
+    card.innerHTML = personas.map(p => `
+        <div class="persona-item">
+            <img class="persona-photo" src="${p.photo}" alt="${p.role}">
+            <div class="persona-info">
+                <div class="persona-role">${p.role}</div>
+                <div class="persona-blurb">${p.blurb}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
 // Returns the impact TYPE (what sector is affected) regardless of which data source reported it
 function getImpactType(imp) {
     // Explicit field in data takes priority
@@ -1031,6 +1060,10 @@ async function init() {
     // Ensure forecast renders if toggled or on first load
     console.log("Init complete. Calling renderForecast...");
     renderForecast();
+
+    // Show persona for default selected time period
+    const defaultPreset = document.getElementById('demo-time-preset-select');
+    if (defaultPreset) renderPersonaCard(defaultPreset.value);
 }
 
 function renderTimelineTicks() {
@@ -1178,10 +1211,12 @@ function setupEvents() {
 
         const start = toPos(todayStart); // midnight start — same for all presets
         let end;
-        if      (val === '0800')          end = toPos(new Date(todayStart.getTime() + 8  * 3600000));
-        else if (val === 'midmorning')    end = toPos(new Date(todayStart.getTime() + 11 * 3600000));
-        else if (val === 'earlyafternoon')end = toPos(new Date(todayStart.getTime() + 14 * 3600000));
-        else /* endofday */               end = toPos(new Date(todayStart.getTime() + 24 * 3600000)); // midnight Sat → capped at 48
+        if      (val === '0800')    end = toPos(new Date(todayStart.getTime() + 8      * 3600000));
+        else if (val === '0830')    end = toPos(new Date(todayStart.getTime() + 8.5   * 3600000));
+        else if (val === '0845')    end = toPos(new Date(todayStart.getTime() + 8.75  * 3600000));
+        else if (val === '1100')    end = toPos(new Date(todayStart.getTime() + 11    * 3600000));
+        else if (val === '1400')    end = toPos(new Date(todayStart.getTime() + 14    * 3600000));
+        else /* 2300 */             end = toPos(new Date(todayStart.getTime() + 23    * 3600000));
 
         State.windowStart = start;
         State.windowEnd = end;
@@ -1191,6 +1226,7 @@ function setupEvents() {
         renderImpacts();
         updateStats();
         evaluateAlerts();
+        renderPersonaCard(val);
 
         // Pulse the card twice to signal the time change
         const card = document.getElementById('demo-time-preset');
@@ -1198,6 +1234,15 @@ function setupEvents() {
         void card.offsetWidth; // force reflow so animation restarts
         card.classList.add('pulsing');
         card.addEventListener('animationend', () => card.classList.remove('pulsing'), { once: true });
+    });
+
+    // Demo preset collapse/expand toggle
+    document.getElementById('demo-preset-toggle').addEventListener('click', () => {
+        const preset = document.getElementById('demo-time-preset');
+        const btn = document.getElementById('demo-preset-toggle');
+        preset.classList.toggle('collapsed');
+        btn.innerHTML = preset.classList.contains('collapsed') ? '&#x25a1;' : '&minus;';
+        btn.title = preset.classList.contains('collapsed') ? 'Expand demo control' : 'Minimize demo control';
     });
 
     // View Period Dropdown
@@ -1336,7 +1381,7 @@ function setupEvents() {
             updateStats();
         });
     });
-    
+
     // Sidebar View Toggle (Sources vs Types)
     const subBtns = document.querySelectorAll('.view-sub-btn');
     subBtns.forEach(btn => {
@@ -2130,50 +2175,50 @@ function renderFeed(filtered) {
                 </div>
 
                 <div class="feed-card-stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-label">Severity</span>
-                        <div class="stat-value">
-                            <span class="sev-rect-small" style="background: ${SEVERITIES[imp.severity].color}"></span>
-                            <span class="sev-text-bold">${SEVERITIES[imp.severity].label}</span>
+                    <div class="stat-row-inline">
+                        <div class="stat-cell">
+                            <span class="stat-cell-label">Severity</span>
+                            <div class="stat-cell-value">
+                                <span class="sev-rect-small" style="background: ${SEVERITIES[imp.severity].color}"></span>
+                                <span class="sev-text-bold">${SEVERITIES[imp.severity].label}</span>
+                            </div>
                         </div>
-                    </div>
-                    ${imp.assessment ? `
-                    <div class="stat-item">
-                        <span class="stat-label">Confidence</span>
-                        <div class="stat-value">
-                            <span class="conf-box">${imp.assessment.confidenceLabel}</span>
-                            <button class="assessment-info-btn-new" data-impact-id="${imp.id}" onclick="event.stopPropagation(); showAssessmentModal('${imp.id}')" title="View assessment justification">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                            </button>
+                        ${imp.assessment ? `
+                        <span class="stat-sep"></span>
+                        <div class="stat-cell">
+                            <span class="stat-cell-label">Confidence</span>
+                            <div class="stat-cell-value">
+                                <span class="conf-dots" data-level="${imp.assessment.confidenceLabel.toLowerCase()}"><span></span><span></span><span></span></span>
+                                <span class="conf-text">${imp.assessment.confidenceLabel}</span>
+                                <button class="assessment-info-btn-new" data-impact-id="${imp.id}" onclick="event.stopPropagation(); showAssessmentModal('${imp.id}')" title="View assessment justification">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    ` : ''}
-                    
-                    <div class="stat-item" style="grid-column: span 2; border-top: 1px solid #f1f5f9; padding-top: 10px; margin-top: 5px;">
-                        <span class="stat-label">Region</span>
-                        <div class="stat-value">
-                            <span class="loc-chip">${imp.locationName.split('|')[0]?.trim() || 'N/A'}</span>
-                        </div>
+                        ` : ''}
                     </div>
 
-                    <div class="stat-item" style="grid-column: span 2">
-                        <span class="stat-label">Counties</span>
-                        <div class="stat-value">
-                            <div class="chips-wrap">
-                                ${imp.intersectingCounties && imp.intersectingCounties.length > 0 
+                    <div class="location-group">
+                        <div class="loc-row">
+                            <span class="loc-row-label">Region</span>
+                            <div class="loc-row-chips">
+                                <span class="loc-chip">${imp.locationName.split('|')[0]?.trim() || 'N/A'}</span>
+                            </div>
+                        </div>
+                        <div class="loc-row">
+                            <span class="loc-row-label">County</span>
+                            <div class="loc-row-chips">
+                                ${imp.intersectingCounties && imp.intersectingCounties.length > 0
                                   ? imp.intersectingCounties.map(c => `<span class="loc-chip">${c}</span>`).join('')
                                   : `<span class="loc-chip">${imp.locationName.split('|')[1]?.trim() || 'N/A'}</span>`}
                             </div>
                         </div>
-                    </div>
-
-                    <div class="stat-item" style="grid-column: span 2">
-                        <span class="stat-label">MP Constituencies</span>
-                        <div class="stat-value">
-                            <div class="chips-wrap">
-                                ${imp.intersectingConstituencies && imp.intersectingConstituencies.length > 0 
-                                  ? imp.intersectingConstituencies.map(c => `<span class="loc-chip constituency">${c}</span>`).join('')
-                                  : `<span class="loc-chip constituency">${imp.locationName.split('|')[2]?.trim() || 'N/A'}</span>`}
+                        <div class="loc-row">
+                            <span class="loc-row-label">Constituency</span>
+                            <div class="loc-row-chips">
+                                ${imp.intersectingConstituencies && imp.intersectingConstituencies.length > 0
+                                  ? imp.intersectingConstituencies.map(c => `<span class="loc-chip">${c}</span>`).join('')
+                                  : `<span class="loc-chip">${imp.locationName.split('|')[2]?.trim() || 'N/A'}</span>`}
                             </div>
                         </div>
                     </div>
@@ -2348,11 +2393,6 @@ window.openImpactFromSummary = function(impactId) {
 function selectImpact(imp, isRerender = true) {
     State.selectedImpact = imp;
 
-    // Skip map pan for national impacts
-    if (!imp.isNational) {
-        State.map.panTo([imp.lat, imp.lng]);
-    }
-    
     // Highlight marker(s)
     State.markers.forEach(m => {
         const icon = m.getElement();
@@ -2393,15 +2433,15 @@ function selectImpact(imp, isRerender = true) {
         renderFeed(filtered);
 
         // Scroll selected card to top of the RHS feed panel
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             const cardElement = document.getElementById(`card-${imp.id}`);
             const feedPanel = document.getElementById('feed-container');
             if (cardElement && feedPanel) {
-                feedPanel.scrollTop = cardElement.offsetTop - feedPanel.offsetTop;
+                feedPanel.scrollTop += cardElement.getBoundingClientRect().top - feedPanel.getBoundingClientRect().top;
                 cardElement.classList.add('card-flash');
                 setTimeout(() => cardElement.classList.remove('card-flash'), 600);
             }
-        }, 50);
+        });
     }
 }
 
