@@ -23,9 +23,9 @@
     --clr-ea-help: #00a651;
     
     /* Severity Levels - High Contrast Blue Ramp */
-    --severity-minor: #93c5fd;
+    --severity-minor: #bfdbfe;
     --severity-significant: #2563eb;
-    --severity-severe: #001f3f;
+    --severity-severe: #1e3a8a;
 
     /* Effects */
     --card-bg: #ffffff;
@@ -90,7 +90,7 @@
     border: 1.5px solid rgba(220, 38, 38, 0.2);
     border-radius: 14px;
     padding: 17px 23px;
-    box-shadow: 0 8px 32px rgba(220,38,38,0.08), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 8px 32px rgba(220,38,38,0.22), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -1717,8 +1717,9 @@ h1 span {
 }
 
 .mcp-modal-sub {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
     margin: 0;
 }
 
@@ -1942,8 +1943,7 @@ main {
     font-size: 0.86rem;
     font-weight: 600;
     color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.01em;
     padding-left: 2px;
 }
 
@@ -2106,7 +2106,7 @@ main {
     font-size: 0.78rem;
     font-weight: 700;
     color: var(--text-secondary);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.01em;
 }
 
 .filter-list-vertical {
@@ -3523,7 +3523,7 @@ main {
     padding: 4px 10px;
     border-radius: 6px;
     font-weight: 700;
-    color: #93c5fd;
+    color: #bfdbfe;
     width: fit-content;
 }
 
