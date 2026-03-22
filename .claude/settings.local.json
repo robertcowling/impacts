@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(powershell -ExecutionPolicy Bypass -File scripts/deploy-gh-pages.ps1)",
-      "WebFetch(domain:robertcowling.github.io)"
+      "WebFetch(domain:robertcowling.github.io)",
+      "Bash(curl -s \"https://robertcowling.github.io/impacts/app.js\")",
+      "Bash(awk 'NR>=50 && NR<=100')"
     ]
   }
 }
