@@ -84,20 +84,72 @@ const PERSONAS = {
     '2300': [{ role: 'Flood Forecaster', blurb: 'Saves impact information to learn for future floods and develop new ML forecasting techniques', photo: 'photos/Flood_forecaster.jpg' }]
 };
 
+const PERSONA_BENEFITS = {
+    'Flood Forecaster': [
+        'More accurate warnings incorporating situational intelligence',
+        'Earlier warning, giving more time to take action'
+    ],
+    'Fire and Rescue Controller': [
+        'Situational awareness insights drive better operational decisions'
+    ],
+    'Parliamentary Assistant': [
+        'MP better able to meet needs of constituents'
+    ]
+};
+
 function renderPersonaCard(val) {
     const card = document.getElementById('persona-card');
     if (!card) return;
+    // (persona items get min-height locked after render)
     const personas = PERSONAS[val];
     if (!personas) { card.innerHTML = ''; return; }
-    card.innerHTML = personas.map(p => `
-        <div class="persona-item">
-            <img class="persona-photo" src="${p.photo}" alt="${p.role}">
-            <div class="persona-info">
-                <div class="persona-role">${p.role}</div>
-                <div class="persona-blurb">${p.blurb}</div>
+    card.innerHTML = personas.map((p, idx) => {
+        const benefits = PERSONA_BENEFITS[p.role] || [];
+        const benefitsHtml = benefits.length ? `
+            <button class="benefits-toggle" aria-label="Show benefits" data-persona-idx="${idx}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="benefits-panel" id="benefits-panel-${idx}">
+                <div class="benefits-list">
+                    ${benefits.map(b => `<div class="benefit-item"><span class="benefit-tick">&#10003;</span><span class="benefit-text">${b}</span></div>`).join('')}
+                </div>
             </div>
-        </div>
-    `).join('');
+        ` : '';
+        return `
+            <div class="persona-item">
+                <img class="persona-photo" src="${p.photo}" alt="${p.role}">
+                <div class="persona-info">
+                    <div class="persona-role">${p.role}</div>
+                    <div class="persona-blurb">${p.blurb}</div>
+                </div>
+                ${benefitsHtml}
+            </div>
+        `;
+    }).join('');
+
+    // Attach toggle listeners
+    card.querySelectorAll('.benefits-toggle').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = btn.dataset.personaIdx;
+            const panel = document.getElementById('benefits-panel-' + idx);
+            const isOpen = panel.classList.contains('open');
+            // Close all first
+            card.querySelectorAll('.benefits-panel').forEach(p => p.classList.remove('open'));
+            card.querySelectorAll('.benefits-toggle').forEach(b => b.classList.remove('open'));
+            if (!isOpen) {
+                panel.classList.add('open');
+                btn.classList.add('open');
+                // Stagger the tick animations
+                panel.querySelectorAll('.benefit-item').forEach((item, i) => {
+                    item.style.animationDelay = (i * 0.3) + 's';
+                    item.classList.remove('animate-in');
+                    void item.offsetWidth;
+                    item.classList.add('animate-in');
+                });
+            }
+        });
+    });
 }
 
 // Returns the impact TYPE (what sector is affected) regardless of which data source reported it
@@ -1227,6 +1279,10 @@ function setupEvents() {
         updateStats();
         evaluateAlerts();
         renderPersonaCard(val);
+
+        // Collapse any open benefits panels on time change
+        document.querySelectorAll('.benefits-panel.open').forEach(p => p.classList.remove('open'));
+        document.querySelectorAll('.benefits-toggle.open').forEach(b => b.classList.remove('open'));
 
         // Pulse the card twice to signal the time change
         const card = document.getElementById('demo-time-preset');

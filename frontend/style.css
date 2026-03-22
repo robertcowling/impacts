@@ -103,6 +103,7 @@
     flex-direction: column;
     gap: 8px;
     min-width: 216px;
+    flex-shrink: 0;
 }
 
 /* Persona card — sits to the right of the dropdown */
@@ -123,6 +124,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    align-self: stretch;
 }
 
 .persona-photo {
@@ -139,6 +141,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    flex-shrink: 0;
 }
 
 .persona-role {
@@ -153,6 +156,99 @@
     color: var(--text-secondary);
     max-width: 400px;
     line-height: 1.35;
+}
+
+/* Benefits toggle arrow */
+.benefits-toggle {
+    width: 42px;
+    height: 42px;
+    border: 1.5px solid rgba(22, 101, 52, 0.25);
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 2;
+    padding: 0;
+    flex-shrink: 0;
+}
+.benefits-toggle svg {
+    width: 22px;
+    height: 22px;
+    color: #166534;
+    transition: transform 0.3s ease;
+}
+.benefits-toggle:hover {
+    background: rgba(22, 101, 52, 0.1);
+    border-color: rgba(22, 101, 52, 0.4);
+}
+.benefits-toggle.open {
+    background: rgba(22, 101, 52, 0.12);
+    border-color: rgba(22, 101, 52, 0.4);
+    box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.15);
+}
+
+/* Benefits expansion — grows the panel to the right */
+.benefits-panel {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    white-space: nowrap;
+}
+.benefits-panel.open {
+    width: 340px;
+    height: auto;
+    opacity: 1;
+}
+.benefits-list {
+    padding: 0 0 0 16px;
+    border-left: 1px solid rgba(22, 101, 52, 0.15);
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: normal;
+    min-width: 280px;
+}
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(10px);
+}
+.benefit-item.animate-in {
+    animation: benefitSlideIn 0.4s ease forwards;
+}
+@keyframes benefitSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.benefit-tick {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #166534;
+    color: #fff;
+    font-size: 1.0rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+}
+.benefit-text {
+    font-size: 1.48rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    font-weight: 500;
 }
 
 .demo-time-preset.pulsing {
@@ -4315,7 +4411,7 @@ main {
 }
 
 .tick-label {
-    font-size: 0.62rem;
+    font-size: 1.24rem;
     font-weight: 600;
     color: var(--text-secondary);
     white-space: nowrap;
@@ -4335,7 +4431,7 @@ main {
 
 .tick-label.moderate {
     color: #94a3b8;
-    font-size: 0.65rem;
+    font-size: 1.3rem;
     font-weight: 500;
 }
 
