@@ -122,9 +122,16 @@
 
 .persona-item {
     display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.persona-item-top {
+    display: flex;
     align-items: center;
     gap: 16px;
-    align-self: stretch;
+}
+.persona-item-top .persona-info {
+    flex-grow: 1;
 }
 
 .persona-photo {
@@ -158,10 +165,10 @@
     line-height: 1.35;
 }
 
-/* Benefits toggle arrow */
+/* Benefits toggle arrow — right side of persona row */
 .benefits-toggle {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
     border: 1.5px solid rgba(22, 101, 52, 0.25);
     background: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
@@ -170,15 +177,14 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    z-index: 2;
     padding: 0;
     flex-shrink: 0;
 }
 .benefits-toggle svg {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     color: #166534;
-    transition: transform 0.3s ease;
+    transform: rotate(90deg);
 }
 .benefits-toggle:hover {
     background: rgba(22, 101, 52, 0.1);
@@ -189,30 +195,28 @@
     border-color: rgba(22, 101, 52, 0.4);
     box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.15);
 }
+.benefits-toggle.open svg {
+    transform: rotate(270deg);
+}
 
-/* Benefits expansion — grows the panel to the right */
+/* Benefits expansion — drops down below persona row */
 .benefits-panel {
-    width: 0;
-    height: 0;
+    max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-    white-space: nowrap;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 .benefits-panel.open {
-    width: 340px;
-    height: auto;
+    max-height: 300px;
     opacity: 1;
 }
 .benefits-list {
-    padding: 0 0 0 16px;
-    border-left: 1px solid rgba(22, 101, 52, 0.15);
-    margin-left: 8px;
+    padding: 10px 0 4px 0;
+    border-top: 1px solid rgba(22, 101, 52, 0.15);
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    white-space: normal;
-    min-width: 280px;
 }
 .benefit-item {
     display: flex;
