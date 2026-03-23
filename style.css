@@ -81,20 +81,20 @@
 
 .demo-time-preset {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    top: 14px;
+    left: 14px;
     z-index: 1000;
     background: rgba(255, 255, 255, 0.38);
     backdrop-filter: blur(24px) saturate(200%);
     -webkit-backdrop-filter: blur(24px) saturate(200%);
     border: 1.5px solid rgba(220, 38, 38, 0.2);
-    border-radius: 12px;
-    padding: 12px 16px;
+    border-radius: 14px;
+    padding: 14px 20px;
     box-shadow: 0 8px 32px rgba(220,38,38,0.22), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.5);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
     transition: box-shadow 0.2s;
     max-width: calc(100% - 100px);
 }
@@ -102,8 +102,8 @@
 .demo-time-preset-left {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    min-width: 140px;
+    gap: 8px;
+    min-width: 160px;
     flex-shrink: 0;
 }
 
@@ -111,9 +111,9 @@
 .persona-card {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     border-left: 1px solid rgba(220, 38, 38, 0.15);
-    padding-left: 14px;
+    padding-left: 18px;
     min-width: 0;
 }
 
@@ -129,15 +129,15 @@
 .persona-item-top {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
 }
 .persona-item-top .persona-info {
     flex-grow: 1;
 }
 
 .persona-photo {
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
     object-position: top center;
@@ -153,23 +153,23 @@
 }
 
 .persona-role {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-primary);
     white-space: nowrap;
 }
 
 .persona-blurb {
-    font-size: 0.88rem;
+    font-size: 1.0rem;
     color: var(--text-secondary);
-    max-width: 400px;
+    max-width: 420px;
     line-height: 1.35;
 }
 
 /* Benefits toggle arrow — right side of persona row */
 .benefits-toggle {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     border: 1.5px solid rgba(22, 101, 52, 0.25);
     background: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
@@ -182,8 +182,8 @@
     flex-shrink: 0;
 }
 .benefits-toggle svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     color: #166534;
     transform: rotate(90deg);
 }
@@ -237,12 +237,12 @@
 }
 .benefit-tick {
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #166534;
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -250,7 +250,7 @@
     margin-top: 1px;
 }
 .benefit-text {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     color: var(--text-primary);
     line-height: 1.4;
     font-weight: 500;
@@ -261,7 +261,7 @@
 }
 
 .demo-time-preset-label {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: #dc2626;
@@ -280,9 +280,9 @@
     border-radius: 8px;
     color: var(--text-primary);
     font-family: inherit;
-    font-size: 0.88rem;
+    font-size: 1.0rem;
     font-weight: 600;
-    padding: 8px 10px;
+    padding: 10px 12px;
     cursor: pointer;
     outline: none;
     width: 100%;
@@ -1697,7 +1697,7 @@ h1 span {
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    font-size: 0.8rem;
+    font-size: 0.92rem;
     font-weight: 600;
     color: var(--text-primary);
     cursor: pointer;
@@ -2041,7 +2041,7 @@ main {
 }
 
 .sidebar-main-header {
-    font-size: 0.86rem;
+    font-size: 1.0rem;
     font-weight: 600;
     color: var(--text-secondary);
     letter-spacing: 0.01em;
@@ -2139,7 +2139,7 @@ main {
 .sidebar-section h4 {
     margin-bottom: 4px;
     padding-left: 4px;
-    font-size: 0.84rem;
+    font-size: 1.0rem;
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: 0.03em;
@@ -2374,7 +2374,7 @@ main {
 .toggle-row input:checked + .toggle-slider-wrap .toggle-dot { left: 14px; }
 
 .item-label {
-    font-size: 0.82rem;
+    font-size: 0.98rem;
     font-weight: 500;
     color: var(--text-primary);
     flex: 1;
@@ -4416,7 +4416,7 @@ main {
 }
 
 .tick-label {
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--text-secondary);
     white-space: nowrap;
@@ -4430,13 +4430,14 @@ main {
     border-radius: 0;
     border: none;
     box-shadow: none;
+    font-size: 1.01rem;
     font-weight: 700;
     text-transform: none;
 }
 
 .tick-label.moderate {
     color: #94a3b8;
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     font-weight: 500;
 }
 
@@ -4676,7 +4677,7 @@ body.show-severity .marker-inner.severe {
 }
 
 .sidebar-main-header {
-    font-size: 0.8rem;
+    font-size: 1.0rem;
     font-weight: 700;
     color: var(--text-primary);
     text-transform: uppercase;
@@ -5386,6 +5387,289 @@ body.show-severity .marker-inner.severe {
    RESPONSIVE BREAKPOINTS
    ======================================== */
 
+/* --- Large / External Monitor (≥1800px) --- */
+@media (min-width: 1800px) {
+    /* Demo preset — generous on big screens */
+    .demo-time-preset {
+        padding: 18px 26px;
+        gap: 18px;
+        border-radius: 16px;
+    }
+
+    .demo-time-preset-left {
+        min-width: 190px;
+        gap: 10px;
+    }
+
+    .demo-time-preset-label {
+        font-size: 1.1rem;
+    }
+
+    .demo-time-preset select {
+        font-size: 1.15rem;
+        padding: 12px 14px;
+    }
+
+    .persona-photo {
+        width: 96px;
+        height: 96px;
+    }
+
+    .persona-role {
+        font-size: 1.4rem;
+    }
+
+    .persona-blurb {
+        font-size: 1.15rem;
+        max-width: 480px;
+    }
+
+    .persona-card {
+        gap: 14px;
+        padding-left: 22px;
+    }
+
+    .persona-item-top {
+        gap: 16px;
+    }
+
+    .benefits-toggle {
+        width: 44px;
+        height: 44px;
+    }
+
+    .benefits-toggle svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .benefit-tick {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+
+    .benefit-text {
+        font-size: 1.1rem;
+    }
+
+    .benefits-list {
+        gap: 12px;
+    }
+
+    /* LHS sidebar — 20%+ bigger on big screens */
+    .item-label {
+        font-size: 1.18rem;
+    }
+
+    .sidebar-section h4 {
+        font-size: 1.2rem;
+    }
+
+    .sidebar-main-header {
+        font-size: 1.2rem;
+    }
+
+    .flat-side-panel-left {
+        width: 310px;
+    }
+
+    .mcp-server-btn {
+        font-size: 1.05rem;
+        height: 42px;
+    }
+
+    /* Timeline labels — bigger on big screens, major 30% larger */
+    .tick-label {
+        font-size: 0.88rem;
+    }
+
+    .tick-label.major {
+        font-size: 1.14rem;
+    }
+
+    .tick-label.moderate {
+        font-size: 0.82rem;
+    }
+
+    /* RHS feed panel */
+    .flat-side-panel {
+        width: 560px;
+    }
+
+    .feed-card-title {
+        font-size: 1.18rem;
+    }
+
+    .feed-card-evidence {
+        font-size: 0.95rem;
+    }
+
+    .feed-card-body {
+        padding: 22px;
+    }
+
+    .feed-card-photo {
+        height: 180px;
+    }
+
+    .sev-text-bold {
+        font-size: 0.98rem;
+    }
+
+    .conf-text {
+        font-size: 0.95rem;
+    }
+
+    .loc-chip {
+        font-size: 0.85rem;
+    }
+
+    .loc-row-label {
+        font-size: 0.82rem;
+    }
+
+    /* Header */
+    h1 {
+        font-size: 1.65rem;
+    }
+
+    .agentic-search-btn {
+        font-size: 0.88rem;
+        height: 40px;
+        padding: 0 20px;
+    }
+
+    .agentic-search-btn .btn-text {
+        font-size: 0.85rem;
+    }
+
+    #nav-alerting-btn {
+        height: 40px;
+        font-size: 0.88rem;
+    }
+
+    .app-header {
+        height: 90px;
+        padding: 0 28px;
+    }
+
+    /* Footer / Timeline */
+    .app-footer {
+        height: 96px;
+        padding: 0 20px;
+    }
+
+    .tl-window-badge {
+        width: 280px;
+        font-size: 0.95rem;
+        height: 42px;
+    }
+
+    .glass-select {
+        font-size: 0.92rem;
+        padding: 7px 14px;
+    }
+
+    /* Summary view */
+    #summary-view {
+        padding: 40px;
+        gap: 28px;
+    }
+
+    .national-narrative-card {
+        padding: 36px;
+    }
+
+    .narration-header h3 {
+        font-size: 1.6rem;
+    }
+
+    .narrative-prose {
+        font-size: 1.2rem;
+    }
+
+    /* Severity legend */
+    .severity-legend {
+        width: 180px;
+        padding: 14px 16px;
+    }
+
+    .legend-title {
+        font-size: 1.0rem;
+    }
+
+    .legend-item {
+        font-size: 1.0rem;
+    }
+
+    .legend-dot {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Feed header */
+    .feed-stats {
+        font-size: 1.0rem;
+    }
+
+    .feed-sort-select {
+        font-size: 0.9rem;
+    }
+
+    .feed-header-alt {
+        padding: 18px 22px;
+    }
+
+    /* Toggle/filter sizes */
+    .severity-toggle-slider {
+        width: 34px;
+        height: 20px;
+    }
+
+    .severity-toggle-dot {
+        width: 16px;
+        height: 16px;
+    }
+
+    .severity-toggle-row input:checked + .severity-toggle-slider .severity-toggle-dot {
+        left: 16px;
+    }
+
+    .toggle-slider-wrap {
+        width: 34px;
+        height: 20px;
+    }
+
+    .toggle-dot {
+        width: 16px;
+        height: 16px;
+    }
+
+    .toggle-row input:checked + .toggle-slider-wrap .toggle-dot {
+        left: 16px;
+    }
+
+    .category-indicator, .severity-indicator {
+        width: 16px;
+        height: 16px;
+    }
+
+    .sub-label {
+        font-size: 0.88rem;
+    }
+
+    .only-trigger {
+        font-size: 0.9rem;
+    }
+
+    /* Scrollable feed */
+    .scrollable-feed {
+        padding: 14px;
+        gap: 18px;
+    }
+}
+
 /* --- Large Laptop / Small Desktop (≤1600px) --- */
 @media (max-width: 1600px) {
     .flat-side-panel {
@@ -5418,22 +5702,31 @@ body.show-severity .marker-inner.severe {
 
     /* Demo preset scaling */
     .demo-time-preset {
-        padding: 10px 14px;
-        gap: 10px;
+        padding: 12px 16px;
+        gap: 12px;
     }
 
     .persona-photo {
-        width: 56px;
-        height: 56px;
+        width: 68px;
+        height: 68px;
     }
 
     .persona-role {
-        font-size: 0.95rem;
+        font-size: 1.08rem;
     }
 
     .persona-blurb {
-        font-size: 0.82rem;
-        max-width: 320px;
+        font-size: 0.92rem;
+        max-width: 360px;
+    }
+
+    .demo-time-preset-label {
+        font-size: 0.88rem;
+    }
+
+    .demo-time-preset select {
+        font-size: 0.94rem;
+        padding: 8px 10px;
     }
 
     #summary-view {
@@ -5505,15 +5798,15 @@ body.show-severity .marker-inner.severe {
     }
 
     .sidebar-section h4 {
-        font-size: 0.78rem;
+        font-size: 0.92rem;
     }
 
     .item-label {
-        font-size: 0.78rem;
+        font-size: 0.9rem;
     }
 
     .sidebar-main-header {
-        font-size: 0.78rem;
+        font-size: 0.88rem;
     }
 
     .scrollable-feed {
@@ -5555,46 +5848,46 @@ body.show-severity .marker-inner.severe {
 
     /* Demo preset scaling */
     .demo-time-preset {
-        padding: 8px 12px;
-        gap: 8px;
-        border-radius: 10px;
+        padding: 10px 14px;
+        gap: 10px;
+        border-radius: 11px;
     }
 
     .demo-time-preset-left {
-        min-width: 120px;
-        gap: 4px;
+        min-width: 135px;
+        gap: 5px;
     }
 
     .demo-time-preset-label {
-        font-size: 0.75rem;
+        font-size: 0.82rem;
     }
 
     .demo-time-preset select {
-        font-size: 0.82rem;
-        padding: 6px 8px;
+        font-size: 0.88rem;
+        padding: 7px 10px;
     }
 
     .persona-photo {
-        width: 48px;
-        height: 48px;
+        width: 60px;
+        height: 60px;
     }
 
     .persona-role {
-        font-size: 0.88rem;
+        font-size: 1.0rem;
     }
 
     .persona-blurb {
-        font-size: 0.76rem;
-        max-width: 260px;
+        font-size: 0.86rem;
+        max-width: 300px;
     }
 
     .persona-card {
         gap: 8px;
-        padding-left: 10px;
+        padding-left: 12px;
     }
 
     .persona-item-top {
-        gap: 8px;
+        gap: 10px;
     }
 
     .benefits-toggle {
@@ -5783,15 +6076,15 @@ body.show-severity .marker-inner.severe {
 
     /* Left sidebar compaction */
     .sidebar-section h4 {
-        font-size: 0.72rem;
+        font-size: 0.84rem;
     }
 
     .item-label {
-        font-size: 0.74rem;
+        font-size: 0.82rem;
     }
 
     .sidebar-main-header {
-        font-size: 0.72rem;
+        font-size: 0.8rem;
     }
 
     /* Timeline compaction */
@@ -5845,38 +6138,38 @@ body.show-severity .marker-inner.severe {
 
     /* Demo preset — compact for small laptops */
     .demo-time-preset {
-        padding: 7px 10px;
+        padding: 8px 12px;
         gap: 8px;
-        border-radius: 9px;
+        border-radius: 10px;
     }
 
     .demo-time-preset-left {
-        min-width: 110px;
-        gap: 3px;
+        min-width: 115px;
+        gap: 4px;
     }
 
     .demo-time-preset-label {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
 
     .demo-time-preset select {
-        font-size: 0.78rem;
-        padding: 5px 7px;
+        font-size: 0.82rem;
+        padding: 6px 8px;
         border-radius: 6px;
     }
 
     .persona-photo {
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
     }
 
     .persona-role {
-        font-size: 0.82rem;
+        font-size: 0.88rem;
     }
 
     .persona-blurb {
-        font-size: 0.72rem;
-        max-width: 200px;
+        font-size: 0.76rem;
+        max-width: 220px;
     }
 
     .persona-card {
@@ -5885,7 +6178,7 @@ body.show-severity .marker-inner.severe {
     }
 
     .persona-item-top {
-        gap: 6px;
+        gap: 8px;
     }
 
     .benefits-toggle {
@@ -6050,15 +6343,15 @@ body.show-severity .marker-inner.severe {
     }
 
     .sidebar-section h4 {
-        font-size: 0.68rem;
+        font-size: 0.78rem;
     }
 
     .item-label {
-        font-size: 0.7rem;
+        font-size: 0.76rem;
     }
 
     .sidebar-main-header {
-        font-size: 0.68rem;
+        font-size: 0.74rem;
     }
 
     /* Timeline further compact */
@@ -6097,41 +6390,41 @@ body.show-severity .marker-inner.severe {
 
     /* Demo preset — very compact */
     .demo-time-preset {
-        padding: 6px 8px;
+        padding: 7px 10px;
         gap: 6px;
-        border-radius: 8px;
+        border-radius: 9px;
     }
 
     .demo-time-preset-left {
-        min-width: 100px;
+        min-width: 105px;
         gap: 3px;
     }
 
     .demo-time-preset-label {
-        font-size: 0.65rem;
+        font-size: 0.7rem;
     }
 
     .demo-time-preset select {
-        font-size: 0.72rem;
-        padding: 4px 6px;
+        font-size: 0.76rem;
+        padding: 5px 7px;
     }
 
     .persona-photo {
-        width: 34px;
-        height: 34px;
+        width: 38px;
+        height: 38px;
     }
 
     .persona-role {
-        font-size: 0.75rem;
+        font-size: 0.78rem;
     }
 
     .persona-blurb {
-        font-size: 0.68rem;
-        max-width: 160px;
+        font-size: 0.7rem;
+        max-width: 170px;
     }
 
     .persona-card {
-        gap: 4px;
+        gap: 5px;
         padding-left: 6px;
     }
 
