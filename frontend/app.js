@@ -72,7 +72,7 @@ const SEVERITIES = {
 };
 
 const PERSONAS = {
-    '0800': [{ role: 'Flood Forecaster',           blurb: 'Uses impact intelligence to support decision to update forecast',                                    photo: 'photos/Flood_forecaster.jpg' }],
+    '0800': [{ role: 'Flood Forecaster',           blurb: "Uses 'observed' impact intelligence to support decision to update forecast",                                    photo: 'photos/Flood_forecaster.jpg' }],
     '0830': [{ role: 'Fire and Rescue Controller', blurb: 'Uses forecast to make operational decisions on resources and equipment',                             photo: 'photos/Fire_rescue_controller.jpg' }],
     '0845': [{ role: 'Parliamentary Assistant',    blurb: 'Agent uses intelligence to create morning brief for Monmouth MP',                                   photo: 'photos/MP_assistant.jpg' }],
     '1100': [{ role: 'Flood Forecaster',           blurb: 'Focusses agentic search in key risk areas',                                                         photo: 'photos/Flood_forecaster.jpg' }],
@@ -90,7 +90,8 @@ const PERSONA_BENEFITS = {
         'Earlier warning, giving more time to take action'
     ],
     'Fire and Rescue Controller': [
-        'Situational awareness insights drive better operational decisions'
+        'Situational awareness insights drive better operational decisions',
+        'Directly protects lives and livelihoods'
     ],
     'Parliamentary Assistant': [
         'MP better able to meet needs of constituents'
@@ -737,7 +738,6 @@ const PEXELS_PHOTOS = [
     'photos/pexels-kelly-19063417.jpg',
     'photos/pexels-kent-spencer-mendez-52733750-9137104.jpg',
     'photos/pexels-markus-winkler-1430818-3532526.jpg',
-    'photos/pexels-naveen-annam-734127-1578329.jpg',
     'photos/pexels-sveta-k-75705601-8568719.jpg',
     'photos/pexels-tomfisk-6226996.jpg',
     'photos/pexels-valentin-ivantsov-2154772556-35249003.jpg'
@@ -830,6 +830,7 @@ const State = {
     map: null,
     regions: null,
     counties: null,
+    fireLayer: null,
     constituencies: null,
     regionNames: [],
     countyNames: [],
@@ -941,10 +942,11 @@ async function init() {
     // Fetch and Load GeoJSONs
     try {
         console.log("Starting data fetch...");
-        const [regionsRes, countiesRes, constRes] = await Promise.all([
+        const [regionsRes, countiesRes, constRes, fireRes] = await Promise.all([
             fetch('geo/uk-regions.geojson').then(r => r.json()),
             fetch('geo/uk-counties.geojson').then(r => r.json()),
-            fetch('geo/westminister.json').then(r => r.json())
+            fetch('geo/westminister.json').then(r => r.json()),
+            fetch('geo/uk-fire.json').then(r => r.json())
         ]);
 
         State.rawRegions = regionsRes;
@@ -1009,6 +1011,18 @@ async function init() {
             onEachFeature: (feature, layer) => {
                 layer.on('click', onSpatialClick);
             }
+        });
+
+        // South Wales Fire & Rescue boundary — shown at 0830 demo step
+        State.fireLayer = L.geoJSON(fireRes, {
+            style: {
+                color: '#dc2626',
+                weight: 4,
+                opacity: 0.9,
+                fillOpacity: 0,
+                dashArray: null
+            },
+            pane: 'overlayPane'
         });
 
         // Store names for mock generation
@@ -1286,6 +1300,16 @@ function setupEvents() {
         evaluateAlerts();
         renderPersonaCard(val);
 
+        // Show South Wales Fire & Rescue boundary at 0830 only
+        if (State.fireLayer) {
+            if (val === '0830') {
+                if (!State.map.hasLayer(State.fireLayer)) State.fireLayer.addTo(State.map);
+                State.fireLayer.bringToFront();
+            } else {
+                if (State.map.hasLayer(State.fireLayer)) State.map.removeLayer(State.fireLayer);
+            }
+        }
+
         // Collapse any open benefits panels on time change
         document.querySelectorAll('.benefits-panel.open').forEach(p => p.classList.remove('open'));
         document.querySelectorAll('.benefits-toggle.open').forEach(b => b.classList.remove('open'));
@@ -1512,6 +1536,8 @@ function setupEvents() {
         feedSortSelect.addEventListener('change', (e) => {
             State.feedSort = e.target.value;
             renderImpacts();
+            const feedCont = document.getElementById('feed-container');
+            if (feedCont) feedCont.scrollTop = 0;
         });
     }
 
@@ -2206,11 +2232,13 @@ function renderFeed(filtered) {
         if (State.selectedImpact?.id === imp.id) cardClasses += ' active';
         if (!imp.photo) cardClasses += ' no-photo';
         card.className = cardClasses;
-        
+        const catColor = (CATEGORIES[imp.category] || {}).color || '#6366f1';
+        card.style.backgroundColor = catColor + '14'; // ~8% opacity pastel tint
+
         const timeStr = imp.timestamp.toLocaleTimeString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
 
         card.innerHTML = `
-            ${imp.photo ? `<div class="feed-card-photo" style="background-image: url('${imp.photo}')"></div>` : ''}
+            ${imp.photo ? `<div class="feed-card-photo" style="background-image: url('${imp.photo}')"><img src="${imp.photo}" style="display:none" onerror="var p=this.parentElement;p.style.display='none';p.closest('.feed-card').classList.add('no-photo')"></div>` : ''}
             <div class="feed-card-body">
                 <div class="feed-card-header-inner">
                     <div class="feed-card-meta-new">
@@ -2555,6 +2583,31 @@ window.openConfigTab = function(tabId) {
     document.getElementById('assessment-modal').classList.remove('active');
 };
 
+function getSourceReliabilityNote(imp) {
+    if (!imp) return null;
+    const src = imp.source || '';
+    const rel = imp.assessment?.sourceReliability || '';
+    if (rel === 'Official' || ['ea-help', 'energy', 'water', 'railways'].includes(imp.category)) {
+        return 'Official agency source — data from verified government or utility systems carries high inherent reliability.';
+    }
+    if (src.includes('Twitter') || src.includes('X (')) {
+        return 'X (Twitter) posts are unverified social signals, generally treated as low confidence. Confidence increases significantly when the post originates from a verified official account such as National Rail, a highways authority, or an emergency service.';
+    }
+    if (src.includes('Bluesky')) {
+        return 'Bluesky posts are unverified social signals. Confidence is low unless the account is a verified official body.';
+    }
+    if (src.includes('Threads')) {
+        return 'Threads posts are unverified social signals. Confidence is low unless the account is a verified official body.';
+    }
+    if (imp.category === 'news') {
+        return 'Online news provides situational context but may lag official sources. Cross-reference with agency data where available.';
+    }
+    if (imp.category === 'roads') {
+        return 'Sourced from National Highways or Traffic Wales official systems — high reliability for road incident reporting.';
+    }
+    return null;
+}
+
 function showAssessmentModal(impactId) {
     let imp = State.impacts.find(i => i.id === impactId);
     let a;
@@ -2562,20 +2615,23 @@ function showAssessmentModal(impactId) {
 
     if (imp) {
         a = imp.assessment;
+        const cleanTitle = imp.headline || (imp.title || '').replace(/^\[.*?\]\s*/, '');
+        const catColor = (CATEGORIES[imp.category] || {}).color || 'var(--clr-primary)';
         titleHtml = `
-            <div class="assessed-record-box">
+            <div class="assessed-record-box" style="background:${catColor}0d; border-bottom-color:${catColor}25">
                 <div class="record-meta">
-                    <span class="record-category" style="color:${CATEGORIES[imp.category].color}">${CATEGORIES[imp.category].label}</span>
+                    <span class="record-category" style="color:${catColor}">${CATEGORIES[imp.category].label}</span>
                     <span class="record-dot">•</span>
                     <span class="record-source">${imp.source}</span>
                 </div>
-                <h4 class="record-title">${imp.headline || imp.title}</h4>
+                <h4 class="record-title">${cleanTitle}</h4>
+                <a href="${imp.sourceUrl || '#'}" target="_blank" class="assess-source-link" onclick="event.stopPropagation()">View source ↗</a>
             </div>
         `;
     } else if (State.spatialAssessments && State.spatialAssessments[impactId]) {
         const spatial = State.spatialAssessments[impactId];
         a = spatial.assessment;
-        imp = { severity: spatial.severity, category: 'proxy' }; // dummy for styling
+        imp = { severity: spatial.severity, category: 'proxy' };
         titleHtml = `
             <div class="assessed-record-box spatial">
                 <div class="record-meta">
@@ -2590,57 +2646,58 @@ function showAssessmentModal(impactId) {
 
     if (!a) return;
 
+    const srcNote = getSourceReliabilityNote(imp);
+
     const modal = document.getElementById('assessment-modal');
     const body = document.getElementById('assessment-modal-body');
 
     body.innerHTML = `
         ${titleHtml}
-        
-        <div class="assessment-header-stats">
-            <div class="header-stat-group">
-                <span class="stat-mini-label">Severity Level</span>
-                <div class="stat-mini-value">
-                    <span class="sev-dot-small" style="background:${SEVERITIES[imp.severity].color}"></span>
-                    <span style="color:${SEVERITIES[imp.severity].color}; font-weight:700;">${SEVERITIES[imp.severity].label}</span>
-                </div>
-            </div>
-            <div class="header-stat-group">
-                <span class="stat-mini-label">Confidence</span>
-                <div class="stat-mini-value">
-                    <span class="conf-chip-new" style="background:${a.confidenceColor}20; color:${a.confidenceColor}; border: 1px solid ${a.confidenceColor}40;">
-                        ${a.confidenceLabel}
-                    </span>
-                </div>
-            </div>
-        </div>
 
-        <div class="justification-section">
-            <h5>Severity Assessment</h5>
-            <p class="justification-text synthesis">${a.synthesis}</p>
-            <p class="framework-statement">
-                According to the <a href="#" onclick="openConfigTab('impact-framework'); return false;" class="framework-link">Impact Framework</a>, this aligns with a <strong>${SEVERITIES[imp.severity].label}</strong> level of impact.
-            </p>
-            
-            <div class="timing-assessment">
-                <div class="timing-item">
-                    <span class="timing-label">Estimated Start</span>
-                    <span class="timing-value">${a.startTiming || '08:00'}</span>
-                </div>
-                <div class="timing-item">
-                    <span class="timing-label">Estimated End</span>
-                    <span class="timing-value">${a.endTiming || '--:--'}</span>
-                </div>
-            </div>
-        </div>
+        <div class="assess-body">
 
-        <div class="justification-section">
-            <h5>Confidence Assessment</h5>
-            <div class="confidence-statement-block">
-                <p class="justification-text">${a.confidenceStatement}</p>
-                <div class="confidence-justification-box">
-                    <strong>Assessment Justification:</strong> ${a.justification}
+            <div class="stat-row-inline">
+                <div class="stat-cell">
+                    <span class="stat-cell-label">Severity</span>
+                    <div class="stat-cell-value">
+                        <span class="sev-rect-small" style="background:${SEVERITIES[imp.severity].color}"></span>
+                        <span class="sev-text-bold">${SEVERITIES[imp.severity].label}</span>
+                    </div>
+                </div>
+                <span class="stat-sep"></span>
+                <div class="stat-cell">
+                    <span class="stat-cell-label">Confidence</span>
+                    <div class="stat-cell-value">
+                        <span class="conf-dots" data-level="${(a.confidenceLabel || '').toLowerCase()}"><span></span><span></span><span></span></span>
+                        <span class="conf-text">${a.confidenceLabel}</span>
+                    </div>
                 </div>
             </div>
+
+            <div class="assess-section">
+                <p class="assess-label">Severity assessment</p>
+                <p class="assess-text">${a.synthesis}</p>
+                <p class="assess-framework">Per the <a href="#" onclick="openConfigTab('impact-framework'); return false;" class="framework-link">Impact Framework</a>, this aligns with a <strong>${SEVERITIES[imp.severity].label}</strong> level of impact.</p>
+            </div>
+
+            <div class="assess-section">
+                <p class="assess-label">Confidence & source reliability</p>
+                ${srcNote ? `<p class="assess-source-note">${srcNote}</p>` : ''}
+                <p class="assess-text">${a.confidenceStatement}</p>
+                <p class="assess-text assess-text-muted">${a.justification}</p>
+            </div>
+
+            <div class="assess-timing">
+                <div class="assess-timing-item">
+                    <span class="assess-timing-label">Estimated start</span>
+                    <span class="assess-timing-value">${a.startTiming || '--:--'}</span>
+                </div>
+                <div class="assess-timing-item">
+                    <span class="assess-timing-label">Estimated end</span>
+                    <span class="assess-timing-value">${a.endTiming || '--:--'}</span>
+                </div>
+            </div>
+
         </div>
     `;
 
@@ -2671,6 +2728,184 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === spatialModal) spatialModal.classList.remove('active');
         });
     }
+});
+
+// --- Demo Intro Sequence ---
+document.addEventListener('DOMContentLoaded', () => {
+    const preset      = document.getElementById('demo-time-preset');
+    const presetLeft  = preset.querySelector('.demo-time-preset-left');
+    const personaCard = document.getElementById('persona-card');
+    const benefitsExt = document.getElementById('benefits-extension');
+    const toggleBtn   = document.getElementById('demo-preset-toggle');
+
+    // Hide normal controls during intro
+    [presetLeft, personaCard, benefitsExt, toggleBtn].forEach(el => { if (el) el.style.display = 'none'; });
+    preset.classList.add('demo-intro-active');
+
+    // Inject intro panel
+    const introEl = document.createElement('div');
+    introEl.id = 'demo-intro-content';
+    introEl.innerHTML = `
+        <div class="demo-intro-badge">Demo &middot; Synthetic data</div>
+        <button class="demo-start-btn" id="demo-start-btn">
+            Start demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+    `;
+    preset.appendChild(introEl);
+
+    function showNormalControls() {
+        document.getElementById('demo-intro-content')?.remove();
+        preset.classList.remove('demo-intro-active');
+        [presetLeft, personaCard, benefitsExt, toggleBtn].forEach(el => { if (el) el.style.display = ''; });
+        const sel = document.getElementById('demo-time-preset-select');
+        sel.value = '0800';
+        sel.dispatchEvent(new Event('change'));
+    }
+
+    // Step 1 — map bounding box
+    function step1() {
+        const mapCont = document.getElementById('map-container');
+        const ov = document.createElement('div');
+        ov.className = 'demo-step-overlay demo-step-map';
+        ov.innerHTML = `
+            <div class="demo-map-label">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                Impacts shown on map, in real time
+            </div>
+            <div class="demo-click-hint">Click anywhere to continue &rarr;</div>
+        `;
+        mapCont.appendChild(ov);
+        ov.addEventListener('click', () => { ov.classList.add('demo-fadeout'); setTimeout(() => { ov.remove(); step2(); }, 300); }, { once: true });
+    }
+
+    // Step 2 — highlight the Impact Sources section on the LHS
+    function step2() {
+        // Transparent click-catcher (no dim)
+        const clickCatcher = document.createElement('div');
+        clickCatcher.className = 'demo-click-catcher';
+        document.body.appendChild(clickCatcher);
+
+        const sourcesView = document.getElementById('sidebar-sources-view');
+        sourcesView.classList.add('demo-spotlight');
+
+        // Fixed-position label — placed to the right of the sources view
+        const lbl = document.createElement('div');
+        lbl.className = 'demo-glass-label';
+        const svRect = sourcesView.getBoundingClientRect();
+        lbl.style.position = 'fixed';
+        lbl.style.left = (svRect.right + 16) + 'px';
+        lbl.style.top  = (svRect.top + svRect.height / 2) + 'px';
+        lbl.style.transform = 'translateY(-50%)';
+        lbl.style.zIndex = '2003';
+        lbl.innerHTML = `Multiple impact sources`;
+        document.body.appendChild(lbl);
+
+        const hint = document.createElement('div');
+        hint.className = 'demo-click-hint demo-click-hint-fixed';
+        hint.innerHTML = 'Click anywhere to continue &rarr;';
+        document.body.appendChild(hint);
+
+        clickCatcher.addEventListener('click', () => {
+            clickCatcher.remove(); lbl.remove(); hint.remove();
+            sourcesView.classList.remove('demo-spotlight');
+            step3();
+        }, { once: true });
+    }
+
+    // Step 3 — highlight a map marker + LLM pipeline animation
+    function step3() {
+        // Transparent click-catcher (no dim)
+        const clickCatcher = document.createElement('div');
+        clickCatcher.className = 'demo-click-catcher';
+        document.body.appendChild(clickCatcher);
+
+        // Find the Somerset marker (ev-social-12)
+        const somersetMarker = State.markers.find(m => m.impactId === 'ev-social-12');
+        let markerEl = null;
+        if (somersetMarker) {
+            markerEl = somersetMarker.getElement();
+            if (markerEl) markerEl.classList.add('demo-marker-highlight');
+        }
+
+        // Pipeline panel — glassmorphic, positioned beneath Somerset marker
+        const pipeline = document.createElement('div');
+        pipeline.className = 'demo-pipeline-panel';
+        pipeline.innerHTML = `
+            <div class="pipeline-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Multimodal LLM pipeline
+            </div>
+            <div class="pipeline-steps">
+                <div class="pipeline-step"><span class="pipeline-dot"></span>Check for relevancy</div>
+                <div class="pipeline-step"><span class="pipeline-dot"></span>Geolocate</div>
+                <div class="pipeline-step"><span class="pipeline-dot"></span>Run impact severity framework</div>
+                <div class="pipeline-step"><span class="pipeline-dot"></span>Run confidence assessment framework</div>
+            </div>
+            <div class="pipeline-click-hint">Click anywhere to begin demo &rarr;</div>
+        `;
+
+        // Position beneath the Somerset marker on the map with pointer line
+        pipeline.style.position = 'fixed';
+        pipeline.style.width    = '420px';
+        let connector = null;
+        if (somersetMarker) {
+            const pt = State.map.latLngToContainerPoint(somersetMarker.getLatLng());
+            const mapCont = document.getElementById('map-container');
+            const mapRect = mapCont.getBoundingClientRect();
+            const markerX = mapRect.left + pt.x;
+            const markerY = mapRect.top  + pt.y;
+            const panelLeft = markerX - 210;
+            const panelTop  = markerY + 60;
+            pipeline.style.left = panelLeft + 'px';
+            pipeline.style.top  = panelTop + 'px';
+
+            // SVG connector line from marker to top of panel
+            connector = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            connector.style.position = 'fixed';
+            connector.style.left = '0';
+            connector.style.top = '0';
+            connector.style.width = '100vw';
+            connector.style.height = '100vh';
+            connector.style.pointerEvents = 'none';
+            connector.style.zIndex = '2002';
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', markerX);
+            line.setAttribute('y1', markerY + 37);
+            line.setAttribute('x2', markerX);
+            line.setAttribute('y2', panelTop);
+            line.setAttribute('stroke', '#dc2626');
+            line.setAttribute('stroke-width', '2');
+            line.setAttribute('stroke-dasharray', '6,4');
+            connector.appendChild(line);
+            document.body.appendChild(connector);
+        } else {
+            const mapCont = document.getElementById('map-container');
+            const mapRect = mapCont.getBoundingClientRect();
+            pipeline.style.left = (mapRect.left + mapRect.width / 2 - 210) + 'px';
+            pipeline.style.top  = (mapRect.top  + mapRect.height / 2 - 120) + 'px';
+        }
+        document.body.appendChild(pipeline);
+
+        // Animate steps in one by one
+        pipeline.querySelectorAll('.pipeline-step').forEach((s, i) => {
+            setTimeout(() => s.classList.add('visible'), 300 + i * 360);
+        });
+
+        clickCatcher.addEventListener('click', () => {
+            clickCatcher.remove();
+            pipeline.remove();
+            if (connector) connector.remove();
+            if (markerEl) markerEl.classList.remove('demo-marker-highlight');
+            showNormalControls();
+        }, { once: true });
+    }
+
+    document.getElementById('demo-start-btn').addEventListener('click', () => {
+        introEl.style.opacity = '0';
+        introEl.style.transition = 'opacity 0.2s';
+        setTimeout(() => { introEl.remove(); step1(); }, 220);
+    });
 });
 
 // --- Polygon Drawing Helpers ---
