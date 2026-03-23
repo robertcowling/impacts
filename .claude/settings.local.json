@@ -9,7 +9,12 @@
       "Bash(where python:*)",
       "Bash(where python3:*)",
       "Bash(where py:*)",
-      "Bash(py -m http.server 8000)"
+      "Bash(py -m http.server 8000)",
+      "Bash(node:*)",
+      "Bash(find 'C:\\\\Users\\\\rob_c\\\\Code\\\\PRD Civil Service Challenge' -type f \\\\\\(-name *.json -o -name *data* -o -name *impact* \\\\\\))",
+      "Bash(cp \"C:\\\\Users\\\\rob_c\\\\Code\\\\PRD Civil Service Challenge\\\\frontend\\\\app.js\" \"C:\\\\Users\\\\rob_c\\\\Code\\\\gh-pages-work\\\\app.js\")",
+      "Bash(cp \"C:\\\\Users\\\\rob_c\\\\Code\\\\PRD Civil Service Challenge\\\\frontend\\\\style.css\" \"C:\\\\Users\\\\rob_c\\\\Code\\\\gh-pages-work\\\\style.css\")",
+      "Bash(cp \"C:\\\\Users\\\\rob_c\\\\Code\\\\PRD Civil Service Challenge\\\\frontend\\\\geo\\\\uk-fire.json\" \"C:\\\\Users\\\\rob_c\\\\Code\\\\gh-pages-work\\\\geo\\\\uk-fire.json\")"
     ]
   }
 }
