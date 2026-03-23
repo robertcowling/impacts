@@ -3585,7 +3585,7 @@ main {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
     letter-spacing: 0.02em;
@@ -3603,7 +3603,7 @@ main {
     gap: 12px;
     padding: 10px 0;
     border-bottom: 1px solid rgba(0,0,0,0.06);
-    font-size: 1.25rem;
+    font-size: 1.65rem;
     font-weight: 600;
     color: rgba(0,0,0,0.2);
     opacity: 0;
@@ -3628,7 +3628,7 @@ main {
 .pipeline-step.visible .pipeline-dot { background: #dc2626; }
 
 .pipeline-click-hint {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: rgba(0,0,0,0.4);
     padding-top: 6px;
